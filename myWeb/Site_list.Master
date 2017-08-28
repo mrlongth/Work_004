@@ -1,0 +1,260 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_list.Master.cs"
+    Inherits="myWeb.Site_list" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="MattBerseth.WebControls.AJAX" Namespace="MattBerseth.WebControls.AJAX.ModalPopupAnimationExtender"
+    TagPrefix="mb" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ระบบบริหารจัดการงบประมาณ คณะผลิตกรรมการเกษตร มหาวิทยาลัยแม่โจ้ เชียงใหม่</title>
+    <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
+    <link href="js/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/default.css" rel="stylesheet" type="text/css" />
+    <link href="themes/start/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload="on_load_list()">
+    <form id="form1" runat="server">
+        <div class="site_full_2">
+            <div class="header_full">
+                <div class="logo_2">
+                </div>
+                <div class="login_detail">
+                    <div class="welcome_text">
+                        <asp:Label ID="LabelUser" runat="server" Text="ยินดีต้อนรับ" /><br />
+                        <asp:Label ID="UserLabel" runat="server" Text="Label"></asp:Label>
+                    </div>
+                    <asp:LinkButton ID="lnkLogOut" runat="server" OnClick="btnLogOut_Click" CssClass="log_out_top">
+                    </asp:LinkButton>
+                </div>
+            </div>
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="top_left_corner_2"></td>
+                    <td class="top_mid">&nbsp;
+                    </td>
+                    <td width="38">
+                        <asp:Image ID="Image2x" runat="server" ImageUrl="~/images/top_right_2.png" Width="43"
+                            Height="182" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="33" class="left_2">&nbsp;
+                </td>
+                <td class="mid">
+                    <div id="div_menu">
+                        <table style="width: 100%" cellspacing="0" cellpadding="0" border="0">
+                            <tr>
+                                <td style="width: 100%; height: 30px;">
+                                    <dxm:ASPxMenu ID="ASPxMenu1" runat="server" CssFilePath="~/App_Themes/Office2003 Olive/{0}/styles.css"
+                                        CssPostfix="Office2003_Olive" ImageFolder="~/App_Themes/Office2003 Olive/{0}/"
+                                        ItemSpacing="1px" SeparatorColor="Transparent" SeparatorHeight="14px" SeparatorWidth="2px"
+                                        ShowPopOutImages="True" OnItemClick="ASPxMenu1_ItemClick" BorderBetweenItemAndSubMenu="HideRootOnly">
+                                        <Items>
+                                        </Items>
+                                        <ItemSubMenuOffset FirstItemX="2" LastItemX="2" X="2" />
+                                        <ItemStyle HorizontalAlign="Left" />
+                                        <SubMenuStyle GutterWidth="17px" />
+                                        <SeparatorPaddings PaddingBottom="1px" PaddingRight="0px" />
+                                    </dxm:ASPxMenu>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="master_page">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server"  AsyncPostBackTimeOut= "360000">
+                        </asp:ScriptManager>
+                        <asp:UpdatePanel ID="updatePanel1" runat="server">
+                            <ContentTemplate>
+                                <dxrp:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" BackColor="White" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                                    CssPostfix="Aqua" Width="100%" HeaderText="User Login">
+                                    <BottomRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/BottomRightCorner.png" Width="5px" />
+                                    <ContentPaddings Padding="14px" />
+                                    <NoHeaderTopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/NoHeaderTopRightCorner.png"
+                                        Width="5px" />
+                                    <HeaderRightEdge>
+                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderRightEdge.png" Repeat="NoRepeat"
+                                            VerticalPosition="bottom" HorizontalPosition="right" />
+                                    </HeaderRightEdge>
+                                    <Border BorderColor="#F7DF3E" BorderStyle="Solid" BorderWidth="2px" />
+                                    <HeaderLeftEdge>
+                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderLeftEdge.png" Repeat="NoRepeat"
+                                            VerticalPosition="bottom" HorizontalPosition="left" />
+                                    </HeaderLeftEdge>
+                                    <HeaderStyle BackColor="#FBDD75">
+                                        <BorderLeft BorderStyle="None" />
+                                        <BorderRight BorderStyle="None" />
+                                        <BorderBottom BorderStyle="None" />
+                                    </HeaderStyle>
+                                    <TopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/TopRightCorner.png" Width="5px" />
+                                    <HeaderContent>
+                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderContent.png" Repeat="RepeatX"
+                                            VerticalPosition="bottom" HorizontalPosition="left" />
+                                    </HeaderContent>
+                                    <NoHeaderTopEdge BackColor="White">
+                                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpNoHeaderTopEdge.gif" Repeat="RepeatX"
+                                            VerticalPosition="Top" />
+                                    </NoHeaderTopEdge>
+                                    <NoHeaderTopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/NoHeaderTopLeftCorner.png"
+                                        Width="5px" />
+                                    <PanelCollection>
+                                        <dxp:PanelContent ID="PanelContent1" runat="server">
+                                            <table style="width: 100%">
+                                                <tr>
+                                                    <td>
+                                                        <div style="clear: both;" />
+                                                        <asp:Panel ID="pnlCollapse" runat="server">
+                                                            <dxrp:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" BackColor="White" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
+                                                                CssPostfix="Aqua" HeaderText="" ShowHeader="False" Width="100%">
+                                                                <ContentPaddings Padding="5px" />
+                                                                <HeaderStyle BackColor="#FBDD75">
+                                                                    <BorderLeft BorderStyle="None" />
+                                                                    <BorderRight BorderStyle="None" />
+                                                                    <BorderBottom BorderStyle="None" />
+                                                                </HeaderStyle>
+                                                                <TopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/TopLeftCorner.png" Width="5px" />
+                                                                <NoHeaderTopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/NoHeaderTopLeftCorner.png"
+                                                                    Width="5px" />
+                                                                <TopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/TopRightCorner.png" Width="5px" />
+                                                                <NoHeaderTopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/NoHeaderTopRightCorner.png"
+                                                                    Width="5px" />
+                                                                <BottomRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/BottomRightCorner.png" Width="5px" />
+                                                                <BottomLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/BottomLeftCorner.png" Width="5px" />
+                                                                <HeaderLeftEdge>
+                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderLeftEdge.png" Repeat="NoRepeat"
+                                                                        VerticalPosition="bottom" HorizontalPosition="left" />
+                                                                </HeaderLeftEdge>
+                                                                <HeaderContent>
+                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderContent.png" Repeat="RepeatX"
+                                                                        VerticalPosition="bottom" HorizontalPosition="left" />
+                                                                </HeaderContent>
+                                                                <HeaderRightEdge>
+                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderRightEdge.png" Repeat="NoRepeat"
+                                                                        VerticalPosition="bottom" HorizontalPosition="right" />
+                                                                </HeaderRightEdge>
+                                                                <NoHeaderTopEdge BackColor="White">
+                                                                    <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpNoHeaderTopEdge.gif" Repeat="RepeatX"
+                                                                        VerticalPosition="Top" />
+                                                                </NoHeaderTopEdge>
+                                                                <PanelCollection>
+                                                                    <dxp:PanelContent ID="PanelContent2" runat="server">
+                                                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                                        </asp:ContentPlaceHolder>
+                                                                    </dxp:PanelContent>
+                                                                </PanelCollection>
+                                                                <Border BorderColor="#F7DF3E" BorderStyle="Solid" BorderWidth="2px" />
+                                                            </dxrp:ASPxRoundPanel>
+                                                        </asp:Panel>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                                                        </asp:ContentPlaceHolder>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </dxp:PanelContent>
+                                    </PanelCollection>
+                                    <TopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/TopLeftCorner.png" Width="5px" />
+                                    <BottomLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/BottomLeftCorner.png" Width="5px" />
+                                </dxrp:ASPxRoundPanel>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                        <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="updatePanel1">
+                            <ProgressTemplate>
+                                <iframe frameborder="0" src="about:blank" class="overlay"></iframe>
+                                <asp:Panel ID="Panel2" CssClass="loader" runat="server">
+                                    <asp:Image ID="Image2" runat="server" ImageAlign="Middle" ImageUrl="~/images/Loading.gif" />
+                                </asp:Panel>
+                            </ProgressTemplate>
+                        </asp:UpdateProgress>
+                        <asp:Panel ID="panelShow1" runat="server" CssClass="modalPopup" Style="height: 1px; width: 1px;">
+                            <div class="div-headadd" id="div1">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <div id="divdes1" style="vertical-align: middle">
+                                            </div>
+                                        </td>
+                                        <td style="width: 1%; vertical-align: middle">
+                                            <asp:ImageButton ID="imgClose1" runat="server" ImageUrl="~/images/Delete.png" Style="float: right; cursor: pointer"
+                                                AlternateText="ปิดหน้านี้" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <iframe id="iframeShow1" class="iframeShow" name="iframeShow1" frameborder="0" src="about:blank"
+                                scrolling="no"></iframe>
+                            <asp:Panel ID="panelShow2" runat="server" CssClass="modalPopup" Style="height: 1px; width: 1px;">
+                                <div class="div-headadd" id="div2">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div id="divdes2" style="vertical-align: middle">
+                                                </div>
+                                            </td>
+                                            <td style="width: 1%; vertical-align: middle">
+                                                <asp:ImageButton ID="imgClose2" runat="server" ImageUrl="~/images/Delete.png" Style="float: right; cursor: pointer"
+                                                    AlternateText="ปิดหน้านี้" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <iframe id="iframeShow2" class="iframeShow" name="iframeShow2" frameborder="0" src="about:blank"
+                                    scrolling="no"></iframe>
+                                <asp:Panel ID="panelShow3" runat="server" CssClass="modalPopup" Style="height: 1px; width: 1px;">
+                                    <div class="div-headadd" id="div3">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div id="divdes3" style="vertical-align: middle">
+                                                    </div>
+                                                </td>
+                                                <td style="width: 1%; vertical-align: middle">
+                                                    <asp:ImageButton ID="imgClose3" runat="server" ImageUrl="~/images/Delete.png" Style="float: right; cursor: pointer"
+                                                        AlternateText="ปิดหน้านี้" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <iframe id="iframeShow3" class="iframeShow" name="iframeShow3" frameborder="0" src="about:blank"
+                                        scrolling="no"></iframe>
+                                </asp:Panel>
+                                <ajaxToolkit:ModalPopupExtender ID="show3_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                                    DropShadow="true" PopupControlID="panelShow3" TargetControlID="btnShow3" BehaviorID="show3_ModalPopupExtender">
+                                </ajaxToolkit:ModalPopupExtender>
+                                <asp:Button ID="btnShow3" runat="server" />
+                            </asp:Panel>
+                            <ajaxToolkit:ModalPopupExtender ID="show2_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                                DropShadow="true" PopupControlID="panelShow2" TargetControlID="btnShow2" BehaviorID="show2_ModalPopupExtender">
+                            </ajaxToolkit:ModalPopupExtender>
+                            <asp:Button ID="btnShow2" runat="server" />
+                        </asp:Panel>
+                        <ajaxToolkit:ModalPopupExtender ID="show1_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                            PopupControlID="panelShow1" PopupDragHandleControlID="panelShow1" DropShadow="true"
+                            TargetControlID="btnShow" BehaviorID="show1_ModalPopupExtender">
+                        </ajaxToolkit:ModalPopupExtender>
+                        <asp:Button ID="btnShow" runat="server" />
+                    </div>
+                </td>
+                <td class="right_2">&nbsp;
+                </td>
+            </tr>
+        </table>
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td class="bottom_left_2"></td>
+                <td class="bottom_mid">ระบบบริหารจัดการงบประมาณ คณะผลิตกรรมการเกษตร มหาวิทยาลัยแม่โจ้ เชียงใหม่
+                </td>
+                <td class="bottom_right_2">&nbsp;
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

@@ -1,0 +1,5 @@
+E:\WorkAll\myData\MyWork\MJU\Work_004\myDLL\bin\Debug\myDLL.dll
+E:\WorkAll\myData\MyWork\MJU\Work_004\myDLL\bin\Debug\myDLL.pdb
+E:\WorkAll\myData\MyWork\MJU\Work_004\myDLL\obj\Debug\myDLL.csprojResolveAssemblyReference.cache
+E:\WorkAll\myData\MyWork\MJU\Work_004\myDLL\obj\Debug\myDLL.dll
+E:\WorkAll\myData\MyWork\MJU\Work_004\myDLL\obj\Debug\myDLL.pdb
