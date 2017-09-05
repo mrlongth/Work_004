@@ -422,31 +422,7 @@ namespace myWeb.App_Control.news
             }
         }
 
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string strMessage = string.Empty;
-            string strCheck = string.Empty;
-            string strScript = string.Empty;
-            string strUpdatedBy = Session["username"].ToString();
-            Label lblpayment_doc = (Label)GridView1.Rows[e.RowIndex].FindControl("lblpayment_doc");
-            cPayment oPayment = new cPayment();
-            try
-            {
-                if (!oPayment.SP_PAYMENT_DEL(lblpayment_doc.Text, "N", strUpdatedBy, ref strMessage))
-                {
-                    lblError.Text = strMessage;
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message.ToString();
-            }
-            finally
-            {
-                oPayment.Dispose();
-            }
-            BindGridView(0);
-        }
+      
 
     }
 }

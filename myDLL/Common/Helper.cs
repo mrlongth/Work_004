@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using System.IO;
+using System.Data;
+using System.Reflection;
 
 namespace myDLL
 {
@@ -290,7 +292,84 @@ namespace myDLL
             return strText;
         }
 
+        public static bool IsValidDatatable(DataTable dataTable, bool ignoreZeroRows = false)
+        {
+            if (dataTable == null)
+                return false;
+            if (dataTable.Columns.Count == 0)
+                return false;
+            if (ignoreZeroRows)
+                return true;
 
+            return dataTable.Rows.Count != 0;
+        }
+
+
+        public static IList<T> ToClassInstanceCollection<T>(DataTable dataTable) where T : class, new()
+        {
+            if (!IsValidDatatable(dataTable))
+                return new List<T>();
+
+            var classType = typeof(T);
+            IList<PropertyInfo> propertyList = classType.GetProperties();
+
+            // Parameter class has no public properties.
+            if (propertyList.Count == 0)
+                return new List<T>();
+
+            var columnNames = dataTable.Columns.Cast<DataColumn>().Select(column => column.ColumnName).ToList();
+            var result = new List<T>();
+
+            try
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    var classObject = new T();
+
+                    foreach (var property in propertyList)
+                    {
+                        if (!IsValidObjectData(property, columnNames, row))
+                            continue;
+
+                        var propertyValue = ChangeType(
+                                row[property.Name],
+                                property.PropertyType
+                            );
+
+                        property.SetValue(classObject, propertyValue, null);
+                    }
+
+                    result.Add(classObject);
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                return new List<T>();
+            }
+        }
+
+        public static bool IsValidObjectData(PropertyInfo property, List<string> columnNames, DataRow row)
+        {
+            return property != null && property.CanWrite && columnNames.Contains(property.Name) && row[property.Name] != DBNull.Value;
+        }
+
+
+        public static object ChangeType(object value, Type conversion)
+        {
+            var type = conversion;
+
+            if (!type.IsGenericType || !(type.GetGenericTypeDefinition() == typeof(Nullable<>)))
+                return Convert.ChangeType(value, type);
+
+            if (value == null)
+            {
+                return null;
+            }
+
+            type = Nullable.GetUnderlyingType(type);
+            return Convert.ChangeType(value, type);
+        }
 
 
     }

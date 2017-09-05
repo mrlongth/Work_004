@@ -456,7 +456,7 @@
                                         <asp:Label ID="Label78" runat="server" CssClass="label_hbk">สาขา :</asp:Label>
                                     </td>
                                     <td align="left">
-                                        <asp:DropDownList ID="cboBranch" runat="server" AutoPostBack="True" CssClass="textbox" OnSelectedIndexChanged="cboBudget_type_SelectedIndexChanged">
+                                        <asp:DropDownList ID="cboMajor" runat="server" CssClass="textbox">
                                         </asp:DropDownList>
                                     </td>
                                 </tr>

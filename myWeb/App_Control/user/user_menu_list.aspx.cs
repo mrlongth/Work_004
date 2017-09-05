@@ -664,28 +664,7 @@ namespace myWeb.App_Control.user
 
                 #endregion
             }
-        }
-
-        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            GridViewRow gvRow;
-            if (e.CommandName.ToUpper().Equals("RESET"))
-            {
-                gvRow = GridView1.Rows[Helper.CInt(e.CommandArgument) - 1];
-                Label lblperson_code = (Label)gvRow.FindControl("lblperson_code");
-                _strMessage = string.Empty;
-                var oPerson = new cPerson();
-                if (oPerson.SP_PERSON_HIS_PASS_UPD(lblperson_code.Text, null, base.UserLoginName, ref _strMessage))
-                {
-                    MsgBox("Reset รหัสผ่านสมบูรณ์");
-                }
-                else
-                {
-                    lblError.Text = _strMessage;
-                    lblError.Visible = true;
-                }
-            }
-        }
+        }      
 
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -24,7 +24,7 @@ namespace myWeb.App_Control.item_group
         private string strPageNo = "1";
         private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
         private string strPrefixCtr = "ctl00$ASPxRoundPanel1$ASPxRoundPanel2$ContentPlaceHolder1$";
-     
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace myWeb.App_Control.item_group
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
                 imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
 
-                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','เพิ่มข้อมูลหมวดรายได้/ค่าใช้จ่าย','item_group_control.aspx?mode=add&page=0','1');return false;");
+                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','เพิ่มข้อมูลหมวดค่าใช้จ่าย','item_group_control.aspx?mode=add&page=0','1');return false;");
                 ViewState["sort"] = "item_group_code";
                 ViewState["direction"] = "ASC";
                 RadioAll.Checked = true;
@@ -105,7 +105,7 @@ namespace myWeb.App_Control.item_group
         {
             BindGridView(int.Parse(strPageNo) - 1);
         }
-        
+
         private void BindGridView(int nPageNo)
         {
             cItem_group oItem_group = new cItem_group();
@@ -141,7 +141,7 @@ namespace myWeb.App_Control.item_group
             }
             try
             {
-                if (!oItem_group.SP_SEL_item_group(strCriteria, ref ds, ref strMessage))
+                if (!oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }
@@ -179,6 +179,7 @@ namespace myWeb.App_Control.item_group
                 }
             }
         }
+
 
         protected void imgFind_Click(object sender, ImageClickEventArgs e)
         {
@@ -244,7 +245,7 @@ namespace myWeb.App_Control.item_group
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แสดงข้อมูลหมวดรายได้/ค่าใช้จ่าย','item_group_view.aspx?mode=view&item_group_code=" + 
+                imgView.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แสดงข้อมูลหมวดค่าใช้จ่าย','item_group_view.aspx?mode=view&item_group_code=" +
                                                                                 lblitem_group_code.Text + "','1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
                 imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
@@ -254,7 +255,7 @@ namespace myWeb.App_Control.item_group
 
                 ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
                 Label lblCanEdit = (Label)e.Row.FindControl("lblCanEdit");
-                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แก้ไขข้อมูลหมวดรายได้/ค่าใช้จ่าย','item_group_control.aspx?mode=edit&item_group_code=" + 
+                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แก้ไขข้อมูลหมวดค่าใช้จ่าย','item_group_control.aspx?mode=edit&item_group_code=" +
                                                                             lblitem_group_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
                 imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
                 imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
@@ -262,7 +263,7 @@ namespace myWeb.App_Control.item_group
                 ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
                 imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
                 imgDelete.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
-                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบหมวดรายได้/ค่าใช้จ่าย   " + lblitem_group_code.Text + " : " + lblitem_group_name.Text + " ?\");");
+                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบหมวดค่าใช้จ่าย   " + lblitem_group_code.Text + " : " + lblitem_group_name.Text + " ?\");");
                 #endregion
 
                 #region check user can edit/delete
@@ -352,7 +353,7 @@ namespace myWeb.App_Control.item_group
                 #endregion
 
                 #region render new pager
-                 tbc.Text = string.Empty;
+                tbc.Text = string.Empty;
                 Literal lblPager = new Literal();
                 lblPager.Text = "<TABLE border='0' width='100%' cellpadding='0' cellspacing='0'><TR><TD width='30%' valign='middle'>";
                 tbc.Controls.Add(lblPager);
@@ -485,7 +486,7 @@ namespace myWeb.App_Control.item_group
                 lblError.Text = ex.Message.ToString();
             }
         }
-        
+
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strMessage = string.Empty;
@@ -496,10 +497,10 @@ namespace myWeb.App_Control.item_group
             cItem_group oItem_group = new cItem_group();
             try
             {
-                if (!oItem_group.SP_ITEM_GROUP_DEL(lblitem_group_code.Text, "N", strUpdatedBy, ref strMessage))
-                {
-                    lblError.Text = strMessage;
-                }
+                //if (!oItem_group.SP_ITEM_GROUP_DEL(lblitem_group_code.Text, "N", strUpdatedBy, ref strMessage))
+                //{
+                //    lblError.Text = strMessage;
+                //}
             }
             catch (Exception ex)
             {

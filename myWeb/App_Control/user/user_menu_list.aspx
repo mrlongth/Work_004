@@ -88,7 +88,7 @@
     <asp:GridView ID="GridView1" runat="server" CssClass="stGrid" AllowPaging="True"
         AllowSorting="True" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="2"
         Font-Size="10pt" Width="100%" Font-Bold="False" OnRowCreated="GridView1_RowCreated"
-        OnRowDeleting="GridView1_RowDeleting" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound" OnRowCommand="GridView1_RowCommand"
+        OnRowDeleting="GridView1_RowDeleting" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound" 
         EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True" OnPageIndexChanging="GridView1_PageIndexChanging">
         <Columns>
             <asp:TemplateField Visible="False">

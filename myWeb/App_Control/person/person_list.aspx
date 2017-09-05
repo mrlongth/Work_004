@@ -5,16 +5,16 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellpadding="1" cellspacing="1" style="width: 100%" border="0">
         <tr>
-            <td style="text-align: right; width: 20%;">
+            <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage4">ปีงบประมาณ :</asp:Label>
             </td>
-            <td style="width: 1%;">
+            <td style="width: 30%;">
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboYear" AutoPostBack="True"
                     OnSelectedIndexChanged="cboYear_SelectedIndexChanged">
                 </asp:DropDownList>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
-            <td style="width: 20%; text-align: right;" colspan="2">
+            <td style="width: 15%; text-align: right;" colspan="2">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage2">กลุ่มบุคลากร :</asp:Label>
             </td>
             <td colspan="2" style="height: 23px">
@@ -24,16 +24,16 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: right; width: 20%;">
+            <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage7">สังกัด :
                 </asp:Label>
             </td>
-            <td style="width: 1%;">
+            <td style="width: 30%;">
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboDirector" AutoPostBack="True"
                     OnSelectedIndexChanged="cboDirector_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td style="width: 20%; text-align: right;" colspan="2">
+            <td style="width: 15%; text-align: right;" colspan="2">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage8">หน่วยงาน :
                 </asp:Label>
             </td>
@@ -44,7 +44,7 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: right; width: 20%;">
+            <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage1">รหัสบุคลากร :</asp:Label>
             </td>
             <td colspan="2">
@@ -68,15 +68,15 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: right; width: 20%;">
+            <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage5">สถานะการทำงาน : </asp:Label>
             </td>
-            <td style="width: 1%;">
+            <td style="width: 30%;">
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboPerson_work_status" OnSelectedIndexChanged="cboPerson_work_status_SelectedIndexChanged"
                     AutoPostBack="True">
                 </asp:DropDownList>
             </td>
-            <td style="width: 20%; text-align: right;" colspan="2">
+            <td style="width: 15%; text-align: right;" colspan="2">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage3">สถานะ : </asp:Label>
             </td>
             <td style="height: 23px">

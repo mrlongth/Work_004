@@ -11,6 +11,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Xml.Linq;
 using myDLL;
+using myModel;
 
 namespace myWeb.App_Control.item_group
 {
@@ -18,12 +19,7 @@ namespace myWeb.App_Control.item_group
     {
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            //if (Session["username"] == null)
-            //{
-            //    string strScript = "<script language=\"javascript\">\n self.opener.document.location.href=\"../../index.aspx\";\n self.close();\n</script>\n";
-            //    this.RegisterStartupScript("close", strScript);
-            //    return;
-            //}
+
             lblError.Text = "";
             if (!IsPostBack)
             {
@@ -161,49 +157,36 @@ namespace myWeb.App_Control.item_group
         {
             bool blnResult = false;
             bool blnDup = false;
-            string strMessage = string.Empty;
-            string stritem_group_code = string.Empty,
-                stritem_group_year = string.Empty,
-                stritem_group_name = string.Empty,
-                strlot_code = string.Empty,
-                 stritem_group_order = "0",
-                strActive = string.Empty,
-                strCreatedBy = string.Empty,
-                strUpdatedBy = string.Empty;
+            
             string strScript = string.Empty;
             cItem_group oItem_group = new cItem_group();
             DataSet ds = new DataSet();
             try
             {
                 #region set Data
-                stritem_group_code = txtitem_group_code.Text.Trim();
-                stritem_group_name = txtitem_group_name.Text;
-                stritem_group_year = cboYear.SelectedItem.Value;
-                strlot_code = cboLot_code.SelectedItem.Value;
-                stritem_group_order = txtitem_group_order.Value.ToString();
-                if (chkStatus.Checked == true)
+                var item_group = new Item_group()
                 {
-                    strActive = "Y";
-                }
-                else
-                {
-                    strActive = "N";
-                }
-                strCreatedBy = Session["username"].ToString();
-                strUpdatedBy = Session["username"].ToString();
+                    item_group_code = txtitem_group_code.Text.Trim(),
+                    item_group_name = txtitem_group_name.Text,
+                    item_group_year = cboYear.SelectedItem.Value,
+                    lot_code = cboLot_code.SelectedItem.Value,
+                    c_active = chkStatus.Checked ? "Y" : "N",
+                    c_created_by = Session["username"].ToString(),
+                    c_updated_by = Session["username"].ToString()
+                };
                 #endregion
                 if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
                     #region edit
                     if (!blnDup)
                     {
-                        if (oItem_group.SP_ITEM_GROUP_UPD(stritem_group_code, stritem_group_year, stritem_group_name, strlot_code,stritem_group_order, strActive, strUpdatedBy, ref strMessage))
+                        if (oItem_group.SP_ITEM_GROUP_UPD(item_group, ref _strMessage))
                         {
                             blnResult = true;
                         }
                         else
                         {
-                            lblError.Text = strMessage.ToString();
+                            lblError.Text = _strMessage.ToString();
                         }
                     }
                     else
@@ -216,41 +199,43 @@ namespace myWeb.App_Control.item_group
                 {
                     #region check dup
                     string strCheckDup = string.Empty;
-                    strCheckDup = " and item_group_name = '" + stritem_group_name.Trim() + "' and item_group_year = '" + stritem_group_year + "' ";
-                    if (!oItem_group.SP_SEL_item_group(strCheckDup, ref ds, ref strMessage))
+                    strCheckDup = " and item_group_name = '" + item_group.item_group_name + "' and item_group_year = '" + item_group.item_group_year + "' ";
+                    if (!oItem_group.SP_ITEM_GROUP_SEL(strCheckDup, ref ds, ref _strMessage))
                     {
-                        lblError.Text = strMessage;
+                        lblError.Text = _strMessage.ToString();
                     }
                     else
                     {
                         if (ds.Tables[0].Rows.Count > 0)
                         {
                             strScript =
-                                "alert(\"ไม่สามารถเพิ่มข้อมูล เนื่องจากข้อมูล " + stritem_group_name.Trim() + " ปี " + stritem_group_year.Trim() + "  ซ้ำ\");\n";
+                                "alert(\"ไม่สามารถเพิ่มข้อมูล เนื่องจากข้อมูล " + item_group.item_group_name + " ปี " + item_group.item_group_year + "  ซ้ำ\");\n";
                             blnDup = true;
                         }
                     }
+
+
                     #endregion
                     #region insert
                     if (!blnDup)
                     {
-                        if (oItem_group.SP_ITEM_GROUP_INS(stritem_group_year, stritem_group_name, strlot_code, stritem_group_order ,strActive, strCreatedBy, ref strMessage))
+                        if (oItem_group.SP_ITEM_GROUP_INS(item_group, ref _strMessage))
                         {
-                            string strGetcode = " and item_group_name = '" + stritem_group_name.Trim() + "' and item_group_year = '" + stritem_group_year + "' ";
-                            if (!oItem_group.SP_SEL_item_group(strGetcode, ref ds, ref strMessage))
+                            string strGetcode = " and item_group_name = '" + item_group.item_group_name.Trim() + "' and item_group_year = '" + item_group.item_group_year + "' ";
+                            if (!oItem_group.SP_ITEM_GROUP_SEL(strGetcode, ref ds, ref _strMessage))
                             {
-                                lblError.Text = strMessage;
+                                lblError.Text = _strMessage;
                             }
                             if (ds.Tables[0].Rows.Count > 0)
                             {
-                                stritem_group_code = ds.Tables[0].Rows[0]["item_group_code"].ToString();
+                                item_group.item_group_code = ds.Tables[0].Rows[0]["item_group_code"].ToString();
                             }
-                            ViewState["item_group_code"] = stritem_group_code;
+                            ViewState["item_group_code"] = item_group.item_group_code;
                             blnResult = true;
                         }
                         else
                         {
-                            lblError.Text = strMessage.ToString();
+                            lblError.Text = _strMessage.ToString();
                         }
                     }
                     else
@@ -295,77 +280,48 @@ namespace myWeb.App_Control.item_group
         private void setData()
         {
             cItem_group oItem_group = new cItem_group();
-            DataSet ds = new DataSet();
-            string strMessage = string.Empty, strCriteria = string.Empty;
-            string stritem_group_code = string.Empty,
-                stritem_group_name = string.Empty,
-                strlot_code = string.Empty,
-                strYear = string.Empty,
-                strItem_group_order = string.Empty,
-                strC_active = string.Empty,
-                strCreatedBy = string.Empty,
-                strUpdatedBy = string.Empty,
-                strCreatedDate = string.Empty,
-                strUpdatedDate = string.Empty;
+
             try
             {
-                strCriteria = " and item_group_code = '" + ViewState["item_group_code"].ToString() + "' ";
-                if (!oItem_group.SP_SEL_item_group(strCriteria, ref ds, ref strMessage))
+                _strCriteria = " and item_group_code = '" + ViewState["item_group_code"].ToString() + "' ";
+                var item_group = oItem_group.GET(_strCriteria);
+                if (item_group != null)
                 {
-                    lblError.Text = strMessage;
-                }
-                else
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
+
+                    #region set Control
+                    txtitem_group_code.Text = item_group.item_group_code;
+                    txtitem_group_name.Text = item_group.item_group_name;
+                    InitcboYear();
+                    if (cboYear.Items.FindByValue(item_group.item_group_year) != null)
                     {
-                        #region get Data
-                        stritem_group_code = ds.Tables[0].Rows[0]["item_group_code"].ToString();
-                        stritem_group_name = ds.Tables[0].Rows[0]["item_group_name"].ToString();
-                        strlot_code = ds.Tables[0].Rows[0]["lot_code"].ToString();
-                        strYear = ds.Tables[0].Rows[0]["item_group_year"].ToString();
-                        strItem_group_order = ds.Tables[0].Rows[0]["item_group_order"].ToString();
-                        strC_active = ds.Tables[0].Rows[0]["c_active"].ToString();
-                        strCreatedBy = ds.Tables[0].Rows[0]["c_created_by"].ToString();
-                        strUpdatedBy = ds.Tables[0].Rows[0]["c_updated_by"].ToString();
-                        strCreatedDate = ds.Tables[0].Rows[0]["d_created_date"].ToString();
-                        strUpdatedDate = ds.Tables[0].Rows[0]["d_updated_date"].ToString();
-                        #endregion
-
-                        #region set Control
-                        txtitem_group_code.Text = stritem_group_code;
-                        txtitem_group_name.Text = stritem_group_name;
-                        InitcboYear();
-                        if (cboYear.Items.FindByValue(strYear) != null)
-                        {
-                            cboYear.SelectedIndex = -1;
-                            cboYear.Items.FindByValue(strYear).Selected = true;
-                        }
-                        InitcboLot();
-                        if (cboLot_code.Items.FindByValue(strlot_code) != null)
-                        {
-                            cboLot_code.SelectedIndex = -1;
-                            cboLot_code.Items.FindByValue(strlot_code).Selected = true;
-                        }
-
-                        if (strC_active.Equals("Y"))
-                        {
-                            txtitem_group_name.ReadOnly = false;
-                            txtitem_group_name.CssClass = "textbox";
-                            chkStatus.Checked = true;
-                        }
-                        else
-                        {
-                            txtitem_group_name.ReadOnly = true;
-                            txtitem_group_name.CssClass = "textboxdis";
-                            chkStatus.Checked = false;
-                        }
-                        cboYear.Enabled = false;
-                        cboYear.CssClass = "textboxdis";
-                        txtUpdatedBy.Text = strUpdatedBy;
-                        txtUpdatedDate.Text = strUpdatedDate;
-                        txtitem_group_order.Value = strItem_group_order;
-                        #endregion
+                        cboYear.SelectedIndex = -1;
+                        cboYear.Items.FindByValue(item_group.item_group_year).Selected = true;
                     }
+                    InitcboLot();
+                    if (cboLot_code.Items.FindByValue(item_group.lot_code) != null)
+                    {
+                        cboLot_code.SelectedIndex = -1;
+                        cboLot_code.Items.FindByValue(item_group.lot_code).Selected = true;
+                    }
+
+                    if (item_group.c_active.Equals("Y"))
+                    {
+                        txtitem_group_name.ReadOnly = false;
+                        txtitem_group_name.CssClass = "textbox";
+                        chkStatus.Checked = true;
+                    }
+                    else
+                    {
+                        txtitem_group_name.ReadOnly = true;
+                        txtitem_group_name.CssClass = "textboxdis";
+                        chkStatus.Checked = false;
+                    }
+                    cboYear.Enabled = false;
+                    cboYear.CssClass = "textboxdis";
+                    txtUpdatedBy.Text = item_group.c_updated_by;
+                    txtUpdatedDate.Text = item_group.d_updated_date.ToString();
+                    #endregion
+
                 }
             }
             catch (Exception ex)

@@ -98,22 +98,6 @@
         </tr>
         <tr align="left">
             <td align="right" nowrap valign="top">
-                <asp:Label ID="Label1" runat="server">ลำดับที่ :</asp:Label>
-            </td>
-            <td align="left" colspan="2" nowrap valign="top">
-                <cc2:AwNumeric ID="txtitem_group_order" runat="server" CssClass="textbox" LeadZero="Show"
-                    MaxValue="99999999" MinValue="0" Width="100px" DecimalPlaces="0">
-                </cc2:AwNumeric>
-            </td>
-            <td>
-                &nbsp;
-            </td>
-            <td>
-                &nbsp;
-            </td>
-        </tr>
-        <tr align="left">
-            <td align="right" nowrap valign="top">
                 <asp:Label ID="Label12" runat="server">สถานะ :</asp:Label>
             </td>
             <td align="left" colspan="2" nowrap valign="top">

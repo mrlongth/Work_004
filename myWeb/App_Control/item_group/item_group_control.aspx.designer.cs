@@ -139,24 +139,6 @@ namespace myWeb.App_Control.item_group {
         protected global::System.Web.UI.WebControls.DropDownList cboLot_code;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// txtitem_group_order control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Aware.WebControls.AwNumeric txtitem_group_order;
-        
-        /// <summary>
         /// Label12 control.
         /// </summary>
         /// <remarks>

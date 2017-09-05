@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>myDLL</RootNamespace>
     <AssemblyName>myDLL</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
@@ -44,7 +44,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\360Feedback_Sln\Aware.DAL\bin\Debug\Aware.DAL.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -59,64 +66,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Payroll\cActivity.cs" />
-    <Compile Include="Payroll\cBudget.cs" />
-    <Compile Include="Payroll\cExcelExtender.cs" />
-    <Compile Include="Payroll\cFund.cs" />
-    <Compile Include="Payroll\cDirector.cs" />
-    <Compile Include="Payroll\cLot.cs" />
-    <Compile Include="Payroll\cBank.cs" />
-    <Compile Include="Payroll\cBranch.cs" />
-    <Compile Include="Payroll\cMember_type.cs" />
-    <Compile Include="Payroll\cItem_group.cs" />
-    <Compile Include="Payroll\cMember.cs" />
-    <Compile Include="Payroll\cBudget_plan.cs" />
-    <Compile Include="Payroll\cItem.cs" />
-    <Compile Include="Payroll\cCommon.cs" />
-    <Compile Include="Payroll\cBudget_money.cs" />
-    <Compile Include="Payroll\cCheque.cs" />
-    <Compile Include="Payroll\cItem_acc.cs" />
-    <Compile Include="Payroll\cNews.cs" />
-    <Compile Include="Payroll\cItem_person_group.cs" />
-    <Compile Include="Payroll\cBudget_rev.cs" />
-    <Compile Include="Payroll\cEdu.cs" />
-    <Compile Include="Payroll\cOpen.cs" />
-    <Compile Include="Payroll\cMaterial.cs" />
-    <Compile Include="Payroll\cMenu.cs" />
-    <Compile Include="Payroll\c3dMaterial.cs" />
-    <Compile Include="Payroll\cLevel_position.cs" />
-    <Compile Include="Payroll\cLoan.cs" />
-    <Compile Include="Payroll\cReq_approve.cs" />
-    <Compile Include="Payroll\cReq_cer.cs" />
-    <Compile Include="Payroll\cPayment_bonus.cs" />
-    <Compile Include="Payroll\cPayment_medical.cs" />
-    <Compile Include="Payroll\cPayment_special.cs" />
-    <Compile Include="Payroll\cPayment_special_round.cs" />
-    <Compile Include="Payroll\cPerson_special.cs" />
-    <Compile Include="Payroll\cUser_group_menu.cs" />
-    <Compile Include="Payroll\cPerson_retire.cs" />
-    <Compile Include="Payroll\cPerson_center.cs" />
-    <Compile Include="Payroll\cPayment_return.cs" />
-    <Compile Include="Payroll\cUser_menu.cs" />
-    <Compile Include="Payroll\cUser_group.cs" />
-    <Compile Include="Payroll\cUser.cs" />
-    <Compile Include="Payroll\cPayment_back.cs" />
-    <Compile Include="Payroll\cPayment.cs" />
-    <Compile Include="Payroll\cPayment_round.cs" />
-    <Compile Include="Payroll\cPerson.cs" />
-    <Compile Include="Payroll\cPerson_manage.cs" />
-    <Compile Include="Payroll\cPerson_group.cs" />
-    <Compile Include="Payroll\cPerson_work_status.cs" />
-    <Compile Include="Payroll\cPosition.cs" />
+    <Compile Include="Command\cItem_group.cs" />
+    <Compile Include="Command\cActivity.cs" />
+    <Compile Include="Command\cBudget.cs" />
+    <Compile Include="Command\cCommon.cs" />
+    <Compile Include="Command\cExcelExtender.cs" />
+    <Compile Include="Command\cMajor.cs" />
+    <Compile Include="Command\cFund.cs" />
+    <Compile Include="Command\cDirector.cs" />
+    <Compile Include="Command\cLot.cs" />
+    <Compile Include="Command\cMember.cs" />
+    <Compile Include="Command\cBudget_plan.cs" />
+    <Compile Include="Command\cNews.cs" />
+    <Compile Include="Command\cMenu.cs" />
+    <Compile Include="Command\cLevel_position.cs" />
+    <Compile Include="Command\cPerson_special.cs" />
+    <Compile Include="Command\cUser_group_menu.cs" />
+    <Compile Include="Command\cUser_menu.cs" />
+    <Compile Include="Command\cUser_group.cs" />
+    <Compile Include="Command\cUser.cs" />
+    <Compile Include="Command\cPerson.cs" />
+    <Compile Include="Command\cPerson_manage.cs" />
+    <Compile Include="Command\cPerson_group.cs" />
+    <Compile Include="Command\cPerson_work_status.cs" />
+    <Compile Include="Command\cPosition.cs" />
     <Compile Include="Common\CryptorEngine.cs" />
-    <Compile Include="Payroll\cUnit.cs" />
-    <Compile Include="Payroll\cWork.cs" />
-    <Compile Include="Payroll\cPlan.cs" />
-    <Compile Include="Payroll\cProduce.cs" />
-    <Compile Include="Payroll\cTitle.cs" />
+    <Compile Include="Command\cUnit.cs" />
+    <Compile Include="Command\cWork.cs" />
+    <Compile Include="Command\cPlan.cs" />
+    <Compile Include="Command\cProduce.cs" />
+    <Compile Include="Command\cTitle.cs" />
     <Compile Include="Common\Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Payroll\UserMenuBLL.cs" />
+    <Compile Include="Command\UserMenuBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\myModel\myModel.csproj">
+      <Project>{0154f0b2-382b-4d45-9825-7eeb1cf05712}</Project>
+      <Name>myModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

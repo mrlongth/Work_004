@@ -1,0 +1,2372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="mju_budgetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="activity_code" />
+          </Key>
+          <Property Name="activity_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="activity_year" Type="varchar" MaxLength="4" />
+          <Property Name="activity_name" Type="varchar" MaxLength="100" />
+          <Property Name="produce_code" Type="varchar" MaxLength="10" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Budget">
+          <Key>
+            <PropertyRef Name="budget_code" />
+          </Key>
+          <Property Name="budget_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="budget_year" Type="varchar" MaxLength="4" />
+          <Property Name="budget_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Budget_plan">
+          <Key>
+            <PropertyRef Name="budget_plan_code" />
+          </Key>
+          <Property Name="budget_plan_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="budget_plan_year" Type="varchar" MaxLength="4" />
+          <Property Name="unit_code" Type="varchar" MaxLength="10" />
+          <Property Name="activity_code" Type="varchar" MaxLength="6" />
+          <Property Name="plan_code" Type="varchar" MaxLength="6" />
+          <Property Name="work_code" Type="varchar" MaxLength="6" />
+          <Property Name="fund_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Config_item">
+          <Key>
+            <PropertyRef Name="config_id" />
+          </Key>
+          <Property Name="config_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="config_type" Type="varchar" MaxLength="50" />
+          <Property Name="config_code" Type="varchar" MaxLength="50" />
+          <Property Name="config_name" Type="varchar" MaxLength="255" />
+          <Property Name="config_sort" Type="int" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="director_code" />
+          </Key>
+          <Property Name="director_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="director_year" Type="varchar" MaxLength="4" />
+          <Property Name="director_name" Type="varchar" MaxLength="100" />
+          <Property Name="director_sign_name" Type="varchar" MaxLength="255" />
+          <Property Name="director_sign_image" Type="image" />
+          <Property Name="sign_position" Type="varchar" MaxLength="255" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+          <Property Name="director_order" Type="int" />
+          <Property Name="director_short_name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Fund">
+          <Key>
+            <PropertyRef Name="fund_code" />
+          </Key>
+          <Property Name="fund_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="fund_year" Type="varchar" MaxLength="4" />
+          <Property Name="fund_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="General">
+          <Key>
+            <PropertyRef Name="g_id" />
+          </Key>
+          <Property Name="g_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="g_type" Type="varchar" MaxLength="50" />
+          <Property Name="g_code" Type="varchar" MaxLength="50" />
+          <Property Name="g_name" Type="varchar" MaxLength="255" />
+          <Property Name="g_sort" Type="int" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_type" Type="varchar" MaxLength="1" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Item_detail">
+          <Key>
+            <PropertyRef Name="item_detail_id" />
+          </Key>
+          <Property Name="item_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_code" Type="varchar" MaxLength="10" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Item_group">
+          <Key>
+            <PropertyRef Name="item_group_code" />
+          </Key>
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="lot_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Item_group_detail">
+          <Key>
+            <PropertyRef Name="item_group_detail_id" />
+          </Key>
+          <Property Name="item_group_detail_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Level_position">
+          <Key>
+            <PropertyRef Name="level_position_code" />
+          </Key>
+          <Property Name="level_position_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="level_position_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Lot">
+          <Key>
+            <PropertyRef Name="lot_code" />
+          </Key>
+          <Property Name="lot_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="lot_year" Type="varchar" MaxLength="4" />
+          <Property Name="lot_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Major">
+          <Key>
+            <PropertyRef Name="major_code" />
+          </Key>
+          <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="major_year" Type="varchar" MaxLength="4" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="smallint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MenuNavigationUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="MenuImageUrl" Type="nvarchar" MaxLength="255" />
+          <Property Name="MenuTarget" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MenuParent" Type="smallint" Nullable="false" />
+          <Property Name="MenuOrder" Type="smallint" />
+          <Property Name="CanView" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanInsert" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanEdit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanDelete" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanApprove" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanExtra" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="New">
+          <Key>
+            <PropertyRef Name="new_id" />
+          </Key>
+          <Property Name="new_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="new_title" Type="varchar" MaxLength="4000" />
+          <Property Name="new_des" Type="text" />
+          <Property Name="new_type" Type="varchar" MaxLength="2" />
+          <Property Name="new_status" Type="varchar" MaxLength="2" />
+          <Property Name="new_file_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="new_pic_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person_group">
+          <Key>
+            <PropertyRef Name="person_group_code" />
+          </Key>
+          <Property Name="person_group_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="person_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person_his">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="title_code" Type="varchar" MaxLength="5" />
+          <Property Name="person_thai_name" Type="varchar" MaxLength="50" />
+          <Property Name="person_thai_surname" Type="varchar" MaxLength="50" />
+          <Property Name="person_eng_name" Type="varchar" MaxLength="50" />
+          <Property Name="person_eng_surname" Type="varchar" MaxLength="50" />
+          <Property Name="person_nickname" Type="varchar" MaxLength="50" />
+          <Property Name="person_id" Type="varchar" MaxLength="50" />
+          <Property Name="person_pic" Type="varchar" MaxLength="255" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="person_password" Type="varchar" MaxLength="255" />
+          <Property Name="person_email" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Person_manage">
+          <Key>
+            <PropertyRef Name="person_manage_code" />
+          </Key>
+          <Property Name="person_manage_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="person_manage_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person_status">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="person_sex" Type="varchar" MaxLength="5" />
+          <Property Name="person_high" Type="varchar" MaxLength="50" />
+          <Property Name="person_width" Type="varchar" MaxLength="50" />
+          <Property Name="person_origin" Type="varchar" MaxLength="50" />
+          <Property Name="person_nation" Type="varchar" MaxLength="50" />
+          <Property Name="person_religion" Type="varchar" MaxLength="50" />
+          <Property Name="person_birth" Type="datetime" />
+          <Property Name="person_marry" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person_work">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="position_code" Type="varchar" MaxLength="5" />
+          <Property Name="person_level" Type="varchar" MaxLength="5" />
+          <Property Name="person_postionno" Type="varchar" MaxLength="10" />
+          <Property Name="person_start" Type="datetime" />
+          <Property Name="person_end" Type="datetime" />
+          <Property Name="person_group_code" Type="varchar" MaxLength="5" />
+          <Property Name="person_manage_code" Type="varchar" MaxLength="5" />
+          <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+          <Property Name="person_work_status_code" Type="varchar" MaxLength="5" />
+          <Property Name="type_position_code" Type="varchar" MaxLength="10" />
+          <Property Name="person_budget_type" Type="varchar" MaxLength="10" />
+          <Property Name="user_group_list" Type="varchar" MaxLength="50" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Person_work_status">
+          <Key>
+            <PropertyRef Name="person_work_status_code" />
+          </Key>
+          <Property Name="person_work_status_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="person_work_status_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="plan_code" />
+          </Key>
+          <Property Name="plan_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="plan_year" Type="varchar" MaxLength="4" />
+          <Property Name="plan_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="position_code" />
+          </Key>
+          <Property Name="position_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="position_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Produce">
+          <Key>
+            <PropertyRef Name="produce_code" />
+          </Key>
+          <Property Name="produce_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="produce_year" Type="varchar" MaxLength="4" />
+          <Property Name="produce_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="produce_sort_name" Type="varchar" MaxLength="100" />
+          <Property Name="project_code" Type="varchar" MaxLength="20" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="title_code" />
+          </Key>
+          <Property Name="title_code" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="title_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Type_position">
+          <Key>
+            <PropertyRef Name="type_position_code" />
+          </Key>
+          <Property Name="type_position_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="type_position_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="unit_code" />
+          </Key>
+          <Property Name="unit_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="unit_year" Type="varchar" MaxLength="4" />
+          <Property Name="unit_name" Type="varchar" MaxLength="100" />
+          <Property Name="director_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+          <Property Name="unit_order" Type="int" />
+        </EntityType>
+        <EntityType Name="User_group">
+          <Key>
+            <PropertyRef Name="user_group_code" />
+          </Key>
+          <Property Name="user_group_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="user_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="person_group_list" Type="varchar" MaxLength="255" />
+          <Property Name="director_lock" Type="char" MaxLength="1" />
+          <Property Name="unit_lock" Type="char" MaxLength="1" />
+          <Property Name="unit_code_list" Type="varchar" MaxLength="255" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="User_group_menu">
+          <Key>
+            <PropertyRef Name="user_group_code" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="user_group_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MenuID" Type="smallint" Nullable="false" />
+          <Property Name="CanView" Type="char" MaxLength="1" />
+          <Property Name="CanInsert" Type="char" MaxLength="1" />
+          <Property Name="CanEdit" Type="char" MaxLength="1" />
+          <Property Name="CanDelete" Type="char" MaxLength="1" />
+          <Property Name="CanApprove" Type="char" MaxLength="1" />
+          <Property Name="CanExtra" Type="char" MaxLength="1" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Usermenu">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="MenuID" Type="smallint" Nullable="false" />
+          <Property Name="CanView" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanInsert" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanEdit" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanDelete" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanApprove" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CanExtra" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="UpdatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="work_code" />
+          </Key>
+          <Property Name="work_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="work_year" Type="varchar" MaxLength="4" />
+          <Property Name="work_name" Type="varchar" MaxLength="100" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Item_group' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Item_group">
+          <Key>
+            <PropertyRef Name="item_group_code" />
+          </Key>
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" Nullable="false" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="lot_code" Type="varchar" MaxLength="6" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="lot_year" Type="varchar" MaxLength="4" />
+          <Property Name="lot_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_activity_produce_code">
+          <End Role="Produce" Type="Self.Produce" Multiplicity="0..1" />
+          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produce">
+              <PropertyRef Name="produce_code" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="produce_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_activity_code">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="0..1" />
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="activity_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="activity_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_fund_code">
+          <End Role="Fund" Type="Self.Fund" Multiplicity="0..1" />
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fund">
+              <PropertyRef Name="fund_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="fund_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_plan_code">
+          <End Role="Plan" Type="Self.Plan" Multiplicity="0..1" />
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="plan_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_unit_code">
+          <End Role="Unit" Type="Self.Unit" Multiplicity="0..1" />
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="unit_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="unit_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_work_code">
+          <End Role="Work" Type="Self.Work" Multiplicity="0..1" />
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Work">
+              <PropertyRef Name="work_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="work_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_group_detail_item_group">
+          <End Role="Item_group" Type="Self.Item_group" Multiplicity="0..1" />
+          <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group">
+              <PropertyRef Name="item_group_code" />
+            </Principal>
+            <Dependent Role="Item_group_detail">
+              <PropertyRef Name="item_group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_group_lot_code">
+          <End Role="Lot" Type="Self.Lot" Multiplicity="0..1" />
+          <End Role="Item_group" Type="Self.Item_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lot">
+              <PropertyRef Name="lot_code" />
+            </Principal>
+            <Dependent Role="Item_group">
+              <PropertyRef Name="lot_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_item_group_detail">
+          <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="0..1" />
+          <End Role="Item" Type="Self.Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group_detail">
+              <PropertyRef Name="item_group_detail_id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="item_group_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lot_lot">
+          <End Role="Lot" Type="Self.Lot" Multiplicity="1" />
+          <End Role="Lot1" Type="Self.Lot" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lot">
+              <PropertyRef Name="lot_code" />
+            </Principal>
+            <Dependent Role="Lot1">
+              <PropertyRef Name="lot_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_his_title_code">
+          <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+          <End Role="Person_his" Type="Self.Person_his" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="title_code" />
+            </Principal>
+            <Dependent Role="Person_his">
+              <PropertyRef Name="title_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_budget_plan_code">
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_plan">
+              <PropertyRef Name="budget_plan_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="budget_plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_major_code">
+          <End Role="Major" Type="Self.Major" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_group_code">
+          <End Role="Person_group" Type="Self.Person_group" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_group">
+              <PropertyRef Name="person_group_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_manage_code">
+          <End Role="Person_manage" Type="Self.Person_manage" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_manage">
+              <PropertyRef Name="person_manage_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_manage_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_work_status_code">
+          <End Role="Person_work_status" Type="Self.Person_work_status" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_work_status">
+              <PropertyRef Name="person_work_status_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_work_status_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_position_code">
+          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="position_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="position_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_type_position_code">
+          <End Role="Type_position" Type="Self.Type_position" Multiplicity="0..1" />
+          <End Role="Person_work" Type="Self.Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_position">
+              <PropertyRef Name="type_position_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="type_position_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produce_budget_code">
+          <End Role="Budget" Type="Self.Budget" Multiplicity="0..1" />
+          <End Role="Produce" Type="Self.Produce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="budget_code" />
+            </Principal>
+            <Dependent Role="Produce">
+              <PropertyRef Name="budget_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_unit_director_code">
+          <End Role="Director" Type="Self.Director" Multiplicity="0..1" />
+          <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="director_code" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="director_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="mju_budgetModelStoreContainer">
+          <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Budget" EntityType="Self.Budget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Budget_plan" EntityType="Self.Budget_plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Config_item" EntityType="Self.Config_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fund" EntityType="Self.Fund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="General" EntityType="Self.General" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_detail" EntityType="Self.Item_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_group" EntityType="Self.Item_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Item_group_detail" EntityType="Self.Item_group_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Level_position" EntityType="Self.Level_position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lot" EntityType="Self.Lot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Major" EntityType="Self.Major" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="New" EntityType="Self.New" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_group" EntityType="Self.Person_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_his" EntityType="Self.Person_his" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_manage" EntityType="Self.Person_manage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_status" EntityType="Self.Person_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_work" EntityType="Self.Person_work" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Person_work_status" EntityType="Self.Person_work_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produce" EntityType="Self.Produce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type_position" EntityType="Self.Type_position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_group" EntityType="Self.User_group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_group_menu" EntityType="Self.User_group_menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usermenu" EntityType="Self.Usermenu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_Item_group" EntityType="Self.view_Item_group" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Item_group].[item_group_code] AS [item_group_code], 
+    [view_Item_group].[item_group_year] AS [item_group_year], 
+    [view_Item_group].[item_group_name] AS [item_group_name], 
+    [view_Item_group].[lot_code] AS [lot_code], 
+    [view_Item_group].[c_active] AS [c_active], 
+    [view_Item_group].[c_created_by] AS [c_created_by], 
+    [view_Item_group].[d_created_date] AS [d_created_date], 
+    [view_Item_group].[c_updated_by] AS [c_updated_by], 
+    [view_Item_group].[d_updated_date] AS [d_updated_date], 
+    [view_Item_group].[lot_year] AS [lot_year], 
+    [view_Item_group].[lot_name] AS [lot_name], 
+    [view_Item_group].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Item_group] AS [view_Item_group]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_activity_produce_code" Association="Self.FK_activity_produce_code">
+            <End Role="Produce" EntitySet="Produce" />
+            <End Role="Activity" EntitySet="Activity" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_activity_code" Association="Self.FK_budget_plan_activity_code">
+            <End Role="Activity" EntitySet="Activity" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_fund_code" Association="Self.FK_budget_plan_fund_code">
+            <End Role="Fund" EntitySet="Fund" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_plan_code" Association="Self.FK_budget_plan_plan_code">
+            <End Role="Plan" EntitySet="Plan" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_unit_code" Association="Self.FK_budget_plan_unit_code">
+            <End Role="Unit" EntitySet="Unit" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_work_code" Association="Self.FK_budget_plan_work_code">
+            <End Role="Work" EntitySet="Work" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_group_detail_item_group" Association="Self.FK_item_group_detail_item_group">
+            <End Role="Item_group" EntitySet="Item_group" />
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_group_lot_code" Association="Self.FK_item_group_lot_code">
+            <End Role="Lot" EntitySet="Lot" />
+            <End Role="Item_group" EntitySet="Item_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_item_group_detail" Association="Self.FK_item_item_group_detail">
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+            <End Role="Item" EntitySet="Item" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lot_lot" Association="Self.FK_lot_lot">
+            <End Role="Lot" EntitySet="Lot" />
+            <End Role="Lot1" EntitySet="Lot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_his_title_code" Association="Self.FK_person_his_title_code">
+            <End Role="Title" EntitySet="Title" />
+            <End Role="Person_his" EntitySet="Person_his" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_budget_plan_code" Association="Self.FK_person_work_budget_plan_code">
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_major_code" Association="Self.FK_person_work_major_code">
+            <End Role="Major" EntitySet="Major" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_group_code" Association="Self.FK_person_work_person_group_code">
+            <End Role="Person_group" EntitySet="Person_group" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_manage_code" Association="Self.FK_person_work_person_manage_code">
+            <End Role="Person_manage" EntitySet="Person_manage" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_work_status_code" Association="Self.FK_person_work_person_work_status_code">
+            <End Role="Person_work_status" EntitySet="Person_work_status" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_position_code" Association="Self.FK_person_work_position_code">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_type_position_code" Association="Self.FK_person_work_type_position_code">
+            <End Role="Type_position" EntitySet="Type_position" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produce_budget_code" Association="Self.FK_produce_budget_code">
+            <End Role="Budget" EntitySet="Budget" />
+            <End Role="Produce" EntitySet="Produce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_unit_director_code" Association="Self.FK_unit_director_code">
+            <End Role="Director" EntitySet="Director" />
+            <End Role="Unit" EntitySet="Unit" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mju_budgetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="mjuBudgetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="mju_budgetModel.Activity" />
+          <EntitySet Name="Budgets" EntityType="mju_budgetModel.Budget" />
+          <EntitySet Name="Budget_plan" EntityType="mju_budgetModel.Budget_plan" />
+          <EntitySet Name="Config_item" EntityType="mju_budgetModel.Config_item" />
+          <EntitySet Name="Directors" EntityType="mju_budgetModel.Director" />
+          <EntitySet Name="Funds" EntityType="mju_budgetModel.Fund" />
+          <EntitySet Name="Generals" EntityType="mju_budgetModel.General" />
+          <EntitySet Name="Items" EntityType="mju_budgetModel.Item" />
+          <EntitySet Name="Item_detail" EntityType="mju_budgetModel.Item_detail" />
+          <EntitySet Name="Item_group" EntityType="mju_budgetModel.Item_group" />
+          <EntitySet Name="Item_group_detail" EntityType="mju_budgetModel.Item_group_detail" />
+          <EntitySet Name="Level_position" EntityType="mju_budgetModel.Level_position" />
+          <EntitySet Name="Lots" EntityType="mju_budgetModel.Lot" />
+          <EntitySet Name="Majors" EntityType="mju_budgetModel.Major" />
+          <EntitySet Name="Menus" EntityType="mju_budgetModel.Menu" />
+          <EntitySet Name="News" EntityType="mju_budgetModel.New" />
+          <EntitySet Name="Person_group" EntityType="mju_budgetModel.Person_group" />
+          <EntitySet Name="Person_his" EntityType="mju_budgetModel.Person_his" />
+          <EntitySet Name="Person_manage" EntityType="mju_budgetModel.Person_manage" />
+          <EntitySet Name="Person_status" EntityType="mju_budgetModel.Person_status" />
+          <EntitySet Name="Person_work" EntityType="mju_budgetModel.Person_work" />
+          <EntitySet Name="Person_work_status" EntityType="mju_budgetModel.Person_work_status" />
+          <EntitySet Name="Plans" EntityType="mju_budgetModel.Plan" />
+          <EntitySet Name="Positions" EntityType="mju_budgetModel.Position" />
+          <EntitySet Name="Produces" EntityType="mju_budgetModel.Produce" />
+          <EntitySet Name="Titles" EntityType="mju_budgetModel.Title" />
+          <EntitySet Name="Type_position" EntityType="mju_budgetModel.Type_position" />
+          <EntitySet Name="Units" EntityType="mju_budgetModel.Unit" />
+          <EntitySet Name="User_group" EntityType="mju_budgetModel.User_group" />
+          <EntitySet Name="User_group_menu" EntityType="mju_budgetModel.User_group_menu" />
+          <EntitySet Name="Usermenus" EntityType="mju_budgetModel.Usermenu" />
+          <EntitySet Name="Works" EntityType="mju_budgetModel.Work" />
+          <AssociationSet Name="FK_activity_produce_code" Association="mju_budgetModel.FK_activity_produce_code">
+            <End Role="Produce" EntitySet="Produces" />
+            <End Role="Activity" EntitySet="Activities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_activity_code" Association="mju_budgetModel.FK_budget_plan_activity_code">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produce_budget_code" Association="mju_budgetModel.FK_produce_budget_code">
+            <End Role="Budget" EntitySet="Budgets" />
+            <End Role="Produce" EntitySet="Produces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_fund_code" Association="mju_budgetModel.FK_budget_plan_fund_code">
+            <End Role="Fund" EntitySet="Funds" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_plan_code" Association="mju_budgetModel.FK_budget_plan_plan_code">
+            <End Role="Plan" EntitySet="Plans" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_unit_code" Association="mju_budgetModel.FK_budget_plan_unit_code">
+            <End Role="Unit" EntitySet="Units" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_budget_plan_work_code" Association="mju_budgetModel.FK_budget_plan_work_code">
+            <End Role="Work" EntitySet="Works" />
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_budget_plan_code" Association="mju_budgetModel.FK_person_work_budget_plan_code">
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_unit_director_code" Association="mju_budgetModel.FK_unit_director_code">
+            <End Role="Director" EntitySet="Directors" />
+            <End Role="Unit" EntitySet="Units" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_item_group_detail" Association="mju_budgetModel.FK_item_item_group_detail">
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_group_detail_item_group" Association="mju_budgetModel.FK_item_group_detail_item_group">
+            <End Role="Item_group" EntitySet="Item_group" />
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_item_group_lot_code" Association="mju_budgetModel.FK_item_group_lot_code">
+            <End Role="Lot" EntitySet="Lots" />
+            <End Role="Item_group" EntitySet="Item_group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_lot_lot" Association="mju_budgetModel.FK_lot_lot">
+            <End Role="Lot" EntitySet="Lots" />
+            <End Role="Lot1" EntitySet="Lots" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_major_code" Association="mju_budgetModel.FK_person_work_major_code">
+            <End Role="Major" EntitySet="Majors" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_group_code" Association="mju_budgetModel.FK_person_work_person_group_code">
+            <End Role="Person_group" EntitySet="Person_group" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_his_title_code" Association="mju_budgetModel.FK_person_his_title_code">
+            <End Role="Title" EntitySet="Titles" />
+            <End Role="Person_his" EntitySet="Person_his" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_manage_code" Association="mju_budgetModel.FK_person_work_person_manage_code">
+            <End Role="Person_manage" EntitySet="Person_manage" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_person_work_status_code" Association="mju_budgetModel.FK_person_work_person_work_status_code">
+            <End Role="Person_work_status" EntitySet="Person_work_status" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_position_code" Association="mju_budgetModel.FK_person_work_position_code">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_work_type_position_code" Association="mju_budgetModel.FK_person_work_type_position_code">
+            <End Role="Type_position" EntitySet="Type_position" />
+            <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <EntitySet Name="view_Item_group" EntityType="mju_budgetModel.view_Item_group" />
+        </EntityContainer>
+        <EntityType Name="Activity">
+          <Key>
+            <PropertyRef Name="activity_code" />
+          </Key>
+          <Property Name="activity_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="activity_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Produce" Relationship="mju_budgetModel.FK_activity_produce_code" FromRole="Activity" ToRole="Produce" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_budget_plan_activity_code" FromRole="Activity" ToRole="Budget_plan" />
+        </EntityType>
+        <EntityType Name="Budget">
+          <Key>
+            <PropertyRef Name="budget_code" />
+          </Key>
+          <Property Name="budget_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="budget_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Produces" Relationship="mju_budgetModel.FK_produce_budget_code" FromRole="Budget" ToRole="Produce" />
+        </EntityType>
+        <EntityType Name="Budget_plan">
+          <Key>
+            <PropertyRef Name="budget_plan_code" />
+          </Key>
+          <Property Name="budget_plan_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activity" Relationship="mju_budgetModel.FK_budget_plan_activity_code" FromRole="Budget_plan" ToRole="Activity" />
+          <NavigationProperty Name="Fund" Relationship="mju_budgetModel.FK_budget_plan_fund_code" FromRole="Budget_plan" ToRole="Fund" />
+          <NavigationProperty Name="Plan" Relationship="mju_budgetModel.FK_budget_plan_plan_code" FromRole="Budget_plan" ToRole="Plan" />
+          <NavigationProperty Name="Unit" Relationship="mju_budgetModel.FK_budget_plan_unit_code" FromRole="Budget_plan" ToRole="Unit" />
+          <NavigationProperty Name="Work" Relationship="mju_budgetModel.FK_budget_plan_work_code" FromRole="Budget_plan" ToRole="Work" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_budget_plan_code" FromRole="Budget_plan" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Config_item">
+          <Key>
+            <PropertyRef Name="config_id" />
+          </Key>
+          <Property Name="config_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="config_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="config_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="config_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="config_sort" Type="Int32" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Director">
+          <Key>
+            <PropertyRef Name="director_code" />
+          </Key>
+          <Property Name="director_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="director_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_sign_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="director_sign_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="sign_position" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="director_order" Type="Int32" />
+          <Property Name="director_short_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Units" Relationship="mju_budgetModel.FK_unit_director_code" FromRole="Director" ToRole="Unit" />
+        </EntityType>
+        <EntityType Name="Fund">
+          <Key>
+            <PropertyRef Name="fund_code" />
+          </Key>
+          <Property Name="fund_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_budget_plan_fund_code" FromRole="Fund" ToRole="Budget_plan" />
+        </EntityType>
+        <EntityType Name="General">
+          <Key>
+            <PropertyRef Name="g_id" />
+          </Key>
+          <Property Name="g_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="g_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="g_code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="g_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="g_sort" Type="Int32" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item" ToRole="Item_group_detail" />
+        </EntityType>
+        <EntityType Name="Item_detail">
+          <Key>
+            <PropertyRef Name="item_detail_id" />
+          </Key>
+          <Property Name="item_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Item_group">
+          <Key>
+            <PropertyRef Name="item_group_code" />
+          </Key>
+          <Property Name="item_group_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_item_group_detail_item_group" FromRole="Item_group" ToRole="Item_group_detail" />
+          <NavigationProperty Name="Lot" Relationship="mju_budgetModel.FK_item_group_lot_code" FromRole="Item_group" ToRole="Lot" />
+        </EntityType>
+        <EntityType Name="Item_group_detail">
+          <Key>
+            <PropertyRef Name="item_group_detail_id" />
+          </Key>
+          <Property Name="item_group_detail_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Items" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item_group_detail" ToRole="Item" />
+          <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_detail_item_group" FromRole="Item_group_detail" ToRole="Item_group" />
+        </EntityType>
+        <EntityType Name="Level_position">
+          <Key>
+            <PropertyRef Name="level_position_code" />
+          </Key>
+          <Property Name="level_position_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="level_position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Lot">
+          <Key>
+            <PropertyRef Name="lot_code" />
+          </Key>
+          <Property Name="lot_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_lot_code" FromRole="Lot" ToRole="Item_group" />
+          <NavigationProperty Name="Lot1" Relationship="mju_budgetModel.FK_lot_lot" FromRole="Lot" ToRole="Lot1" />
+          <NavigationProperty Name="Lot2" Relationship="mju_budgetModel.FK_lot_lot" FromRole="Lot1" ToRole="Lot" />
+        </EntityType>
+        <EntityType Name="Major">
+          <Key>
+            <PropertyRef Name="major_code" />
+          </Key>
+          <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_major_code" FromRole="Major" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="MenuID" Type="Int16" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MenuNavigationUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MenuImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MenuTarget" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MenuParent" Type="Int16" Nullable="false" />
+          <Property Name="MenuOrder" Type="Int16" />
+          <Property Name="CanView" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanInsert" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanEdit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanDelete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanApprove" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="New">
+          <Key>
+            <PropertyRef Name="new_id" />
+          </Key>
+          <Property Name="new_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="new_title" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="new_des" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="new_type" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="new_status" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="new_file_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="new_pic_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Person_group">
+          <Key>
+            <PropertyRef Name="person_group_code" />
+          </Key>
+          <Property Name="person_group_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_person_group_code" FromRole="Person_group" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Person_his">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="title_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_thai_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_thai_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_eng_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_eng_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="person_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Title" Relationship="mju_budgetModel.FK_person_his_title_code" FromRole="Person_his" ToRole="Title" />
+        </EntityType>
+        <EntityType Name="Person_manage">
+          <Key>
+            <PropertyRef Name="person_manage_code" />
+          </Key>
+          <Property Name="person_manage_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_manage_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_person_manage_code" FromRole="Person_manage" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Person_status">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="person_sex" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_high" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_width" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_origin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_nation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_birth" Type="DateTime" Precision="3" />
+          <Property Name="person_marry" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Person_work">
+          <Key>
+            <PropertyRef Name="person_code" />
+          </Key>
+          <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="position_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_level" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_postionno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="person_start" Type="DateTime" Precision="3" />
+          <Property Name="person_end" Type="DateTime" Precision="3" />
+          <Property Name="person_group_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_manage_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="person_work_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="type_position_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="person_budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_group_list" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_person_work_budget_plan_code" FromRole="Person_work" ToRole="Budget_plan" />
+          <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_person_work_major_code" FromRole="Person_work" ToRole="Major" />
+          <NavigationProperty Name="Person_group" Relationship="mju_budgetModel.FK_person_work_person_group_code" FromRole="Person_work" ToRole="Person_group" />
+          <NavigationProperty Name="Person_manage" Relationship="mju_budgetModel.FK_person_work_person_manage_code" FromRole="Person_work" ToRole="Person_manage" />
+          <NavigationProperty Name="Person_work_status" Relationship="mju_budgetModel.FK_person_work_person_work_status_code" FromRole="Person_work" ToRole="Person_work_status" />
+          <NavigationProperty Name="Position" Relationship="mju_budgetModel.FK_person_work_position_code" FromRole="Person_work" ToRole="Position" />
+          <NavigationProperty Name="Type_position" Relationship="mju_budgetModel.FK_person_work_type_position_code" FromRole="Person_work" ToRole="Type_position" />
+        </EntityType>
+        <EntityType Name="Person_work_status">
+          <Key>
+            <PropertyRef Name="person_work_status_code" />
+          </Key>
+          <Property Name="person_work_status_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_work_status_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_person_work_status_code" FromRole="Person_work_status" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Plan">
+          <Key>
+            <PropertyRef Name="plan_code" />
+          </Key>
+          <Property Name="plan_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_budget_plan_plan_code" FromRole="Plan" ToRole="Budget_plan" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="position_code" />
+          </Key>
+          <Property Name="position_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_position_code" FromRole="Position" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Produce">
+          <Key>
+            <PropertyRef Name="produce_code" />
+          </Key>
+          <Property Name="produce_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="produce_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="produce_sort_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="project_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Activities" Relationship="mju_budgetModel.FK_activity_produce_code" FromRole="Produce" ToRole="Activity" />
+          <NavigationProperty Name="Budget" Relationship="mju_budgetModel.FK_produce_budget_code" FromRole="Produce" ToRole="Budget" />
+        </EntityType>
+        <EntityType Name="Title">
+          <Key>
+            <PropertyRef Name="title_code" />
+          </Key>
+          <Property Name="title_code" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="title_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_his" Relationship="mju_budgetModel.FK_person_his_title_code" FromRole="Title" ToRole="Person_his" />
+        </EntityType>
+        <EntityType Name="Type_position">
+          <Key>
+            <PropertyRef Name="type_position_code" />
+          </Key>
+          <Property Name="type_position_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="type_position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_type_position_code" FromRole="Type_position" ToRole="Person_work" />
+        </EntityType>
+        <EntityType Name="Unit">
+          <Key>
+            <PropertyRef Name="unit_code" />
+          </Key>
+          <Property Name="unit_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="unit_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="unit_order" Type="Int32" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_budget_plan_unit_code" FromRole="Unit" ToRole="Budget_plan" />
+          <NavigationProperty Name="Director" Relationship="mju_budgetModel.FK_unit_director_code" FromRole="Unit" ToRole="Director" />
+        </EntityType>
+        <EntityType Name="User_group">
+          <Key>
+            <PropertyRef Name="user_group_code" />
+          </Key>
+          <Property Name="user_group_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="person_group_list" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="director_lock" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="unit_lock" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="unit_code_list" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User_group_menu">
+          <Key>
+            <PropertyRef Name="user_group_code" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="user_group_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MenuID" Type="Int16" Nullable="false" />
+          <Property Name="CanView" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanInsert" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanEdit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanApprove" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanExtra" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Usermenu">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="MenuID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="MenuID" Type="Int16" Nullable="false" />
+          <Property Name="CanView" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanInsert" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanEdit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanDelete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanApprove" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Work">
+          <Key>
+            <PropertyRef Name="work_code" />
+          </Key>
+          <Property Name="work_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_budget_plan_work_code" FromRole="Work" ToRole="Budget_plan" />
+        </EntityType>
+        <Association Name="FK_activity_produce_code">
+          <End Type="mju_budgetModel.Produce" Role="Produce" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Activity" Role="Activity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produce">
+              <PropertyRef Name="produce_code" />
+            </Principal>
+            <Dependent Role="Activity">
+              <PropertyRef Name="produce_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_activity_code">
+          <End Type="mju_budgetModel.Activity" Role="Activity" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="activity_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="activity_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produce_budget_code">
+          <End Type="mju_budgetModel.Budget" Role="Budget" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Produce" Role="Produce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget">
+              <PropertyRef Name="budget_code" />
+            </Principal>
+            <Dependent Role="Produce">
+              <PropertyRef Name="budget_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_fund_code">
+          <End Type="mju_budgetModel.Fund" Role="Fund" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fund">
+              <PropertyRef Name="fund_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="fund_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_plan_code">
+          <End Type="mju_budgetModel.Plan" Role="Plan" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Plan">
+              <PropertyRef Name="plan_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_unit_code">
+          <End Type="mju_budgetModel.Unit" Role="Unit" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unit">
+              <PropertyRef Name="unit_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="unit_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_budget_plan_work_code">
+          <End Type="mju_budgetModel.Work" Role="Work" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Work">
+              <PropertyRef Name="work_code" />
+            </Principal>
+            <Dependent Role="Budget_plan">
+              <PropertyRef Name="work_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_budget_plan_code">
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_plan">
+              <PropertyRef Name="budget_plan_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="budget_plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_unit_director_code">
+          <End Type="mju_budgetModel.Director" Role="Director" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Unit" Role="Unit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Director">
+              <PropertyRef Name="director_code" />
+            </Principal>
+            <Dependent Role="Unit">
+              <PropertyRef Name="director_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_item_group_detail">
+          <End Type="mju_budgetModel.Item_group_detail" Role="Item_group_detail" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group_detail">
+              <PropertyRef Name="item_group_detail_id" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="item_group_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_group_detail_item_group">
+          <End Type="mju_budgetModel.Item_group" Role="Item_group" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Item_group_detail" Role="Item_group_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group">
+              <PropertyRef Name="item_group_code" />
+            </Principal>
+            <Dependent Role="Item_group_detail">
+              <PropertyRef Name="item_group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_item_group_lot_code">
+          <End Type="mju_budgetModel.Lot" Role="Lot" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Item_group" Role="Item_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Lot">
+              <PropertyRef Name="lot_code" />
+            </Principal>
+            <Dependent Role="Item_group">
+              <PropertyRef Name="lot_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_lot_lot">
+          <End Type="mju_budgetModel.Lot" Role="Lot" Multiplicity="1" />
+          <End Type="mju_budgetModel.Lot" Role="Lot1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Lot">
+              <PropertyRef Name="lot_code" />
+            </Principal>
+            <Dependent Role="Lot1">
+              <PropertyRef Name="lot_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_major_code">
+          <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_group_code">
+          <End Type="mju_budgetModel.Person_group" Role="Person_group" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_group">
+              <PropertyRef Name="person_group_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_group_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_his_title_code">
+          <End Type="mju_budgetModel.Title" Role="Title" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_his" Role="Person_his" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Title">
+              <PropertyRef Name="title_code" />
+            </Principal>
+            <Dependent Role="Person_his">
+              <PropertyRef Name="title_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_manage_code">
+          <End Type="mju_budgetModel.Person_manage" Role="Person_manage" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_manage">
+              <PropertyRef Name="person_manage_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_manage_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_person_work_status_code">
+          <End Type="mju_budgetModel.Person_work_status" Role="Person_work_status" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_work_status">
+              <PropertyRef Name="person_work_status_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="person_work_status_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_position_code">
+          <End Type="mju_budgetModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="position_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="position_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_work_type_position_code">
+          <End Type="mju_budgetModel.Type_position" Role="Type_position" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Person_work" Role="Person_work" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type_position">
+              <PropertyRef Name="type_position_code" />
+            </Principal>
+            <Dependent Role="Person_work">
+              <PropertyRef Name="type_position_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="view_Item_group">
+          <Key>
+            <PropertyRef Name="item_group_code" />
+          </Key>
+          <Property Name="item_group_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mju_budgetModelStoreContainer" CdmEntityContainer="mjuBudgetEntities">
+          <EntitySetMapping Name="Activities">
+            <EntityTypeMapping TypeName="mju_budgetModel.Activity">
+              <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="activity_year" ColumnName="activity_year" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budgets">
+            <EntityTypeMapping TypeName="mju_budgetModel.Budget">
+              <MappingFragment StoreEntitySet="Budget">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+                <ScalarProperty Name="budget_year" ColumnName="budget_year" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Budget_plan">
+            <EntityTypeMapping TypeName="mju_budgetModel.Budget_plan">
+              <MappingFragment StoreEntitySet="Budget_plan">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+                <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Config_item">
+            <EntityTypeMapping TypeName="mju_budgetModel.Config_item">
+              <MappingFragment StoreEntitySet="Config_item">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="config_sort" ColumnName="config_sort" />
+                <ScalarProperty Name="config_name" ColumnName="config_name" />
+                <ScalarProperty Name="config_code" ColumnName="config_code" />
+                <ScalarProperty Name="config_type" ColumnName="config_type" />
+                <ScalarProperty Name="config_id" ColumnName="config_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Directors">
+            <EntityTypeMapping TypeName="mju_budgetModel.Director">
+              <MappingFragment StoreEntitySet="Director">
+                <ScalarProperty Name="director_short_name" ColumnName="director_short_name" />
+                <ScalarProperty Name="director_order" ColumnName="director_order" />
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="sign_position" ColumnName="sign_position" />
+                <ScalarProperty Name="director_sign_image" ColumnName="director_sign_image" />
+                <ScalarProperty Name="director_sign_name" ColumnName="director_sign_name" />
+                <ScalarProperty Name="director_name" ColumnName="director_name" />
+                <ScalarProperty Name="director_year" ColumnName="director_year" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Funds">
+            <EntityTypeMapping TypeName="mju_budgetModel.Fund">
+              <MappingFragment StoreEntitySet="Fund">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+                <ScalarProperty Name="fund_year" ColumnName="fund_year" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generals">
+            <EntityTypeMapping TypeName="mju_budgetModel.General">
+              <MappingFragment StoreEntitySet="General">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="g_sort" ColumnName="g_sort" />
+                <ScalarProperty Name="g_name" ColumnName="g_name" />
+                <ScalarProperty Name="g_code" ColumnName="g_code" />
+                <ScalarProperty Name="g_type" ColumnName="g_type" />
+                <ScalarProperty Name="g_id" ColumnName="g_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="mju_budgetModel.Item">
+              <MappingFragment StoreEntitySet="Item">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_type" ColumnName="item_type" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_year" ColumnName="item_year" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.Item_detail">
+              <MappingFragment StoreEntitySet="Item_detail">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="item_detail_name" ColumnName="item_detail_name" />
+                <ScalarProperty Name="item_detail_code" ColumnName="item_detail_code" />
+                <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_group">
+            <EntityTypeMapping TypeName="mju_budgetModel.Item_group">
+              <MappingFragment StoreEntitySet="Item_group">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Item_group_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.Item_group_detail">
+              <MappingFragment StoreEntitySet="Item_group_detail">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Level_position">
+            <EntityTypeMapping TypeName="mju_budgetModel.Level_position">
+              <MappingFragment StoreEntitySet="Level_position">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="level_position_name" ColumnName="level_position_name" />
+                <ScalarProperty Name="level_position_code" ColumnName="level_position_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lots">
+            <EntityTypeMapping TypeName="mju_budgetModel.Lot">
+              <MappingFragment StoreEntitySet="Lot">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+                <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+                <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Majors">
+            <EntityTypeMapping TypeName="mju_budgetModel.Major">
+              <MappingFragment StoreEntitySet="Major">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="major_year" ColumnName="major_year" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="mju_budgetModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
+                <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+                <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+                <ScalarProperty Name="MenuParent" ColumnName="MenuParent" />
+                <ScalarProperty Name="MenuTarget" ColumnName="MenuTarget" />
+                <ScalarProperty Name="MenuImageUrl" ColumnName="MenuImageUrl" />
+                <ScalarProperty Name="MenuNavigationUrl" ColumnName="MenuNavigationUrl" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="mju_budgetModel.New">
+              <MappingFragment StoreEntitySet="New">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="new_pic_name" ColumnName="new_pic_name" />
+                <ScalarProperty Name="new_file_name" ColumnName="new_file_name" />
+                <ScalarProperty Name="new_status" ColumnName="new_status" />
+                <ScalarProperty Name="new_type" ColumnName="new_type" />
+                <ScalarProperty Name="new_des" ColumnName="new_des" />
+                <ScalarProperty Name="new_title" ColumnName="new_title" />
+                <ScalarProperty Name="new_id" ColumnName="new_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_group">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_group">
+              <MappingFragment StoreEntitySet="Person_group">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="person_group_name" ColumnName="person_group_name" />
+                <ScalarProperty Name="person_group_code" ColumnName="person_group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_his">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_his">
+              <MappingFragment StoreEntitySet="Person_his">
+                <ScalarProperty Name="person_email" ColumnName="person_email" />
+                <ScalarProperty Name="person_password" ColumnName="person_password" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="person_pic" ColumnName="person_pic" />
+                <ScalarProperty Name="person_id" ColumnName="person_id" />
+                <ScalarProperty Name="person_nickname" ColumnName="person_nickname" />
+                <ScalarProperty Name="person_eng_surname" ColumnName="person_eng_surname" />
+                <ScalarProperty Name="person_eng_name" ColumnName="person_eng_name" />
+                <ScalarProperty Name="person_thai_surname" ColumnName="person_thai_surname" />
+                <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
+                <ScalarProperty Name="title_code" ColumnName="title_code" />
+                <ScalarProperty Name="person_code" ColumnName="person_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_manage">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_manage">
+              <MappingFragment StoreEntitySet="Person_manage">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="person_manage_name" ColumnName="person_manage_name" />
+                <ScalarProperty Name="person_manage_code" ColumnName="person_manage_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_status">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_status">
+              <MappingFragment StoreEntitySet="Person_status">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="person_marry" ColumnName="person_marry" />
+                <ScalarProperty Name="person_birth" ColumnName="person_birth" />
+                <ScalarProperty Name="person_religion" ColumnName="person_religion" />
+                <ScalarProperty Name="person_nation" ColumnName="person_nation" />
+                <ScalarProperty Name="person_origin" ColumnName="person_origin" />
+                <ScalarProperty Name="person_width" ColumnName="person_width" />
+                <ScalarProperty Name="person_high" ColumnName="person_high" />
+                <ScalarProperty Name="person_sex" ColumnName="person_sex" />
+                <ScalarProperty Name="person_code" ColumnName="person_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_work">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_work">
+              <MappingFragment StoreEntitySet="Person_work">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="user_group_list" ColumnName="user_group_list" />
+                <ScalarProperty Name="person_budget_type" ColumnName="person_budget_type" />
+                <ScalarProperty Name="type_position_code" ColumnName="type_position_code" />
+                <ScalarProperty Name="person_work_status_code" ColumnName="person_work_status_code" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="person_manage_code" ColumnName="person_manage_code" />
+                <ScalarProperty Name="person_group_code" ColumnName="person_group_code" />
+                <ScalarProperty Name="person_end" ColumnName="person_end" />
+                <ScalarProperty Name="person_start" ColumnName="person_start" />
+                <ScalarProperty Name="person_postionno" ColumnName="person_postionno" />
+                <ScalarProperty Name="person_level" ColumnName="person_level" />
+                <ScalarProperty Name="position_code" ColumnName="position_code" />
+                <ScalarProperty Name="person_code" ColumnName="person_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Person_work_status">
+            <EntityTypeMapping TypeName="mju_budgetModel.Person_work_status">
+              <MappingFragment StoreEntitySet="Person_work_status">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="person_work_status_name" ColumnName="person_work_status_name" />
+                <ScalarProperty Name="person_work_status_code" ColumnName="person_work_status_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plans">
+            <EntityTypeMapping TypeName="mju_budgetModel.Plan">
+              <MappingFragment StoreEntitySet="Plan">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="plan_year" ColumnName="plan_year" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="mju_budgetModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="position_name" ColumnName="position_name" />
+                <ScalarProperty Name="position_code" ColumnName="position_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produces">
+            <EntityTypeMapping TypeName="mju_budgetModel.Produce">
+              <MappingFragment StoreEntitySet="Produce">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="project_code" ColumnName="project_code" />
+                <ScalarProperty Name="produce_sort_name" ColumnName="produce_sort_name" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+                <ScalarProperty Name="produce_year" ColumnName="produce_year" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Titles">
+            <EntityTypeMapping TypeName="mju_budgetModel.Title">
+              <MappingFragment StoreEntitySet="Title">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="title_name" ColumnName="title_name" />
+                <ScalarProperty Name="title_code" ColumnName="title_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Type_position">
+            <EntityTypeMapping TypeName="mju_budgetModel.Type_position">
+              <MappingFragment StoreEntitySet="Type_position">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="type_position_name" ColumnName="type_position_name" />
+                <ScalarProperty Name="type_position_code" ColumnName="type_position_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="mju_budgetModel.Unit">
+              <MappingFragment StoreEntitySet="Unit">
+                <ScalarProperty Name="unit_order" ColumnName="unit_order" />
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+                <ScalarProperty Name="unit_year" ColumnName="unit_year" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_group">
+            <EntityTypeMapping TypeName="mju_budgetModel.User_group">
+              <MappingFragment StoreEntitySet="User_group">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="unit_code_list" ColumnName="unit_code_list" />
+                <ScalarProperty Name="unit_lock" ColumnName="unit_lock" />
+                <ScalarProperty Name="director_lock" ColumnName="director_lock" />
+                <ScalarProperty Name="person_group_list" ColumnName="person_group_list" />
+                <ScalarProperty Name="user_group_name" ColumnName="user_group_name" />
+                <ScalarProperty Name="user_group_code" ColumnName="user_group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_group_menu">
+            <EntityTypeMapping TypeName="mju_budgetModel.User_group_menu">
+              <MappingFragment StoreEntitySet="User_group_menu">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
+                <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+                <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="user_group_code" ColumnName="user_group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usermenus">
+            <EntityTypeMapping TypeName="mju_budgetModel.Usermenu">
+              <MappingFragment StoreEntitySet="Usermenu">
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
+                <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+                <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Works">
+            <EntityTypeMapping TypeName="mju_budgetModel.Work">
+              <MappingFragment StoreEntitySet="Work">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="work_name" ColumnName="work_name" />
+                <ScalarProperty Name="work_year" ColumnName="work_year" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Item_group">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Item_group">
+              <MappingFragment StoreEntitySet="view_Item_group">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+                <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -52,7 +52,7 @@
 
     </script>
 
-    <table border="0" cellpadding="1" cellspacing="1" style="width: 100%">
+    <table border="0" cellpadding="1" cellspacing="1" style="width: 100%" >
         <tr>
             <td align="left" nowrap style="width: 90%;">&nbsp;
             </td>
@@ -82,7 +82,7 @@
             <td align="right" nowrap valign="middle" style="width: 15%">
                 <asp:Label runat="server" ID="Label14">ปีงบประมาณ :</asp:Label>
             </td>
-            <td align="left" nowrap valign="middle">&nbsp;<asp:DropDownList runat="server" CssClass="textbox" ID="cboYear">
+            <td align="left" nowrap valign="middle"><asp:DropDownList runat="server" CssClass="textbox" ID="cboYear">
             </asp:DropDownList>
             </td>
             <td align="center" nowrap style="width: 60px">&nbsp;
@@ -154,7 +154,7 @@
                         Width="7px" />
                     <PanelCollection>
                         <dxp:PanelContent ID="PanelContent2" runat="server">
-                            <table border="0" cellpadding="0" cellspacing="0" style="width: 100%">
+                            <table border="0" cellpadding="2" cellspacing="0" style="width: 100%">
                                 <tr align="left">
                                     <td align="right" nowrap valign="middle">
                                         <asp:Label ID="lblFName" runat="server">รหัสหน่วยงาน :</asp:Label>

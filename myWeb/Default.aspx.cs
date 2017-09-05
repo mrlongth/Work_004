@@ -52,7 +52,6 @@ namespace myWeb
                 {
                     Session.Abandon();
                 }
-                Session["ISRetire"] = false;
                 SetProfile();
                 lblError.Text = string.Empty;
                 ViewState["Count"] = "0";
@@ -69,27 +68,7 @@ namespace myWeb
             string strPersonID = string.Empty;
             if (!SetUserProfile(strUser, strPass, ref strMessage))
             {
-                strMessage = string.Empty;
-                strUser = txtUser.Text.Trim();
-                strPass = txtPass.Text.Trim();
-                if (SetPersonRetireProfile(strUser, strPass, ref strMessage))
-                {
-                    Response.Redirect("~/Person_Manage/global_payment_retire_slip.aspx");
-                    MsgBox("ไม่สามารถ Login เข้าสู่ระบบได้ เนื่องจาก " + strMessage);
-                }
-                else
-                {
-                    if (strMessage.Length > 0)
-                    {
-                        MsgBox("ไม่สามารถ Login เข้าสู่ระบบได้ เนื่องจาก" + strMessage);
-                    }
-                    else
-                    {
-                        MsgBox("ไม่สามารถ Login เข้าสู่ระบบได้ เนื่องจาก Username หรือ Password ผิดพลาด");
-                    }
-                }
-                BindPin();
-                BindNew();
+                MsgBox("ไม่สามารถ Login เข้าสู่ระบบได้ เนื่องจาก Username หรือ Password ผิดพลาด");
             }
         }
 
@@ -121,11 +100,7 @@ namespace myWeb
 
                 if (strDecryptPassword.Equals(strPassword))
                 {
-                    this.UserGroupList = Helper.CStr(dt.Rows[0]["user_group_list"]);
-                    if (!this.UserGroupList.Contains("002"))
-                    {
-                        this.UserGroupList = this.UserGroupList.Length > 1 ? (this.UserGroupList + ",002") : "002";
-                    }
+                    this.UserGroupList = Helper.CStr(dt.Rows[0]["user_group_list"]);                   
                     string[] ArrUserGroup = this.UserGroupList.Split(',');
                     if (ArrUserGroup.Length > 1)
                     {
@@ -154,7 +129,7 @@ namespace myWeb
                     }
                     else
                     {
-                        this.UserGroupCode = this.UserGroupCode == "" ? "002" : this.UserGroupCode;
+                        this.UserGroupCode = ArrUserGroup[0].Trim();
                         GotoUserMode(this.UserGroupCode);
                     }
                     booResult = true;
@@ -201,40 +176,6 @@ namespace myWeb
             return booResult;
         }
 
-        protected bool SetPersonRetireProfile(string strUserName, string strPassword, ref string _strError)
-        {
-            bool booResult = false;
-            cPerson_retire objPerson_retire = new cPerson_retire();
-            DataTable dt = new DataTable();
-            DataSet ds = new DataSet();
-            string strCriteria;
-            string strMessage = string.Empty;
-            string strDecryptPassword = string.Empty;
-            strCriteria = " And person_id='" + strUserName + "' ";
-            objPerson_retire.SP_PERSON_RETIRE_SEL(strCriteria, ref ds, ref strMessage);
-            dt = ds.Tables[0];
-            if (dt.Rows.Count > 0)
-            {
-                strDecryptPassword = Cryptorengine.Decrypt(Helper.CStr(dt.Rows[0]["person_password"]), true);
-                if (strDecryptPassword.Equals(strPassword))
-                {
-                    Session["username"] = strUserName;
-                    Session["PersonID"] = strUserName;
-                    Session["PersonUserName"] = strUserName;
-                    Session["PersonBudgetPlanCode"] = "";
-                    Session["PersonCode"] = Helper.CStr(dt.Rows[0]["pr_person_code"]);
-                    Session["PersonFullName"] = Helper.CStr(dt.Rows[0]["title_name"]) + Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
-                    Session["ISRetire"] = true;
-                    booResult = true;
-                }
-
-            }
-            else
-            {
-                _strError = "ไม่พบผู้ใช้งานนี้";
-            }
-            return booResult;
-        }
 
         private void BindPin()
         {
@@ -419,89 +360,65 @@ namespace myWeb
 
         private void GotoUserMode(string user_group_code)
         {
-            if (user_group_code == "002" )
+
+            cUser_group objUserGroup = new cUser_group();
+            DataTable dt = new DataTable();
+            DataSet ds = new DataSet();
+            string strCriteria = " and user_group_code = '" + user_group_code + "' ";
+            string strMessage = string.Empty;
+            objUserGroup.SP_USER_GROUP_SEL(strCriteria, ref ds, ref strMessage);
+            dt = ds.Tables[0];
+            if (dt.Rows.Count > 0)
             {
-                if (SetPersonUserProfile(txtUser.Text, ref _strMessage))
+                this.IsLogin = "Y";
+                this.DirectorLock = Helper.CStr(dt.Rows[0]["director_lock"]);
+
+                try
                 {
-                    Response.Redirect("MainPerson.aspx");
+                    this.UnitLock = Helper.CStr(dt.Rows[0]["unit_lock"]);
                 }
-            }
-            else
-            {
-                cUser_group objUserGroup = new cUser_group();
-                DataTable dt = new DataTable();
-                DataSet ds = new DataSet();
-                string strCriteria = " and user_group_code = '" + user_group_code + "' ";
-                string strMessage = string.Empty;
-                objUserGroup.SP_USER_GROUP_SEL(strCriteria, ref ds, ref strMessage);
+                catch
+                {
+                    this.UnitLock = "N";
+                }
+
+                if (this.UnitLock == "Y")
+                {
+                    this.UnitCodeList = string.Empty;
+                    string[] strunit_code_list = Helper.CStr(dt.Rows[0]["unit_code_list"]).Split(',');
+                    for (int i = 0; i <= (strunit_code_list.GetUpperBound(0)); i++)
+                    {
+                        this.UnitCodeList += "'" + strunit_code_list[i].Substring(3, 5) + "',";
+                    }
+                    this.UnitCodeList = this.UnitCodeList.Substring(0, this.UnitCodeList.Length - 1);
+                }
+
+                string[] strperson_group_list = Helper.CStr(dt.Rows[0]["person_group_list"]).Split(',');
+                for (int i = 0; i <= (strperson_group_list.GetUpperBound(0)); i++)
+                {
+                    PersonGroupList = PersonGroupList + "'" + strperson_group_list[i] + "',";
+                }
+
+                PersonGroupList = PersonGroupList.Substring(0, PersonGroupList.Length - 1);
+
+
+                cPerson objPerson = new cPerson();
+                strCriteria = " And person_id='" + txtUser.Text + "' ";
+                objPerson.SP_PERSON_LIST_SEL(strCriteria, ref ds, ref strMessage);
                 dt = ds.Tables[0];
                 if (dt.Rows.Count > 0)
                 {
-                    this.IsLogin = "Y";
-                    this.DirectorLock = Helper.CStr(dt.Rows[0]["director_lock"]);
-                   
-                    try
-                    {
-                        this.UnitLock = Helper.CStr(dt.Rows[0]["unit_lock"]);
-                    }
-                    catch
-                    {
-                        this.UnitLock = "N";
-                    }
+                    this.UserLoginName = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
+                    this.DirectorCode = Helper.CStr(dt.Rows[0]["director_code"]);
+                    this.DirectorName = Helper.CStr(dt.Rows[0]["director_name"]);
+                    Session["username"] = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
 
-                    if (this.UnitLock == "Y")
-                    {
-                        this.UnitCodeList = string.Empty;
-                        string[] strunit_code_list = Helper.CStr(dt.Rows[0]["unit_code_list"]).Split(',');
-                        for (int i = 0; i <= (strunit_code_list.GetUpperBound(0)); i++)
-                        {
-                            this.UnitCodeList += "'" + strunit_code_list[i].Substring(3, 5) + "',";
-                        }
-                        this.UnitCodeList = this.UnitCodeList.Substring(0, this.UnitCodeList.Length - 1);
-                    }
-
-                    string[] strperson_group_list = Helper.CStr(dt.Rows[0]["person_group_list"]).Split(',');
-                    for (int i = 0; i <= (strperson_group_list.GetUpperBound(0)); i++)
-                    {
-                        PersonGroupList = PersonGroupList + "'" + strperson_group_list[i] + "',";
-                    }
-
-                    PersonGroupList = PersonGroupList.Substring(0, PersonGroupList.Length - 1);
-
-                    cItem objItem = new cItem();
-                    DataTable dt2 = new DataTable();
-                    DataSet ds2 = new DataSet();
-                    string strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
-                    strCriteria = " And person_group_code in (" + PersonGroupList + ") And lot_code<>'' ";
-                    strCriteria += " And item_year = " + strYear;
-                    objItem.SP_ITEM_LOT_GROUP_SEL(strCriteria, ref ds2, ref strMessage);
-                    LotCodeList = string.Empty;
-                    for (int i = 0; i < ds2.Tables[0].Rows.Count; i++)
-                    {
-                        LotCodeList = LotCodeList + "'" + ds2.Tables[0].Rows[i]["lot_code"].ToString() + "',";
-                    }
-                    if (LotCodeList.Length > 0)
-                        LotCodeList = LotCodeList.Substring(0, LotCodeList.Length - 1);
+                }
 
 
 
-                    cPerson objPerson = new cPerson();
-                    strCriteria = " And person_id='" + txtUser.Text  + "' ";
-                    objPerson.SP_PERSON_LIST_SEL(strCriteria, ref ds, ref strMessage);
-                    dt = ds.Tables[0];
-                    if (dt.Rows.Count > 0)
-                    {
-                        this.UserLoginName = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
-                        this.DirectorCode = Helper.CStr(dt.Rows[0]["director_code"]);
-                        this.DirectorName = Helper.CStr(dt.Rows[0]["director_name"]);
-                        Session["username"] = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
+                Response.Redirect("Menu_control.aspx");
 
-                    }
-          
-
-
-                    Response.Redirect("Menu_control.aspx");
-                }               
             }
         }
 

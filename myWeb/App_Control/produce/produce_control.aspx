@@ -160,7 +160,7 @@
                         Width="7px" />
                     <PanelCollection>
                         <dxp:PanelContent ID="PanelContent2" runat="server">
-                            <table border="0" cellpadding="1" cellspacing="1" style="width: 100%">
+                            <table border="0" cellpadding="2" cellspacing="1" style="width: 100%">
                                 <tr align="left">
                                     <td align="right" nowrap valign="middle">
                                         <asp:Label ID="lblFName" runat="server">รหัสผลผลิต :</asp:Label>

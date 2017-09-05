@@ -1,3 +1,4 @@
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csprojResolveAssemblyReference.cache
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.dll.config
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.pdb
@@ -5,6 +6,8 @@ E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.ReportSource.dl
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.Web.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\DropDownCheckBoxes.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myDLL.dll
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myModel.dll
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\EntityFramework.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
@@ -20,8 +23,9 @@ E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\EnvDTE.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\stdole.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myDLL.pdb
-E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csprojResolveAssemblyReference.cache
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myDLL.dll.config
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myModel.pdb
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myModel.dll.config
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\EntityFramework.xml
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.pdb
-E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\DevExpress.Data.v9.1.xml
-E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\DevExpress.Web.v9.1.xml

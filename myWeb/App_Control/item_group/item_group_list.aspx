@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" AutoEventWireup="true"
     CodeBehind="item_group_list.aspx.cs" Inherits="myWeb.App_Control.item_group.item_group_list"
-    Title="แสดงข้อมูลหมวดรายได้/ค่าใช้จ่าย " %>
+    Title="แสดงข้อมูลหมวดค่าใช้จ่าย " %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellpadding="1" cellspacing="1" style="width: 100%">
@@ -21,7 +21,7 @@
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสหมวดรายได้/ค่าใช้จ่าย 
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสหมวดค่าใช้จ่าย 
                 : </asp:Label>
             </td>
             <td>
@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อหมวดรายได้/ค่าใช้จ่าย 
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อหมวดค่าใช้จ่าย 
                 : </asp:Label>
             </td>
             <td>
@@ -72,7 +72,7 @@
                     <asp:Label ID="lblNo" runat="server"> </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="รหัสหมวดรายได้/ค่าใช้จ่าย " SortExpression="item_group_code">
+            <asp:TemplateField HeaderText="รหัสหมวดค่าใช้จ่าย " SortExpression="item_group_code">
                 <ItemStyle HorizontalAlign="Center" Width="20%" Wrap="False" />
                 <ItemTemplate>
                     <asp:Label ID="lblitem_group_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_group_code") %>'>
@@ -80,7 +80,7 @@
                 </ItemTemplate>
                 <ItemStyle Wrap="False" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="หมวดรายได้/ค่าใช้จ่าย " SortExpression="item_group_name">
+            <asp:TemplateField HeaderText="หมวดค่าใช้จ่าย " SortExpression="item_group_name">
                 <ItemTemplate>
                     <asp:Label ID="lblitem_group_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_group_name") %>'>
                     </asp:Label>
@@ -92,13 +92,7 @@
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="ลำดับที่" SortExpression="item_group_order">
-               <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="True" />
-                <ItemTemplate>
-                    <asp:Label ID="lblitem_group_order" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_group_order") %>'>
-                    </asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
+          
             <asp:TemplateField Visible="False" HeaderText="สถานะ">
                 <HeaderStyle HorizontalAlign="Center" Width="2%"></HeaderStyle>
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>

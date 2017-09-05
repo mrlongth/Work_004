@@ -20,39 +20,25 @@ namespace myWeb.App_Control.person
         private string strConn = ConfigurationSettings.AppSettings["ConnectionString"];
         private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
         private string strPrefixCtr_main = "ctl00$ContentPlaceHolder1$TabContainer1$";
+        private string _strYear = string.Empty;
         #endregion
 
-        public static string getItemtype(object mData)
-        {
-            if (mData.Equals("D"))
-            {
-                return "Debit";
-            }
-            else
-            {
-                return "Credit";
-            }
-        }
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
             AjaxPro.Utility.RegisterTypeForAjax(typeof(person_control));
             Session["menupopup_name"] = this.Page;
             lblError.Text = "";
+            _strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
             if (!IsPostBack)
             {
-          
+
                 imgSaveOnly.Attributes.Add("onMouseOver", "src='../../images/controls/save2.jpg'");
                 imgSaveOnly.Attributes.Add("onMouseOut", "src='../../images/controls/save.jpg'");
 
-                //BtnR1.Style.Add("display", "none");
-                //BtnR2.Style.Add("display", "none");
-                //BtnR3.Style.Add("display", "none");
-                //BtnR4.Style.Add("display", "none");
-
                 imgSaveOnly.Attributes.Add("onclick", "RunValidationsAndSetActiveTab();");
                 txtperson_id.Attributes.Add("onblur", "checkInt(this,9999999999999)");
-              
+
                 TabContainer1.ActiveTabIndex = 0;
 
                 #region set QueryString
@@ -93,7 +79,7 @@ namespace myWeb.App_Control.person
                     txtperson_code.CssClass = "textboxdis";
                     TabContainer1.Tabs[0].Visible = true;
                     TabContainer1.Tabs[1].Visible = true;
-                   
+
                     txtperson_start.Text = cCommon.CheckDate(DateTime.Now.Date.ToString("dd/MM/yyyy"));
                     txtperson_end.Text = cCommon.CheckDate(DateTime.Now.Date.ToString("dd/MM/yyyy"));
                     if (ViewState["FromPage"] != null && ViewState["FromPage"].ToString() == "person_center")
@@ -111,7 +97,7 @@ namespace myWeb.App_Control.person
 
                 #endregion
 
-            
+
                 #region Set Image
 
                 imgperson_pic.Attributes.Add("onclick", "OpenPopUp('500px','200px','80%','อัพโหลดรูปบุคลากร' ,'../person/person_upload.aspx?" +
@@ -140,8 +126,8 @@ namespace myWeb.App_Control.person
                                                               "ctrl2=" + txttype_position_name.ClientID + "&show=2', '2');return false;");
                 imgClear_type.Attributes.Add("onclick", "document.forms[0]." + strPrefixCtr_main + "TabPanel2$txttype_position_code.value='';document.forms[0]." +
                                                         strPrefixCtr_main + "TabPanel2$txttype_position_name.value=''; return false;");
-                
-                
+
+
                 imgList_person_manage.Attributes.Add("onclick", "OpenPopUp('800px','400px','93%','ค้นหาข้อมูลตำแหน่งทางการบริหาร' ,'../lov/person_manage_lov.aspx?" +
                                                             "person_manage_code='+document.forms[0]." + strPrefixCtr_main + "TabPanel2$txtperson_manage_code.value+" +
                                                             "'&person_manage_name='+document.forms[0]." + strPrefixCtr_main + "TabPanel2$txtperson_manage_name.value+" +
@@ -311,6 +297,33 @@ namespace myWeb.App_Control.person
             }
         }
 
+        private void InitcboMajor()
+        {
+            cMajor oMajor = new cMajor();
+            string strMessage = string.Empty, strCriteria = string.Empty;
+            string strMajor_code = cboMajor.SelectedValue;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            strCriteria = " and Major_year = '" + _strYear + "'  and  c_active='Y' ";
+            if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
+            {
+                dt = ds.Tables[0];
+                cboMajor.Items.Clear();
+                cboMajor.Items.Add(new ListItem("---- กรุณาเลือกข้อมูล ----", ""));
+                int i;
+                for (i = 0; i <= dt.Rows.Count - 1; i++)
+                {
+                    cboMajor.Items.Add(new ListItem(dt.Rows[i]["Major_name"].ToString(), dt.Rows[i]["Major_code"].ToString()));
+                }
+                if (cboMajor.Items.FindByValue(strMajor_code) != null)
+                {
+                    cboMajor.SelectedIndex = -1;
+                    cboMajor.Items.FindByValue(strMajor_code).Selected = true;
+                }
+            }
+        }
+
+
         protected void cboBudget_type_SelectedIndexChanged(object sender, EventArgs e)
         {
             ChangeLabelBudget();
@@ -362,34 +375,6 @@ namespace myWeb.App_Control.person
             //}
         }
 
-        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        public DataTable GetDataMemberType(string stperson_group, string strGBK, string strGSJ, string strSOS)
-        {
-            cMember_type oMember_type = new cMember_type();
-            string strMessage = string.Empty,
-                        strCriteria = string.Empty,
-            strperson_group_code = string.Empty;
-            strperson_group_code = stperson_group.Trim();
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            if (strperson_group_code.Equals(strGBK))
-            {
-                strCriteria = " and member_type_code='" + strGBK + "' and c_active='Y' ";
-            }
-            else if (strperson_group_code.Equals(strGSJ))
-            {
-                strCriteria = " and member_type_code='" + strGSJ + "' and c_active='Y' ";
-            }
-            else
-            {
-                strCriteria = " and member_type_code='" + strSOS + "' and c_active='Y' ";
-            }
-            if (oMember_type.SP_MEMBER_TYPE_SEL(strCriteria, ref ds, ref strMessage))
-            {
-                dt = ds.Tables[0];
-            }
-            return dt;
-        }
 
         private void StoreDataFromJS()
         {
@@ -424,10 +409,6 @@ namespace myWeb.App_Control.person
             base.OnInit(e);
         }
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.imgSaveOnly.Click += new System.Web.UI.ImageClickEventHandler(this.imgSaveOnly_Click);
@@ -606,20 +587,14 @@ namespace myWeb.App_Control.person
                 strtype_position_name = string.Empty,
 
                 strperson_postionno = string.Empty,
-                strbranch_code = string.Empty,
-                strbank_no = string.Empty,
-                strbranch_code_2 = string.Empty,
-                strbank_no_2 = string.Empty,
-
-                strperson_salaly = string.Empty,
                 strperson_group = string.Empty,
                 strperson_start = string.Empty,
                 strperson_end = string.Empty,
-                strmember_type = string.Empty,
-                strmember_type_add = string.Empty,
                 strperson_manage_code = string.Empty,
                 strbudget_plan_code = string.Empty,
                 strperson_work_status = string.Empty,
+                strmajor_code = string.Empty,
+
                 strUpdatedBy = string.Empty;
             string strScript = string.Empty;
             cPerson oPerson = new cPerson();
@@ -635,8 +610,8 @@ namespace myWeb.App_Control.person
                 strtype_position_name = txttype_position_name.Text;
 
                 strperson_postionno = txtperson_postionno.Text;
-               
-                
+                strmajor_code = cboMajor.SelectedValue;
+
                 strperson_group = cboPerson_group.SelectedValue;
                 if (Request.Form[strPrefixCtr_main + "TabPanel2$cboPerson_group"] != null)
                 {
@@ -654,11 +629,9 @@ namespace myWeb.App_Control.person
                 strUpdatedBy = Session["username"].ToString();
                 #endregion
                 #region edit
-                if (oPerson.SP_PERSON_WORK_UPD(strperson_code, strposition_code, strperson_level, strperson_postionno, strbranch_code,
-                                               strbank_no, strperson_salaly, strperson_start, strperson_end, strperson_group,
-                                               strmember_type, strmember_type_add, strperson_manage_code, strbudget_plan_code,
-                                               strperson_work_status, strUpdatedBy, txttype_position_code.Text, strbranch_code_2,
-                                               strbank_no_2, ref strMessage))
+                if (oPerson.SP_PERSON_WORK_UPD(strperson_code, strposition_code, strperson_level, strperson_postionno, strperson_start, 
+                                                strperson_end, strperson_group, strperson_manage_code, strbudget_plan_code,
+                                               strperson_work_status, strUpdatedBy, txttype_position_code.Text, strmajor_code, ref strMessage))
                 {
                     blnResult = true;
                 }
@@ -679,8 +652,8 @@ namespace myWeb.App_Control.person
             return blnResult;
         }
 
-   
-  
+
+
         private void imgSaveOnly_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             if (saveData1())
@@ -737,12 +710,10 @@ namespace myWeb.App_Control.person
                 strtype_position_name = string.Empty,
 
                 strperson_postionno = string.Empty,
-                
+
                 strperson_group = string.Empty,
                 strperson_start = string.Empty,
                 strperson_end = string.Empty,
-                strmember_type = string.Empty,
-                strmember_type_add = string.Empty,
                 strperson_manage_code = string.Empty,
                 strperson_manage_name = string.Empty,
                 strbudget_plan_code = string.Empty,
@@ -755,7 +726,9 @@ namespace myWeb.App_Control.person
                 strdirector_name = string.Empty,
                 strunit_name = string.Empty,
                 strbudget_plan_year = string.Empty,
-                strperson_work_status = string.Empty;            
+                strperson_work_status = string.Empty,
+                strmajor_code = string.Empty;
+
             #endregion
             try
             {
@@ -794,12 +767,10 @@ namespace myWeb.App_Control.person
                         strtype_position_name = ds.Tables[0].Rows[0]["type_position_name"].ToString();
 
                         strperson_postionno = ds.Tables[0].Rows[0]["person_postionno"].ToString();
-                       
+
                         strperson_group = ds.Tables[0].Rows[0]["person_group_code"].ToString();
                         strperson_start = ds.Tables[0].Rows[0]["person_start"].ToString();
                         strperson_end = ds.Tables[0].Rows[0]["person_end"].ToString();
-                        strmember_type = ds.Tables[0].Rows[0]["member_type_code"].ToString();
-                        strmember_type_add = ds.Tables[0].Rows[0]["member_type_add"].ToString();
                         strperson_manage_code = ds.Tables[0].Rows[0]["person_manage_code"].ToString();
                         strperson_manage_name = ds.Tables[0].Rows[0]["person_manage_name"].ToString();
                         strBudget_type = ds.Tables[0].Rows[0]["person_budget_type"].ToString();
@@ -809,8 +780,6 @@ namespace myWeb.App_Control.person
                             cboBudget_type.SelectedIndex = -1;
                             cboBudget_type.Items.FindByValue(strBudget_type).Selected = true;
                         }
-
-
 
                         strbudget_plan_code = ds.Tables[0].Rows[0]["budget_plan_code"].ToString();
                         strbudget_name = ds.Tables[0].Rows[0]["budget_name"].ToString();
@@ -824,7 +793,7 @@ namespace myWeb.App_Control.person
                         strbudget_plan_year = ds.Tables[0].Rows[0]["budget_plan_year"].ToString();
                         strperson_work_status = ds.Tables[0].Rows[0]["person_work_status_code"].ToString();
                         strBudget_type = ds.Tables[0].Rows[0]["person_budget_type"].ToString();
-
+                        strmajor_code = ds.Tables[0].Rows[0]["major_code"].ToString();
 
                         #endregion
 
@@ -868,7 +837,6 @@ namespace myWeb.App_Control.person
 
 
                         //Tab 2 
-
                         InitcboBudgetType();
                         if (cboBudget_type.Items.FindByValue(strBudget_type) != null)
                         {
@@ -886,8 +854,6 @@ namespace myWeb.App_Control.person
                         txttype_position_name.Text = strtype_position_name;
 
                         txtperson_postionno.Text = strperson_postionno;
-                        
-                      
                         InitcboPerson_group();
                         if (cboPerson_group.Items.FindByValue(strperson_group) != null)
                         {
@@ -896,7 +862,7 @@ namespace myWeb.App_Control.person
                         }
                         txtperson_start.Text = cCommon.CheckDate(strperson_start);
                         txtperson_end.Text = cCommon.CheckDate(strperson_end);
-                       
+
                         txtperson_manage_code.Text = strperson_manage_code;
                         txtperson_manage_name.Text = strperson_manage_name;
                         txtbudget_plan_code.Text = strbudget_plan_code;
@@ -915,7 +881,15 @@ namespace myWeb.App_Control.person
                             cboPerson_work_status.SelectedIndex = -1;
                             cboPerson_work_status.Items.FindByValue(strperson_work_status).Selected = true;
                         }
-             
+
+
+                        InitcboMajor();
+                        if (cboMajor.Items.FindByValue(strmajor_code) != null)
+                        {
+                            cboMajor.SelectedIndex = -1;
+                            cboMajor.Items.FindByValue(strmajor_code).Selected = true;
+                        }
+
                         #endregion
                     }
                 }
@@ -925,437 +899,301 @@ namespace myWeb.App_Control.person
                 lblError.Text = ex.Message.ToString();
             }
         }
-       
 
-        public string getTitle(object str)
-        {
-            DataSet ods = new DataSet();
-            string strError = string.Empty;
-            string strReturn = string.Empty;
-            cTitle oTitle = new cTitle();
-            str = ChkStrNull(str);
-            try
-            {
-                oTitle.SP_SEL_TITLE(" And  title_name='" + str.ToString().Trim() + "'", ref ods, ref strError);
-                if (ods.Tables[0].Rows.Count > 0)
-                {
-                    strReturn = ods.Tables[0].Rows[0][0].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ไม่สามารถจัดการข้อมูล เนื่องจาก " + ex.Message;
-            }
-            return strReturn;
-        }
-
-        public string getPosition(object str)
-        {
-            DataSet ods = new DataSet();
-            string strError = string.Empty;
-            string strReturn = string.Empty;
-            cPosition oPosition = new cPosition();
-            str = ChkStrNull(str);
-            try
-            {
-                oPosition.SP_POSITION_SEL(" And  position_name='" + str.ToString().Trim() + "'", ref ods, ref strError);
-                if (ods.Tables[0].Rows.Count > 0)
-                {
-                    strReturn = ods.Tables[0].Rows[0][0].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ไม่สามารถจัดการข้อมูล เนื่องจาก " + ex.Message;
-            }
-            return strReturn;
-        }
-
-        public string getPerson_group(object str)
-        {
-            DataSet ods = new DataSet();
-            string strError = string.Empty;
-            string strReturn = string.Empty;
-            cPerson_group oPerson_group = new cPerson_group();
-            str = ChkStrNull(str);
-            try
-            {
-                oPerson_group.SP_PERSON_GROUP_SEL(" And  person_group_name='" + str.ToString().Trim() + "'", ref ods, ref strError);
-                if (ods.Tables[0].Rows.Count > 0)
-                {
-                    strReturn = ods.Tables[0].Rows[0][0].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ไม่สามารถจัดการข้อมูล เนื่องจาก " + ex.Message;
-            }
-            return strReturn;
-        }
-
-        public string getPerson_manage(object str)
-        {
-            DataSet ods = new DataSet();
-            string strError = string.Empty;
-            string strReturn = string.Empty;
-            cPerson_manage oPerson_manage = new cPerson_manage();
-            str = ChkStrNull(str);
-            try
-            {
-                oPerson_manage.SP_PERSON_MANAGE_SEL(" And  person_manage_name='" + str.ToString().Trim() + "'", ref ods, ref strError);
-                if (ods.Tables[0].Rows.Count > 0)
-                {
-                    strReturn = ods.Tables[0].Rows[0][0].ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = "ไม่สามารถจัดการข้อมูล เนื่องจาก " + ex.Message;
-            }
-            return strReturn;
-        }
-
-        public string getSex(object str)
-        {
-            str = ChkStrNull(str);
-            string strReturn = string.Empty;
-            if (str == "ชาย")
-            {
-                strReturn = "M";
-            }
-            else
-            {
-                strReturn = "F";
-            }
-            return strReturn;
-        }
-
-        public string getMarry(object str)
-        {
-            str = ChkStrNull(str);
-            string strReturn = string.Empty;
-            if (str == "โสด")
-            {
-                strReturn = "1";
-            }
-            else if (str == "สมรส")
-            {
-                strReturn = "2";
-            }
-            else if (str == "หย่า")
-            {
-                strReturn = "3";
-            }
-            else if (str == "หม้าย")
-            {
-                strReturn = "4";
-                return strReturn;
-            }
-            else
-            {
-                strReturn = "1";
-            }
-            return strReturn;
-        }
-
-        public string ChkStrNull(object str)
-        {
-            return str.ToString().Trim();
-        }
 
 
         private void setDataCenter()
         {
-            cPerson_center oPerson = new cPerson_center();
-            cCommon oCommon = new cCommon();
+            //cPerson_center oPerson = new cPerson_center();
+            //cCommon oCommon = new cCommon();
 
-            DataSet ds = new DataSet();
-            DataSet dsPersonCode = new DataSet();
-            string strMessage = string.Empty, strCriteria = string.Empty;
-            #region clear Data
-            //Tab 1 
-            string strperson_code = string.Empty,
-                strtitle_code = string.Empty,
-                strperson_thai_name = string.Empty,
-                strperson_thai_surname = string.Empty,
-                strperson_eng_name = string.Empty,
-                strperson_eng_surname = string.Empty,
-                strperson_nickname = string.Empty,
-                strperson_id = string.Empty,
-                strperson_pic = string.Empty,
-                strC_active = string.Empty,
-                strCreatedBy = string.Empty,
-                strUpdatedBy = string.Empty,
-                strCreatedDate = string.Empty,
-                strUpdatedDate = string.Empty,
-                strBudget_type = string.Empty;
-            //Tab 2 
-            string strposition_code = string.Empty,
-                strposition_name = string.Empty,
+            //DataSet ds = new DataSet();
+            //DataSet dsPersonCode = new DataSet();
+            //string strMessage = string.Empty, strCriteria = string.Empty;
+            //#region clear Data
+            ////Tab 1 
+            //string strperson_code = string.Empty,
+            //    strtitle_code = string.Empty,
+            //    strperson_thai_name = string.Empty,
+            //    strperson_thai_surname = string.Empty,
+            //    strperson_eng_name = string.Empty,
+            //    strperson_eng_surname = string.Empty,
+            //    strperson_nickname = string.Empty,
+            //    strperson_id = string.Empty,
+            //    strperson_pic = string.Empty,
+            //    strC_active = string.Empty,
+            //    strCreatedBy = string.Empty,
+            //    strUpdatedBy = string.Empty,
+            //    strCreatedDate = string.Empty,
+            //    strUpdatedDate = string.Empty,
+            //    strBudget_type = string.Empty;
+            ////Tab 2 
+            //string strposition_code = string.Empty,
+            //    strposition_name = string.Empty,
 
-                strperson_level = string.Empty,
-                strperson_level_name = string.Empty,
-                strtype_position_code = string.Empty,
-                strtype_position_name = string.Empty,
+            //    strperson_level = string.Empty,
+            //    strperson_level_name = string.Empty,
+            //    strtype_position_code = string.Empty,
+            //    strtype_position_name = string.Empty,
 
-                strperson_postionno = string.Empty,
-                strbranch_code = string.Empty,
-                strbranch_name = string.Empty,
-                strbank_name = string.Empty,
-                strbank_no = string.Empty,
-                strperson_salaly = string.Empty,
-                strperson_group = string.Empty,
-                strperson_start = string.Empty,
-                strperson_end = string.Empty,
-                strmember_type = string.Empty,
-                strmember_type_add = "0",
-                strperson_manage_code = string.Empty,
-                strperson_manage_name = string.Empty,
-                strbudget_plan_code = string.Empty,
-                strbudget_name = string.Empty,
-                strproduce_name = string.Empty,
-                stractivity_name = string.Empty,
-                strplan_name = string.Empty,
-                strwork_name = string.Empty,
-                strfund_name = string.Empty,
-                strdirector_name = string.Empty,
-                strunit_name = string.Empty,
-                strbudget_plan_year = string.Empty,
-                strperson_work_status = string.Empty;
-            //Tab 3
-            string strperson_sex = string.Empty,
-                strperson_width = string.Empty,
-                strperson_high = string.Empty,
-                strperson_origin = string.Empty,
-                strperson_nation = string.Empty,
-                strperson_religion = string.Empty,
-                strperson_birth = string.Empty,
-                strperson_marry = string.Empty;
-            //Tab 4
-            string strperson_room = string.Empty,
-                strperson_floor = string.Empty,
-                strperson_village = string.Empty,
-                strperson_homeno = string.Empty,
-                strperson_soi = string.Empty,
-                strperson_moo = string.Empty,
-                strperson_road = string.Empty,
-                strperson_tambol = string.Empty,
-                strperson_aumphur = string.Empty,
-                strperson_province = string.Empty,
-                strperson_postno = string.Empty,
-                strperson_tel = string.Empty,
-                strperson_contact = string.Empty,
-                strperson_ralation = string.Empty,
-                strperson_contact_tel = string.Empty;
-            #endregion
-            try
-            {
-                strCriteria = " and CITIZEN_ID = '" + ViewState["person_code"].ToString() + "' ";
-                if (!oPerson.SP_PERSON_CENTER_SEL(strCriteria, ref ds, ref strMessage))
-                {
-                    lblError.Text = strMessage;
-                }
-                else
-                {
-                    if (ds.Tables[0].Rows.Count > 0)
-                    {
-                        #region get Data
-                        //Tab 1 
-                        string strSQL = " SELECT dbo.FormatNumber(cast(MAX(person_code) as int)+1,5) as person_code FROM [person_his]";
-                        oCommon.SEL_SQL(strSQL, ref dsPersonCode, ref strMessage);
-                        if (dsPersonCode.Tables[0].Rows.Count > 0) strperson_code = dsPersonCode.Tables[0].Rows[0]["person_code"].ToString();
-                        strtitle_code = getTitle(ds.Tables[0].Rows[0]["TITLE_NAME"]);
-                        strperson_thai_name = ds.Tables[0].Rows[0]["STF_FNAME"].ToString();
-                        strperson_thai_surname = ds.Tables[0].Rows[0]["STF_LNAME"].ToString();
-                        strperson_eng_name = ds.Tables[0].Rows[0]["NAME_ENG"].ToString();
-                        strperson_eng_surname = ds.Tables[0].Rows[0]["SURNAME_ENG"].ToString();
-                        strperson_nickname = "";
-                        strperson_id = ds.Tables[0].Rows[0]["CITIZEN_ID"].ToString();
-                        strperson_pic = "";
-                        strC_active = "Y";
-                        strCreatedBy = "";
-                        strUpdatedBy = "";
-                        strCreatedDate = "";
-                        strUpdatedDate = "";
-                        //Tab 2 
-                        strposition_code = getPosition(ds.Tables[0].Rows[0]["POSITION_WORK"]);
-                        strposition_name = ds.Tables[0].Rows[0]["POSITION_WORK"].ToString();
+            //    strperson_postionno = string.Empty,
+            //    strbranch_code = string.Empty,
+            //    strbranch_name = string.Empty,
+            //    strbank_name = string.Empty,
+            //    strbank_no = string.Empty,
+            //    strperson_salaly = string.Empty,
+            //    strperson_group = string.Empty,
+            //    strperson_start = string.Empty,
+            //    strperson_end = string.Empty,
+            //    strmember_type = string.Empty,
+            //    strmember_type_add = "0",
+            //    strperson_manage_code = string.Empty,
+            //    strperson_manage_name = string.Empty,
+            //    strbudget_plan_code = string.Empty,
+            //    strbudget_name = string.Empty,
+            //    strproduce_name = string.Empty,
+            //    stractivity_name = string.Empty,
+            //    strplan_name = string.Empty,
+            //    strwork_name = string.Empty,
+            //    strfund_name = string.Empty,
+            //    strdirector_name = string.Empty,
+            //    strunit_name = string.Empty,
+            //    strbudget_plan_year = string.Empty,
+            //    strperson_work_status = string.Empty;
+            ////Tab 3
+            //string strperson_sex = string.Empty,
+            //    strperson_width = string.Empty,
+            //    strperson_high = string.Empty,
+            //    strperson_origin = string.Empty,
+            //    strperson_nation = string.Empty,
+            //    strperson_religion = string.Empty,
+            //    strperson_birth = string.Empty,
+            //    strperson_marry = string.Empty;
+            ////Tab 4
+            //string strperson_room = string.Empty,
+            //    strperson_floor = string.Empty,
+            //    strperson_village = string.Empty,
+            //    strperson_homeno = string.Empty,
+            //    strperson_soi = string.Empty,
+            //    strperson_moo = string.Empty,
+            //    strperson_road = string.Empty,
+            //    strperson_tambol = string.Empty,
+            //    strperson_aumphur = string.Empty,
+            //    strperson_province = string.Empty,
+            //    strperson_postno = string.Empty,
+            //    strperson_tel = string.Empty,
+            //    strperson_contact = string.Empty,
+            //    strperson_ralation = string.Empty,
+            //    strperson_contact_tel = string.Empty;
+            //#endregion
+            //try
+            //{
+            //    strCriteria = " and CITIZEN_ID = '" + ViewState["person_code"].ToString() + "' ";
+            //    if (!oPerson.SP_PERSON_CENTER_SEL(strCriteria, ref ds, ref strMessage))
+            //    {
+            //        lblError.Text = strMessage;
+            //    }
+            //    else
+            //    {
+            //        if (ds.Tables[0].Rows.Count > 0)
+            //        {
+            //            #region get Data
+            //            //Tab 1 
+            //            string strSQL = " SELECT dbo.FormatNumber(cast(MAX(person_code) as int)+1,5) as person_code FROM [person_his]";
+            //            oCommon.SEL_SQL(strSQL, ref dsPersonCode, ref strMessage);
+            //            if (dsPersonCode.Tables[0].Rows.Count > 0) strperson_code = dsPersonCode.Tables[0].Rows[0]["person_code"].ToString();
+            //            strtitle_code = getTitle(ds.Tables[0].Rows[0]["TITLE_NAME"]);
+            //            strperson_thai_name = ds.Tables[0].Rows[0]["STF_FNAME"].ToString();
+            //            strperson_thai_surname = ds.Tables[0].Rows[0]["STF_LNAME"].ToString();
+            //            strperson_eng_name = ds.Tables[0].Rows[0]["NAME_ENG"].ToString();
+            //            strperson_eng_surname = ds.Tables[0].Rows[0]["SURNAME_ENG"].ToString();
+            //            strperson_nickname = "";
+            //            strperson_id = ds.Tables[0].Rows[0]["CITIZEN_ID"].ToString();
+            //            strperson_pic = "";
+            //            strC_active = "Y";
+            //            strCreatedBy = "";
+            //            strUpdatedBy = "";
+            //            strCreatedDate = "";
+            //            strUpdatedDate = "";
+            //            //Tab 2 
+            //            strposition_code = getPosition(ds.Tables[0].Rows[0]["POSITION_WORK"]);
+            //            strposition_name = ds.Tables[0].Rows[0]["POSITION_WORK"].ToString();
 
-                        //strperson_level = ds.Tables[0].Rows[0]["person_level"].ToString();
-                        //strperson_level_name = ds.Tables[0].Rows[0]["level_position_name"].ToString();
-                        //strtype_position_code = ds.Tables[0].Rows[0]["type_position_code"].ToString();
-                        strtype_position_name = ds.Tables[0].Rows[0]["positionBlockLevelName"].ToString();
+            //            //strperson_level = ds.Tables[0].Rows[0]["person_level"].ToString();
+            //            //strperson_level_name = ds.Tables[0].Rows[0]["level_position_name"].ToString();
+            //            //strtype_position_code = ds.Tables[0].Rows[0]["type_position_code"].ToString();
+            //            strtype_position_name = ds.Tables[0].Rows[0]["positionBlockLevelName"].ToString();
 
-                        strperson_postionno = ds.Tables[0].Rows[0]["PCNO"].ToString();
-                        //strbranch_code = ds.Tables[0].Rows[0]["branch_code"].ToString();
-                        //strbranch_name = ds.Tables[0].Rows[0]["branch_name"].ToString();
-                        // strbank_name = ds.Tables[0].Rows[0]["bank_name"].ToString();
-                        // strbank_no = ds.Tables[0].Rows[0]["bank_no"].ToString();
-                        strperson_salaly = ds.Tables[0].Rows[0]["SALARY"].ToString();
-                        strperson_group = getPerson_group(ds.Tables[0].Rows[0]["GROUP_TYPE_NAME"]);
-                        strperson_start = ds.Tables[0].Rows[0]["DATE_INWORK"].ToString();
-                        strperson_end = ds.Tables[0].Rows[0]["DATE_RETIRE"].ToString();
-                        // strmember_type = ds.Tables[0].Rows[0]["member_type_code"].ToString();
-                        // strmember_type_add = ds.Tables[0].Rows[0]["member_type_add"].ToString();
-                        strperson_manage_code = getPerson_manage(ds.Tables[0].Rows[0]["ADMIN_NAME"]);
-                        strperson_manage_name = ds.Tables[0].Rows[0]["ADMIN_NAME"].ToString();
-                        // strBudget_type = ds.Tables[0].Rows[0]["person_budget_type"].ToString();
+            //            strperson_postionno = ds.Tables[0].Rows[0]["PCNO"].ToString();
+            //            //strbranch_code = ds.Tables[0].Rows[0]["branch_code"].ToString();
+            //            //strbranch_name = ds.Tables[0].Rows[0]["branch_name"].ToString();
+            //            // strbank_name = ds.Tables[0].Rows[0]["bank_name"].ToString();
+            //            // strbank_no = ds.Tables[0].Rows[0]["bank_no"].ToString();
+            //            strperson_salaly = ds.Tables[0].Rows[0]["SALARY"].ToString();
+            //            strperson_group = getPerson_group(ds.Tables[0].Rows[0]["GROUP_TYPE_NAME"]);
+            //            strperson_start = ds.Tables[0].Rows[0]["DATE_INWORK"].ToString();
+            //            strperson_end = ds.Tables[0].Rows[0]["DATE_RETIRE"].ToString();
+            //            // strmember_type = ds.Tables[0].Rows[0]["member_type_code"].ToString();
+            //            // strmember_type_add = ds.Tables[0].Rows[0]["member_type_add"].ToString();
+            //            strperson_manage_code = getPerson_manage(ds.Tables[0].Rows[0]["ADMIN_NAME"]);
+            //            strperson_manage_name = ds.Tables[0].Rows[0]["ADMIN_NAME"].ToString();
+            //            // strBudget_type = ds.Tables[0].Rows[0]["person_budget_type"].ToString();
 
-                        //if (cboBudget_type.Items.FindByValue(strBudget_type) != null)
-                        //{
-                        //    cboBudget_type.SelectedIndex = -1;
-                        //    cboBudget_type.Items.FindByValue(strBudget_type).Selected = true;
-                        //}
+            //            //if (cboBudget_type.Items.FindByValue(strBudget_type) != null)
+            //            //{
+            //            //    cboBudget_type.SelectedIndex = -1;
+            //            //    cboBudget_type.Items.FindByValue(strBudget_type).Selected = true;
+            //            //}
 
-                        // strbudget_plan_code = ds.Tables[0].Rows[0]["budget_plan_code"].ToString();
-                        // strbudget_name = ds.Tables[0].Rows[0]["budget_name"].ToString();
-                        // strproduce_name = ds.Tables[0].Rows[0]["produce_name"].ToString();
-                        //  stractivity_name = ds.Tables[0].Rows[0]["activity_name"].ToString();
-                        //  strplan_name = ds.Tables[0].Rows[0]["plan_name"].ToString();
-                        //  strwork_name = ds.Tables[0].Rows[0]["work_name"].ToString();
-                        //  strfund_name = ds.Tables[0].Rows[0]["fund_name"].ToString();
-                        //  strdirector_name = ds.Tables[0].Rows[0]["director_name"].ToString();
-                        //   strunit_name = ds.Tables[0].Rows[0]["unit_name"].ToString();
-                        //   strbudget_plan_year = ds.Tables[0].Rows[0]["budget_plan_year"].ToString();
-                        strperson_work_status = "01";
-
-
-
-                        //Tab 3
-                        strperson_sex = getSex(ds.Tables[0].Rows[0]["GENDER_NAME"]);
-                        // strperson_width = ds.Tables[0].Rows[0]["person_width"].ToString();
-                        // strperson_high = ds.Tables[0].Rows[0]["person_high"].ToString();
-                        // strperson_origin = ds.Tables[0].Rows[0]["person_origin"].ToString();
-                        // strperson_nation = ds.Tables[0].Rows[0]["person_nation"].ToString();
-                        // strperson_religion = ds.Tables[0].Rows[0]["person_religion"].ToString();
-                        strperson_birth = ds.Tables[0].Rows[0]["BIRTHDAY"].ToString();
-                        strperson_marry = getMarry(ds.Tables[0].Rows[0]["MARRIED_NAME"]);
-                        //Tab 4
-                        // strperson_room = ds.Tables[0].Rows[0]["person_room"].ToString();
-                        //  strperson_floor = ds.Tables[0].Rows[0]["person_floor"].ToString();
-                        // strperson_village = ds.Tables[0].Rows[0]["person_village"].ToString();
-                        strperson_homeno = ds.Tables[0].Rows[0]["HOMEADD"].ToString();
-                        strperson_soi = ds.Tables[0].Rows[0]["SOI"].ToString();
-                        strperson_moo = ds.Tables[0].Rows[0]["MOO"].ToString();
-                        strperson_road = ds.Tables[0].Rows[0]["STREET"].ToString();
-                        strperson_tambol = ds.Tables[0].Rows[0]["DISTRICT"].ToString();
-                        strperson_aumphur = ds.Tables[0].Rows[0]["AMPHUR"].ToString();
-                        strperson_province = ds.Tables[0].Rows[0]["PROVINCE_NAME_TH"].ToString();
-                        strperson_postno = ds.Tables[0].Rows[0]["ZIPCODE"].ToString();
-                        //strperson_tel = ds.Tables[0].Rows[0]["person_tel"].ToString();
-                        // strperson_contact = ds.Tables[0].Rows[0]["person_contact"].ToString();
-                        //strperson_ralation = ds.Tables[0].Rows[0]["person_ralation"].ToString();
-                        // strperson_contact_tel = ds.Tables[0].Rows[0]["person_contact_tel"].ToString();
-
-                        strBudget_type = "B";
-
-
-                        #endregion
-
-                        #region set Control
-                        TabContainer1.Tabs[1].Visible = true;
-                        //Tab 1 
-                        txtperson_code.Text = strperson_code;
-                        Session["person_code"] = strperson_code;
-                        InitcboTitle();
-                        if (cboTitle.Items.FindByValue(strtitle_code) != null)
-                        {
-                            cboTitle.SelectedIndex = -1;
-                            cboTitle.Items.FindByValue(strtitle_code).Selected = true;
-                        }
-                        txtperson_thai_name.Text = strperson_thai_name;
-                        txtperson_thai_surname.Text = strperson_thai_surname;
-                        txtperson_eng_name.Text = strperson_eng_name;
-                        txtperson_eng_surname.Text = strperson_eng_surname;
-                        txtperson_nickname.Text = strperson_nickname;
-                        txtperson_id.Text = strperson_id;
-                        txtperson_pic.Text = strperson_pic;
-                        if (strperson_pic.Length != 0)
-                        {
-                            imgPerson.ImageUrl = "../../person_pic/" + strperson_pic;
-                        }
-                        else
-                        {
-                            imgPerson.ImageUrl = "../../person_pic/image_n_a.jpg";
-                        }
-                        txtUpdatedBy.Text = strUpdatedBy;
-                        txtUpdatedDate.Text = strUpdatedDate;
-
-                        if (strC_active.Equals("Y"))
-                        {
-                            chkStatus.Checked = true;
-                        }
-                        else
-                        {
-                            chkStatus.Checked = false;
-                        }
-
-
-                        //Tab 2 
-
-                        InitcboBudgetType();
-                        if (cboBudget_type.Items.FindByValue(strBudget_type) != null)
-                        {
-                            cboBudget_type.SelectedIndex = -1;
-                            cboBudget_type.Items.FindByValue(strBudget_type).Selected = true;
-                        }
-                        ChangeLabelBudget();
-
-                        txtposition_code.Text = strposition_code;
-                        txtposition_name.Text = strposition_name;
-
-                        txtperson_level.Text = strperson_level;
-                        txtlevel_position_name.Text = strperson_level_name;
-                        txttype_position_code.Text = strtype_position_code;
-                        txttype_position_name.Text = strtype_position_name;
-
-                        txtperson_postionno.Text = strperson_postionno;
-                        InitcboPerson_group();
-                        if (cboPerson_group.Items.FindByValue(strperson_group) != null)
-                        {
-                            cboPerson_group.SelectedIndex = -1;
-                            cboPerson_group.Items.FindByValue(strperson_group).Selected = true;
-                        }
-                        try
-                        {
-                            txtperson_start.Text = cCommon.CheckDate(strperson_start);
-                        }
-                        catch { }
-                        try
-                        {
-                            txtperson_end.Text = cCommon.CheckDate(strperson_end);
-                        }
-                        catch { }
-                        txtperson_manage_code.Text = strperson_manage_code;
-                        txtperson_manage_name.Text = strperson_manage_name;
-                        txtbudget_plan_code.Text = strbudget_plan_code;
-                        txtbudget_name.Text = strbudget_name;
-                        txtproduce_name.Text = strproduce_name;
-                        txtactivity_name.Text = stractivity_name;
-                        txtplan_name.Text = strplan_name;
-                        txtwork_name.Text = strwork_name;
-                        txtfund_name.Text = strfund_name;
-                        txtdirector_name.Text = strdirector_name;
-                        txtunit_name.Text = strunit_name;
-                        txtbudget_plan_year.Text = strbudget_plan_year;
-                        InitcboPerson_work_status();
-                        if (cboPerson_work_status.Items.FindByValue(strperson_work_status) != null)
-                        {
-                            cboPerson_work_status.SelectedIndex = -1;
-                            cboPerson_work_status.Items.FindByValue(strperson_work_status).Selected = true;
-                        }
+            //            // strbudget_plan_code = ds.Tables[0].Rows[0]["budget_plan_code"].ToString();
+            //            // strbudget_name = ds.Tables[0].Rows[0]["budget_name"].ToString();
+            //            // strproduce_name = ds.Tables[0].Rows[0]["produce_name"].ToString();
+            //            //  stractivity_name = ds.Tables[0].Rows[0]["activity_name"].ToString();
+            //            //  strplan_name = ds.Tables[0].Rows[0]["plan_name"].ToString();
+            //            //  strwork_name = ds.Tables[0].Rows[0]["work_name"].ToString();
+            //            //  strfund_name = ds.Tables[0].Rows[0]["fund_name"].ToString();
+            //            //  strdirector_name = ds.Tables[0].Rows[0]["director_name"].ToString();
+            //            //   strunit_name = ds.Tables[0].Rows[0]["unit_name"].ToString();
+            //            //   strbudget_plan_year = ds.Tables[0].Rows[0]["budget_plan_year"].ToString();
+            //            strperson_work_status = "01";
 
 
 
-                  
-                        #endregion
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message.ToString();
-            }
+            //            //Tab 3
+            //            strperson_sex = getSex(ds.Tables[0].Rows[0]["GENDER_NAME"]);
+            //            // strperson_width = ds.Tables[0].Rows[0]["person_width"].ToString();
+            //            // strperson_high = ds.Tables[0].Rows[0]["person_high"].ToString();
+            //            // strperson_origin = ds.Tables[0].Rows[0]["person_origin"].ToString();
+            //            // strperson_nation = ds.Tables[0].Rows[0]["person_nation"].ToString();
+            //            // strperson_religion = ds.Tables[0].Rows[0]["person_religion"].ToString();
+            //            strperson_birth = ds.Tables[0].Rows[0]["BIRTHDAY"].ToString();
+            //            strperson_marry = getMarry(ds.Tables[0].Rows[0]["MARRIED_NAME"]);
+            //            //Tab 4
+            //            // strperson_room = ds.Tables[0].Rows[0]["person_room"].ToString();
+            //            //  strperson_floor = ds.Tables[0].Rows[0]["person_floor"].ToString();
+            //            // strperson_village = ds.Tables[0].Rows[0]["person_village"].ToString();
+            //            strperson_homeno = ds.Tables[0].Rows[0]["HOMEADD"].ToString();
+            //            strperson_soi = ds.Tables[0].Rows[0]["SOI"].ToString();
+            //            strperson_moo = ds.Tables[0].Rows[0]["MOO"].ToString();
+            //            strperson_road = ds.Tables[0].Rows[0]["STREET"].ToString();
+            //            strperson_tambol = ds.Tables[0].Rows[0]["DISTRICT"].ToString();
+            //            strperson_aumphur = ds.Tables[0].Rows[0]["AMPHUR"].ToString();
+            //            strperson_province = ds.Tables[0].Rows[0]["PROVINCE_NAME_TH"].ToString();
+            //            strperson_postno = ds.Tables[0].Rows[0]["ZIPCODE"].ToString();
+            //            //strperson_tel = ds.Tables[0].Rows[0]["person_tel"].ToString();
+            //            // strperson_contact = ds.Tables[0].Rows[0]["person_contact"].ToString();
+            //            //strperson_ralation = ds.Tables[0].Rows[0]["person_ralation"].ToString();
+            //            // strperson_contact_tel = ds.Tables[0].Rows[0]["person_contact_tel"].ToString();
+
+            //            strBudget_type = "B";
+
+
+            //            #endregion
+
+            //            #region set Control
+            //            TabContainer1.Tabs[1].Visible = true;
+            //            //Tab 1 
+            //            txtperson_code.Text = strperson_code;
+            //            Session["person_code"] = strperson_code;
+            //            InitcboTitle();
+            //            if (cboTitle.Items.FindByValue(strtitle_code) != null)
+            //            {
+            //                cboTitle.SelectedIndex = -1;
+            //                cboTitle.Items.FindByValue(strtitle_code).Selected = true;
+            //            }
+            //            txtperson_thai_name.Text = strperson_thai_name;
+            //            txtperson_thai_surname.Text = strperson_thai_surname;
+            //            txtperson_eng_name.Text = strperson_eng_name;
+            //            txtperson_eng_surname.Text = strperson_eng_surname;
+            //            txtperson_nickname.Text = strperson_nickname;
+            //            txtperson_id.Text = strperson_id;
+            //            txtperson_pic.Text = strperson_pic;
+            //            if (strperson_pic.Length != 0)
+            //            {
+            //                imgPerson.ImageUrl = "../../person_pic/" + strperson_pic;
+            //            }
+            //            else
+            //            {
+            //                imgPerson.ImageUrl = "../../person_pic/image_n_a.jpg";
+            //            }
+            //            txtUpdatedBy.Text = strUpdatedBy;
+            //            txtUpdatedDate.Text = strUpdatedDate;
+
+            //            if (strC_active.Equals("Y"))
+            //            {
+            //                chkStatus.Checked = true;
+            //            }
+            //            else
+            //            {
+            //                chkStatus.Checked = false;
+            //            }
+
+
+            //            //Tab 2 
+
+            //            InitcboBudgetType();
+            //            if (cboBudget_type.Items.FindByValue(strBudget_type) != null)
+            //            {
+            //                cboBudget_type.SelectedIndex = -1;
+            //                cboBudget_type.Items.FindByValue(strBudget_type).Selected = true;
+            //            }
+            //            ChangeLabelBudget();
+
+            //            txtposition_code.Text = strposition_code;
+            //            txtposition_name.Text = strposition_name;
+
+            //            txtperson_level.Text = strperson_level;
+            //            txtlevel_position_name.Text = strperson_level_name;
+            //            txttype_position_code.Text = strtype_position_code;
+            //            txttype_position_name.Text = strtype_position_name;
+
+            //            txtperson_postionno.Text = strperson_postionno;
+            //            InitcboPerson_group();
+            //            if (cboPerson_group.Items.FindByValue(strperson_group) != null)
+            //            {
+            //                cboPerson_group.SelectedIndex = -1;
+            //                cboPerson_group.Items.FindByValue(strperson_group).Selected = true;
+            //            }
+            //            try
+            //            {
+            //                txtperson_start.Text = cCommon.CheckDate(strperson_start);
+            //            }
+            //            catch { }
+            //            try
+            //            {
+            //                txtperson_end.Text = cCommon.CheckDate(strperson_end);
+            //            }
+            //            catch { }
+            //            txtperson_manage_code.Text = strperson_manage_code;
+            //            txtperson_manage_name.Text = strperson_manage_name;
+            //            txtbudget_plan_code.Text = strbudget_plan_code;
+            //            txtbudget_name.Text = strbudget_name;
+            //            txtproduce_name.Text = strproduce_name;
+            //            txtactivity_name.Text = stractivity_name;
+            //            txtplan_name.Text = strplan_name;
+            //            txtwork_name.Text = strwork_name;
+            //            txtfund_name.Text = strfund_name;
+            //            txtdirector_name.Text = strdirector_name;
+            //            txtunit_name.Text = strunit_name;
+            //            txtbudget_plan_year.Text = strbudget_plan_year;
+            //            InitcboPerson_work_status();
+            //            if (cboPerson_work_status.Items.FindByValue(strperson_work_status) != null)
+            //            {
+            //                cboPerson_work_status.SelectedIndex = -1;
+            //                cboPerson_work_status.Items.FindByValue(strperson_work_status).Selected = true;
+            //            }
+
+
+
+
+            //            #endregion
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    lblError.Text = ex.Message.ToString();
+            //}
         }
 
         public static string getNumber(object pNumber)
