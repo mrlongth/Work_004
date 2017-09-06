@@ -58,6 +58,7 @@
         <AssociationConnector Association="mju_budgetModel.FK_person_work_position_code" />
         <AssociationConnector Association="mju_budgetModel.FK_person_work_type_position_code" />
         <EntityTypeShape EntityType="mju_budgetModel.view_Item_group" Width="1.5" PointX="14.375" PointY="18.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item_group_detail" Width="1.5" PointX="16.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

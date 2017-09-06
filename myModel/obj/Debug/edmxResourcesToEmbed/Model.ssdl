@@ -513,6 +513,27 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group' does not have a pr
     <Property Name="lot_name" Type="varchar" MaxLength="100" />
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Item_group_detail">
+    <Key>
+      <PropertyRef Name="item_group_detail_id" />
+    </Key>
+    <Property Name="item_group_detail_id" Type="int" Nullable="false" />
+    <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+    <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="lot_code" Type="varchar" MaxLength="6" />
+    <Property Name="lot_year" Type="varchar" MaxLength="4" />
+    <Property Name="lot_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_type" Type="varchar" MaxLength="10" />
+  </EntityType>
   <Association Name="FK_activity_produce_code">
     <End Role="Produce" Type="Self.Produce" Multiplicity="0..1" />
     <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
@@ -801,6 +822,24 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group' does not have a pr
     [view_Item_group].[lot_name] AS [lot_name], 
     [view_Item_group].[budget_type] AS [budget_type]
     FROM [dbo].[view_Item_group] AS [view_Item_group]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Item_group_detail" EntityType="Self.view_Item_group_detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Item_group_detail].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Item_group_detail].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Item_group_detail].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Item_group_detail].[item_group_code] AS [item_group_code], 
+    [view_Item_group_detail].[c_active] AS [c_active], 
+    [view_Item_group_detail].[c_created_by] AS [c_created_by], 
+    [view_Item_group_detail].[d_created_date] AS [d_created_date], 
+    [view_Item_group_detail].[c_updated_by] AS [c_updated_by], 
+    [view_Item_group_detail].[item_group_year] AS [item_group_year], 
+    [view_Item_group_detail].[item_group_name] AS [item_group_name], 
+    [view_Item_group_detail].[lot_code] AS [lot_code], 
+    [view_Item_group_detail].[lot_year] AS [lot_year], 
+    [view_Item_group_detail].[lot_name] AS [lot_name], 
+    [view_Item_group_detail].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Item_group_detail] AS [view_Item_group_detail]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_activity_produce_code" Association="Self.FK_activity_produce_code">
       <End Role="Produce" EntitySet="Produce" />

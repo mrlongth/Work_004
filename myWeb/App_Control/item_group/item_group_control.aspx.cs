@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using myDLL;
 using myModel;
+using myDLL.Common;
 
 namespace myWeb.App_Control.item_group
 {
@@ -73,6 +66,11 @@ namespace myWeb.App_Control.item_group
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "frMainPage", strScript1, true);
                         }
                     }
+                }
+                else if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    setData();
+                    Utils.SetControls(pnlControl, Enumeration.Mode.VIEW);
                 }
 
                 #endregion

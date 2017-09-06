@@ -105,6 +105,8 @@
   <ItemGroup>
     <Content Include="App_Control\item_group\item_group_control.aspx" />
     <Content Include="App_Control\item_group\item_group_list.aspx" />
+    <Content Include="App_Control\item_group\item_group_detail_list.aspx" />
+    <Content Include="App_Control\item_group\item_group_detail_control.aspx" />
     <Content Include="App_Control\major\major_control.aspx" />
     <Content Include="App_Control\major\major_list.aspx" />
     <Content Include="App_Control\user_group\user_group_control.aspx" />
@@ -332,6 +334,20 @@
     </Compile>
     <Compile Include="App_Control\item_group\item_group_list.aspx.designer.cs">
       <DependentUpon>item_group_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\item_group\item_group_detail_list.aspx.cs">
+      <DependentUpon>item_group_detail_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\item_group\item_group_detail_list.aspx.designer.cs">
+      <DependentUpon>item_group_detail_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\item_group\item_group_detail_control.aspx.cs">
+      <DependentUpon>item_group_detail_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\item_group\item_group_detail_control.aspx.designer.cs">
+      <DependentUpon>item_group_detail_control.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\major\major_control.aspx.cs">
       <DependentUpon>major_control.aspx</DependentUpon>
@@ -1483,9 +1499,6 @@
       <Project>{0154f0b2-382b-4d45-9825-7eeb1cf05712}</Project>
       <Name>myModel</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

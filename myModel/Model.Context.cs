@@ -58,5 +58,6 @@ namespace myModel
         public virtual DbSet<Usermenu> Usermenus { get; set; }
         public virtual DbSet<Work> Works { get; set; }
         public virtual DbSet<view_Item_group> view_Item_group { get; set; }
+        public virtual DbSet<view_Item_group_detail> view_Item_group_detail { get; set; }
     }
 }

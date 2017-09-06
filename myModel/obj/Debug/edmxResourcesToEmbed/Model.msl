@@ -543,5 +543,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="view_Item_group_detail">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Item_group_detail">
+        <MappingFragment StoreEntitySet="view_Item_group_detail">
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+          <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+          <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+          <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+          <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+          <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+          <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
