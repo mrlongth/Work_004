@@ -500,6 +500,32 @@
           <Property Name="budget_type" Type="varchar" MaxLength="10" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Item">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="item_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_type" Type="varchar" MaxLength="1" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="lot_code" Type="varchar" MaxLength="6" />
+          <Property Name="lot_year" Type="varchar" MaxLength="4" />
+          <Property Name="lot_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Item_group' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_Item_group">
           <Key>
@@ -812,6 +838,29 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
           <EntitySet Name="User_group_menu" EntityType="Self.User_group_menu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usermenu" EntityType="Self.Usermenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_Item" EntityType="Self.view_Item" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Item].[item_code] AS [item_code], 
+    [view_Item].[item_year] AS [item_year], 
+    [view_Item].[item_name] AS [item_name], 
+    [view_Item].[item_type] AS [item_type], 
+    [view_Item].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Item].[c_active] AS [c_active], 
+    [view_Item].[c_created_by] AS [c_created_by], 
+    [view_Item].[d_created_date] AS [d_created_date], 
+    [view_Item].[c_updated_by] AS [c_updated_by], 
+    [view_Item].[d_updated_date] AS [d_updated_date], 
+    [view_Item].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Item].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Item].[item_group_code] AS [item_group_code], 
+    [view_Item].[item_group_year] AS [item_group_year], 
+    [view_Item].[item_group_name] AS [item_group_name], 
+    [view_Item].[lot_code] AS [lot_code], 
+    [view_Item].[lot_year] AS [lot_year], 
+    [view_Item].[lot_name] AS [lot_name], 
+    [view_Item].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Item] AS [view_Item]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="view_Item_group" EntityType="Self.view_Item_group" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [view_Item_group].[item_group_code] AS [item_group_code], 
@@ -1046,6 +1095,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
           </AssociationSet>
           <EntitySet Name="view_Item_group" EntityType="mju_budgetModel.view_Item_group" />
           <EntitySet Name="view_Item_group_detail" EntityType="mju_budgetModel.view_Item_group_detail" />
+          <EntitySet Name="view_Item" EntityType="mju_budgetModel.view_Item" />
         </EntityContainer>
         <EntityType Name="Activity">
           <Key>
@@ -1857,6 +1907,30 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="view_Item">
+          <Key>
+            <PropertyRef Name="item_code" />
+          </Key>
+          <Property Name="item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2422,6 +2496,31 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
                 <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
                 <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
                 <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Item">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Item">
+              <MappingFragment StoreEntitySet="view_Item">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+                <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+                <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_type" ColumnName="item_type" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_year" ColumnName="item_year" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

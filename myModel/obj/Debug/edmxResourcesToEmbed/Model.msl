@@ -563,5 +563,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="view_Item">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Item">
+        <MappingFragment StoreEntitySet="view_Item">
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+          <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+          <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+          <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+          <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+          <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+          <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+          <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="item_type" ColumnName="item_type" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="item_year" ColumnName="item_year" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\cItem.cs" />
     <Compile Include="Command\cItem_group_detail.cs" />
     <Compile Include="Command\cItem_group.cs" />
     <Compile Include="Command\cActivity.cs" />

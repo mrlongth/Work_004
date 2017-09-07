@@ -561,7 +561,7 @@ namespace myWeb.App_Control.item_group_detail
             cItem_group_detail oItem_group_detail = new cItem_group_detail();
             try
             {
-                if (!oItem_group_detail.SP_ITEM_GROUP_DETAIL_DEL(hdditem_group_detail_id.ToString(), ref strMessage))
+                if (!oItem_group_detail.SP_ITEM_GROUP_DETAIL_DEL(hdditem_group_detail_id.Value, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }

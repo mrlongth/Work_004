@@ -202,7 +202,7 @@ namespace myDLL
         #endregion
 
         #region SP_ITEM_GROUP_DEL
-        public bool SP_ITEM_GROUP_DEL(string pitem_group_code, ref string strMessage)
+        public bool SP_ITEM_GROUP_DEL(string pitem_group_code)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -226,7 +226,7 @@ namespace myDLL
             }
             catch (Exception ex)
             {
-                strMessage = ex.Message.ToString();
+                throw ex;
             }
             finally
             {

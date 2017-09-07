@@ -38,6 +38,10 @@ namespace myDLL
                         {
                             ((Button)(ctrl)).Visible = false;
                         }
+                        else if ((ctrl is ImageButton))
+                        {
+                            ((ImageButton)(ctrl)).Visible = false;
+                        }
                         else if ((ctrl is CheckBox))
                         {
                             ((CheckBox)(ctrl)).Enabled = false;

@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Xml.Linq;
-using System.Threading;
 using myDLL;
+using myModel;
 
-namespace myWeb.App_Control.item_group
+namespace myWeb.App_Control.item
 {
-    public partial class item_group_list : PageBase
+    public partial class item_list : PageBase
     {
 
         #region private data
         private string strRecordPerPage;
         private string strPageNo = "1";
+        private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
+        private string strPrefixCtr_2 = "ctl00$ASPxRoundPanel1$ContentPlaceHolder2$";
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,26 +23,24 @@ namespace myWeb.App_Control.item_group
             //Thread.Sleep(2000);
             if (!IsPostBack)
             {
-                imgNew.Attributes.Add("onMouseOver", "src='../../images/button/save2.png'");
-                imgNew.Attributes.Add("onMouseOut", "src='../../images/button/save.png'");
+
+                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','300px','94%','เพิ่มข้อมูลรายได้/ค่าใช้จ่าย','item_control.aspx?mode=add&page=0','1');return false;");
                 imgNew.Visible = base.IsUserNew;
 
-                imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
-                imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
-
-                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','เพิ่มข้อมูลหมวดค่าใช้จ่าย','item_group_control.aspx?mode=add&page=0','1');return false;");
-                ViewState["sort"] = "item_group_code";
+                ViewState["sort"] = "item_code";
                 ViewState["direction"] = "ASC";
                 RadioAll.Checked = true;
                 InitcboYear();
+                InitcboItemGroup();
+                InitcboItemGroupDetail();
                 BindGridView(0);
             }
             else
             {
-                if (Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"] != null)
+                if (Request.Form[strPrefixCtr_2 + "GridView1$ctl01$cboPerPage"] != null)
                 {
-                    strRecordPerPage = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"].ToString();
-                    strPageNo = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
+                    strRecordPerPage = Request.Form[strPrefixCtr_2 + "GridView1$ctl01$cboPerPage"].ToString();
+                    strPageNo = Request.Form[strPrefixCtr_2 + "GridView1$ctl01$txtPage"].ToString();
                 }
                 if (txthpage.Value != string.Empty)
                 {
@@ -55,6 +48,7 @@ namespace myWeb.App_Control.item_group
                     txthpage.Value = string.Empty;
                 }
             }
+
         }
 
         #region private function
@@ -82,6 +76,64 @@ namespace myWeb.App_Control.item_group
             }
         }
 
+        private void InitcboItemGroup()
+        {
+            cItem_group oItem_group = new cItem_group();
+            string strMessage = string.Empty, strCriteria = string.Empty;
+            string strItem_group_code = string.Empty;
+            string strYear = cboYear.SelectedValue;
+            strItem_group_code = cboItemGroup.SelectedValue;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' ";
+            if (oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                dt = ds.Tables[0];
+                cboItemGroup.Items.Clear();
+                cboItemGroup.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
+                int i;
+                for (i = 0; i <= dt.Rows.Count - 1; i++)
+                {
+                    cboItemGroup.Items.Add(new ListItem(dt.Rows[i]["Item_group_name"].ToString(), dt.Rows[i]["Item_group_code"].ToString()));
+                }
+                if (cboItemGroup.Items.FindByValue(strItem_group_code) != null)
+                {
+                    cboItemGroup.SelectedIndex = -1;
+                    cboItemGroup.Items.FindByValue(strItem_group_code).Selected = true;
+                }
+            }
+        }
+
+
+        private void InitcboItemGroupDetail()
+        {
+            cItem_group_detail oItem_group_detail = new cItem_group_detail();
+            string strMessage = string.Empty, strCriteria = string.Empty;
+            string strYear = cboYear.SelectedValue;
+            string strItem_group_detail_id = cboItemGroupDetail.SelectedValue;
+            string strItem_group_code = cboItemGroup.SelectedValue;
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
+            strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' And Item_group_code ='" + strItem_group_code + "' ";
+            if (oItem_group_detail.SP_ITEM_GROUP_DETAIL_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                dt = ds.Tables[0];
+                cboItemGroupDetail.Items.Clear();
+                cboItemGroupDetail.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
+                int i;
+                for (i = 0; i <= dt.Rows.Count - 1; i++)
+                {
+                    cboItemGroupDetail.Items.Add(new ListItem(dt.Rows[i]["Item_group_detail_name"].ToString(), dt.Rows[i]["Item_group_detail_id"].ToString()));
+                }
+                if (cboItemGroupDetail.Items.FindByValue(strItem_group_detail_id) != null)
+                {
+                    cboItemGroupDetail.SelectedIndex = -1;
+                    cboItemGroupDetail.Items.FindByValue(strItem_group_detail_id).Selected = true;
+                }
+            }
+        }
+
+
         #endregion
 
         private void cboPerPage_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -102,30 +154,51 @@ namespace myWeb.App_Control.item_group
             BindGridView(int.Parse(strPageNo) - 1);
         }
 
+        protected void imgFind_Click(object sender, ImageClickEventArgs e)
+        {
+            BindGridView(0);
+        }
+
         private void BindGridView(int nPageNo)
         {
-            cItem_group oItem_group = new cItem_group();
+            InitcboYear();
+            cItem oItem = new cItem();
             DataSet ds = new DataSet();
             string strMessage = string.Empty;
             string strCriteria = string.Empty;
-            string stritem_group_code = string.Empty;
-            string stritem_group_name = string.Empty;
-            string strActive = string.Empty;
-            string stritem_group_year = string.Empty;
-            stritem_group_code = txtitem_group_code.Text.Replace("'", "''").Trim();
-            stritem_group_name = txtitem_group_name.Text.Replace("'", "''").Trim();
-            stritem_group_year = cboYear.SelectedValue;
-            if (!stritem_group_code.Equals("0"))
+            var item = new view_Item
             {
-                strCriteria = strCriteria + "  And  (item_group_code like '%" + stritem_group_code + "%') ";
+
+                item_year = cboYear.SelectedValue,
+                item_code = txtitem_code.Text.Replace("'", "''").Trim(),
+                item_name = txtitem_name.Text.Replace("'", "''").Trim(),
+                item_type = cboItem_type.SelectedValue,
+                item_group_code = cboItemGroup.SelectedValue,
+                item_group_detail_id = string.IsNullOrEmpty(cboItemGroupDetail.SelectedValue) ? 0 : int.Parse(cboItemGroupDetail.SelectedValue)
+            };
+            if (!item.item_year.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (item_year = '" + item.item_year + "') ";
             }
-            if (!stritem_group_name.Equals("0"))
+            if (!item.item_code.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (item_group_name like '%" + stritem_group_name + "%')";
+                strCriteria = strCriteria + "  And  (item_code like '%" + item.item_code + "%') ";
             }
-            if (!stritem_group_year.Equals("0"))
+            if (!item.item_name.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (item_group_year = '" + stritem_group_year + "') ";
+                strCriteria = strCriteria + "  And  (item_name like '%" + item.item_name + "%') ";
+            }
+            if (!item.item_type.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (item_type = '" + item.item_type + "') ";
+            }
+            if (!item.item_group_code.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (item_group_code like '%" + item.item_group_code + "%') ";
+            }
+            if (item.item_group_detail_id > 0)
+            {
+                strCriteria = strCriteria + "  And  (item_group_detail_id = '" + item.item_group_detail_id + "') ";
             }
             if (RadioActive.Checked)
             {
@@ -135,9 +208,15 @@ namespace myWeb.App_Control.item_group
             {
                 strCriteria = strCriteria + "  And  (c_active ='N') ";
             }
+
+            //if (DirectorLock == "N")
+            //{
+            //    strCriteria += " and lot_code in (''," + LotCodeList + ") ";
+            //}
+
             try
             {
-                if (!oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
+                if (!oItem.SP_ITEM_SEL(strCriteria, ref ds, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }
@@ -167,19 +246,13 @@ namespace myWeb.App_Control.item_group
             }
             finally
             {
-                oItem_group.Dispose();
+                oItem.Dispose();
                 ds.Dispose();
                 if (GridView1.Rows.Count > 0)
                 {
                     GridView1.TopPagerRow.Visible = true;
                 }
             }
-        }
-
-
-        protected void imgFind_Click(object sender, ImageClickEventArgs e)
-        {
-            BindGridView(0);
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -218,10 +291,16 @@ namespace myWeb.App_Control.item_group
                 Label lblNo = (Label)e.Row.FindControl("lblNo");
                 int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
                 lblNo.Text = nNo.ToString();
-                Label lblitem_group_code = (Label)e.Row.FindControl("lblitem_group_code");
-                Label lblitem_group_name = (Label)e.Row.FindControl("lblitem_group_name");
+                Label lblitem_code = (Label)e.Row.FindControl("lblitem_code");
+                Label lblitem_name = (Label)e.Row.FindControl("lblitem_name");
                 Label lblc_active = (Label)e.Row.FindControl("lblc_active");
+                Label lblitem_type = (Label)e.Row.FindControl("lblitem_type");
+                DataRowView rowView = (DataRowView)(e.Row.DataItem);
+                //string stritem_type = rowView["item_type"].ToString();
+                //string strcheque_code = rowView["cheque_code"].ToString();
                 string strStatus = lblc_active.Text;
+
+               
 
                 #region set ImageStatus
                 ImageButton imgStatus = (ImageButton)e.Row.FindControl("imgStatus");
@@ -241,25 +320,23 @@ namespace myWeb.App_Control.item_group
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แสดงข้อมูลหมวดค่าใช้จ่าย','item_group_control.aspx?mode=view&item_group_code=" +
-                                                                                lblitem_group_code.Text + "','1');return false;");
+                imgView.Attributes.Add("onclick", "OpenPopUp('800px','350px','94%','แสดงข้อมูลรายได้/ค่าใช้จ่าย','item_control.aspx?mode=view&item_code=" + lblitem_code.Text + "','1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
                 imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
                 #endregion
 
                 #region set Image Edit & Delete
-
                 ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
                 Label lblCanEdit = (Label)e.Row.FindControl("lblCanEdit");
-                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','300px','90%','แก้ไขข้อมูลหมวดค่าใช้จ่าย','item_group_control.aspx?mode=edit&item_group_code=" +
-                                                                            lblitem_group_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
+                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','350px','94%','แก้ไขข้อมูลรายได้/ค่าใช้จ่าย','item_control.aspx?mode=edit&item_code="
+                    + lblitem_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
                 imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
                 imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
 
                 ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
                 imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
                 imgDelete.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
-                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบหมวดค่าใช้จ่าย   " + lblitem_group_code.Text + " : " + lblitem_group_name.Text + " ?\");");
+                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบข้อมูล  : " + lblitem_code.Text + " ?\");");
                 #endregion
 
                 #region check user can edit/delete
@@ -268,7 +345,6 @@ namespace myWeb.App_Control.item_group
                 #endregion
 
             }
-
         }
 
         protected void GridView1_RowCreated(object sender, GridViewRowEventArgs e)
@@ -489,15 +565,15 @@ namespace myWeb.App_Control.item_group
             string strCheck = string.Empty;
             string strScript = string.Empty;
             string strUpdatedBy = Session["username"].ToString();
-            Label lblitem_group_code = (Label)GridView1.Rows[e.RowIndex].FindControl("lblitem_group_code");
-            cItem_group oItem_group = new cItem_group();
+            Label lblitem_code = (Label)GridView1.Rows[e.RowIndex].FindControl("lblitem_code");
+            cItem oItem = new cItem();
             try
             {
-                oItem_group.SP_ITEM_GROUP_DEL(lblitem_group_code.Text);
+                oItem.SP_ITEM_DEL(lblitem_code.Text);
             }
             catch (Exception ex)
             {
-                if(ex.Message.Contains(" REFERENCE constraint"))
+                if (ex.Message.Contains(" REFERENCE constraint"))
                 {
                     MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
                 }
@@ -508,7 +584,7 @@ namespace myWeb.App_Control.item_group
             }
             finally
             {
-                oItem_group.Dispose();
+                oItem.Dispose();
             }
             BindGridView(0);
         }
@@ -517,13 +593,22 @@ namespace myWeb.App_Control.item_group
         {
             if (mData.Equals("D"))
             {
-                return "รายได้";
+                return "Debit";
             }
             else
             {
-                return "ค่าใช้จ่าย";
+                return "Credit";
             }
         }
 
+        protected void cboItem_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridView(0);
+        }
+
+        protected void cboItemGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboItemGroupDetail();
+        }
     }
 }
