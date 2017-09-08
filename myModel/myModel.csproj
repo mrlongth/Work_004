@@ -161,6 +161,9 @@
     <Compile Include="view_Item.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="view_Item_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="view_Item_group.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

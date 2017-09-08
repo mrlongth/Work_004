@@ -309,7 +309,7 @@ namespace myWeb.App_Control.item_group_detail
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%' , 'แสดงข้อมูลรายละเอียดหมวดค่าใช้จ่าย' , 'item_group_detail_control.aspx?mode=view&item_group_detail_id=" + hdditem_group_detail_id.Value + "' , '1');return false;");
+                imgView.Attributes.Add("onclick", "OpenPopUp('800px','500px','93%' , 'แสดงข้อมูลรายละเอียดหมวดค่าใช้จ่าย' , 'item_group_detail_control.aspx?mode=view&item_group_detail_id=" + hdditem_group_detail_id.Value + "' , '1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
                 imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
                 #endregion

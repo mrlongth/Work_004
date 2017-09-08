@@ -70,6 +70,11 @@ namespace myWeb.App_Control.item_group
                         }
                     }
                 }
+                else if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    setData();                   
+                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                }
 
 
                 #endregion

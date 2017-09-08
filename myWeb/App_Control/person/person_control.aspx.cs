@@ -94,6 +94,12 @@ namespace myWeb.App_Control.person
                     txtperson_code.ReadOnly = true;
                     txtperson_code.CssClass = "textboxdis";
                 }
+                else if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    setData();
+                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                }
+                
 
                 #endregion
 

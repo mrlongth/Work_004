@@ -116,6 +116,7 @@
     <EntitySet Name="view_Item_group" EntityType="mju_budgetModel.view_Item_group" />
     <EntitySet Name="view_Item_group_detail" EntityType="mju_budgetModel.view_Item_group_detail" />
     <EntitySet Name="view_Item" EntityType="mju_budgetModel.view_Item" />
+    <EntitySet Name="view_Item_detail" EntityType="mju_budgetModel.view_Item_detail" />
   </EntityContainer>
   <EntityType Name="Activity">
     <Key>
@@ -941,6 +942,33 @@
     <Property Name="d_created_date" Type="DateTime" Precision="3" />
     <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Item_detail">
+    <Key>
+      <PropertyRef Name="item_detail_id" />
+    </Key>
+    <Property Name="item_detail_id" Type="Int32" Nullable="false" />
+    <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" />
     <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />

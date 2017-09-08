@@ -60,6 +60,7 @@
         <EntityTypeShape EntityType="mju_budgetModel.view_Item_group" Width="1.5" PointX="14.375" PointY="18.75" />
         <EntityTypeShape EntityType="mju_budgetModel.view_Item_group_detail" Width="1.5" PointX="16.375" PointY="18.75" />
         <EntityTypeShape EntityType="mju_budgetModel.view_Item" Width="1.5" PointX="18.375" PointY="17.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item_detail" Width="1.5" PointX="19.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

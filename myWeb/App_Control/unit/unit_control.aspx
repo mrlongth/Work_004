@@ -52,7 +52,7 @@
 
     </script>
 
-    <table border="0" cellpadding="1" cellspacing="1" style="width: 100%" >
+    <table border="0" cellpadding="1" cellspacing="1" style="width: 100%">
         <tr>
             <td align="left" nowrap style="width: 90%;">&nbsp;
             </td>
@@ -82,8 +82,9 @@
             <td align="right" nowrap valign="middle" style="width: 15%">
                 <asp:Label runat="server" ID="Label14">ปีงบประมาณ :</asp:Label>
             </td>
-            <td align="left" nowrap valign="middle"><asp:DropDownList runat="server" CssClass="textbox" ID="cboYear">
-            </asp:DropDownList>
+            <td align="left" nowrap valign="middle">
+                <asp:DropDownList runat="server" CssClass="textbox" ID="cboYear">
+                </asp:DropDownList>
             </td>
             <td align="center" nowrap style="width: 60px">&nbsp;
             </td>
@@ -107,114 +108,65 @@
         </tr>
         <tr align="left">
             <td align="right" colspan="5" nowrap valign="middle">
-                <dxrp:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" BackColor="White" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
-                    CssPostfix="Aqua" HeaderText="" ShowHeader="False" Width="100%">
-                    <TopEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpTopEdge.gif" Repeat="RepeatX"
-                            VerticalPosition="Top" />
-                    </TopEdge>
-                    <LeftEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpLeftEdge.gif" Repeat="RepeatY"
-                            VerticalPosition="Top" />
-                    </LeftEdge>
-                    <BottomRightCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpBottomRight.png" Width="7px" />
-                    <ContentPaddings Padding="5px" />
-                    <NoHeaderTopRightCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpNoHeaderTopRight.png"
-                        Width="7px" />
-                    <RightEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpRightEdge.gif" Repeat="RepeatY"
-                            VerticalPosition="Top" />
-                    </RightEdge>
-                    <HeaderRightEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpHeaderBackground.gif" Repeat="RepeatX"
-                            VerticalPosition="Top" />
-                    </HeaderRightEdge>
-                    <Border BorderColor="#AECAF0" BorderStyle="Solid" BorderWidth="1px" />
-                    <HeaderLeftEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpHeaderBackground.gif" Repeat="RepeatX"
-                            VerticalPosition="Top" />
-                    </HeaderLeftEdge>
-                    <HeaderStyle BackColor="#E0EDFF">
-                        <BorderBottom BorderColor="#AECAF0" BorderStyle="Solid" BorderWidth="1px" />
-                    </HeaderStyle>
-                    <BottomEdge>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpBottomEdge.gif" Repeat="RepeatX"
-                            VerticalPosition="Bottom" />
-                    </BottomEdge>
-                    <TopRightCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpTopRight.png" Width="7px" />
-                    <HeaderContent>
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpHeaderBackground.gif" Repeat="RepeatX"
-                            VerticalPosition="Top" />
-                    </HeaderContent>
-                    <NoHeaderTopEdge BackColor="White">
-                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpNoHeaderTopEdge.gif" Repeat="RepeatX"
-                            VerticalPosition="Top" />
-                    </NoHeaderTopEdge>
-                    <NoHeaderTopLeftCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpNoHeaderTopLeft.png"
-                        Width="7px" />
-                    <PanelCollection>
-                        <dxp:PanelContent ID="PanelContent2" runat="server">
-                            <table border="0" cellpadding="2" cellspacing="0" style="width: 100%">
-                                <tr align="left">
-                                    <td align="right" nowrap valign="middle">
-                                        <asp:Label ID="lblFName" runat="server">รหัสหน่วยงาน :</asp:Label>
-                                    </td>
-                                    <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtunit_code" runat="server" CssClass="textbox" MaxLength="5"
-                                        ValidationGroup="A" Width="144px"></asp:TextBox>
-                                    </td>
-                                    <td align="center" nowrap rowspan="3" style="width: 1%">
-                                        <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg"
-                                            ValidationGroup="A" />
-                                        &nbsp;
+                <asp:Panel ID="Panel1" runat="server" CssClass="rcorners2">
+                    <table border="0" cellpadding="2" cellspacing="0" style="width: 100%">
+                        <tr align="left">
+                            <td align="right" nowrap valign="middle">
+                                <asp:Label ID="lblFName" runat="server">รหัสหน่วยงาน :</asp:Label>
+                            </td>
+                            <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtunit_code" runat="server" CssClass="textbox" MaxLength="5"
+                                ValidationGroup="A" Width="144px"></asp:TextBox>
+                            </td>
+                            <td align="center" nowrap rowspan="3" style="width: 1%">
+                                <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg"
+                                    ValidationGroup="A" />
+                                &nbsp;
                                         <asp:ImageButton ID="imgClear" runat="server" AlternateText="ยกเลิก" CausesValidation="False"
                                             ImageUrl="~/images/controls/clear.jpg" OnClick="imgClear_Click" />
-                                    </td>
-                                </tr>
-                                <tr align="left">
-                                    <td align="right" nowrap valign="middle">
-                                        <asp:Label ID="Label72" runat="server" CssClass="label_error">*</asp:Label>
-                                        <asp:Label ID="Label11" runat="server">หน่วยงาน :</asp:Label>
-                                    </td>
-                                    <td align="left" nowrap valign="middle">
-                                        <font face="Tahoma">&nbsp;<asp:TextBox ID="txtunit_name" runat="server" CausesValidation="True"
-                                            CssClass="textbox" MaxLength="100" ValidationGroup="A" Width="344px"></asp:TextBox>
-                                        </font>
-                                    </td>
-                                </tr>
-                                <tr align="left">
-                                    <td align="right" nowrap valign="middle">
-                                        <asp:Label ID="Label1" runat="server">ประเภทงบประมาณ :</asp:Label>
-                                    </td>
-                                    <td align="left" nowrap valign="middle">&nbsp;<asp:DropDownList runat="server" CssClass="textbox" ID="cboBudget_type">
-                                    </asp:DropDownList>
-                                    </td>
-                                </tr>
-                                <tr align="left">
-                                    <td align="right" nowrap valign="middle">
-                                        <asp:Label ID="Label2" runat="server">ลำดับที่ :</asp:Label>
-                                    </td>
-                                    <td align="left" nowrap valign="middle">&nbsp;<cc2:AwNumeric ID="txtunit_order" runat="server" CssClass="textbox" LeadZero="Show"
-                                        MaxValue="99999999" MinValue="0" Width="100px" DecimalPlaces="0">
-                                    </cc2:AwNumeric>
-                                    </td>
-                                </tr>
-                                <tr align="left">
-                                    <td align="right" nowrap valign="middle">
-                                        <asp:Label ID="Label12" runat="server">สถานะ :</asp:Label>
-                                    </td>
-                                    <td align="left" nowrap valign="middle">
-                                        <asp:CheckBox ID="chkStatus" runat="server" Text="ปกติ" />
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtunit_name"
-                                            Display="None" ErrorMessage="กรุณาป้อนหน่วยงาน" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
-                                        <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="A" />
-                                    </td>
-                                </tr>
-                            </table>
-                        </dxp:PanelContent>
-                    </PanelCollection>
-                    <TopLeftCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpTopLeft.png" Width="7px" />
-                    <BottomLeftCorner Height="7px" Url="~/App_Themes/Aqua/Web/rpBottomLeft.png" Width="7px" />
-                </dxrp:ASPxRoundPanel>
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td align="right" nowrap valign="middle">
+                                <asp:Label ID="Label72" runat="server" CssClass="label_error">*</asp:Label>
+                                <asp:Label ID="Label11" runat="server">หน่วยงาน :</asp:Label>
+                            </td>
+                            <td align="left" nowrap valign="middle">
+                                <font face="Tahoma">&nbsp;<asp:TextBox ID="txtunit_name" runat="server" CausesValidation="True"
+                                    CssClass="textbox" MaxLength="100" ValidationGroup="A" Width="344px"></asp:TextBox>
+                                </font>
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td align="right" nowrap valign="middle">
+                                <asp:Label ID="Label1" runat="server">ประเภทงบประมาณ :</asp:Label>
+                            </td>
+                            <td align="left" nowrap valign="middle">&nbsp;<asp:DropDownList runat="server" CssClass="textbox" ID="cboBudget_type">
+                            </asp:DropDownList>
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td align="right" nowrap valign="middle">
+                                <asp:Label ID="Label2" runat="server">ลำดับที่ :</asp:Label>
+                            </td>
+                            <td align="left" nowrap valign="middle">&nbsp;<cc2:AwNumeric ID="txtunit_order" runat="server" CssClass="textbox" LeadZero="Show"
+                                MaxValue="99999999" MinValue="0" Width="100px" DecimalPlaces="0">
+                            </cc2:AwNumeric>
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td align="right" nowrap valign="middle">
+                                <asp:Label ID="Label12" runat="server">สถานะ :</asp:Label>
+                            </td>
+                            <td align="left" nowrap valign="middle">
+                                <asp:CheckBox ID="chkStatus" runat="server" Text="ปกติ" />
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtunit_name"
+                                    Display="None" ErrorMessage="กรุณาป้อนหน่วยงาน" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
+                                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="A" />
+                            </td>
+                        </tr>
+                    </table>
+                </asp:Panel>
+
             </td>
         </tr>
         <tr align="left">

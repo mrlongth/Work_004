@@ -439,7 +439,7 @@ namespace myWeb.App_Control.person
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('900px','500px','94%','แสดงข้อมูลบุคลากร','person_view.aspx?mode=view&person_code=" +
+                imgView.Attributes.Add("onclick", "OpenPopUp('900px','580px','95%','แสดงข้อมูลบุคลากร','person_control.aspx?mode=view&person_code=" +
                                                                                                             lblperson_code.Text + "','1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
                 imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());

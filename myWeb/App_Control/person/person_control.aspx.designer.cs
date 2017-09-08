@@ -13,6 +13,15 @@ namespace myWeb.App_Control.person {
     public partial class person_control {
         
         /// <summary>
+        /// pnlMain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMain;
+        
+        /// <summary>
         /// TabContainer1 control.
         /// </summary>
         /// <remarks>

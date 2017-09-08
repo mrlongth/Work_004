@@ -104,6 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Control\item\item_control.aspx" />
+    <Content Include="App_Control\item\item_detail_list.aspx" />
+    <Content Include="App_Control\item\item_detail_control.aspx" />
     <Content Include="App_Control\item\item_list.aspx" />
     <Content Include="App_Control\item_group\item_group_control.aspx" />
     <Content Include="App_Control\item_group\item_group_list.aspx" />
@@ -329,6 +331,20 @@
     </Compile>
     <Compile Include="App_Control\item\item_control.aspx.designer.cs">
       <DependentUpon>item_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\item\item_detail_list.aspx.cs">
+      <DependentUpon>item_detail_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\item\item_detail_list.aspx.designer.cs">
+      <DependentUpon>item_detail_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\item\item_detail_control.aspx.cs">
+      <DependentUpon>item_detail_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\item\item_detail_control.aspx.designer.cs">
+      <DependentUpon>item_detail_control.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\item\item_list.aspx.cs">
       <DependentUpon>item_list.aspx</DependentUpon>
@@ -623,13 +639,6 @@
     </Compile>
     <Compile Include="App_Control\lov\work_lov.aspx.designer.cs">
       <DependentUpon>work_lov.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Control\person\person_print.aspx.cs">
-      <DependentUpon>person_print.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\person\person_print.aspx.designer.cs">
-      <DependentUpon>person_print.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\person\person_control.aspx.cs">
       <DependentUpon>person_control.aspx</DependentUpon>
@@ -1006,7 +1015,6 @@
   <ItemGroup>
     <Content Include="App_Control\budget_plan\budget_plan_control.aspx" />
     <Content Include="App_Control\lov\person_lov.aspx" />
-    <Content Include="App_Control\person\person_print.aspx" />
     <Content Include="App_Themes\Aqua\Editors\edtButtonBack.gif" />
     <Content Include="App_Themes\Aqua\Editors\edtButtonBackDis.gif" />
     <Content Include="App_Themes\Aqua\Editors\edtButtonCheckedBack.gif" />

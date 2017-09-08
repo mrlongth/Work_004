@@ -1,4 +1,3 @@
-E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csprojResolveAssemblyReference.cache
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.dll.config
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myWeb.pdb
@@ -27,5 +26,7 @@ E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myDLL.dll.config
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myModel.pdb
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\myModel.dll.config
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\bin\EntityFramework.xml
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csprojResolveAssemblyReference.cache
+E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csproj.CoreCompileInputs.cache
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.pdb

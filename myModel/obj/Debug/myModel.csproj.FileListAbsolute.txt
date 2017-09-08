@@ -5,6 +5,6 @@ E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\bin\Debug\EntityFramework.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\bin\Debug\EntityFramework.SqlServer.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\bin\Debug\EntityFramework.xml
 E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\bin\Debug\EntityFramework.SqlServer.xml
-E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\obj\Debug\myModel.csprojResolveAssemblyReference.cache
+E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\obj\Debug\myModel.csproj.CoreCompileInputs.cache
 E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\obj\Debug\myModel.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myModel\obj\Debug\myModel.pdb
