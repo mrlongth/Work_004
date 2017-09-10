@@ -63,7 +63,7 @@ namespace myWeb.App_Control.item_group
                             txtitem_group_detail_name.CssClass = "textbox";
                             chkStatus.Checked = true;
                             string strScript1 =
-                                "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                                "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                                 "self.opener.document.forms[0].submit();\n" +
                                 "self.focus();\n";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);
@@ -72,13 +72,16 @@ namespace myWeb.App_Control.item_group
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("view"))
                 {
-                    setData();                   
-                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    setData();
                 }
-
-
                 #endregion
             }
+
+            if (ViewState["mode"].ToString().ToLower().Equals("view"))
+            {
+                Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+            }
+
         }
 
         #region private function
@@ -162,7 +165,7 @@ namespace myWeb.App_Control.item_group
             try
             {
                 #region set Data
-                item_group_detail.item_group_detail_id =  string.IsNullOrEmpty(hdditem_group_detail_id.Value) ? 0 : int.Parse(hdditem_group_detail_id.Value);
+                item_group_detail.item_group_detail_id = string.IsNullOrEmpty(hdditem_group_detail_id.Value) ? 0 : int.Parse(hdditem_group_detail_id.Value);
                 item_group_detail.item_group_detail_code = txtitem_group_detail_code.Text.Trim();
                 item_group_detail.item_group_detail_name = txtitem_group_detail_name.Text.Trim();
                 item_group_detail.item_group_code = cboItemGroup.SelectedValue;
@@ -404,6 +407,12 @@ namespace myWeb.App_Control.item_group
         {
             if (e.Row.RowType.Equals(DataControlRowType.Header))
             {
+                if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    GridView1.AllowSorting = false;
+                    return;
+                }
+
                 #region Create Item Header
                 bool bSort = false;
                 int i = 0;

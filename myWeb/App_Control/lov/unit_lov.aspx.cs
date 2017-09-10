@@ -129,7 +129,6 @@ namespace myWeb.App_Control.lov
         }
 
 
-        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
         public DataTable GetDataDirector(string strYear)
         {
             cDirector oDirector = new cDirector();

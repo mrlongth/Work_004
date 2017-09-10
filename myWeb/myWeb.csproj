@@ -103,6 +103,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Control\activity\activity_view.aspx" />
+    <Content Include="App_Control\budget\budget_view.aspx" />
+    <Content Include="App_Control\director\director_view.aspx" />
+    <Content Include="App_Control\fund\fund_view.aspx" />
+    <Content Include="App_Control\import\basedata_import.aspx" />
     <Content Include="App_Control\item\item_control.aspx" />
     <Content Include="App_Control\item\item_detail_list.aspx" />
     <Content Include="App_Control\item\item_detail_control.aspx" />
@@ -111,8 +116,12 @@
     <Content Include="App_Control\item_group\item_group_list.aspx" />
     <Content Include="App_Control\item_group\item_group_detail_list.aspx" />
     <Content Include="App_Control\item_group\item_group_detail_control.aspx" />
+    <Content Include="App_Control\lot\lot_view.aspx" />
     <Content Include="App_Control\major\major_control.aspx" />
     <Content Include="App_Control\major\major_list.aspx" />
+    <Content Include="App_Control\person_group\person_group_view.aspx" />
+    <Content Include="App_Control\person_manage\person_manage_view.aspx" />
+    <Content Include="App_Control\person_work_status\person_work_status_view.aspx" />
     <Content Include="App_Control\user_group\user_group_control.aspx" />
     <Content Include="App_Control\user_group\user_group_list.aspx" />
     <Content Include="App_Control\menu\menu_list.aspx" />
@@ -325,6 +334,27 @@
     <Compile Include="App_Control\budget_plan\budget_plan_list.aspx.designer.cs">
       <DependentUpon>budget_plan_list.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\director\director_view.aspx.cs">
+      <DependentUpon>director_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\director\director_view.aspx.designer.cs">
+      <DependentUpon>director_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\fund\fund_view.aspx.cs">
+      <DependentUpon>fund_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\fund\fund_view.aspx.designer.cs">
+      <DependentUpon>fund_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\import\basedata_import.aspx.cs">
+      <DependentUpon>basedata_import.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\import\basedata_import.aspx.designer.cs">
+      <DependentUpon>basedata_import.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\item\item_control.aspx.cs">
       <DependentUpon>item_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -381,6 +411,13 @@
     <Compile Include="App_Control\item_group\item_group_detail_control.aspx.designer.cs">
       <DependentUpon>item_group_detail_control.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\lot\lot_view.aspx.cs">
+      <DependentUpon>lot_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lot\lot_view.aspx.designer.cs">
+      <DependentUpon>lot_view.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\major\major_control.aspx.cs">
       <DependentUpon>major_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -394,6 +431,27 @@
     </Compile>
     <Compile Include="App_Control\major\major_list.aspx.designer.cs">
       <DependentUpon>major_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\person_group\person_group_view.aspx.cs">
+      <DependentUpon>person_group_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\person_group\person_group_view.aspx.designer.cs">
+      <DependentUpon>person_group_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\person_manage\person_manage_view.aspx.cs">
+      <DependentUpon>person_manage_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\person_manage\person_manage_view.aspx.designer.cs">
+      <DependentUpon>person_manage_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.cs">
+      <DependentUpon>person_work_status_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.designer.cs">
+      <DependentUpon>person_work_status_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\user_group\user_group_control.aspx.cs">
       <DependentUpon>user_group_control.aspx</DependentUpon>
@@ -514,13 +572,6 @@
     <Compile Include="App_Control\director\director_list.aspx.designer.cs">
       <DependentUpon>director_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Control\director\director_view.aspx.cs">
-      <DependentUpon>director_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\director\director_view.aspx.designer.cs">
-      <DependentUpon>director_view.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Control\fund\fund_control.aspx.cs">
       <DependentUpon>fund_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -535,13 +586,6 @@
     <Compile Include="App_Control\fund\fund_list.aspx.designer.cs">
       <DependentUpon>fund_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Control\fund\fund_view.aspx.cs">
-      <DependentUpon>fund_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\fund\fund_view.aspx.designer.cs">
-      <DependentUpon>fund_view.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Control\lot\lot_control.aspx.cs">
       <DependentUpon>lot_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -555,13 +599,6 @@
     </Compile>
     <Compile Include="App_Control\lot\lot_list.aspx.designer.cs">
       <DependentUpon>lot_list.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Control\lot\lot_view.aspx.cs">
-      <DependentUpon>lot_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\lot\lot_view.aspx.designer.cs">
-      <DependentUpon>lot_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\lov\activity_lov.aspx.cs">
       <DependentUpon>activity_lov.aspx</DependentUpon>
@@ -668,13 +705,6 @@
     <Compile Include="App_Control\person_group\person_group_list.aspx.designer.cs">
       <DependentUpon>person_group_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Control\person_group\person_group_view.aspx.cs">
-      <DependentUpon>person_group_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\person_group\person_group_view.aspx.designer.cs">
-      <DependentUpon>person_group_view.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Control\person_manage\person_manage_control.aspx.cs">
       <DependentUpon>person_manage_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -689,13 +719,6 @@
     <Compile Include="App_Control\person_manage\person_manage_list.aspx.designer.cs">
       <DependentUpon>person_manage_list.aspx</DependentUpon>
     </Compile>
-    <Compile Include="App_Control\person_manage\person_manage_view.aspx.cs">
-      <DependentUpon>person_manage_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\person_manage\person_manage_view.aspx.designer.cs">
-      <DependentUpon>person_manage_view.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Control\person_work_status\person_work_status_control.aspx.cs">
       <DependentUpon>person_work_status_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -709,13 +732,6 @@
     </Compile>
     <Compile Include="App_Control\person_work_status\person_work_status_list.aspx.designer.cs">
       <DependentUpon>person_work_status_list.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.cs">
-      <DependentUpon>person_work_status_view.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.designer.cs">
-      <DependentUpon>person_work_status_view.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\plan\plan_control.aspx.cs">
       <DependentUpon>plan_control.aspx</DependentUpon>
@@ -947,26 +963,19 @@
     <Content Include="scripts\mju_vbscripts.vbs" />
     <Content Include="Site_lov.Master" />
     <Content Include="App_Control\activity\activity_control.aspx" />
-    <Content Include="App_Control\activity\activity_view.aspx" />
     <Content Include="App_Control\budget_plan\budget_plan_list.aspx" />
     <Content Include="App_Control\director\director_control.aspx" />
     <Content Include="App_Control\director\director_list.aspx" />
-    <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_control.aspx" />
     <Content Include="App_Control\fund\fund_list.aspx" />
-    <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\lot\lot_control.aspx" />
     <Content Include="App_Control\lot\lot_list.aspx" />
-    <Content Include="App_Control\lot\lot_view.aspx" />
     <Content Include="App_Control\person_group\person_group_control.aspx" />
     <Content Include="App_Control\person_group\person_group_list.aspx" />
-    <Content Include="App_Control\person_group\person_group_view.aspx" />
     <Content Include="App_Control\person_manage\person_manage_control.aspx" />
     <Content Include="App_Control\person_manage\person_manage_list.aspx" />
-    <Content Include="App_Control\person_manage\person_manage_view.aspx" />
     <Content Include="App_Control\person_work_status\person_work_status_control.aspx" />
     <Content Include="App_Control\person_work_status\person_work_status_list.aspx" />
-    <Content Include="App_Control\person_work_status\person_work_status_view.aspx" />
     <Content Include="App_Control\plan\plan_control.aspx" />
     <Content Include="App_Control\plan\plan_list.aspx" />
     <Content Include="App_Control\plan\plan_view.aspx" />
@@ -980,7 +989,6 @@
     <Content Include="App_Control\activity\activity_list.aspx" />
     <Content Include="App_Control\budget\budget_control.aspx" />
     <Content Include="App_Control\budget\budget_list.aspx" />
-    <Content Include="App_Control\budget\budget_view.aspx" />
     <Content Include="App_Control\produce\produce_control.aspx" />
     <Content Include="App_Control\produce\produce_list.aspx" />
     <Content Include="App_Control\produce\produce_view.aspx" />
@@ -1523,6 +1531,9 @@
       <Project>{0154f0b2-382b-4d45-9825-7eeb1cf05712}</Project>
       <Name>myModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\licenses.licx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

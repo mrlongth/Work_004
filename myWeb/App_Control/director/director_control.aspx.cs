@@ -71,7 +71,7 @@ namespace myWeb.App_Control.director
                         if (ViewState["PageStatus"].ToString().ToLower().Equals("save"))
                         {
                             string strScript1 =
-                                "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                                "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                                 "self.opener.document.forms[0].submit();\n" +
                                 "self.focus();\n";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "frMainPage", strScript1, true);
@@ -418,7 +418,7 @@ namespace myWeb.App_Control.director
             if (blnResult)
             {
                 strScript =
-                    "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                    "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                     "self.opener.document.forms[0].submit();\n" +
                     "self.close();\n";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "frMainPage", strScript, true);

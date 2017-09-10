@@ -756,4 +756,39 @@ div.dd_chk_select_cust:hover {
     cursor: pointer;
 }
 
+.rcorners2 {
+    border-radius: 10px;
+    border: 2px solid #F7DF3E;
+    margin: -2px;
+    float: left;
+    width: 100%;
+}
+
+.rcorners1 {
+    border-radius: 5px 5px 0px 0px;
+    border: 2px solid #F7DF3E;
+    margin: -2px;
+    background: #FBDD75;
+    width: 100%;
+    float: left;
+    height: 30px;
+}
+
+.rcorners1_sub {
+    border-radius: 0 0 5px 5px;
+    border: 2px solid #F7DF3E;
+    margin: -2px;
+    float: left;
+    width: 100%;
+    background-color :#fff;
+}
+
+.lblHeader {
+    font-family: Tahoma, Verdana, Arial;
+    color: #283B56;
+    font-size: 12px;
+    width: 100%;
+    display: table;
+    text-align:left ;
+}
 

@@ -121,13 +121,7 @@
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-             <asp:TemplateField HeaderText="เพศ" SortExpression="person_sex">
-                <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="True" />
-                <ItemTemplate>
-                    <asp:Label ID="lblperson_sex" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.person_sex") %>'>
-                    </asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="ชื่อบุคลากร " SortExpression="person_thai_name">
                 <ItemStyle HorizontalAlign="Left" Width="12%" Wrap="True" />
                 <ItemTemplate>

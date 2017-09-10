@@ -85,7 +85,7 @@ namespace myWeb.App_Control.budget_plan
                             chkStatus.Checked = true;
                             txtbudget_plan_code.Focus();
                             string strScript1 =
-                                "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                                "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                                 "self.opener.document.forms[0].submit();\n" +
                                 "self.focus();\n";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);

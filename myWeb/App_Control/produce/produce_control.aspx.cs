@@ -93,7 +93,7 @@ namespace myWeb.App_Control.produce
                             txtproduce_name.CssClass = "textbox";
                             chkStatus.Checked = true;
                             string strScript1 =
-                                "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                                "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                                 "self.opener.document.forms[0].submit();\n" +
                                 "self.focus();\n";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);

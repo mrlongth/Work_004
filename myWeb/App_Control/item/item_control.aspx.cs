@@ -72,11 +72,16 @@ namespace myWeb.App_Control.item
                     setData();
                     txtitem_code.ReadOnly = true;
                     txtitem_code.CssClass = "textboxdis";
-                    Utils.SetControls(pnlContent, myDLL.Common.Enumeration.Mode.VIEW);
                 }
 
                 #endregion
             }
+
+            if (ViewState["mode"].ToString().ToLower().Equals("view"))
+            {
+                Utils.SetControls(pnlContent, myDLL.Common.Enumeration.Mode.VIEW);
+            }
+
         }
 
         #region private function

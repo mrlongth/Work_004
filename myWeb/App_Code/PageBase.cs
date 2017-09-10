@@ -488,9 +488,9 @@ namespace myWeb
                 if (this.Master != null)
                 {
                     this.InitUserAccessRight();
-                    if (Master.FindControl("ASPxRoundPanel1") != null)
+                    if (Master.FindControl("lblHeader") != null)
                     {
-                        ((ASPxRoundPanel)Master.FindControl("ASPxRoundPanel1")).HeaderText = PageDes;
+                        ((Label)Master.FindControl("lblHeader")).Text = PageDes;
                     
                     }
                     //GenerateMenu();

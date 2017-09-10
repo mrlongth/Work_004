@@ -1,27 +1,21 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Xml.Linq;
 using myDLL;
 
-namespace myWeb.App_Control.person_work_status
+namespace myWeb.App_Control.basedata_import
 {
-    public partial class person_work_status_list : PageBase
+    public partial class basedata_import_list : PageBase
     {
+
         #region private data
         private string strConn = System.Configuration.ConfigurationSettings.AppSettings["ConnectionString"];
         private string strRecordPerPage;
         private string strPageNo = "1";
         private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
         private string strPrefixCtr = "ctl00$ASPxRoundPanel1$ASPxRoundPanel2$ContentPlaceHolder1$";
+     
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -35,10 +29,11 @@ namespace myWeb.App_Control.person_work_status
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
                 imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
 
-                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลสถานะบุคลากร','person_work_status_control.aspx?mode=add&page=0','1');return false;");
-                ViewState["sort"] = "person_work_status_code";
+                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลกองทุนประจำปี','basedata_import_control.aspx?budget_type=" + this.BudgetType + "&mode=add&page=0','1');return false;");
+                ViewState["sort"] = "basedata_import_code";
                 ViewState["direction"] = "ASC";
                 RadioAll.Checked = true;
+                InitcboYear();
                 BindGridView(0);
             }
             else
@@ -56,61 +51,51 @@ namespace myWeb.App_Control.person_work_status
             }
         }
 
-        #region Web Form Designer generated code
-        override protected void OnInit(EventArgs e)
+        #region private function
+
+        private void InitcboYear()
         {
-            //
-            // CODEGEN: This call is required by the ASP.NET Web Form Designer.
-            //
-            InitializeComponent();
-            base.OnInit(e);
+            string strYear = string.Empty;
+            strYear = cboYear.SelectedValue;
+            if (strYear.Equals(""))
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            DataTable odt;
+            int i;
+            cboYear.Items.Clear();
+            odt = ((DataSet)Application["xmlconfig"]).Tables["cboYear"];
+            for (i = 0; i <= odt.Rows.Count - 1; i++)
+            {
+                cboYear.Items.Add(new ListItem(odt.Rows[i]["Text"].ToString(), odt.Rows[i]["Value"].ToString()));
+            }
+            if (cboYear.Items.FindByValue(strYear) != null)
+            {
+                cboYear.SelectedIndex = -1;
+                cboYear.Items.FindByValue(strYear).Selected = true;
+            }
         }
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
+        private string BudgetType
         {
-            // this.imgFind.Click += new System.Web.UI.ImageClickEventHandler(this.imgFind_Click);
-            //this.GridView1.ItemCreated += new System.Web.UI.WebControls.DataGridItemEventHandler(this.GridView1_ItemCreated);
-            //this.GridView1.ItemCommand += new System.Web.UI.WebControls.DataGridCommandEventHandler(this.GridView1_ItemCommand);
-            //this.GridView1.PageIndexChanged += new System.Web.UI.WebControls.DataGridPageChangedEventHandler(this.GridView1_PageIndexChanged);
-            //this.GridView1.SortCommand += new System.Web.UI.WebControls.DataGridSortCommandEventHandler(this.GridView1_SortCommand);
-            //this.GridView1.ItemDataBound += new System.Web.UI.WebControls.DataGridItemEventHandler(this.GridView1_ItemDataBound);
-
-            //     this.imgSaveOnly.Click += new System.Web.UI.ImageClickEventHandler(this.imgSaveOnly_Click);
-            //    this.imgSave.Click += new System.Web.UI.ImageClickEventHandler(this.imgSave_Click);
-
+            get
+            {
+                if (ViewState["BudgetType"] == null)
+                {
+                    ViewState["BudgetType"] = Helper.CStr(Request.QueryString["budget_type"]);
+                }
+                return ViewState["BudgetType"].ToString();
+            }
+            set
+            {
+                ViewState["BudgetType"] = value;
+            }
         }
+        
+
         #endregion
 
-        private void GridView1_SortCommand(object source, System.Web.UI.WebControls.DataGridSortCommandEventArgs e)
-        {
-            try
-            {
-                if (ViewState["sort"].ToString().Equals(e.SortExpression.ToString()))
-                {
-                    if (ViewState["direction"].Equals("DESC"))
-                        ViewState["direction"] = "ASC";
-                    else
-                        ViewState["direction"] = "DESC";
-                }
-                else
-                {
-                    ViewState["sort"] = e.SortExpression;
-                    ViewState["direction"] = "ASC";
-                }
-                DataGridItem item = (DataGridItem)GridView1.Controls[0].Controls[GridView1.Controls[0].Controls.Count - 1];
-                TextBox txtPage = (TextBox)item.FindControl("txtPage");
-                BindGridView(int.Parse(txtPage.Text) - 1);
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message.ToString();
-            }
-        }
-
+ 
         private void cboPerPage_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             GridView1.PageSize = int.Parse(strRecordPerPage);
@@ -127,6 +112,87 @@ namespace myWeb.App_Control.person_work_status
         private void imgGo_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             BindGridView(int.Parse(strPageNo) - 1);
+        }
+
+        private void BindGridView(int nPageNo)
+        {
+            cFund oFund = new cFund();
+            DataSet ds = new DataSet();
+            string strMessage = string.Empty;
+            string strCriteria = string.Empty;
+            string strbasedata_import_code = string.Empty;
+            string strbasedata_import_name = string.Empty;
+            string strActive = string.Empty;
+            string strbasedata_import_year = string.Empty;
+            strbasedata_import_code = txtbasedata_import_code.Text.Replace("'", "''").Trim();
+            strbasedata_import_name = txtbasedata_import_name.Text.Replace("'", "''").Trim();
+            strbasedata_import_year = cboYear.SelectedValue;
+            if (!strbasedata_import_code.Equals("0"))
+            {
+                strCriteria = strCriteria + "  And  (basedata_import_code like '%" + strbasedata_import_code + "%') ";
+            }
+            if (!strbasedata_import_name.Equals("0"))
+            {
+                strCriteria = strCriteria + "  And  (basedata_import_name like '%" + strbasedata_import_name + "%')";
+            }
+            if (!strbasedata_import_year.Equals("0"))
+            {
+                strCriteria = strCriteria + "  And  (basedata_import_year = '" + strbasedata_import_year + "') ";
+            }
+            if (RadioActive.Checked)
+            {
+                strCriteria = strCriteria + "  And  (c_active ='Y') ";
+            }
+            else if (RadioCancel.Checked)
+            {
+                strCriteria = strCriteria + "  And  (c_active ='N') ";
+            }
+            strCriteria = strCriteria + "  And budget_type ='" + this.BudgetType + "' ";
+            
+            try
+            {
+                if (!oFund.SP_SEL_FUND(strCriteria, ref ds, ref strMessage))
+                {
+                    lblError.Text = strMessage;
+                }
+                else
+                {
+                    try
+                    {
+                        GridView1.PageIndex = nPageNo;
+                        txthTotalRecord.Value = ds.Tables[0].Rows.Count.ToString();
+                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
+                        GridView1.DataSource = ds.Tables[0];
+                        GridView1.DataBind();
+                    }
+                    catch
+                    {
+                        GridView1.PageIndex = 0;
+                        txthTotalRecord.Value = ds.Tables[0].Rows.Count.ToString();
+                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
+                        GridView1.DataSource = ds.Tables[0];
+                        GridView1.DataBind();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                oFund.Dispose();
+                ds.Dispose();
+                if (GridView1.Rows.Count > 0)
+                {
+                    GridView1.TopPagerRow.Visible = true;
+                }
+            }
+        }
+
+        protected void imgFind_Click(object sender, ImageClickEventArgs e)
+        {
+            BindGridView(0);
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -165,8 +231,8 @@ namespace myWeb.App_Control.person_work_status
                 Label lblNo = (Label)e.Row.FindControl("lblNo");
                 int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
                 lblNo.Text = nNo.ToString();
-                Label lblperson_work_status_code = (Label)e.Row.FindControl("lblperson_work_status_code");
-                Label lblperson_work_status_name = (Label)e.Row.FindControl("lblperson_work_status_name");
+                Label lblbasedata_import_code = (Label)e.Row.FindControl("lblbasedata_import_code");
+                Label lblbasedata_import_name = (Label)e.Row.FindControl("lblbasedata_import_name");
                 Label lblc_active = (Label)e.Row.FindControl("lblc_active");
                 string strStatus = lblc_active.Text;
 
@@ -175,7 +241,7 @@ namespace myWeb.App_Control.person_work_status
                 if (strStatus.Equals("Y"))
                 {
                     imgStatus.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgStatus"].Rows[0]["img"].ToString();
-                    imgStatus.Attributes.Add("person_work_status", ((DataSet)Application["xmlconfig"]).Tables["imgStatus"].Rows[0]["title"].ToString());
+                    imgStatus.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgStatus"].Rows[0]["title"].ToString());
                     imgStatus.Attributes.Add("onclick", "return false;");
                 }
                 else
@@ -188,25 +254,24 @@ namespace myWeb.App_Control.person_work_status
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','แสดงข้อมูลสถานะบุคลากร','person_work_status_view.aspx?mode=view&person_work_status_code=" + 
-                                                                lblperson_work_status_code.Text + "','1');return false;");
+                imgView.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลกองทุนประจำปี','basedata_import_view.aspx?budget_type=" + this.BudgetType + "&mode=view&basedata_import_code=" + lblbasedata_import_code.Text + "','1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
-                imgView.Attributes.Add("person_work_status", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
+                imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
                 #endregion
 
                 #region set Image Edit & Delete
 
                 ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
                 Label lblCanEdit = (Label)e.Row.FindControl("lblCanEdit");
-                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','แสดงข้อมูลสถานะบุคลากร','person_work_status_control.aspx?mode=edit&person_work_status_code=" + 
-                                                                                lblperson_work_status_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
+                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','แก้ไขข้อมูลกองทุนประจำปี','basedata_import_control.aspx?budget_type=" + this.BudgetType + "&mode=edit&basedata_import_code=" + 
+                                                                lblbasedata_import_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
                 imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
-                imgEdit.Attributes.Add("person_work_status", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
+                imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
 
                 ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
                 imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
-                imgDelete.Attributes.Add("person_work_status", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
-                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบแผนงบประมาณ    " + lblperson_work_status_code.Text + " : " + lblperson_work_status_name.Text + " ?\");");
+                imgDelete.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
+                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบกองทุน   " + lblbasedata_import_code.Text + " : " + lblbasedata_import_name.Text + " ?\");");
                 #endregion
 
                 #region check user can edit/delete
@@ -296,7 +361,7 @@ namespace myWeb.App_Control.person_work_status
                 #endregion
 
                 #region render new pager
-                tbc.Text = string.Empty;
+                 tbc.Text = string.Empty;
                 Literal lblPager = new Literal();
                 lblPager.Text = "<TABLE border='0' width='100%' cellpadding='0' cellspacing='0'><TR><TD width='30%' valign='middle'>";
                 tbc.Controls.Add(lblPager);
@@ -373,7 +438,7 @@ namespace myWeb.App_Control.person_work_status
                 ImageButton imgGo = new ImageButton();
                 imgGo.ID = "imgGo";
                 imgGo.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["img"].ToString();
-                imgGo.Attributes.Add("person_work_status", ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["title"].ToString());
+                imgGo.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["title"].ToString());
                 imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
                 imgGo.Click += new System.Web.UI.ImageClickEventHandler(this.imgGo_Click);
                 tbc.Controls.Add(imgGo);
@@ -429,19 +494,18 @@ namespace myWeb.App_Control.person_work_status
                 lblError.Text = ex.Message.ToString();
             }
         }
-
-
+        
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             string strMessage = string.Empty;
             string strCheck = string.Empty;
             string strScript = string.Empty;
             string strUpdatedBy = Session["username"].ToString();
-            Label lblperson_work_status_code = (Label)GridView1.Rows[e.RowIndex].FindControl("lblperson_work_status_code");
-            cPerson_work_status oPerson_work_status = new cPerson_work_status();
+            Label lblbasedata_import_code = (Label)GridView1.Rows[e.RowIndex].FindControl("lblbasedata_import_code");
+            cFund oFund = new cFund();
             try
             {
-                if (!oPerson_work_status.SP_PERSON_WORK_STATUS_DEL(lblperson_work_status_code.Text, "N", strUpdatedBy, ref strMessage))
+                if (!oFund.SP_DEL_FUND(lblbasedata_import_code.Text, "N", strUpdatedBy, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }
@@ -452,81 +516,8 @@ namespace myWeb.App_Control.person_work_status
             }
             finally
             {
-                oPerson_work_status.Dispose();
+                oFund.Dispose();
             }
-            BindGridView(0);
-        }
-
-        private void BindGridView(int nPageNo)
-        {
-            cPerson_work_status oPerson_work_status = new cPerson_work_status();
-            DataSet ds = new DataSet();
-            string strMessage = string.Empty;
-            string strCriteria = string.Empty;
-            string strperson_work_status_code = string.Empty;
-            string strperson_work_status_name = string.Empty;
-            string strActive = string.Empty;
-            strperson_work_status_code = txtperson_work_status_code.Text.Replace("'", "''").Trim();
-            strperson_work_status_name = txtperson_work_status_name.Text.Replace("'", "''").Trim();
-            if (!strperson_work_status_code.Equals("0"))
-            {
-                strCriteria = strCriteria + "  And  (person_work_status_code like '%" + strperson_work_status_code + "%') ";
-            }
-            if (!strperson_work_status_name.Equals("0"))
-            {
-                strCriteria = strCriteria + "  And  (person_work_status_name like '%" + strperson_work_status_name + "%')";
-            }
-            if (RadioActive.Checked)
-            {
-                strCriteria = strCriteria + "  And  (c_active ='Y') ";
-            }
-            else if (RadioCancel.Checked)
-            {
-                strCriteria = strCriteria + "  And  (c_active ='N') ";
-            }
-            try
-            {
-                if (!oPerson_work_status.SP_PERSON_WORK_STATUS_SEL(strCriteria, ref ds, ref strMessage))
-                {
-                    lblError.Text = strMessage;
-                }
-                else
-                {
-                    try
-                    {
-                        GridView1.PageIndex = nPageNo;
-                        txthTotalRecord.Value = ds.Tables[0].Rows.Count.ToString();
-                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
-                        GridView1.DataSource = ds.Tables[0];
-                        GridView1.DataBind();
-                    }
-                    catch
-                    {
-                        GridView1.PageIndex = 0;
-                        txthTotalRecord.Value = ds.Tables[0].Rows.Count.ToString();
-                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
-                        GridView1.DataSource = ds.Tables[0];
-                        GridView1.DataBind();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                lblError.Text = ex.Message.ToString();
-            }
-            finally
-            {
-                oPerson_work_status.Dispose();
-                ds.Dispose();
-                if (GridView1.Rows.Count > 0)
-                {
-                    GridView1.TopPagerRow.Visible = true;
-                }
-            }
-        }
-
-        protected void imgFind_Click(object sender, ImageClickEventArgs e)
-        {
             BindGridView(0);
         }
 

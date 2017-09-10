@@ -255,9 +255,9 @@ namespace myWeb
             {
                 if (Master != null)
                 {
-                    if (Master.FindControl("ASPxRoundPanel1") != null)
+                    if (Master.FindControl("lblHeader") != null)
                     {
-                        ((ASPxRoundPanel)Master.FindControl("ASPxRoundPanel1")).HeaderText = PageDes;
+                        ((Label)Master.FindControl("lblHeader")).Text = PageDes;
                     }
                 }
             }

@@ -21,7 +21,6 @@ namespace myWeb.App_Control.user_group
         private string strRecordPerPage;
         private string strPageNo = "1";
         private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
-        private string strPrefixCtr = "ctl00$ASPxRoundPanel1$ASPxRoundPanel2$ContentPlaceHolder1$";
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -43,10 +42,10 @@ namespace myWeb.App_Control.user_group
             }
             else
             {
-                if (Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"] != null)
+                if (Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"] != null)
                 {
-                    strRecordPerPage = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"].ToString();
-                    strPageNo = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
+                    strRecordPerPage = Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"].ToString();
+                    strPageNo = Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
                 }
                 if (txthpage.Value != string.Empty)
                 {
@@ -374,7 +373,7 @@ namespace myWeb.App_Control.user_group
                 imgGo.ID = "imgGo";
                 imgGo.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["img"].ToString();
                 imgGo.Attributes.Add("user_group", ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["title"].ToString());
-                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
+                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
                 imgGo.Click += new System.Web.UI.ImageClickEventHandler(this.imgGo_Click);
                 tbc.Controls.Add(imgGo);
 

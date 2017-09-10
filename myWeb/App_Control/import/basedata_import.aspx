@@ -1,7 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" AutoEventWireup="true"
-    CodeBehind="director_list.aspx.cs" Inherits="myWeb.App_Control.director.director_list"
-    Title="แสดงข้อมูลสังกัด " %>
-<%@ Register Assembly="Aware.WebControls" Namespace="Aware.WebControls" TagPrefix="cc2" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" AutoEventWireup="true" CodeBehind="basedata_import.aspx.cs"
+    Inherits="myWeb.App_Control.basedata_import.basedata_import_list" Title="แสดงข้อมูลกองทุน " %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellpadding="1" cellspacing="1" style="width: 100%">
         <tr>
@@ -21,21 +20,21 @@
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสสังกัด :
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสกองทุน :
                 </asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" CssClass="textbox" Width="200px" ID="txtdirector_code"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="textbox" Width="200px" ID="txtbasedata_import_code"></asp:TextBox>
                 <asp:Label ID="lblError" runat="server" CssClass="label_error"></asp:Label>
             </td>
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อสังกัด :
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อกองทุน :
                 </asp:Label>
             </td>
             <td>
-                <asp:TextBox runat="server" CssClass="textbox" Width="499px" ID="txtdirector_name"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="textbox" Width="499px" ID="txtbasedata_import_name"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -53,10 +52,10 @@
         </tr>
     </table>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+<asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:GridView ID="GridView1" runat="server" CssClass="stGrid" AllowPaging="True"
-        AllowSorting="True" AutoGenerateColumns="False" BorderWidth="1px" CellPadding="2"
-        Font-Size="10pt" Width="100%" Font-Bold="False" OnRowCreated="GridView1_RowCreated"
+        AllowSorting="True" AutoGenerateColumns="False" BorderWidth="1px"
+        CellPadding="2" Font-Size="10pt" Width="100%" Font-Bold="False" OnRowCreated="GridView1_RowCreated"
         OnRowDeleting="GridView1_RowDeleting" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound"
         EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True" OnPageIndexChanging="GridView1_PageIndexChanging">
         <Columns>
@@ -72,24 +71,17 @@
                     <asp:Label ID="lblNo" runat="server"> </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="รหัสสังกัด " SortExpression="director_code">
+            <asp:TemplateField HeaderText="รหัสกองทุน " SortExpression="basedata_import_code">
                 <ItemStyle HorizontalAlign="Center" Width="20%" Wrap="False" />
                 <ItemTemplate>
-                    <asp:Label ID="lbldirector_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.director_code") %>'>
+                    <asp:Label ID="lblbasedata_import_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.basedata_import_code") %>'>
                     </asp:Label>
                 </ItemTemplate>
                 <ItemStyle Wrap="False" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="สังกัด " SortExpression="director_name">
+            <asp:TemplateField HeaderText="กองทุน " SortExpression="basedata_import_name">
                 <ItemTemplate>
-                    <asp:Label ID="lbldirector_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.director_name") %>'>
-                    </asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="ลำดับที่" SortExpression="director_order" Visible="False">
-                <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="False" />
-                <ItemTemplate>
-                    <asp:Label ID="lbldirector_order" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.director_order") %>'>
+                    <asp:Label ID="lblbasedata_import_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.basedata_import_name") %>'>
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
@@ -119,9 +111,10 @@
             Position="Top" NextPageImageUrl="~/images/next.gif" PreviousPageImageUrl="~/images/prev.gif" />
         <EmptyDataRowStyle HorizontalAlign="Center" />
         <PagerStyle BackColor="Gainsboro" ForeColor="#8C4510" HorizontalAlign="Center" Wrap="True" />
-        <HeaderStyle CssClass="stGridHeader" HorizontalAlign="Center" />
+        <HeaderStyle CssClass="stGridHeader" 
+            HorizontalAlign="Center" />
         <AlternatingRowStyle BackColor="#EAEAEA" />
     </asp:GridView>
-    <input id="txthpage" type="hidden" name="txthpage" runat="server"/>
-    <input id="txthTotalRecord" type="hidden" name="txthTotalRecord" runat="server"/>
+    <input id="txthpage" type="hidden" name="txthpage" runat="server">
+    <input id="txthTotalRecord" type="hidden" name="txthTotalRecord" runat="server">
 </asp:Content>

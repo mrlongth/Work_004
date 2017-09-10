@@ -61,10 +61,10 @@ namespace myWeb.App_Control.item_group_detail
             else
             {
                 //   InitcboItem_group(cboYear.SelectedValue);
-                if (Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"] != null)
+                if (Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"] != null)
                 {
-                    strRecordPerPage = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"].ToString();
-                    strPageNo = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
+                    strRecordPerPage = Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage"].ToString();
+                    strPageNo = Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
                 }
                 if (txthpage.Value != string.Empty)
                 {
@@ -493,7 +493,7 @@ namespace myWeb.App_Control.item_group_detail
                 imgGo.ID = "imgGo";
                 imgGo.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["img"].ToString();
                 imgGo.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["title"].ToString());
-                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
+                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
                 imgGo.Click += new System.Web.UI.ImageClickEventHandler(this.imgGo_Click);
                 tbc.Controls.Add(imgGo);
 
@@ -541,7 +541,7 @@ namespace myWeb.App_Control.item_group_detail
                 }
                 GridViewRow item = (GridViewRow)GridView1.Controls[0].Controls[0];
                 TextBox txtPage = (TextBox)item.FindControl("txtPage");
-                string strPage = Request.Form["ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
+                string strPage = Request.Form["ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage"].ToString();
                 //   BindGridView(int.Parse(txtPage.Text) - 1);
                 BindGridView(int.Parse(strPage) - 1);
             }

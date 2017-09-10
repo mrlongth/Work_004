@@ -25,7 +25,6 @@ namespace myWeb.App_Control.lov
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            AjaxPro.Utility.RegisterTypeForAjax(typeof(activity_lov));
             if (!IsPostBack)
             {
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
@@ -154,23 +153,7 @@ namespace myWeb.App_Control.lov
             }
         }
 
-        //[AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        //public DataTable GetDataProduce(string strbudget_code)
-        //{
-        //    cProduce oProduce = new cProduce();
-        //    string strMessage = string.Empty,
-        //                strCriteria = string.Empty;
-        //    string strproduce_code = string.Empty,
-        //                strproduce_name = string.Empty;
-        //    DataSet ds = new DataSet();
-        //    DataTable dt = new DataTable();
-        //    strCriteria = " and produce.budget_code = '" + strbudget_code + "'  and  produce.c_active='Y' ";
-        //    if (oProduce.SP_SEL_PRODUCE(strCriteria, ref ds, ref strMessage))
-        //    {
-        //        dt = ds.Tables[0];
-        //    }
-        //    return dt;
-        //}
+      
         #endregion
 
         protected void imgFind_Click(object sender, ImageClickEventArgs e)

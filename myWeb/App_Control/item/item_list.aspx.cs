@@ -14,7 +14,7 @@ namespace myWeb.App_Control.item
         private string strRecordPerPage;
         private string strPageNo = "1";
         private bool[] blnAccessRight = new bool[5] { false, false, false, false, false };
-        private string strPrefixCtr_2 = "ctl00$ASPxRoundPanel1$ContentPlaceHolder2$";
+        private string strPrefixCtr_2 = "ctl00$ContentPlaceHolder2$";
 
         #endregion
 
@@ -503,7 +503,7 @@ namespace myWeb.App_Control.item
                 imgGo.ID = "imgGo";
                 imgGo.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["img"].ToString();
                 imgGo.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgGo"].Rows[0]["title"].ToString());
-                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
+                imgGo.Attributes.Add("onclick", "javascript: return checkPage(" + GridView1.PageCount.ToString() + ",'กรุณาระบุข้อมูลให้ถูกต้อง.|||ctl00$ContentPlaceHolder2$GridView1$ctl01$txtPage');");
                 imgGo.Click += new System.Web.UI.ImageClickEventHandler(this.imgGo_Click);
                 tbc.Controls.Add(imgGo);
 

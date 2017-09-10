@@ -26,8 +26,6 @@ namespace myWeb.App_Control.person
 
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            AjaxPro.Utility.RegisterTypeForAjax(typeof(person_control));
-            Session["menupopup_name"] = this.Page;
             lblError.Text = "";
             _strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
             if (!IsPostBack)
@@ -72,13 +70,14 @@ namespace myWeb.App_Control.person
                     InitcboTitle();
                     InitcboPerson_group();
                     InitcboPerson_work_status();
+                    InitcboMajor();
                     Session["menupopup_name"] = "เพิ่มข้อมูลบุคลากร";
                     ViewState["page"] = Request.QueryString["page"];
                     txtperson_code.ReadOnly = true;
                     txtperson_code.CssClass = "textboxdis";
                     txtperson_code.CssClass = "textboxdis";
                     TabContainer1.Tabs[0].Visible = true;
-                    TabContainer1.Tabs[1].Visible = true;
+                    TabContainer1.Tabs[1].Visible = false;
 
                     txtperson_start.Text = cCommon.CheckDate(DateTime.Now.Date.ToString("dd/MM/yyyy"));
                     txtperson_end.Text = cCommon.CheckDate(DateTime.Now.Date.ToString("dd/MM/yyyy"));

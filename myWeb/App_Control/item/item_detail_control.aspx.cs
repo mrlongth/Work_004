@@ -65,7 +65,7 @@ namespace myWeb.App_Control.item
                             txtitem_detail_name.CssClass = "textbox";
                             chkStatus.Checked = true;
                             string strScript1 =
-                                "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                                "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                                 "self.opener.document.forms[0].submit();\n" +
                                 "self.focus();\n";
                             ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);
@@ -75,12 +75,17 @@ namespace myWeb.App_Control.item
                 else if (ViewState["mode"].ToString().ToLower().Equals("view"))
                 {
                     setData();
-                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
                 }
 
 
                 #endregion
             }
+
+            if (ViewState["mode"].ToString().ToLower().Equals("view"))
+            {
+                Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+            }
+
         }
 
         #region private function
@@ -470,6 +475,13 @@ namespace myWeb.App_Control.item
         {
             if (e.Row.RowType.Equals(DataControlRowType.Header))
             {
+
+                if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    GridView1.AllowSorting = false;
+                    return;
+                }
+
                 #region Create Item Header
                 bool bSort = false;
                 int i = 0;

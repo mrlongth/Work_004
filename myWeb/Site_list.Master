@@ -65,104 +65,31 @@
                             </tr>
                         </table>
                     </div>
-                    <div id="master_page">
-                        <asp:ScriptManager ID="ScriptManager1" runat="server"  AsyncPostBackTimeOut= "360000">
+                    <div id="master_page" style="padding-top: 5px;">
+                        <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="360000">
                         </asp:ScriptManager>
                         <asp:UpdatePanel ID="updatePanel1" runat="server">
                             <ContentTemplate>
-                                <dxrp:ASPxRoundPanel ID="ASPxRoundPanel1" runat="server" BackColor="White" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
-                                    CssPostfix="Aqua" Width="100%" HeaderText="User Login">
-                                    <BottomRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/BottomRightCorner.png" Width="5px" />
-                                    <ContentPaddings Padding="14px" />
-                                    <NoHeaderTopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/NoHeaderTopRightCorner.png"
-                                        Width="5px" />
-                                    <HeaderRightEdge>
-                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderRightEdge.png" Repeat="NoRepeat"
-                                            VerticalPosition="bottom" HorizontalPosition="right" />
-                                    </HeaderRightEdge>
-                                    <Border BorderColor="#F7DF3E" BorderStyle="Solid" BorderWidth="2px" />
-                                    <HeaderLeftEdge>
-                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderLeftEdge.png" Repeat="NoRepeat"
-                                            VerticalPosition="bottom" HorizontalPosition="left" />
-                                    </HeaderLeftEdge>
-                                    <HeaderStyle BackColor="#FBDD75">
-                                        <BorderLeft BorderStyle="None" />
-                                        <BorderRight BorderStyle="None" />
-                                        <BorderBottom BorderStyle="None" />
-                                    </HeaderStyle>
-                                    <TopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/TopRightCorner.png" Width="5px" />
-                                    <HeaderContent>
-                                        <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911303/HeaderContent.png" Repeat="RepeatX"
-                                            VerticalPosition="bottom" HorizontalPosition="left" />
-                                    </HeaderContent>
-                                    <NoHeaderTopEdge BackColor="White">
-                                        <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpNoHeaderTopEdge.gif" Repeat="RepeatX"
-                                            VerticalPosition="Top" />
-                                    </NoHeaderTopEdge>
-                                    <NoHeaderTopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/NoHeaderTopLeftCorner.png"
-                                        Width="5px" />
-                                    <PanelCollection>
-                                        <dxp:PanelContent ID="PanelContent1" runat="server">
-                                            <table style="width: 100%">
-                                                <tr>
-                                                    <td>
-                                                        <div style="clear: both;" />
-                                                        <asp:Panel ID="pnlCollapse" runat="server">
-                                                            <dxrp:ASPxRoundPanel ID="ASPxRoundPanel2" runat="server" BackColor="White" CssFilePath="~/App_Themes/Aqua/{0}/styles.css"
-                                                                CssPostfix="Aqua" HeaderText="" ShowHeader="False" Width="100%">
-                                                                <ContentPaddings Padding="5px" />
-                                                                <HeaderStyle BackColor="#FBDD75">
-                                                                    <BorderLeft BorderStyle="None" />
-                                                                    <BorderRight BorderStyle="None" />
-                                                                    <BorderBottom BorderStyle="None" />
-                                                                </HeaderStyle>
-                                                                <TopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/TopLeftCorner.png" Width="5px" />
-                                                                <NoHeaderTopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/NoHeaderTopLeftCorner.png"
-                                                                    Width="5px" />
-                                                                <TopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/TopRightCorner.png" Width="5px" />
-                                                                <NoHeaderTopRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/NoHeaderTopRightCorner.png"
-                                                                    Width="5px" />
-                                                                <BottomRightCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/BottomRightCorner.png" Width="5px" />
-                                                                <BottomLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911302/BottomLeftCorner.png" Width="5px" />
-                                                                <HeaderLeftEdge>
-                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderLeftEdge.png" Repeat="NoRepeat"
-                                                                        VerticalPosition="bottom" HorizontalPosition="left" />
-                                                                </HeaderLeftEdge>
-                                                                <HeaderContent>
-                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderContent.png" Repeat="RepeatX"
-                                                                        VerticalPosition="bottom" HorizontalPosition="left" />
-                                                                </HeaderContent>
-                                                                <HeaderRightEdge>
-                                                                    <BackgroundImage ImageUrl="~/Images/ASPxRoundPanel/767911302/HeaderRightEdge.png" Repeat="NoRepeat"
-                                                                        VerticalPosition="bottom" HorizontalPosition="right" />
-                                                                </HeaderRightEdge>
-                                                                <NoHeaderTopEdge BackColor="White">
-                                                                    <BackgroundImage ImageUrl="~/App_Themes/Aqua/Web/rpNoHeaderTopEdge.gif" Repeat="RepeatX"
-                                                                        VerticalPosition="Top" />
-                                                                </NoHeaderTopEdge>
-                                                                <PanelCollection>
-                                                                    <dxp:PanelContent ID="PanelContent2" runat="server">
-                                                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                                                                        </asp:ContentPlaceHolder>
-                                                                    </dxp:PanelContent>
-                                                                </PanelCollection>
-                                                                <Border BorderColor="#F7DF3E" BorderStyle="Solid" BorderWidth="2px" />
-                                                            </dxrp:ASPxRoundPanel>
-                                                        </asp:Panel>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-                                                        </asp:ContentPlaceHolder>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </dxp:PanelContent>
-                                    </PanelCollection>
-                                    <TopLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/TopLeftCorner.png" Width="5px" />
-                                    <BottomLeftCorner Height="5px" Url="~/Images/ASPxRoundPanel/767911303/BottomLeftCorner.png" Width="5px" />
-                                </dxrp:ASPxRoundPanel>
+                                <div id="pnlMasterHeader" class="rcorners1">
+                                    <div style="padding: 5px 0 5px 15px;">
+                                        <asp:Label ID="lblHeader" runat="server" Text="Label" CssClass="lblHeader"></asp:Label>
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="pnlMasterSub" class="rcorners1_sub">
+                                    <div style="padding: 10px; clear: both;">
+                                        <div id="pnlCollapse" class="rcorners2">
+                                            <div style="padding: 10px;">
+                                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                                </asp:ContentPlaceHolder>
+                                            </div>
+                                        </div>
+                                        <div style="padding-top: 10px; clear: both;">
+                                            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+                                            </asp:ContentPlaceHolder>
+                                        </div>
+                                    </div>
+                                </div>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="updatePanel1">
@@ -235,11 +162,13 @@
                             </ajaxToolkit:ModalPopupExtender>
                             <asp:Button ID="btnShow2" runat="server" />
                         </asp:Panel>
+
                         <ajaxToolkit:ModalPopupExtender ID="show1_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
                             PopupControlID="panelShow1" PopupDragHandleControlID="panelShow1" DropShadow="true"
                             TargetControlID="btnShow" BehaviorID="show1_ModalPopupExtender">
                         </ajaxToolkit:ModalPopupExtender>
                         <asp:Button ID="btnShow" runat="server" />
+
                     </div>
                 </td>
                 <td class="right_2">&nbsp;

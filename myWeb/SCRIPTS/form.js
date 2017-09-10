@@ -753,28 +753,28 @@ function ClosePopUp(level){
 function ClosePopUpListPost(page,level){
     var iframe = 'iframeShow' + level ;
     var modal = 'show' +level + '_ModalPopupExtender' ;
-    window.parent.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value = page  ;
-    window.parent.__doPostBack('ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage','') ;
+    window.parent.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value = page  ;
+     window.parent.__doPostBack('ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage','') ;
     //window.parent.__doPostBack('BindGridView',page) ;
-    window.parent.document.getElementById(iframe).src='about:blank';
-    window.parent.document.getElementById(iframe).style.width= '0px' ;
-    window.parent.document.getElementById(iframe).style.height= '0px' ;
-    window.parent.$find(modal).hide();
+    //window.parent.document.getElementById(iframe).src='about:blank';
+    //window.parent.document.getElementById(iframe).style.width= '0px' ;
+    //window.parent.document.getElementById(iframe).style.height= '0px' ;
+    //window.parent.$find(modal).hide();
     return false;
 }
 
 function PopUpListPost(page, level) {
     var iframe = 'iframeShow' + level;
     var modal = 'show' + level + '_ModalPopupExtender';
-    window.parent.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value = page;
-    window.parent.__doPostBack('ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage', '');
+    window.parent.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value = page;
+    window.parent.__doPostBack('ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage', '');
     return false;
 }
 
 
 function RefreshMain(page){
-    window.parent.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value = page  ;
-    window.parent.__doPostBack('ctl00$ASPxRoundPanel1$ContentPlaceHolder2$GridView1$ctl01$cboPerPage','') ;
+    window.parent.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value = page  ;
+    window.parent.__doPostBack('ctl00$ContentPlaceHolder2$GridView1$ctl01$cboPerPage','') ;
     return false;
 }
 

@@ -22,14 +22,6 @@ namespace myWeb.App_Control.activity
         #endregion
         protected void Page_Load(object sender, System.EventArgs e)
         {
-            //AjaxPro.Utility.RegisterTypeForAjax(typeof(activity_control));
-
-            //if (Session["username"] == null)
-            //{
-            //    string strScript = "<script language=\"javascript\">\n self.opener.document.location.href=\"../../index.aspx\";\n self.close();\n</script>\n";
-            //    this.RegisterStartupScript("close", strScript);
-            //    return;
-            //}
             lblError.Text = "";
             if (!IsPostBack)
             {
@@ -88,7 +80,7 @@ namespace myWeb.App_Control.activity
                     //        chkStatus.Checked = true; 
                     //        txtactivity_code.Focus();
                     //        string strScript1 =
-                    //            "self.opener.document.forms[0].ctl00$ASPxRoundPanel1$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
+                    //            "self.opener.document.forms[0].ctl00$ContentPlaceHolder2$txthpage.value=" + ViewState["page"].ToString() + ";\n" +
                     //            "self.opener.document.forms[0].submit();\n" +
                     //            "self.focus();\n";
                     //        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);

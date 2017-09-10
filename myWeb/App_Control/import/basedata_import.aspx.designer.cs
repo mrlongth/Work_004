@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace myWeb.App_Control.activity {
+namespace myWeb.App_Control.basedata_import {
     
     
-    public partial class activity_list {
+    public partial class basedata_import_list {
         
         /// <summary>
         /// lblPage4 control.
@@ -31,60 +31,6 @@ namespace myWeb.App_Control.activity {
         protected global::System.Web.UI.WebControls.DropDownList cboYear;
         
         /// <summary>
-        /// lblPage2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage2;
-        
-        /// <summary>
-        /// txtactivity_code control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtactivity_code;
-        
-        /// <summary>
-        /// lblPage1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage1;
-        
-        /// <summary>
-        /// txtactivity_name control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtactivity_name;
-        
-        /// <summary>
-        /// lblPage5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage5;
-        
-        /// <summary>
-        /// cboBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboBudget;
-        
-        /// <summary>
         /// imgFind control.
         /// </summary>
         /// <remarks>
@@ -103,22 +49,49 @@ namespace myWeb.App_Control.activity {
         protected global::System.Web.UI.WebControls.ImageButton imgNew;
         
         /// <summary>
-        /// lblPage6 control.
+        /// lblPage2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage6;
+        protected global::System.Web.UI.WebControls.Label lblPage2;
         
         /// <summary>
-        /// cboProduce control.
+        /// txtbasedata_import_code control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboProduce;
+        protected global::System.Web.UI.WebControls.TextBox txtbasedata_import_code;
+        
+        /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
+        /// lblPage1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage1;
+        
+        /// <summary>
+        /// txtbasedata_import_name control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbasedata_import_name;
         
         /// <summary>
         /// lblPage3 control.
@@ -155,15 +128,6 @@ namespace myWeb.App_Control.activity {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton RadioCancel;
-        
-        /// <summary>
-        /// lblError control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
         /// GridView1 control.
