@@ -29,6 +29,62 @@
     <Property Name="d_updated_date" Type="datetime" />
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="Budget_money_detail">
+    <Key>
+      <PropertyRef Name="budget_money_detail_id" />
+    </Key>
+    <Property Name="budget_money_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_group_detail_id" Type="int" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_detail_id" Type="int" />
+    <Property Name="budget_detail_money_plan" Type="money" />
+    <Property Name="budget_detail_money_contribute" Type="money" />
+    <Property Name="budget_detail_money_use" Type="money" />
+    <Property Name="budget_detail_money_remain" Type="money" />
+    <Property Name="budget_detail_comment" Type="ntext" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Budget_money_head">
+    <Key>
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_plan" Type="money" />
+    <Property Name="budget_money_contribute" Type="money" />
+    <Property Name="budget_money_use" Type="money" />
+    <Property Name="budget_money_remain" Type="money" />
+    <Property Name="comments" Type="varchar" MaxLength="255" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Budget_money_major">
+    <Key>
+      <PropertyRef Name="budget_money_major_id" />
+    </Key>
+    <Property Name="budget_money_major_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_money_major_plan" Type="money" />
+    <Property Name="budget_money_major_contribute" Type="money" />
+    <Property Name="budget_money_major_use" Type="money" />
+    <Property Name="budget_money_major_remain" Type="money" />
+    <Property Name="budget_money_major_comment" Type="ntext" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
   <EntityType Name="Budget_plan">
     <Key>
       <PropertyRef Name="budget_plan_code" />
@@ -56,6 +112,18 @@
     <Property Name="config_code" Type="varchar" MaxLength="50" />
     <Property Name="config_name" Type="varchar" MaxLength="255" />
     <Property Name="config_sort" Type="int" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Degree">
+    <Key>
+      <PropertyRef Name="degree_code" />
+    </Key>
+    <Property Name="degree_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
     <Property Name="c_active" Type="varchar" MaxLength="1" />
     <Property Name="c_created_by" Type="varchar" MaxLength="255" />
     <Property Name="d_created_date" Type="datetime" />
@@ -292,24 +360,6 @@
     <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
     <Property Name="d_updated_date" Type="datetime" />
   </EntityType>
-  <EntityType Name="Person_status">
-    <Key>
-      <PropertyRef Name="person_code" />
-    </Key>
-    <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="person_sex" Type="varchar" MaxLength="5" />
-    <Property Name="person_high" Type="varchar" MaxLength="50" />
-    <Property Name="person_width" Type="varchar" MaxLength="50" />
-    <Property Name="person_origin" Type="varchar" MaxLength="50" />
-    <Property Name="person_nation" Type="varchar" MaxLength="50" />
-    <Property Name="person_religion" Type="varchar" MaxLength="50" />
-    <Property Name="person_birth" Type="datetime" />
-    <Property Name="person_marry" Type="varchar" MaxLength="1" />
-    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
-    <Property Name="d_created_date" Type="datetime" />
-    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
-    <Property Name="d_updated_date" Type="datetime" />
-  </EntityType>
   <EntityType Name="Person_work">
     <Key>
       <PropertyRef Name="person_code" />
@@ -462,24 +512,6 @@
     <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
     <Property Name="UpdatedDate" Type="datetime" />
   </EntityType>
-  <EntityType Name="Usermenu">
-    <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="MenuID" />
-    </Key>
-    <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="MenuID" Type="smallint" Nullable="false" />
-    <Property Name="CanView" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CanInsert" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CanEdit" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CanDelete" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CanApprove" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CanExtra" Type="char" MaxLength="1" Nullable="false" />
-    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="CreatedDate" Type="datetime" />
-    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
-    <Property Name="UpdatedDate" Type="datetime" />
-  </EntityType>
   <EntityType Name="Work">
     <Key>
       <PropertyRef Name="work_code" />
@@ -492,6 +524,210 @@
     <Property Name="d_created_date" Type="datetime" />
     <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
     <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_type" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Activity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Activity">
+    <Key>
+      <PropertyRef Name="activity_code" />
+    </Key>
+    <Property Name="activity_code" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="activity_year" Type="varchar" MaxLength="4" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="6" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_type" Type="varchar" MaxLength="10" />
+    <Property Name="produce_year" Type="varchar" MaxLength="4" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_money_detail">
+    <Key>
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="budget_money_doc" />
+      <PropertyRef Name="item_group_detail_id" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_group_detail_id" Type="int" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_detail_id" Type="int" />
+    <Property Name="budget_detail_money_plan" Type="money" />
+    <Property Name="budget_detail_money_contribute" Type="money" />
+    <Property Name="budget_detail_money_use" Type="money" />
+    <Property Name="budget_detail_money_remain" Type="money" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_plan" Type="money" />
+    <Property Name="budget_money_contribute" Type="money" />
+    <Property Name="budget_money_use" Type="money" />
+    <Property Name="budget_money_remain" Type="money" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_detail_comment" Type="ntext" />
+    <Property Name="comments" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_money_head">
+    <Key>
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_plan" Type="money" />
+    <Property Name="budget_money_contribute" Type="money" />
+    <Property Name="budget_money_use" Type="money" />
+    <Property Name="budget_money_remain" Type="money" />
+    <Property Name="comments" Type="varchar" MaxLength="255" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_plan_year" Type="varchar" MaxLength="4" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_money_major">
+    <Key>
+      <PropertyRef Name="budget_money_major_id" />
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="major_code" />
+      <PropertyRef Name="budget_money_doc" />
+      <PropertyRef Name="item_group_detail_id" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="budget_money_major_id" Type="bigint" Nullable="false" />
+    <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_money_major_plan" Type="money" />
+    <Property Name="budget_money_major_contribute" Type="money" />
+    <Property Name="budget_money_major_use" Type="money" />
+    <Property Name="budget_money_major_remain" Type="money" />
+    <Property Name="budget_money_major_comment" Type="ntext" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_group_detail_id" Type="int" Nullable="false" />
+    <Property Name="item_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_detail_id" Type="int" />
+    <Property Name="budget_detail_money_plan" Type="money" />
+    <Property Name="budget_detail_money_contribute" Type="money" />
+    <Property Name="budget_detail_money_use" Type="money" />
+    <Property Name="budget_detail_money_remain" Type="money" />
+    <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_plan" Type="money" />
+    <Property Name="budget_money_contribute" Type="money" />
+    <Property Name="budget_money_use" Type="money" />
+    <Property Name="budget_money_remain" Type="money" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_detail_comment" Type="ntext" />
+    <Property Name="comments" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_plan">
+    <Key>
+      <PropertyRef Name="budget_plan_code" />
+    </Key>
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_plan_year" Type="varchar" MaxLength="4" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="6" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_sign_name" Type="varchar" MaxLength="255" />
+    <Property Name="director_sign_image" Type="image" />
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
   <!--Errors Found During Generation:
@@ -589,6 +825,239 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
     <Property Name="lot_name" Type="varchar" MaxLength="100" />
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Menu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="MenuName" />
+      <PropertyRef Name="MenuNavigationUrl" />
+      <PropertyRef Name="MenuTarget" />
+      <PropertyRef Name="MenuParent" />
+      <PropertyRef Name="CanView" />
+      <PropertyRef Name="CanInsert" />
+      <PropertyRef Name="CanEdit" />
+      <PropertyRef Name="CanDelete" />
+      <PropertyRef Name="CanApprove" />
+      <PropertyRef Name="CanExtra" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="MenuID" Type="smallint" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="MenuNavigationUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="MenuTarget" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MenuParent" Type="smallint" Nullable="false" />
+    <Property Name="MenuOrder" Type="smallint" />
+    <Property Name="CanView" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CanInsert" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CanEdit" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CanDelete" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CanApprove" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CanExtra" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="MenuParentName" Type="nvarchar" MaxLength="255" />
+    <Property Name="MenuImageUrl" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Person_all' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Person_all">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="title_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_thai_name" Type="varchar" MaxLength="50" />
+    <Property Name="person_thai_surname" Type="varchar" MaxLength="50" />
+    <Property Name="person_eng_name" Type="varchar" MaxLength="50" />
+    <Property Name="person_eng_surname" Type="varchar" MaxLength="50" />
+    <Property Name="person_nickname" Type="varchar" MaxLength="50" />
+    <Property Name="person_id" Type="varchar" MaxLength="50" />
+    <Property Name="person_pic" Type="varchar" MaxLength="255" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="position_code" Type="varchar" MaxLength="5" />
+    <Property Name="position_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_level" Type="varchar" MaxLength="5" />
+    <Property Name="person_postionno" Type="varchar" MaxLength="10" />
+    <Property Name="person_end" Type="datetime" />
+    <Property Name="person_group_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_manage_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_manage_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_plan_year" Type="varchar" MaxLength="4" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_work_status_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_work_status_name" Type="varchar" MaxLength="100" />
+    <Property Name="title_name" Type="varchar" MaxLength="100" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="person_start" Type="datetime" />
+    <Property Name="level_position_name" Type="varchar" MaxLength="100" />
+    <Property Name="type_position_code" Type="varchar" MaxLength="10" />
+    <Property Name="type_position_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_budget_type" Type="varchar" MaxLength="10" />
+    <Property Name="budget_type" Type="varchar" MaxLength="10" />
+    <Property Name="major_year" Type="varchar" MaxLength="4" />
+    <Property Name="major_name" Type="varchar" MaxLength="100" />
+    <Property Name="major_code" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Person_list' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Person_list">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="title_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_thai_name" Type="varchar" MaxLength="50" />
+    <Property Name="person_thai_surname" Type="varchar" MaxLength="50" />
+    <Property Name="person_eng_name" Type="varchar" MaxLength="50" />
+    <Property Name="person_eng_surname" Type="varchar" MaxLength="50" />
+    <Property Name="person_nickname" Type="varchar" MaxLength="50" />
+    <Property Name="person_id" Type="varchar" MaxLength="50" />
+    <Property Name="person_pic" Type="varchar" MaxLength="255" />
+    <Property Name="c_active" Type="varchar" MaxLength="1" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="title_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_group_code" Type="varchar" MaxLength="5" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="person_work_status_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_plan_year" Type="varchar" MaxLength="4" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_work_status_name" Type="varchar" MaxLength="100" />
+    <Property Name="position_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_level" Type="varchar" MaxLength="5" />
+    <Property Name="person_manage_code" Type="varchar" MaxLength="5" />
+    <Property Name="type_position_code" Type="varchar" MaxLength="10" />
+    <Property Name="type_position_name" Type="varchar" MaxLength="100" />
+    <Property Name="person_budget_type" Type="varchar" MaxLength="10" />
+    <Property Name="person_password" Type="varchar" MaxLength="255" />
+    <Property Name="person_email" Type="varchar" MaxLength="255" />
+    <Property Name="person_manage_name" Type="varchar" MaxLength="100" />
+    <Property Name="position_name" Type="varchar" MaxLength="100" />
+    <Property Name="user_group_list" Type="varchar" MaxLength="50" />
+    <Property Name="major_code" Type="varchar" MaxLength="10" />
+    <Property Name="major_year" Type="varchar" MaxLength="4" />
+    <Property Name="major_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Person_user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Person_user">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="position_code" Type="varchar" MaxLength="5" />
+    <Property Name="person_thai_name" Type="varchar" MaxLength="50" />
+    <Property Name="person_thai_surname" Type="varchar" MaxLength="50" />
+    <Property Name="title_name" Type="varchar" MaxLength="100" />
+    <Property Name="user_group_list" Type="varchar" MaxLength="50" />
+    <Property Name="person_id" Type="varchar" MaxLength="50" />
+    <Property Name="person_password" Type="varchar" MaxLength="255" />
+    <Property Name="person_pic" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Unit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Unit">
+    <Key>
+      <PropertyRef Name="unit_code" />
+    </Key>
+    <Property Name="unit_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="unit_year" Type="varchar" MaxLength="4" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_User_group_menu">
+    <Key>
+      <PropertyRef Name="user_group_code" />
+      <PropertyRef Name="MenuName" />
+      <PropertyRef Name="MenuNavigationUrl" />
+      <PropertyRef Name="MenuTarget" />
+      <PropertyRef Name="MenuParent" />
+      <PropertyRef Name="MenuCanView" />
+      <PropertyRef Name="MenuCanInsert" />
+      <PropertyRef Name="MenuCanEdit" />
+      <PropertyRef Name="MenuCanDelete" />
+      <PropertyRef Name="MenuCanApprove" />
+      <PropertyRef Name="MenuCanExtra" />
+      <PropertyRef Name="Menu_Status" />
+    </Key>
+    <Property Name="user_group_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CanView" Type="char" MaxLength="1" />
+    <Property Name="CanInsert" Type="char" MaxLength="1" />
+    <Property Name="CanEdit" Type="char" MaxLength="1" />
+    <Property Name="CanDelete" Type="char" MaxLength="1" />
+    <Property Name="CanApprove" Type="char" MaxLength="1" />
+    <Property Name="CanExtra" Type="char" MaxLength="1" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="user_group_name" Type="varchar" MaxLength="10" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="MenuNavigationUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="MenuImageUrl" Type="nvarchar" MaxLength="255" />
+    <Property Name="MenuTarget" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="MenuParent" Type="smallint" Nullable="false" />
+    <Property Name="MenuOrder" Type="smallint" />
+    <Property Name="MenuCanView" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="MenuCanInsert" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="MenuCanEdit" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="MenuCanDelete" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="MenuCanApprove" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="MenuCanExtra" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="person_group_list" Type="varchar" MaxLength="255" />
+    <Property Name="director_lock" Type="char" MaxLength="1" />
+    <Property Name="unit_lock" Type="char" MaxLength="1" />
+    <Property Name="unit_code_list" Type="varchar" MaxLength="255" />
+    <Property Name="Menu_Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Remark" Type="nvarchar" MaxLength="255" />
+    <Property Name="MenuID" Type="smallint" />
+  </EntityType>
   <Association Name="FK_activity_produce_code">
     <End Role="Produce" Type="Self.Produce" Multiplicity="0..1" />
     <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
@@ -598,6 +1067,102 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
       </Principal>
       <Dependent Role="Activity">
         <PropertyRef Name="produce_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_budget_money_doc">
+    <End Role="Budget_money_head" Type="Self.Budget_money_head" Multiplicity="1" />
+    <End Role="Budget_money_detail" Type="Self.Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_head">
+        <PropertyRef Name="budget_money_doc" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="budget_money_doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_code">
+    <End Role="Item" Type="Self.Item" Multiplicity="1" />
+    <End Role="Budget_money_detail" Type="Self.Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_detail_id">
+    <End Role="Item_detail" Type="Self.Item_detail" Multiplicity="0..1" />
+    <End Role="Budget_money_detail" Type="Self.Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_detail">
+        <PropertyRef Name="item_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_group_detail_id">
+    <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="1" />
+    <End Role="Budget_money_detail" Type="Self.Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_group_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_head_budget_plan_code">
+    <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="0..1" />
+    <End Role="Budget_money_head" Type="Self.Budget_money_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_plan">
+        <PropertyRef Name="budget_plan_code" />
+      </Principal>
+      <Dependent Role="Budget_money_head">
+        <PropertyRef Name="budget_plan_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_head_degree_code">
+    <End Role="Degree" Type="Self.Degree" Multiplicity="0..1" />
+    <End Role="Budget_money_head" Type="Self.Budget_money_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="degree_code" />
+      </Principal>
+      <Dependent Role="Budget_money_head">
+        <PropertyRef Name="degree_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_major_budget_money_detail_id">
+    <End Role="Budget_money_detail" Type="Self.Budget_money_detail" Multiplicity="1" />
+    <End Role="Budget_money_major" Type="Self.Budget_money_major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_detail">
+        <PropertyRef Name="budget_money_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_major">
+        <PropertyRef Name="budget_money_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_major_major_code">
+    <End Role="Major" Type="Self.Major" Multiplicity="1" />
+    <End Role="Budget_money_major" Type="Self.Budget_money_major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="major_code" />
+      </Principal>
+      <Dependent Role="Budget_money_major">
+        <PropertyRef Name="major_code" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -832,8 +1397,12 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
   <EntityContainer Name="mju_budgetModelStoreContainer">
     <EntitySet Name="Activity" EntityType="Self.Activity" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Budget" EntityType="Self.Budget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget_money_detail" EntityType="Self.Budget_money_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget_money_head" EntityType="Self.Budget_money_head" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget_money_major" EntityType="Self.Budget_money_major" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Budget_plan" EntityType="Self.Budget_plan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Config_item" EntityType="Self.Config_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Fund" EntityType="Self.Fund" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="General" EntityType="Self.General" Schema="dbo" store:Type="Tables" />
@@ -849,7 +1418,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
     <EntitySet Name="Person_group" EntityType="Self.Person_group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_his" EntityType="Self.Person_his" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_manage" EntityType="Self.Person_manage" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Person_status" EntityType="Self.Person_status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_work" EntityType="Self.Person_work" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Person_work_status" EntityType="Self.Person_work_status" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
@@ -860,8 +1428,188 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
     <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_group" EntityType="Self.User_group" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User_group_menu" EntityType="Self.User_group_menu" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usermenu" EntityType="Self.Usermenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Work" EntityType="Self.Work" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="view_Activity" EntityType="Self.view_Activity" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Activity].[activity_code] AS [activity_code], 
+    [view_Activity].[activity_year] AS [activity_year], 
+    [view_Activity].[activity_name] AS [activity_name], 
+    [view_Activity].[produce_code] AS [produce_code], 
+    [view_Activity].[c_active] AS [c_active], 
+    [view_Activity].[c_created_by] AS [c_created_by], 
+    [view_Activity].[d_created_date] AS [d_created_date], 
+    [view_Activity].[c_updated_by] AS [c_updated_by], 
+    [view_Activity].[d_updated_date] AS [d_updated_date], 
+    [view_Activity].[budget_type] AS [budget_type], 
+    [view_Activity].[produce_year] AS [produce_year], 
+    [view_Activity].[produce_name] AS [produce_name], 
+    [view_Activity].[budget_code] AS [budget_code], 
+    [view_Activity].[budget_year] AS [budget_year], 
+    [view_Activity].[budget_name] AS [budget_name]
+    FROM [dbo].[view_Activity] AS [view_Activity]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_money_detail" EntityType="Self.view_Budget_money_detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_money_detail].[budget_money_detail_id] AS [budget_money_detail_id], 
+    [view_Budget_money_detail].[budget_money_doc] AS [budget_money_doc], 
+    [view_Budget_money_detail].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Budget_money_detail].[item_code] AS [item_code], 
+    [view_Budget_money_detail].[item_detail_id] AS [item_detail_id], 
+    [view_Budget_money_detail].[budget_detail_money_plan] AS [budget_detail_money_plan], 
+    [view_Budget_money_detail].[budget_detail_money_contribute] AS [budget_detail_money_contribute], 
+    [view_Budget_money_detail].[budget_detail_money_use] AS [budget_detail_money_use], 
+    [view_Budget_money_detail].[budget_detail_money_remain] AS [budget_detail_money_remain], 
+    [view_Budget_money_detail].[c_created_by] AS [c_created_by], 
+    [view_Budget_money_detail].[d_created_date] AS [d_created_date], 
+    [view_Budget_money_detail].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_money_detail].[d_updated_date] AS [d_updated_date], 
+    [view_Budget_money_detail].[budget_money_year] AS [budget_money_year], 
+    [view_Budget_money_detail].[budget_type] AS [budget_type], 
+    [view_Budget_money_detail].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_money_detail].[degree_code] AS [degree_code], 
+    [view_Budget_money_detail].[budget_money_plan] AS [budget_money_plan], 
+    [view_Budget_money_detail].[budget_money_contribute] AS [budget_money_contribute], 
+    [view_Budget_money_detail].[budget_money_use] AS [budget_money_use], 
+    [view_Budget_money_detail].[budget_money_remain] AS [budget_money_remain], 
+    [view_Budget_money_detail].[unit_code] AS [unit_code], 
+    [view_Budget_money_detail].[activity_code] AS [activity_code], 
+    [view_Budget_money_detail].[plan_code] AS [plan_code], 
+    [view_Budget_money_detail].[work_code] AS [work_code], 
+    [view_Budget_money_detail].[fund_code] AS [fund_code], 
+    [view_Budget_money_detail].[unit_name] AS [unit_name], 
+    [view_Budget_money_detail].[director_code] AS [director_code], 
+    [view_Budget_money_detail].[director_name] AS [director_name], 
+    [view_Budget_money_detail].[activity_name] AS [activity_name], 
+    [view_Budget_money_detail].[produce_code] AS [produce_code], 
+    [view_Budget_money_detail].[produce_name] AS [produce_name], 
+    [view_Budget_money_detail].[budget_code] AS [budget_code], 
+    [view_Budget_money_detail].[budget_name] AS [budget_name], 
+    [view_Budget_money_detail].[plan_name] AS [plan_name], 
+    [view_Budget_money_detail].[work_name] AS [work_name], 
+    [view_Budget_money_detail].[fund_name] AS [fund_name], 
+    [view_Budget_money_detail].[degree_name] AS [degree_name], 
+    [view_Budget_money_detail].[budget_detail_comment] AS [budget_detail_comment], 
+    [view_Budget_money_detail].[comments] AS [comments]
+    FROM [dbo].[view_Budget_money_detail] AS [view_Budget_money_detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_money_head" EntityType="Self.view_Budget_money_head" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_money_head].[budget_money_doc] AS [budget_money_doc], 
+    [view_Budget_money_head].[budget_money_year] AS [budget_money_year], 
+    [view_Budget_money_head].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_money_head].[degree_code] AS [degree_code], 
+    [view_Budget_money_head].[budget_money_plan] AS [budget_money_plan], 
+    [view_Budget_money_head].[budget_money_contribute] AS [budget_money_contribute], 
+    [view_Budget_money_head].[budget_money_use] AS [budget_money_use], 
+    [view_Budget_money_head].[budget_money_remain] AS [budget_money_remain], 
+    [view_Budget_money_head].[comments] AS [comments], 
+    [view_Budget_money_head].[c_active] AS [c_active], 
+    [view_Budget_money_head].[c_created_by] AS [c_created_by], 
+    [view_Budget_money_head].[d_created_date] AS [d_created_date], 
+    [view_Budget_money_head].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_money_head].[d_updated_date] AS [d_updated_date], 
+    [view_Budget_money_head].[budget_plan_year] AS [budget_plan_year], 
+    [view_Budget_money_head].[unit_code] AS [unit_code], 
+    [view_Budget_money_head].[activity_code] AS [activity_code], 
+    [view_Budget_money_head].[plan_code] AS [plan_code], 
+    [view_Budget_money_head].[work_code] AS [work_code], 
+    [view_Budget_money_head].[fund_code] AS [fund_code], 
+    [view_Budget_money_head].[unit_name] AS [unit_name], 
+    [view_Budget_money_head].[director_code] AS [director_code], 
+    [view_Budget_money_head].[director_name] AS [director_name], 
+    [view_Budget_money_head].[activity_name] AS [activity_name], 
+    [view_Budget_money_head].[produce_code] AS [produce_code], 
+    [view_Budget_money_head].[produce_name] AS [produce_name], 
+    [view_Budget_money_head].[budget_code] AS [budget_code], 
+    [view_Budget_money_head].[budget_name] AS [budget_name], 
+    [view_Budget_money_head].[plan_name] AS [plan_name], 
+    [view_Budget_money_head].[work_name] AS [work_name], 
+    [view_Budget_money_head].[fund_name] AS [fund_name], 
+    [view_Budget_money_head].[degree_name] AS [degree_name], 
+    [view_Budget_money_head].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Budget_money_head] AS [view_Budget_money_head]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_money_major" EntityType="Self.view_Budget_money_major" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_money_major].[budget_money_major_id] AS [budget_money_major_id], 
+    [view_Budget_money_major].[budget_money_detail_id] AS [budget_money_detail_id], 
+    [view_Budget_money_major].[major_code] AS [major_code], 
+    [view_Budget_money_major].[budget_money_major_plan] AS [budget_money_major_plan], 
+    [view_Budget_money_major].[budget_money_major_contribute] AS [budget_money_major_contribute], 
+    [view_Budget_money_major].[budget_money_major_use] AS [budget_money_major_use], 
+    [view_Budget_money_major].[budget_money_major_remain] AS [budget_money_major_remain], 
+    [view_Budget_money_major].[budget_money_major_comment] AS [budget_money_major_comment], 
+    [view_Budget_money_major].[c_created_by] AS [c_created_by], 
+    [view_Budget_money_major].[d_created_date] AS [d_created_date], 
+    [view_Budget_money_major].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_money_major].[d_updated_date] AS [d_updated_date], 
+    [view_Budget_money_major].[budget_money_doc] AS [budget_money_doc], 
+    [view_Budget_money_major].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Budget_money_major].[item_code] AS [item_code], 
+    [view_Budget_money_major].[item_detail_id] AS [item_detail_id], 
+    [view_Budget_money_major].[budget_detail_money_plan] AS [budget_detail_money_plan], 
+    [view_Budget_money_major].[budget_detail_money_contribute] AS [budget_detail_money_contribute], 
+    [view_Budget_money_major].[budget_detail_money_use] AS [budget_detail_money_use], 
+    [view_Budget_money_major].[budget_detail_money_remain] AS [budget_detail_money_remain], 
+    [view_Budget_money_major].[budget_money_year] AS [budget_money_year], 
+    [view_Budget_money_major].[budget_type] AS [budget_type], 
+    [view_Budget_money_major].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_money_major].[degree_code] AS [degree_code], 
+    [view_Budget_money_major].[budget_money_plan] AS [budget_money_plan], 
+    [view_Budget_money_major].[budget_money_contribute] AS [budget_money_contribute], 
+    [view_Budget_money_major].[budget_money_use] AS [budget_money_use], 
+    [view_Budget_money_major].[budget_money_remain] AS [budget_money_remain], 
+    [view_Budget_money_major].[unit_code] AS [unit_code], 
+    [view_Budget_money_major].[activity_code] AS [activity_code], 
+    [view_Budget_money_major].[plan_code] AS [plan_code], 
+    [view_Budget_money_major].[work_code] AS [work_code], 
+    [view_Budget_money_major].[fund_code] AS [fund_code], 
+    [view_Budget_money_major].[unit_name] AS [unit_name], 
+    [view_Budget_money_major].[director_code] AS [director_code], 
+    [view_Budget_money_major].[director_name] AS [director_name], 
+    [view_Budget_money_major].[activity_name] AS [activity_name], 
+    [view_Budget_money_major].[produce_code] AS [produce_code], 
+    [view_Budget_money_major].[produce_name] AS [produce_name], 
+    [view_Budget_money_major].[budget_code] AS [budget_code], 
+    [view_Budget_money_major].[budget_name] AS [budget_name], 
+    [view_Budget_money_major].[plan_name] AS [plan_name], 
+    [view_Budget_money_major].[work_name] AS [work_name], 
+    [view_Budget_money_major].[fund_name] AS [fund_name], 
+    [view_Budget_money_major].[degree_name] AS [degree_name], 
+    [view_Budget_money_major].[budget_detail_comment] AS [budget_detail_comment], 
+    [view_Budget_money_major].[comments] AS [comments]
+    FROM [dbo].[view_Budget_money_major] AS [view_Budget_money_major]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_plan" EntityType="Self.view_Budget_plan" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_plan].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_plan].[budget_plan_year] AS [budget_plan_year], 
+    [view_Budget_plan].[unit_code] AS [unit_code], 
+    [view_Budget_plan].[activity_code] AS [activity_code], 
+    [view_Budget_plan].[plan_code] AS [plan_code], 
+    [view_Budget_plan].[work_code] AS [work_code], 
+    [view_Budget_plan].[fund_code] AS [fund_code], 
+    [view_Budget_plan].[c_active] AS [c_active], 
+    [view_Budget_plan].[c_created_by] AS [c_created_by], 
+    [view_Budget_plan].[d_created_date] AS [d_created_date], 
+    [view_Budget_plan].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_plan].[d_updated_date] AS [d_updated_date], 
+    [view_Budget_plan].[unit_name] AS [unit_name], 
+    [view_Budget_plan].[director_code] AS [director_code], 
+    [view_Budget_plan].[director_name] AS [director_name], 
+    [view_Budget_plan].[activity_name] AS [activity_name], 
+    [view_Budget_plan].[produce_code] AS [produce_code], 
+    [view_Budget_plan].[produce_name] AS [produce_name], 
+    [view_Budget_plan].[budget_code] AS [budget_code], 
+    [view_Budget_plan].[budget_name] AS [budget_name], 
+    [view_Budget_plan].[plan_name] AS [plan_name], 
+    [view_Budget_plan].[work_name] AS [work_name], 
+    [view_Budget_plan].[fund_name] AS [fund_name], 
+    [view_Budget_plan].[director_sign_name] AS [director_sign_name], 
+    [view_Budget_plan].[director_sign_image] AS [director_sign_image], 
+    [view_Budget_plan].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Budget_plan] AS [view_Budget_plan]</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="view_Item" EntityType="Self.view_Item" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [view_Item].[item_code] AS [item_code], 
@@ -945,9 +1693,234 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
     [view_Item_group_detail].[budget_type] AS [budget_type]
     FROM [dbo].[view_Item_group_detail] AS [view_Item_group_detail]</DefiningQuery>
     </EntitySet>
+    <EntitySet Name="view_Menu" EntityType="Self.view_Menu" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Menu].[MenuID] AS [MenuID], 
+    [view_Menu].[MenuName] AS [MenuName], 
+    [view_Menu].[MenuNavigationUrl] AS [MenuNavigationUrl], 
+    [view_Menu].[MenuTarget] AS [MenuTarget], 
+    [view_Menu].[MenuParent] AS [MenuParent], 
+    [view_Menu].[MenuOrder] AS [MenuOrder], 
+    [view_Menu].[CanView] AS [CanView], 
+    [view_Menu].[CanInsert] AS [CanInsert], 
+    [view_Menu].[CanEdit] AS [CanEdit], 
+    [view_Menu].[CanDelete] AS [CanDelete], 
+    [view_Menu].[CanApprove] AS [CanApprove], 
+    [view_Menu].[CanExtra] AS [CanExtra], 
+    [view_Menu].[Status] AS [Status], 
+    [view_Menu].[Remark] AS [Remark], 
+    [view_Menu].[CreatedBy] AS [CreatedBy], 
+    [view_Menu].[CreatedDate] AS [CreatedDate], 
+    [view_Menu].[UpdatedBy] AS [UpdatedBy], 
+    [view_Menu].[UpdatedDate] AS [UpdatedDate], 
+    [view_Menu].[MenuParentName] AS [MenuParentName], 
+    [view_Menu].[MenuImageUrl] AS [MenuImageUrl]
+    FROM [dbo].[view_Menu] AS [view_Menu]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Person_all" EntityType="Self.view_Person_all" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Person_all].[person_code] AS [person_code], 
+    [view_Person_all].[title_code] AS [title_code], 
+    [view_Person_all].[person_thai_name] AS [person_thai_name], 
+    [view_Person_all].[person_thai_surname] AS [person_thai_surname], 
+    [view_Person_all].[person_eng_name] AS [person_eng_name], 
+    [view_Person_all].[person_eng_surname] AS [person_eng_surname], 
+    [view_Person_all].[person_nickname] AS [person_nickname], 
+    [view_Person_all].[person_id] AS [person_id], 
+    [view_Person_all].[person_pic] AS [person_pic], 
+    [view_Person_all].[c_created_by] AS [c_created_by], 
+    [view_Person_all].[d_created_date] AS [d_created_date], 
+    [view_Person_all].[c_updated_by] AS [c_updated_by], 
+    [view_Person_all].[d_updated_date] AS [d_updated_date], 
+    [view_Person_all].[position_code] AS [position_code], 
+    [view_Person_all].[position_name] AS [position_name], 
+    [view_Person_all].[person_level] AS [person_level], 
+    [view_Person_all].[person_postionno] AS [person_postionno], 
+    [view_Person_all].[person_end] AS [person_end], 
+    [view_Person_all].[person_group_code] AS [person_group_code], 
+    [view_Person_all].[person_group_name] AS [person_group_name], 
+    [view_Person_all].[person_manage_code] AS [person_manage_code], 
+    [view_Person_all].[person_manage_name] AS [person_manage_name], 
+    [view_Person_all].[budget_plan_code] AS [budget_plan_code], 
+    [view_Person_all].[budget_plan_year] AS [budget_plan_year], 
+    [view_Person_all].[unit_code] AS [unit_code], 
+    [view_Person_all].[activity_code] AS [activity_code], 
+    [view_Person_all].[plan_code] AS [plan_code], 
+    [view_Person_all].[work_code] AS [work_code], 
+    [view_Person_all].[fund_code] AS [fund_code], 
+    [view_Person_all].[unit_name] AS [unit_name], 
+    [view_Person_all].[director_code] AS [director_code], 
+    [view_Person_all].[director_name] AS [director_name], 
+    [view_Person_all].[activity_name] AS [activity_name], 
+    [view_Person_all].[produce_code] AS [produce_code], 
+    [view_Person_all].[produce_name] AS [produce_name], 
+    [view_Person_all].[budget_code] AS [budget_code], 
+    [view_Person_all].[budget_name] AS [budget_name], 
+    [view_Person_all].[plan_name] AS [plan_name], 
+    [view_Person_all].[work_name] AS [work_name], 
+    [view_Person_all].[fund_name] AS [fund_name], 
+    [view_Person_all].[person_work_status_code] AS [person_work_status_code], 
+    [view_Person_all].[person_work_status_name] AS [person_work_status_name], 
+    [view_Person_all].[title_name] AS [title_name], 
+    [view_Person_all].[c_active] AS [c_active], 
+    [view_Person_all].[person_start] AS [person_start], 
+    [view_Person_all].[level_position_name] AS [level_position_name], 
+    [view_Person_all].[type_position_code] AS [type_position_code], 
+    [view_Person_all].[type_position_name] AS [type_position_name], 
+    [view_Person_all].[person_budget_type] AS [person_budget_type], 
+    [view_Person_all].[budget_type] AS [budget_type], 
+    [view_Person_all].[major_year] AS [major_year], 
+    [view_Person_all].[major_name] AS [major_name], 
+    [view_Person_all].[major_code] AS [major_code]
+    FROM [dbo].[view_Person_all] AS [view_Person_all]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Person_list" EntityType="Self.view_Person_list" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Person_list].[person_code] AS [person_code], 
+    [view_Person_list].[title_code] AS [title_code], 
+    [view_Person_list].[person_thai_name] AS [person_thai_name], 
+    [view_Person_list].[person_thai_surname] AS [person_thai_surname], 
+    [view_Person_list].[person_eng_name] AS [person_eng_name], 
+    [view_Person_list].[person_eng_surname] AS [person_eng_surname], 
+    [view_Person_list].[person_nickname] AS [person_nickname], 
+    [view_Person_list].[person_id] AS [person_id], 
+    [view_Person_list].[person_pic] AS [person_pic], 
+    [view_Person_list].[c_active] AS [c_active], 
+    [view_Person_list].[c_created_by] AS [c_created_by], 
+    [view_Person_list].[d_created_date] AS [d_created_date], 
+    [view_Person_list].[c_updated_by] AS [c_updated_by], 
+    [view_Person_list].[d_updated_date] AS [d_updated_date], 
+    [view_Person_list].[title_name] AS [title_name], 
+    [view_Person_list].[person_group_code] AS [person_group_code], 
+    [view_Person_list].[budget_plan_code] AS [budget_plan_code], 
+    [view_Person_list].[person_work_status_code] AS [person_work_status_code], 
+    [view_Person_list].[person_group_name] AS [person_group_name], 
+    [view_Person_list].[budget_plan_year] AS [budget_plan_year], 
+    [view_Person_list].[unit_code] AS [unit_code], 
+    [view_Person_list].[activity_code] AS [activity_code], 
+    [view_Person_list].[plan_code] AS [plan_code], 
+    [view_Person_list].[work_code] AS [work_code], 
+    [view_Person_list].[fund_code] AS [fund_code], 
+    [view_Person_list].[unit_name] AS [unit_name], 
+    [view_Person_list].[director_code] AS [director_code], 
+    [view_Person_list].[director_name] AS [director_name], 
+    [view_Person_list].[activity_name] AS [activity_name], 
+    [view_Person_list].[produce_code] AS [produce_code], 
+    [view_Person_list].[produce_name] AS [produce_name], 
+    [view_Person_list].[budget_code] AS [budget_code], 
+    [view_Person_list].[budget_name] AS [budget_name], 
+    [view_Person_list].[plan_name] AS [plan_name], 
+    [view_Person_list].[work_name] AS [work_name], 
+    [view_Person_list].[fund_name] AS [fund_name], 
+    [view_Person_list].[person_work_status_name] AS [person_work_status_name], 
+    [view_Person_list].[position_code] AS [position_code], 
+    [view_Person_list].[person_level] AS [person_level], 
+    [view_Person_list].[person_manage_code] AS [person_manage_code], 
+    [view_Person_list].[type_position_code] AS [type_position_code], 
+    [view_Person_list].[type_position_name] AS [type_position_name], 
+    [view_Person_list].[person_budget_type] AS [person_budget_type], 
+    [view_Person_list].[person_password] AS [person_password], 
+    [view_Person_list].[person_email] AS [person_email], 
+    [view_Person_list].[person_manage_name] AS [person_manage_name], 
+    [view_Person_list].[position_name] AS [position_name], 
+    [view_Person_list].[user_group_list] AS [user_group_list], 
+    [view_Person_list].[major_code] AS [major_code], 
+    [view_Person_list].[major_year] AS [major_year], 
+    [view_Person_list].[major_name] AS [major_name]
+    FROM [dbo].[view_Person_list] AS [view_Person_list]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Person_user" EntityType="Self.view_Person_user" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Person_user].[person_code] AS [person_code], 
+    [view_Person_user].[position_code] AS [position_code], 
+    [view_Person_user].[person_thai_name] AS [person_thai_name], 
+    [view_Person_user].[person_thai_surname] AS [person_thai_surname], 
+    [view_Person_user].[title_name] AS [title_name], 
+    [view_Person_user].[user_group_list] AS [user_group_list], 
+    [view_Person_user].[person_id] AS [person_id], 
+    [view_Person_user].[person_password] AS [person_password], 
+    [view_Person_user].[person_pic] AS [person_pic]
+    FROM [dbo].[view_Person_user] AS [view_Person_user]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Unit" EntityType="Self.view_Unit" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Unit].[unit_code] AS [unit_code], 
+    [view_Unit].[unit_year] AS [unit_year], 
+    [view_Unit].[unit_name] AS [unit_name], 
+    [view_Unit].[director_code] AS [director_code], 
+    [view_Unit].[director_name] AS [director_name]
+    FROM [dbo].[view_Unit] AS [view_Unit]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_User_group_menu" EntityType="Self.view_User_group_menu" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_User_group_menu].[user_group_code] AS [user_group_code], 
+    [view_User_group_menu].[CanView] AS [CanView], 
+    [view_User_group_menu].[CanInsert] AS [CanInsert], 
+    [view_User_group_menu].[CanEdit] AS [CanEdit], 
+    [view_User_group_menu].[CanDelete] AS [CanDelete], 
+    [view_User_group_menu].[CanApprove] AS [CanApprove], 
+    [view_User_group_menu].[CanExtra] AS [CanExtra], 
+    [view_User_group_menu].[CreatedBy] AS [CreatedBy], 
+    [view_User_group_menu].[CreatedDate] AS [CreatedDate], 
+    [view_User_group_menu].[UpdatedBy] AS [UpdatedBy], 
+    [view_User_group_menu].[UpdatedDate] AS [UpdatedDate], 
+    [view_User_group_menu].[user_group_name] AS [user_group_name], 
+    [view_User_group_menu].[MenuName] AS [MenuName], 
+    [view_User_group_menu].[MenuNavigationUrl] AS [MenuNavigationUrl], 
+    [view_User_group_menu].[MenuImageUrl] AS [MenuImageUrl], 
+    [view_User_group_menu].[MenuTarget] AS [MenuTarget], 
+    [view_User_group_menu].[MenuParent] AS [MenuParent], 
+    [view_User_group_menu].[MenuOrder] AS [MenuOrder], 
+    [view_User_group_menu].[MenuCanView] AS [MenuCanView], 
+    [view_User_group_menu].[MenuCanInsert] AS [MenuCanInsert], 
+    [view_User_group_menu].[MenuCanEdit] AS [MenuCanEdit], 
+    [view_User_group_menu].[MenuCanDelete] AS [MenuCanDelete], 
+    [view_User_group_menu].[MenuCanApprove] AS [MenuCanApprove], 
+    [view_User_group_menu].[MenuCanExtra] AS [MenuCanExtra], 
+    [view_User_group_menu].[person_group_list] AS [person_group_list], 
+    [view_User_group_menu].[director_lock] AS [director_lock], 
+    [view_User_group_menu].[unit_lock] AS [unit_lock], 
+    [view_User_group_menu].[unit_code_list] AS [unit_code_list], 
+    [view_User_group_menu].[Menu_Status] AS [Menu_Status], 
+    [view_User_group_menu].[Remark] AS [Remark], 
+    [view_User_group_menu].[MenuID] AS [MenuID]
+    FROM [dbo].[view_User_group_menu] AS [view_User_group_menu]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_activity_produce_code" Association="Self.FK_activity_produce_code">
       <End Role="Produce" EntitySet="Produce" />
       <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_budget_money_doc" Association="Self.FK_Budget_money_detail_budget_money_doc">
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_code" Association="Self.FK_Budget_money_detail_item_code">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_detail_id" Association="Self.FK_Budget_money_detail_item_detail_id">
+      <End Role="Item_detail" EntitySet="Item_detail" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_group_detail_id" Association="Self.FK_Budget_money_detail_item_group_detail_id">
+      <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_head_budget_plan_code" Association="Self.FK_Budget_money_head_budget_plan_code">
+      <End Role="Budget_plan" EntitySet="Budget_plan" />
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_head_degree_code" Association="Self.FK_Budget_money_head_degree_code">
+      <End Role="Degree" EntitySet="Degree" />
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_major_budget_money_detail_id" Association="Self.FK_Budget_money_major_budget_money_detail_id">
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_major_major_code" Association="Self.FK_Budget_money_major_major_code">
+      <End Role="Major" EntitySet="Major" />
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
     </AssociationSet>
     <AssociationSet Name="FK_budget_plan_activity_code" Association="Self.FK_budget_plan_activity_code">
       <End Role="Activity" EntitySet="Activity" />

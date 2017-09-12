@@ -14,6 +14,12 @@ namespace myModel
     
     public partial class Item_detail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Item_detail()
+        {
+            this.Budget_money_detail = new HashSet<Budget_money_detail>();
+        }
+    
         public int item_detail_id { get; set; }
         public string item_detail_code { get; set; }
         public string item_detail_name { get; set; }
@@ -23,5 +29,8 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_money_detail> Budget_money_detail { get; set; }
     }
 }

@@ -20,7 +20,6 @@
     <EntitySet Name="Person_group" EntityType="mju_budgetModel.Person_group" />
     <EntitySet Name="Person_his" EntityType="mju_budgetModel.Person_his" />
     <EntitySet Name="Person_manage" EntityType="mju_budgetModel.Person_manage" />
-    <EntitySet Name="Person_status" EntityType="mju_budgetModel.Person_status" />
     <EntitySet Name="Person_work" EntityType="mju_budgetModel.Person_work" />
     <EntitySet Name="Person_work_status" EntityType="mju_budgetModel.Person_work_status" />
     <EntitySet Name="Plans" EntityType="mju_budgetModel.Plan" />
@@ -31,7 +30,6 @@
     <EntitySet Name="Units" EntityType="mju_budgetModel.Unit" />
     <EntitySet Name="User_group" EntityType="mju_budgetModel.User_group" />
     <EntitySet Name="User_group_menu" EntityType="mju_budgetModel.User_group_menu" />
-    <EntitySet Name="Usermenus" EntityType="mju_budgetModel.Usermenu" />
     <EntitySet Name="Works" EntityType="mju_budgetModel.Work" />
     <AssociationSet Name="FK_activity_produce_code" Association="mju_budgetModel.FK_activity_produce_code">
       <End Role="Produce" EntitySet="Produces" />
@@ -117,6 +115,53 @@
     <EntitySet Name="view_Item_group_detail" EntityType="mju_budgetModel.view_Item_group_detail" />
     <EntitySet Name="view_Item" EntityType="mju_budgetModel.view_Item" />
     <EntitySet Name="view_Item_detail" EntityType="mju_budgetModel.view_Item_detail" />
+    <EntitySet Name="Budget_money_detail" EntityType="mju_budgetModel.Budget_money_detail" />
+    <EntitySet Name="Budget_money_head" EntityType="mju_budgetModel.Budget_money_head" />
+    <EntitySet Name="Budget_money_major" EntityType="mju_budgetModel.Budget_money_major" />
+    <EntitySet Name="Degrees" EntityType="mju_budgetModel.Degree" />
+    <EntitySet Name="view_Activity" EntityType="mju_budgetModel.view_Activity" />
+    <EntitySet Name="view_Budget_money_detail" EntityType="mju_budgetModel.view_Budget_money_detail" />
+    <EntitySet Name="view_Budget_money_head" EntityType="mju_budgetModel.view_Budget_money_head" />
+    <EntitySet Name="view_Budget_money_major" EntityType="mju_budgetModel.view_Budget_money_major" />
+    <EntitySet Name="view_Budget_plan" EntityType="mju_budgetModel.view_Budget_plan" />
+    <EntitySet Name="view_Menu" EntityType="mju_budgetModel.view_Menu" />
+    <EntitySet Name="view_Person_all" EntityType="mju_budgetModel.view_Person_all" />
+    <EntitySet Name="view_Person_list" EntityType="mju_budgetModel.view_Person_list" />
+    <EntitySet Name="view_Person_user" EntityType="mju_budgetModel.view_Person_user" />
+    <EntitySet Name="view_Unit" EntityType="mju_budgetModel.view_Unit" />
+    <EntitySet Name="view_User_group_menu" EntityType="mju_budgetModel.view_User_group_menu" />
+    <AssociationSet Name="FK_Budget_money_detail_budget_money_doc" Association="mju_budgetModel.FK_Budget_money_detail_budget_money_doc">
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_code" Association="mju_budgetModel.FK_Budget_money_detail_item_code">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_detail_id" Association="mju_budgetModel.FK_Budget_money_detail_item_detail_id">
+      <End Role="Item_detail" EntitySet="Item_detail" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_detail_item_group_detail_id" Association="mju_budgetModel.FK_Budget_money_detail_item_group_detail_id">
+      <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_major_budget_money_detail_id" Association="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id">
+      <End Role="Budget_money_detail" EntitySet="Budget_money_detail" />
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_head_budget_plan_code" Association="mju_budgetModel.FK_Budget_money_head_budget_plan_code">
+      <End Role="Budget_plan" EntitySet="Budget_plan" />
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_head_degree_code" Association="mju_budgetModel.FK_Budget_money_head_degree_code">
+      <End Role="Degree" EntitySet="Degrees" />
+      <End Role="Budget_money_head" EntitySet="Budget_money_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_money_major_major_code" Association="mju_budgetModel.FK_Budget_money_major_major_code">
+      <End Role="Major" EntitySet="Majors" />
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Activity">
     <Key>
@@ -173,6 +218,7 @@
     <NavigationProperty Name="Unit" Relationship="mju_budgetModel.FK_budget_plan_unit_code" FromRole="Budget_plan" ToRole="Unit" />
     <NavigationProperty Name="Work" Relationship="mju_budgetModel.FK_budget_plan_work_code" FromRole="Budget_plan" ToRole="Work" />
     <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_budget_plan_code" FromRole="Budget_plan" ToRole="Person_work" />
+    <NavigationProperty Name="Budget_money_head" Relationship="mju_budgetModel.FK_Budget_money_head_budget_plan_code" FromRole="Budget_plan" ToRole="Budget_money_head" />
   </EntityType>
   <EntityType Name="Config_item">
     <Key>
@@ -254,6 +300,7 @@
     <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item" ToRole="Item_group_detail" />
+    <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_item_code" FromRole="Item" ToRole="Budget_money_detail" />
   </EntityType>
   <EntityType Name="Item_detail">
     <Key>
@@ -268,6 +315,7 @@
     <Property Name="d_created_date" Type="DateTime" Precision="3" />
     <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_item_detail_id" FromRole="Item_detail" ToRole="Budget_money_detail" />
   </EntityType>
   <EntityType Name="Item_group">
     <Key>
@@ -300,6 +348,7 @@
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Items" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item_group_detail" ToRole="Item" />
     <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_detail_item_group" FromRole="Item_group_detail" ToRole="Item_group" />
+    <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_item_group_detail_id" FromRole="Item_group_detail" ToRole="Budget_money_detail" />
   </EntityType>
   <EntityType Name="Level_position">
     <Key>
@@ -343,6 +392,7 @@
     <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_major_code" FromRole="Major" ToRole="Person_work" />
+    <NavigationProperty Name="Budget_money_major" Relationship="mju_budgetModel.FK_Budget_money_major_major_code" FromRole="Major" ToRole="Budget_money_major" />
   </EntityType>
   <EntityType Name="Menu">
     <Key>
@@ -432,24 +482,6 @@
     <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_person_manage_code" FromRole="Person_manage" ToRole="Person_work" />
-  </EntityType>
-  <EntityType Name="Person_status">
-    <Key>
-      <PropertyRef Name="person_code" />
-    </Key>
-    <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="person_sex" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-    <Property Name="person_high" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="person_width" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="person_origin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="person_nation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="person_religion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="person_birth" Type="DateTime" Precision="3" />
-    <Property Name="person_marry" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="d_created_date" Type="DateTime" Precision="3" />
-    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Person_work">
     <Key>
@@ -614,24 +646,6 @@
     <Property Name="CanDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CanApprove" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CanExtra" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-    <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="Usermenu">
-    <Key>
-      <PropertyRef Name="UserID" />
-      <PropertyRef Name="MenuID" />
-    </Key>
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <Property Name="MenuID" Type="Int16" Nullable="false" />
-    <Property Name="CanView" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CanInsert" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CanEdit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CanDelete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CanApprove" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-    <Property Name="CanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
     <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -979,4 +993,594 @@
     <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
+  <EntityType Name="Budget_money_detail">
+    <Key>
+      <PropertyRef Name="budget_money_detail_id" />
+    </Key>
+    <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" Nullable="false" />
+    <Property Name="item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_id" Type="Int32" />
+    <Property Name="budget_detail_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_head" Relationship="mju_budgetModel.FK_Budget_money_detail_budget_money_doc" FromRole="Budget_money_detail" ToRole="Budget_money_head" />
+    <NavigationProperty Name="Item" Relationship="mju_budgetModel.FK_Budget_money_detail_item_code" FromRole="Budget_money_detail" ToRole="Item" />
+    <NavigationProperty Name="Item_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_item_detail_id" FromRole="Budget_money_detail" ToRole="Item_detail" />
+    <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_item_group_detail_id" FromRole="Budget_money_detail" ToRole="Item_group_detail" />
+    <NavigationProperty Name="Budget_money_major" Relationship="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id" FromRole="Budget_money_detail" ToRole="Budget_money_major" />
+  </EntityType>
+  <EntityType Name="Budget_money_head">
+    <Key>
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_detail_budget_money_doc" FromRole="Budget_money_head" ToRole="Budget_money_detail" />
+    <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Budget_money_head_budget_plan_code" FromRole="Budget_money_head" ToRole="Budget_plan" />
+    <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Budget_money_head_degree_code" FromRole="Budget_money_head" ToRole="Degree" />
+  </EntityType>
+  <EntityType Name="Budget_money_major">
+    <Key>
+      <PropertyRef Name="budget_money_major_id" />
+    </Key>
+    <Property Name="budget_money_major_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id" FromRole="Budget_money_major" ToRole="Budget_money_detail" />
+    <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Budget_money_major_major_code" FromRole="Budget_money_major" ToRole="Major" />
+  </EntityType>
+  <EntityType Name="Degree">
+    <Key>
+      <PropertyRef Name="degree_code" />
+    </Key>
+    <Property Name="degree_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_head" Relationship="mju_budgetModel.FK_Budget_money_head_degree_code" FromRole="Degree" ToRole="Budget_money_head" />
+  </EntityType>
+  <EntityType Name="view_Activity">
+    <Key>
+      <PropertyRef Name="activity_code" />
+    </Key>
+    <Property Name="activity_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="activity_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Budget_money_detail">
+    <Key>
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="budget_money_doc" />
+      <PropertyRef Name="item_group_detail_id" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" Nullable="false" />
+    <Property Name="item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_id" Type="Int32" />
+    <Property Name="budget_detail_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Budget_money_head">
+    <Key>
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Budget_money_major">
+    <Key>
+      <PropertyRef Name="budget_money_major_id" />
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="major_code" />
+      <PropertyRef Name="budget_money_doc" />
+      <PropertyRef Name="item_group_detail_id" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="budget_money_major_id" Type="Int64" Nullable="false" />
+    <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" Nullable="false" />
+    <Property Name="item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_id" Type="Int32" />
+    <Property Name="budget_detail_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_detail_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Budget_plan">
+    <Key>
+      <PropertyRef Name="budget_plan_code" />
+    </Key>
+    <Property Name="budget_plan_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_sign_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="director_sign_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Menu">
+    <Key>
+      <PropertyRef Name="MenuID" />
+      <PropertyRef Name="MenuName" />
+      <PropertyRef Name="MenuNavigationUrl" />
+      <PropertyRef Name="MenuTarget" />
+      <PropertyRef Name="MenuParent" />
+      <PropertyRef Name="CanView" />
+      <PropertyRef Name="CanInsert" />
+      <PropertyRef Name="CanEdit" />
+      <PropertyRef Name="CanDelete" />
+      <PropertyRef Name="CanApprove" />
+      <PropertyRef Name="CanExtra" />
+      <PropertyRef Name="Status" />
+    </Key>
+    <Property Name="MenuID" Type="Int16" Nullable="false" />
+    <Property Name="MenuName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuNavigationUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuTarget" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MenuParent" Type="Int16" Nullable="false" />
+    <Property Name="MenuOrder" Type="Int16" />
+    <Property Name="CanView" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanInsert" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanEdit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanDelete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanApprove" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="MenuParentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="view_Person_all">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="title_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_eng_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_eng_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="position_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_level" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_postionno" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="person_end" Type="DateTime" Precision="3" />
+    <Property Name="person_group_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_manage_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_manage_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_work_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_work_status_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="title_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="person_start" Type="DateTime" Precision="3" />
+    <Property Name="level_position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="type_position_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="type_position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Person_list">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="title_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_eng_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_eng_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_nickname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="title_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_group_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="person_work_status_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_work_status_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="position_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_level" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_manage_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="type_position_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="type_position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="person_budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="person_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="person_manage_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="position_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="user_group_list" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Person_user">
+    <Key>
+      <PropertyRef Name="person_code" />
+    </Key>
+    <Property Name="person_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="position_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_thai_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="title_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="user_group_list" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="person_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Unit">
+    <Key>
+      <PropertyRef Name="unit_code" />
+    </Key>
+    <Property Name="unit_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="unit_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_User_group_menu">
+    <Key>
+      <PropertyRef Name="user_group_code" />
+      <PropertyRef Name="MenuName" />
+      <PropertyRef Name="MenuNavigationUrl" />
+      <PropertyRef Name="MenuTarget" />
+      <PropertyRef Name="MenuParent" />
+      <PropertyRef Name="MenuCanView" />
+      <PropertyRef Name="MenuCanInsert" />
+      <PropertyRef Name="MenuCanEdit" />
+      <PropertyRef Name="MenuCanDelete" />
+      <PropertyRef Name="MenuCanApprove" />
+      <PropertyRef Name="MenuCanExtra" />
+      <PropertyRef Name="Menu_Status" />
+    </Key>
+    <Property Name="user_group_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="CanView" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanInsert" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanEdit" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanApprove" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CanExtra" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="user_group_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="MenuName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuNavigationUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuTarget" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MenuParent" Type="Int16" Nullable="false" />
+    <Property Name="MenuOrder" Type="Int16" />
+    <Property Name="MenuCanView" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MenuCanInsert" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MenuCanEdit" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MenuCanDelete" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MenuCanApprove" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="MenuCanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="person_group_list" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="director_lock" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="unit_lock" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="unit_code_list" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Menu_Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MenuID" Type="Int16" />
+  </EntityType>
+  <Association Name="FK_Budget_money_detail_budget_money_doc">
+    <End Type="mju_budgetModel.Budget_money_head" Role="Budget_money_head" Multiplicity="1" />
+    <End Type="mju_budgetModel.Budget_money_detail" Role="Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_head">
+        <PropertyRef Name="budget_money_doc" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="budget_money_doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_code">
+    <End Type="mju_budgetModel.Item" Role="Item" Multiplicity="1" />
+    <End Type="mju_budgetModel.Budget_money_detail" Role="Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_detail_id">
+    <End Type="mju_budgetModel.Item_detail" Role="Item_detail" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_money_detail" Role="Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_detail">
+        <PropertyRef Name="item_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_detail_item_group_detail_id">
+    <End Type="mju_budgetModel.Item_group_detail" Role="Item_group_detail" Multiplicity="1" />
+    <End Type="mju_budgetModel.Budget_money_detail" Role="Budget_money_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_group_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_major_budget_money_detail_id">
+    <End Type="mju_budgetModel.Budget_money_detail" Role="Budget_money_detail" Multiplicity="1" />
+    <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_detail">
+        <PropertyRef Name="budget_money_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_money_major">
+        <PropertyRef Name="budget_money_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_head_budget_plan_code">
+    <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_money_head" Role="Budget_money_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_plan">
+        <PropertyRef Name="budget_plan_code" />
+      </Principal>
+      <Dependent Role="Budget_money_head">
+        <PropertyRef Name="budget_plan_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_head_degree_code">
+    <End Type="mju_budgetModel.Degree" Role="Degree" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_money_head" Role="Budget_money_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="degree_code" />
+      </Principal>
+      <Dependent Role="Budget_money_head">
+        <PropertyRef Name="degree_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_money_major_major_code">
+    <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="1" />
+    <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="major_code" />
+      </Principal>
+      <Dependent Role="Budget_money_major">
+        <PropertyRef Name="major_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

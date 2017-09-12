@@ -250,6 +250,24 @@ namespace myWeb
         }
 
 
+        public string PersonId
+        {
+            get
+            {
+                if (Session["PersonId"] == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return Session["PersonId"].ToString();
+                }
+            }
+            set
+            {
+                Session["PersonId"] = value;
+            }
+        }
 
 
 

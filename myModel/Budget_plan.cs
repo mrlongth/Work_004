@@ -18,6 +18,7 @@ namespace myModel
         public Budget_plan()
         {
             this.Person_work = new HashSet<Person_work>();
+            this.Budget_money_head = new HashSet<Budget_money_head>();
         }
     
         public string budget_plan_code { get; set; }
@@ -41,5 +42,7 @@ namespace myModel
         public virtual Work Work { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person_work> Person_work { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_money_head> Budget_money_head { get; set; }
     }
 }

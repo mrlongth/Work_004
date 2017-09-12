@@ -60,7 +60,12 @@
                     </td>
                     <td width="69%">
                         <asp:TextBox ID="txtUser" runat="server" CssClass="text_f" CausesValidation="True"
-                            ValidationGroup="A" Width="193px" />
+                            ValidationGroup="A" Width="90px" />
+                        <asp:DropDownList runat="server" CssClass="textbox" ID="cboDomain" Width="100px">
+                            <asp:ListItem Selected="True">@mju.ac.th</asp:ListItem>
+                            <asp:ListItem>@phrae.mju.ac.th</asp:ListItem>
+                            <asp:ListItem>@chumphon.mju.ac.th</asp:ListItem>
+                        </asp:DropDownList>
                     </td>
                 </tr>
                 <tr>

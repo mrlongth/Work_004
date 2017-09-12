@@ -47,6 +47,7 @@ namespace myWeb.App_Control.person
                 InitcboYear();
                 InitcboWork_status();
                 InitcboPerson_group();
+
                 BindGridView(0);
 
                 imgNew.Visible = base.IsUserNew;
@@ -243,9 +244,7 @@ namespace myWeb.App_Control.person
 
         private void BindGridView(int nPageNo)
         {
-            InitcboYear();
-            InitcboWork_status();
-            InitcboPerson_group();
+           
             //InitcboDirector();
             // InitcboUnit();
             cPerson oPerson = new cPerson();
@@ -786,29 +785,29 @@ namespace myWeb.App_Control.person
         protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
         {
             InitcboDirector();
-            BindGridView(0);
+            //BindGridView(0);
         }
 
         protected void cboPerson_group_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridView(0);
+            //BindGridView(0);
         }
 
         protected void cboPerson_work_status_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridView(0);
+            //BindGridView(0);
         }
 
         protected void cboDirector_SelectedIndexChanged(object sender, EventArgs e)
         {
             InitcboUnit();
-            BindGridView(0);
+            //BindGridView(0);
         }
 
         protected void cboUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            InitcboUnit();
-            BindGridView(0);
+            //InitcboUnit();
+           // BindGridView(0);
         }
 
     }

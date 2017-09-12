@@ -66,13 +66,24 @@ namespace myWeb
             string strPass = txtPass.Text.Trim();
             string strMessage = string.Empty;
             string strPersonID = string.Empty;
-            if (!SetUserProfile(strUser, strPass, ref strMessage))
+            strUser += cboDomain.SelectedItem.Text;
+            strMessage = string.Empty;
+            strPersonID = MjuVerifyUser(strUser, strPass, ref strMessage);
+            if (strPersonID.Length > 0)
+            {
+                SetUserProfile(strPersonID, ref strMessage);
+            }
+            else
             {
                 MsgBox("ไม่สามารถ Login เข้าสู่ระบบได้ เนื่องจาก Username หรือ Password ผิดพลาด");
             }
+            if (!string.IsNullOrEmpty(strMessage))
+            {
+                MsgBox(strMessage);
+            }
         }
 
-        protected bool SetUserProfile(string strUserName, string strPassword, ref string _strError)
+        protected bool SetUserProfile(string strUserName, ref string _strError)
         {
             bool booResult = false;
             cPerson objPerson = new cPerson();
@@ -81,63 +92,45 @@ namespace myWeb
             DataSet ds = new DataSet();
             string strCriteria;
             string strMessage = string.Empty;
-            string strDecryptPassword = string.Empty;
-            string strMyPassword = string.Empty;
             strCriteria = " And person_id='" + strUserName + "' ";
             objUser.SP_PERSON_USER_SEL(strCriteria, ref ds, ref strMessage);
             dt = ds.Tables[0];
             if (dt.Rows.Count > 0)
             {
-                strMyPassword = Helper.CStr(dt.Rows[0]["person_password"]);
-                if (strMyPassword.Length == 0)
+                base.PersonId = strUserName;
+                this.UserGroupList = Helper.CStr(dt.Rows[0]["user_group_list"]);
+                string[] ArrUserGroup = this.UserGroupList.Split(',');
+                if (ArrUserGroup.Length > 1)
                 {
-                    strDecryptPassword = cCommon.CheckDate(Helper.CStr(dt.Rows[0]["person_birth"]));
+                    cCommon oCommon = new cCommon();
+                    strMessage = string.Empty;
+                    strCriteria = string.Empty;
+                    ds = new DataSet();
+                    dt = new DataTable();
+                    string struser_group_list = string.Empty;
+                    foreach (string str in ArrUserGroup)
+                    {
+                        struser_group_list += "'" + str + "',";
+                    }
+                    if (struser_group_list.Length > 0)
+                    {
+                        struser_group_list = struser_group_list.Substring(0, struser_group_list.Length - 1);
+                    }
+                    strCriteria = " Select * from  user_group where user_group_code in (" + struser_group_list + ")";
+                    if (oCommon.SEL_SQL(strCriteria, ref ds, ref strMessage))
+                    {
+                        dt = ds.Tables[0];
+                        rptUserGroupSelect.DataSource = dt;
+                        rptUserGroupSelect.DataBind();
+                        WarningModal.Show();
+                    }
                 }
                 else
                 {
-                    strDecryptPassword = Cryptorengine.Decrypt(strMyPassword, true);
+                    this.UserGroupCode = ArrUserGroup[0].Trim();
+                    GotoUserMode(this.UserGroupCode);
                 }
-
-                if (strDecryptPassword.Equals(strPassword))
-                {
-                    this.UserGroupList = Helper.CStr(dt.Rows[0]["user_group_list"]);                   
-                    string[] ArrUserGroup = this.UserGroupList.Split(',');
-                    if (ArrUserGroup.Length > 1)
-                    {
-                        cCommon oCommon = new cCommon();
-                        strMessage = string.Empty;
-                        strCriteria = string.Empty;
-                        ds = new DataSet();
-                        dt = new DataTable();
-                        string struser_group_list = string.Empty;
-                        foreach (string str in ArrUserGroup)
-                        {
-                            struser_group_list += "'" + str + "',";
-                        }
-                        if (struser_group_list.Length > 0)
-                        {
-                            struser_group_list = struser_group_list.Substring(0, struser_group_list.Length - 1);
-                        }
-                        strCriteria = " Select * from  user_group where user_group_code in (" + struser_group_list + ")";
-                        if (oCommon.SEL_SQL(strCriteria, ref ds, ref strMessage))
-                        {
-                            dt = ds.Tables[0];
-                            rptUserGroupSelect.DataSource = dt;
-                            rptUserGroupSelect.DataBind();
-                            WarningModal.Show();
-                        }
-                    }
-                    else
-                    {
-                        this.UserGroupCode = ArrUserGroup[0].Trim();
-                        GotoUserMode(this.UserGroupCode);
-                    }
-                    booResult = true;
-                }
-                else
-                {
-                    _strError = "รหัสผ่านไม่ถูกต้อง";
-                }
+                booResult = true;
             }
             else
             {
@@ -175,7 +168,6 @@ namespace myWeb
             }
             return booResult;
         }
-
 
         private void BindPin()
         {
@@ -403,7 +395,7 @@ namespace myWeb
 
 
                 cPerson objPerson = new cPerson();
-                strCriteria = " And person_id='" + txtUser.Text + "' ";
+                strCriteria = " And person_id='" + base.PersonId + "' ";
                 objPerson.SP_PERSON_LIST_SEL(strCriteria, ref ds, ref strMessage);
                 dt = ds.Tables[0];
                 if (dt.Rows.Count > 0)
@@ -421,6 +413,23 @@ namespace myWeb
 
             }
         }
+
+        protected string MjuVerifyUser(string strUserName, string strPassword, ref string _strError)
+        {
+            string PersonID = string.Empty;
+            try
+            {
+                myWeb.th.ac.mju.ouop.verifyuser oServiceClient = new myWeb.th.ac.mju.ouop.verifyuser();
+                PersonID = oServiceClient.verifyuserND(strUserName, strPassword);
+            }
+            catch (Exception ex)
+            {
+                _strError = ex.Message;
+            }
+            return PersonID;
+        }
+
+
 
     }
 }

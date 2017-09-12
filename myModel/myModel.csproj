@@ -55,10 +55,22 @@
     <Compile Include="Budget.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Budget_money_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Budget_money_head.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Budget_money_major.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Budget_plan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Config_item.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Degree.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Director.cs">
@@ -121,9 +133,6 @@
     <Compile Include="Person_manage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Person_status.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Person_work.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -149,13 +158,25 @@
     <Compile Include="Unit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Usermenu.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="User_group.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="User_group_menu.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Activity.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_money_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_money_head.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_money_major.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_plan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Item.cs">
@@ -168,6 +189,24 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Item_group_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Menu.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Person_all.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Person_list.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Person_user.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Unit.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_User_group_menu.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Work.cs">

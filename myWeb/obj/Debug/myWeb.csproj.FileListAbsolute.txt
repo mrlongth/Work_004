@@ -30,4 +30,3 @@ E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csprojResolveAssembl
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.csproj.CoreCompileInputs.cache
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.dll
 E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.pdb
-E:\WorkAll\myData\MyWork\MJU\Work_004\myWeb\obj\Debug\myWeb.dll.licenses

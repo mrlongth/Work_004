@@ -312,25 +312,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Person_status">
-      <EntityTypeMapping TypeName="mju_budgetModel.Person_status">
-        <MappingFragment StoreEntitySet="Person_status">
-          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
-          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
-          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
-          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
-          <ScalarProperty Name="person_marry" ColumnName="person_marry" />
-          <ScalarProperty Name="person_birth" ColumnName="person_birth" />
-          <ScalarProperty Name="person_religion" ColumnName="person_religion" />
-          <ScalarProperty Name="person_nation" ColumnName="person_nation" />
-          <ScalarProperty Name="person_origin" ColumnName="person_origin" />
-          <ScalarProperty Name="person_width" ColumnName="person_width" />
-          <ScalarProperty Name="person_high" ColumnName="person_high" />
-          <ScalarProperty Name="person_sex" ColumnName="person_sex" />
-          <ScalarProperty Name="person_code" ColumnName="person_code" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Person_work">
       <EntityTypeMapping TypeName="mju_budgetModel.Person_work">
         <MappingFragment StoreEntitySet="Person_work">
@@ -492,24 +473,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Usermenus">
-      <EntityTypeMapping TypeName="mju_budgetModel.Usermenu">
-        <MappingFragment StoreEntitySet="Usermenu">
-          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
-          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
-          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
-          <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
-          <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
-          <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
-          <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
-          <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
-          <ScalarProperty Name="CanView" ColumnName="CanView" />
-          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Works">
       <EntityTypeMapping TypeName="mju_budgetModel.Work">
         <MappingFragment StoreEntitySet="Work">
@@ -613,6 +576,474 @@
           <ScalarProperty Name="item_detail_name" ColumnName="item_detail_name" />
           <ScalarProperty Name="item_detail_code" ColumnName="item_detail_code" />
           <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budget_money_detail">
+      <EntityTypeMapping TypeName="mju_budgetModel.Budget_money_detail">
+        <MappingFragment StoreEntitySet="Budget_money_detail">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_detail_comment" ColumnName="budget_detail_comment" />
+          <ScalarProperty Name="budget_detail_money_remain" ColumnName="budget_detail_money_remain" />
+          <ScalarProperty Name="budget_detail_money_use" ColumnName="budget_detail_money_use" />
+          <ScalarProperty Name="budget_detail_money_contribute" ColumnName="budget_detail_money_contribute" />
+          <ScalarProperty Name="budget_detail_money_plan" ColumnName="budget_detail_money_plan" />
+          <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+          <ScalarProperty Name="budget_money_detail_id" ColumnName="budget_money_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budget_money_head">
+      <EntityTypeMapping TypeName="mju_budgetModel.Budget_money_head">
+        <MappingFragment StoreEntitySet="Budget_money_head">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="budget_money_remain" ColumnName="budget_money_remain" />
+          <ScalarProperty Name="budget_money_use" ColumnName="budget_money_use" />
+          <ScalarProperty Name="budget_money_contribute" ColumnName="budget_money_contribute" />
+          <ScalarProperty Name="budget_money_plan" ColumnName="budget_money_plan" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budget_money_major">
+      <EntityTypeMapping TypeName="mju_budgetModel.Budget_money_major">
+        <MappingFragment StoreEntitySet="Budget_money_major">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_money_major_comment" ColumnName="budget_money_major_comment" />
+          <ScalarProperty Name="budget_money_major_remain" ColumnName="budget_money_major_remain" />
+          <ScalarProperty Name="budget_money_major_use" ColumnName="budget_money_major_use" />
+          <ScalarProperty Name="budget_money_major_contribute" ColumnName="budget_money_major_contribute" />
+          <ScalarProperty Name="budget_money_major_plan" ColumnName="budget_money_major_plan" />
+          <ScalarProperty Name="major_code" ColumnName="major_code" />
+          <ScalarProperty Name="budget_money_detail_id" ColumnName="budget_money_detail_id" />
+          <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Degrees">
+      <EntityTypeMapping TypeName="mju_budgetModel.Degree">
+        <MappingFragment StoreEntitySet="Degree">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Activity">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Activity">
+        <MappingFragment StoreEntitySet="view_Activity">
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_year" ColumnName="budget_year" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_year" ColumnName="produce_year" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="activity_year" ColumnName="activity_year" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_money_detail">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_money_detail">
+        <MappingFragment StoreEntitySet="view_Budget_money_detail">
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="budget_detail_comment" ColumnName="budget_detail_comment" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_money_remain" ColumnName="budget_money_remain" />
+          <ScalarProperty Name="budget_money_use" ColumnName="budget_money_use" />
+          <ScalarProperty Name="budget_money_contribute" ColumnName="budget_money_contribute" />
+          <ScalarProperty Name="budget_money_plan" ColumnName="budget_money_plan" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_detail_money_remain" ColumnName="budget_detail_money_remain" />
+          <ScalarProperty Name="budget_detail_money_use" ColumnName="budget_detail_money_use" />
+          <ScalarProperty Name="budget_detail_money_contribute" ColumnName="budget_detail_money_contribute" />
+          <ScalarProperty Name="budget_detail_money_plan" ColumnName="budget_detail_money_plan" />
+          <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+          <ScalarProperty Name="budget_money_detail_id" ColumnName="budget_money_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_money_head">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_money_head">
+        <MappingFragment StoreEntitySet="view_Budget_money_head">
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="budget_money_remain" ColumnName="budget_money_remain" />
+          <ScalarProperty Name="budget_money_use" ColumnName="budget_money_use" />
+          <ScalarProperty Name="budget_money_contribute" ColumnName="budget_money_contribute" />
+          <ScalarProperty Name="budget_money_plan" ColumnName="budget_money_plan" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_money_major">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_money_major">
+        <MappingFragment StoreEntitySet="view_Budget_money_major">
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="budget_detail_comment" ColumnName="budget_detail_comment" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_money_remain" ColumnName="budget_money_remain" />
+          <ScalarProperty Name="budget_money_use" ColumnName="budget_money_use" />
+          <ScalarProperty Name="budget_money_contribute" ColumnName="budget_money_contribute" />
+          <ScalarProperty Name="budget_money_plan" ColumnName="budget_money_plan" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+          <ScalarProperty Name="budget_detail_money_remain" ColumnName="budget_detail_money_remain" />
+          <ScalarProperty Name="budget_detail_money_use" ColumnName="budget_detail_money_use" />
+          <ScalarProperty Name="budget_detail_money_contribute" ColumnName="budget_detail_money_contribute" />
+          <ScalarProperty Name="budget_detail_money_plan" ColumnName="budget_detail_money_plan" />
+          <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_money_major_comment" ColumnName="budget_money_major_comment" />
+          <ScalarProperty Name="budget_money_major_remain" ColumnName="budget_money_major_remain" />
+          <ScalarProperty Name="budget_money_major_use" ColumnName="budget_money_major_use" />
+          <ScalarProperty Name="budget_money_major_contribute" ColumnName="budget_money_major_contribute" />
+          <ScalarProperty Name="budget_money_major_plan" ColumnName="budget_money_major_plan" />
+          <ScalarProperty Name="major_code" ColumnName="major_code" />
+          <ScalarProperty Name="budget_money_detail_id" ColumnName="budget_money_detail_id" />
+          <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_plan">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_plan">
+        <MappingFragment StoreEntitySet="view_Budget_plan">
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="director_sign_image" ColumnName="director_sign_image" />
+          <ScalarProperty Name="director_sign_name" ColumnName="director_sign_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Menu">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Menu">
+        <MappingFragment StoreEntitySet="view_Menu">
+          <ScalarProperty Name="MenuImageUrl" ColumnName="MenuImageUrl" />
+          <ScalarProperty Name="MenuParentName" ColumnName="MenuParentName" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
+          <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
+          <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+          <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+          <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
+          <ScalarProperty Name="CanView" ColumnName="CanView" />
+          <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+          <ScalarProperty Name="MenuParent" ColumnName="MenuParent" />
+          <ScalarProperty Name="MenuTarget" ColumnName="MenuTarget" />
+          <ScalarProperty Name="MenuNavigationUrl" ColumnName="MenuNavigationUrl" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Person_all">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Person_all">
+        <MappingFragment StoreEntitySet="view_Person_all">
+          <ScalarProperty Name="major_code" ColumnName="major_code" />
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="major_year" ColumnName="major_year" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="person_budget_type" ColumnName="person_budget_type" />
+          <ScalarProperty Name="type_position_name" ColumnName="type_position_name" />
+          <ScalarProperty Name="type_position_code" ColumnName="type_position_code" />
+          <ScalarProperty Name="level_position_name" ColumnName="level_position_name" />
+          <ScalarProperty Name="person_start" ColumnName="person_start" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="title_name" ColumnName="title_name" />
+          <ScalarProperty Name="person_work_status_name" ColumnName="person_work_status_name" />
+          <ScalarProperty Name="person_work_status_code" ColumnName="person_work_status_code" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="person_manage_name" ColumnName="person_manage_name" />
+          <ScalarProperty Name="person_manage_code" ColumnName="person_manage_code" />
+          <ScalarProperty Name="person_group_name" ColumnName="person_group_name" />
+          <ScalarProperty Name="person_group_code" ColumnName="person_group_code" />
+          <ScalarProperty Name="person_end" ColumnName="person_end" />
+          <ScalarProperty Name="person_postionno" ColumnName="person_postionno" />
+          <ScalarProperty Name="person_level" ColumnName="person_level" />
+          <ScalarProperty Name="position_name" ColumnName="position_name" />
+          <ScalarProperty Name="position_code" ColumnName="position_code" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="person_pic" ColumnName="person_pic" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="person_nickname" ColumnName="person_nickname" />
+          <ScalarProperty Name="person_eng_surname" ColumnName="person_eng_surname" />
+          <ScalarProperty Name="person_eng_name" ColumnName="person_eng_name" />
+          <ScalarProperty Name="person_thai_surname" ColumnName="person_thai_surname" />
+          <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
+          <ScalarProperty Name="title_code" ColumnName="title_code" />
+          <ScalarProperty Name="person_code" ColumnName="person_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Person_list">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Person_list">
+        <MappingFragment StoreEntitySet="view_Person_list">
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="major_year" ColumnName="major_year" />
+          <ScalarProperty Name="major_code" ColumnName="major_code" />
+          <ScalarProperty Name="user_group_list" ColumnName="user_group_list" />
+          <ScalarProperty Name="position_name" ColumnName="position_name" />
+          <ScalarProperty Name="person_manage_name" ColumnName="person_manage_name" />
+          <ScalarProperty Name="person_email" ColumnName="person_email" />
+          <ScalarProperty Name="person_password" ColumnName="person_password" />
+          <ScalarProperty Name="person_budget_type" ColumnName="person_budget_type" />
+          <ScalarProperty Name="type_position_name" ColumnName="type_position_name" />
+          <ScalarProperty Name="type_position_code" ColumnName="type_position_code" />
+          <ScalarProperty Name="person_manage_code" ColumnName="person_manage_code" />
+          <ScalarProperty Name="person_level" ColumnName="person_level" />
+          <ScalarProperty Name="position_code" ColumnName="position_code" />
+          <ScalarProperty Name="person_work_status_name" ColumnName="person_work_status_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
+          <ScalarProperty Name="person_group_name" ColumnName="person_group_name" />
+          <ScalarProperty Name="person_work_status_code" ColumnName="person_work_status_code" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="person_group_code" ColumnName="person_group_code" />
+          <ScalarProperty Name="title_name" ColumnName="title_name" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="c_active" ColumnName="c_active" />
+          <ScalarProperty Name="person_pic" ColumnName="person_pic" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="person_nickname" ColumnName="person_nickname" />
+          <ScalarProperty Name="person_eng_surname" ColumnName="person_eng_surname" />
+          <ScalarProperty Name="person_eng_name" ColumnName="person_eng_name" />
+          <ScalarProperty Name="person_thai_surname" ColumnName="person_thai_surname" />
+          <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
+          <ScalarProperty Name="title_code" ColumnName="title_code" />
+          <ScalarProperty Name="person_code" ColumnName="person_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Person_user">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Person_user">
+        <MappingFragment StoreEntitySet="view_Person_user">
+          <ScalarProperty Name="person_pic" ColumnName="person_pic" />
+          <ScalarProperty Name="person_password" ColumnName="person_password" />
+          <ScalarProperty Name="person_id" ColumnName="person_id" />
+          <ScalarProperty Name="user_group_list" ColumnName="user_group_list" />
+          <ScalarProperty Name="title_name" ColumnName="title_name" />
+          <ScalarProperty Name="person_thai_surname" ColumnName="person_thai_surname" />
+          <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
+          <ScalarProperty Name="position_code" ColumnName="position_code" />
+          <ScalarProperty Name="person_code" ColumnName="person_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Unit">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Unit">
+        <MappingFragment StoreEntitySet="view_Unit">
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="unit_year" ColumnName="unit_year" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_User_group_menu">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_User_group_menu">
+        <MappingFragment StoreEntitySet="view_User_group_menu">
+          <ScalarProperty Name="MenuID" ColumnName="MenuID" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+          <ScalarProperty Name="Menu_Status" ColumnName="Menu_Status" />
+          <ScalarProperty Name="unit_code_list" ColumnName="unit_code_list" />
+          <ScalarProperty Name="unit_lock" ColumnName="unit_lock" />
+          <ScalarProperty Name="director_lock" ColumnName="director_lock" />
+          <ScalarProperty Name="person_group_list" ColumnName="person_group_list" />
+          <ScalarProperty Name="MenuCanExtra" ColumnName="MenuCanExtra" />
+          <ScalarProperty Name="MenuCanApprove" ColumnName="MenuCanApprove" />
+          <ScalarProperty Name="MenuCanDelete" ColumnName="MenuCanDelete" />
+          <ScalarProperty Name="MenuCanEdit" ColumnName="MenuCanEdit" />
+          <ScalarProperty Name="MenuCanInsert" ColumnName="MenuCanInsert" />
+          <ScalarProperty Name="MenuCanView" ColumnName="MenuCanView" />
+          <ScalarProperty Name="MenuOrder" ColumnName="MenuOrder" />
+          <ScalarProperty Name="MenuParent" ColumnName="MenuParent" />
+          <ScalarProperty Name="MenuTarget" ColumnName="MenuTarget" />
+          <ScalarProperty Name="MenuImageUrl" ColumnName="MenuImageUrl" />
+          <ScalarProperty Name="MenuNavigationUrl" ColumnName="MenuNavigationUrl" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="user_group_name" ColumnName="user_group_name" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CanExtra" ColumnName="CanExtra" />
+          <ScalarProperty Name="CanApprove" ColumnName="CanApprove" />
+          <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+          <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+          <ScalarProperty Name="CanInsert" ColumnName="CanInsert" />
+          <ScalarProperty Name="CanView" ColumnName="CanView" />
+          <ScalarProperty Name="user_group_code" ColumnName="user_group_code" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

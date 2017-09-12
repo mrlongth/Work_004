@@ -792,3 +792,14 @@ div.dd_chk_select_cust:hover {
     text-align:left ;
 }
 
+.container {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+

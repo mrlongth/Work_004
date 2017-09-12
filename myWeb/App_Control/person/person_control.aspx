@@ -1,7 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Site_popup.Master" EnableEventValidation="false"
     AutoEventWireup="true" CodeBehind="person_control.aspx.cs" Inherits="myWeb.App_Control.person.person_control" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxtoolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <script type="text/javascript" language="javascript">

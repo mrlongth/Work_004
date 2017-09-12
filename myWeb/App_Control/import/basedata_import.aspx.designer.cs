@@ -31,42 +31,6 @@ namespace myWeb.App_Control.basedata_import {
         protected global::System.Web.UI.WebControls.DropDownList cboYear;
         
         /// <summary>
-        /// imgFind control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgFind;
-        
-        /// <summary>
-        /// imgNew control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imgNew;
-        
-        /// <summary>
-        /// lblPage2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage2;
-        
-        /// <summary>
-        /// txtbasedata_import_code control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbasedata_import_code;
-        
-        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -76,84 +40,120 @@ namespace myWeb.App_Control.basedata_import {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// lblPage1 control.
+        /// imgFind control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage1;
+        protected global::System.Web.UI.WebControls.ImageButton imgFind;
         
         /// <summary>
-        /// txtbasedata_import_name control.
+        /// TabContainer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtbasedata_import_name;
+        protected global::AjaxControlToolkit.TabContainer TabContainer1;
         
         /// <summary>
-        /// lblPage3 control.
+        /// TabPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage3;
+        protected global::AjaxControlToolkit.TabPanel TabPanel1;
         
         /// <summary>
-        /// RadioAll control.
+        /// gridDirector control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioAll;
+        protected global::System.Web.UI.WebControls.GridView gridDirector;
         
         /// <summary>
-        /// RadioActive control.
+        /// TabPanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioActive;
+        protected global::AjaxControlToolkit.TabPanel TabPanel2;
         
         /// <summary>
-        /// RadioCancel control.
+        /// TabPanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton RadioCancel;
+        protected global::AjaxControlToolkit.TabPanel TabPanel3;
         
         /// <summary>
-        /// GridView1 control.
+        /// TabPanel4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::AjaxControlToolkit.TabPanel TabPanel4;
         
         /// <summary>
-        /// txthpage control.
+        /// TabPanel5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txthpage;
+        protected global::AjaxControlToolkit.TabPanel TabPanel5;
         
         /// <summary>
-        /// txthTotalRecord control.
+        /// TabPanel6 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden txthTotalRecord;
+        protected global::AjaxControlToolkit.TabPanel TabPanel6;
+        
+        /// <summary>
+        /// TabPanel7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel7;
+        
+        /// <summary>
+        /// TabPanel8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel8;
+        
+        /// <summary>
+        /// TabPanel9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel9;
+        
+        /// <summary>
+        /// TabPanel10 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.TabPanel TabPanel10;
     }
 }

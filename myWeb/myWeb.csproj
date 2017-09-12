@@ -105,6 +105,7 @@
   <ItemGroup>
     <Content Include="App_Control\activity\activity_view.aspx" />
     <Content Include="App_Control\budget\budget_view.aspx" />
+    <Content Include="App_Control\budget_money\budget_money_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
@@ -319,6 +320,13 @@
     </Compile>
     <Compile Include="App_Control\budget\budget_view.aspx.designer.cs">
       <DependentUpon>budget_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_list.aspx.cs">
+      <DependentUpon>budget_money_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_list.aspx.designer.cs">
+      <DependentUpon>budget_money_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\budget_plan\budget_plan_control.aspx.cs">
       <DependentUpon>budget_plan_control.aspx</DependentUpon>
@@ -939,6 +947,11 @@
     <Compile Include="Site_popup.Master.designer.cs">
       <DependentUpon>Site_popup.Master</DependentUpon>
     </Compile>
+    <Compile Include="Web References\th.ac.mju.ouop\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\AjaxLookup.dll" />
@@ -1514,6 +1527,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="scripts\date.js" />
+    <Content Include="Web References\th.ac.mju.ouop\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\th.ac.mju.ouop\ws.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Control\reportsparameter\" />
@@ -1533,7 +1551,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\licenses.licx" />
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ouop.mju.ac.th/ws.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\th.ac.mju.ouop\</RelPath>
+      <UpdateFromURL>http://ouop.mju.ac.th/ws.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>myWeb_th_ac_mju_ouop_verifyuser</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
