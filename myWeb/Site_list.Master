@@ -13,6 +13,8 @@
     <link href="js/style.css" rel="stylesheet" type="text/css" />
     <link href="css/default.css" rel="stylesheet" type="text/css" />
     <link href="themes/start/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="css/buttons.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
 </head>
 <body onload="on_load_list()">
     <form id="form1" runat="server">
@@ -68,7 +70,7 @@
                     <div id="master_page" style="padding-top: 5px;">
                         <asp:ScriptManager ID="ScriptManager1" runat="server" AsyncPostBackTimeout="360000">
                         </asp:ScriptManager>
-                        <asp:UpdatePanel ID="updatePanel1" runat="server">
+                        <asp:UpdatePanel ID="updatePanel1" runat="server" UpdateMode="Always">
                             <ContentTemplate>
                                 <div id="pnlMasterHeader" class="rcorners1">
                                     <div style="padding: 5px 0 5px 15px;">

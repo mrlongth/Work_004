@@ -35,12 +35,12 @@ namespace myDLL
                             }
                         }
                         else if ((ctrl is Button))
-                        {                           
+                        {
                             ((Button)(ctrl)).Visible = false;
                         }
                         else if ((ctrl is ImageButton))
                         {
-                            if(((ImageButton)(ctrl)).ID != "imgStatus")
+                            if (((ImageButton)(ctrl)).ID != "imgStatus")
                             {
                                 ((ImageButton)(ctrl)).Visible = false;
                             }
@@ -62,6 +62,9 @@ namespace myDLL
                     break;
             }
         }
+
+
+       
 
 
     }

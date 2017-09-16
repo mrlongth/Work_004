@@ -1058,7 +1058,29 @@ namespace myWeb
         }
 
 
+         public static void ClearDataControls(Control control)
+        {
 
+            foreach (Control ctrl in control.Controls)
+            {
+                if ((ctrl is TextBox))
+                {
+                    ((TextBox)(ctrl)).Text = string.Empty;
+                }
+                else if ((ctrl is DropDownList))
+                {
+                    ((DropDownList)(ctrl)).SelectedIndex = 0;
+                }
+                else if ((ctrl is CheckBox))
+                {
+                    ((CheckBox)(ctrl)).Checked = false;
+                }
+                else if ((ctrl.Controls.Count > 0))
+                {
+                    ClearDataControls(ctrl);
+                }
+            }
+        }
 
         //public void SetLabel(Control control, String old_str, String new_str)
         //{

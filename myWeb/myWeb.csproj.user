@@ -9,6 +9,7 @@
     <UseGlobalApplicationHostFile />
     <ProjectView>ShowAllFiles</ProjectView>
     <Use64BitIISExpress />
+    <NameOfLastUsedPublishProfile>myWeb</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

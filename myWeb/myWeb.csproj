@@ -105,7 +105,9 @@
   <ItemGroup>
     <Content Include="App_Control\activity\activity_view.aspx" />
     <Content Include="App_Control\budget\budget_view.aspx" />
+    <Content Include="App_Control\budget_money\budget_money_control.aspx" />
     <Content Include="App_Control\budget_money\budget_money_list.aspx" />
+    <Content Include="App_Control\budget_money\budget_money_detail_control.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
@@ -118,6 +120,7 @@
     <Content Include="App_Control\item_group\item_group_detail_list.aspx" />
     <Content Include="App_Control\item_group\item_group_detail_control.aspx" />
     <Content Include="App_Control\lot\lot_view.aspx" />
+    <Content Include="App_Control\lov\item_detail_lov.aspx" />
     <Content Include="App_Control\major\major_control.aspx" />
     <Content Include="App_Control\major\major_list.aspx" />
     <Content Include="App_Control\person_group\person_group_view.aspx" />
@@ -233,6 +236,7 @@
     <Content Include="App_Themes\Soft Orange\Web\tcATabBottomBack.gif" />
     <Content Include="App_Themes\Soft Orange\Web\tcTabBack.gif" />
     <Content Include="App_Themes\Soft Orange\Web\tiBackToTop.png" />
+    <Content Include="css\buttons.css" />
     <Content Include="images\add.png" />
     <Content Include="images\add_hover.png" />
     <Content Include="images\ASPxRoundPanel\767911302\BottomLeftCorner.png" />
@@ -270,6 +274,7 @@
     <Content Include="images\user_accounts.png" />
     <Content Include="images\user_accounts_alt.png" />
     <Content Include="images\user_group_select.png" />
+    <Content Include="js\buttons.js" />
     <Content Include="js\jquery-ui-1.8.22.custom.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -321,12 +326,26 @@
     <Compile Include="App_Control\budget\budget_view.aspx.designer.cs">
       <DependentUpon>budget_view.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_control.aspx.cs">
+      <DependentUpon>budget_money_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_control.aspx.designer.cs">
+      <DependentUpon>budget_money_control.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\budget_money\budget_money_list.aspx.cs">
       <DependentUpon>budget_money_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App_Control\budget_money\budget_money_list.aspx.designer.cs">
       <DependentUpon>budget_money_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_detail_control.aspx.cs">
+      <DependentUpon>budget_money_detail_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_detail_control.aspx.designer.cs">
+      <DependentUpon>budget_money_detail_control.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\budget_plan\budget_plan_control.aspx.cs">
       <DependentUpon>budget_plan_control.aspx</DependentUpon>
@@ -425,6 +444,13 @@
     </Compile>
     <Compile Include="App_Control\lot\lot_view.aspx.designer.cs">
       <DependentUpon>lot_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\lov\item_detail_lov.aspx.cs">
+      <DependentUpon>item_detail_lov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lov\item_detail_lov.aspx.designer.cs">
+      <DependentUpon>item_detail_lov.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\major\major_control.aspx.cs">
       <DependentUpon>major_control.aspx</DependentUpon>
@@ -1459,7 +1485,6 @@
     <Content Include="images\login_detail.png" />
     <Content Include="images\login_panel.png" />
     <Content Include="images\logo.gif" />
-    <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="images\Logout.png" />
     <Content Include="images\logout_bt.png" />

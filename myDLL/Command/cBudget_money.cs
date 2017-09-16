@@ -41,6 +41,10 @@ namespace myDLL
             GC.SuppressFinalize(this);
         }
 
+
+
+        #region BUDGET_MONEY_HEAD
+
         #region sp_BUDGET_MONEY_HEAD_SEL
         public bool SP_BUDGET_MONEY_HEAD_SEL(string strCriteria, ref DataSet ds, ref string strMessage)
         {
@@ -55,7 +59,7 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_MONEY_HEAD_SEL";
-                oCommand.Parameters.Add("vc_criteria", SqlDbType.VarChar).Value = strCriteria;               
+                oCommand.Parameters.Add("vc_criteria", SqlDbType.VarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
                 oAdapter.Fill(ds, "SP_BUDGET_MONEY_HEAD_SEL");
@@ -140,6 +144,7 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_contribute", SqlDbType.VarChar).Value = budget_money_head.budget_money_contribute;
                 oCommand.Parameters.Add("budget_money_use", SqlDbType.VarChar).Value = budget_money_head.budget_money_use;
                 oCommand.Parameters.Add("budget_money_remain", SqlDbType.VarChar).Value = budget_money_head.budget_money_remain;
+                oCommand.Parameters.Add("comments", SqlDbType.VarChar).Value = budget_money_head.comments;
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = budget_money_head.c_active;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_head.c_updated_by;
                 oCommand.ExecuteNonQuery();
@@ -202,6 +207,336 @@ namespace myDLL
             }
             return result;
         }
+
+        #endregion
+
+        #region BUDGET_MONEY_DETAIL
+
+        #region sp_BUDGET_MONEY_DETAIL_SEL
+        public bool SP_BUDGET_MONEY_DETAIL_SEL(string strCriteria, ref DataSet ds, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_SEL";
+                oCommand.Parameters.Add("vc_criteria", SqlDbType.VarChar).Value = strCriteria;
+                oAdapter = new SqlDataAdapter(oCommand);
+                ds = new DataSet();
+                oAdapter.Fill(ds, "SP_BUDGET_MONEY_DETAIL_SEL");
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region sp_BUDGET_MONEY_DETAIL_INS
+        public bool SP_BUDGET_MONEY_DETAIL_INS(Budget_money_detail budget_money_detail)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_INS";
+                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_detail.budget_money_detail_id;
+                oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_detail.budget_money_doc;
+                oCommand.Parameters.Add("item_detail_id", SqlDbType.BigInt).Value = budget_money_detail.item_detail_id;
+                oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
+                oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
+                oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
+                oCommand.Parameters.Add("budget_money_detail_remain", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_remain;
+                oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
+                oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_detail.c_created_by;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region SP_BUDGET_MONEY_DETAIL_UPD
+        public bool SP_BUDGET_MONEY_DETAIL_UPD(Budget_money_detail budget_money_detail)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_UPD";
+                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_detail.budget_money_detail_id;
+                oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_detail.budget_money_doc;
+                oCommand.Parameters.Add("item_detail_id", SqlDbType.BigInt).Value = budget_money_detail.item_detail_id;
+                oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
+                oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
+                oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
+                oCommand.Parameters.Add("budget_money_detail_remain", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_remain;
+                oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
+                oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_detail.c_updated_by;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region SP_BUDGET_MONEY_DETAIL_DEL
+        public bool SP_BUDGET_MONEY_DETAIL_DEL(string pBudget_money_detail_id, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_DEL";
+                oCommand.Parameters.Add("pBudget_money_detail_id", SqlDbType.BigInt).Value = pBudget_money_detail_id;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        public view_Budget_money_detail GETDETAIL(string strCriteria)
+        {
+            view_Budget_money_detail result = null;
+            var strMessage = string.Empty;
+            DataSet ds = null;
+            if (SP_BUDGET_MONEY_DETAIL_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                result = Helper.ToClassInstanceCollection<view_Budget_money_detail>(ds.Tables[0]).FirstOrDefault();
+            }
+            return result;
+        }
+
+        #endregion
+
+
+        #region BUDGET_MONEY_MAJOR
+
+        #region sp_BUDGET_MONEY_MAJOR_SEL
+        public bool SP_BUDGET_MONEY_MAJOR_SEL(string strCriteria, ref DataSet ds, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_SEL";
+                oCommand.Parameters.Add("vc_criteria", SqlDbType.VarChar).Value = strCriteria;
+                oAdapter = new SqlDataAdapter(oCommand);
+                ds = new DataSet();
+                oAdapter.Fill(ds, "SP_BUDGET_MONEY_MAJOR_SEL");
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region sp_BUDGET_MONEY_MAJOR_INS
+        public bool SP_BUDGET_MONEY_MAJOR_INS(Budget_money_major budget_money_major)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_INS";
+                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_major_id;
+                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_detail_id;
+                oCommand.Parameters.Add("major_code", SqlDbType.VarChar).Value = budget_money_major.major_code;
+                oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
+                oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
+                oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
+                oCommand.Parameters.Add("budget_money_major_remain", SqlDbType.Money).Value = budget_money_major.budget_money_major_remain;
+                oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;
+                oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_major.c_created_by;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region SP_BUDGET_MONEY_MAJOR_UPD
+        public bool SP_BUDGET_MONEY_MAJOR_UPD(Budget_money_major budget_money_major)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_UPD";
+                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_major_id;
+                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_detail_id;
+                oCommand.Parameters.Add("major_code", SqlDbType.VarChar).Value = budget_money_major.major_code;
+                oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
+                oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
+                oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
+                oCommand.Parameters.Add("budget_money_major_remain", SqlDbType.Money).Value = budget_money_major.budget_money_major_remain;
+                oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;
+                oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_major.c_updated_by;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        #region SP_BUDGET_MONEY_MAJOR_DEL
+        public bool SP_BUDGET_MONEY_MAJOR_DEL(string pBudget_money_major_id, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_DEL";
+                oCommand.Parameters.Add("pBudget_money_major_id", SqlDbType.BigInt).Value = pBudget_money_major_id;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        public view_Budget_money_major GETMAJOR(string strCriteria)
+        {
+            view_Budget_money_major result = null;
+            var strMessage = string.Empty;
+            DataSet ds = null;
+            if (SP_BUDGET_MONEY_MAJOR_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                result = Helper.ToClassInstanceCollection<view_Budget_money_major>(ds.Tables[0]).FirstOrDefault();
+            }
+            return result;
+        }
+
+        #endregion
+
+
+
 
         #region IDisposable Members
 

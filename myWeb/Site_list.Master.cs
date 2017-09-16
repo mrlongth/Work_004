@@ -170,6 +170,11 @@ namespace myWeb
             script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "javascript/AwTextBox.js");
             Page.Header.Controls.Add(script);
 
+            script = new HtmlGenericControl("script");
+            script.Attributes["type"] = "text/javascript";
+            script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "js/buttons.js");
+            Page.Header.Controls.Add(script);
+
         }
     
 

@@ -98,7 +98,7 @@
                 <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
-                    ID="imgNew"></asp:ImageButton>
+                    ID="imgNew" OnClick="imgNew_Click"></asp:ImageButton>
                 .</td>
         </tr>
         <tr>
@@ -119,16 +119,16 @@
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:GridView runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-        CellPadding="2" EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True"
+        CellPadding="2" EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True" 
         BorderWidth="1px" CssClass="stGrid" Font-Bold="False" Font-Size="10pt" Width="100%"
         ID="GridView1" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCreated="GridView1_RowCreated"
         OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting"
-        OnSorting="GridView1_Sorting">
+        OnSorting="GridView1_Sorting" OnRowEditing="GridView1_RowEditing" OnRowCommand="GridView1_RowCommand">
         <AlternatingRowStyle BackColor="#EAEAEA"></AlternatingRowStyle>
         <Columns>
             <asp:TemplateField Visible="true">
                 <ItemTemplate>
-                    <asp:ImageButton ID="imgView" runat="server" CausesValidation="False" />
+                    <asp:ImageButton ID="imgView" runat="server" CausesValidation="False" CommandName="VIEW" CommandArgument="<%# Container.DisplayIndex + 1 %>"  />
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" Wrap="False" Width="2%"></ItemStyle>
             </asp:TemplateField>
@@ -237,8 +237,8 @@
             </asp:TemplateField>
             <asp:TemplateField>
                 <ItemTemplate>
-                    <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False" CommandName="Edit" />
-                    <asp:ImageButton ID="imgDelete" runat="server" CausesValidation="False" CommandName="Delete" />
+                    <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False" CommandName="EDIT" CommandArgument="<%# Container.DisplayIndex + 1 %>" />
+                    <asp:ImageButton ID="imgDelete" runat="server" CausesValidation="False" CommandName="DELETE" CommandArgument="<%# Container.DisplayIndex + 1 %>"  />
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" Wrap="False" Width="5%"></ItemStyle>
             </asp:TemplateField>
