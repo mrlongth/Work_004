@@ -27,8 +27,12 @@ namespace myModel
     
         public virtual DbSet<Activity> Activities { get; set; }
         public virtual DbSet<Budget> Budgets { get; set; }
+        public virtual DbSet<Budget_money_detail> Budget_money_detail { get; set; }
+        public virtual DbSet<Budget_money_head> Budget_money_head { get; set; }
+        public virtual DbSet<Budget_money_major> Budget_money_major { get; set; }
         public virtual DbSet<Budget_plan> Budget_plan { get; set; }
         public virtual DbSet<Config_item> Config_item { get; set; }
+        public virtual DbSet<Degree> Degrees { get; set; }
         public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Fund> Funds { get; set; }
         public virtual DbSet<General> Generals { get; set; }
@@ -55,19 +59,15 @@ namespace myModel
         public virtual DbSet<User_group> User_group { get; set; }
         public virtual DbSet<User_group_menu> User_group_menu { get; set; }
         public virtual DbSet<Work> Works { get; set; }
-        public virtual DbSet<view_Item_group> view_Item_group { get; set; }
-        public virtual DbSet<view_Item_group_detail> view_Item_group_detail { get; set; }
-        public virtual DbSet<view_Item> view_Item { get; set; }
-        public virtual DbSet<view_Item_detail> view_Item_detail { get; set; }
-        public virtual DbSet<Budget_money_detail> Budget_money_detail { get; set; }
-        public virtual DbSet<Budget_money_head> Budget_money_head { get; set; }
-        public virtual DbSet<Budget_money_major> Budget_money_major { get; set; }
-        public virtual DbSet<Degree> Degrees { get; set; }
         public virtual DbSet<view_Activity> view_Activity { get; set; }
         public virtual DbSet<view_Budget_money_detail> view_Budget_money_detail { get; set; }
         public virtual DbSet<view_Budget_money_head> view_Budget_money_head { get; set; }
         public virtual DbSet<view_Budget_money_major> view_Budget_money_major { get; set; }
         public virtual DbSet<view_Budget_plan> view_Budget_plan { get; set; }
+        public virtual DbSet<view_Item> view_Item { get; set; }
+        public virtual DbSet<view_Item_detail> view_Item_detail { get; set; }
+        public virtual DbSet<view_Item_group> view_Item_group { get; set; }
+        public virtual DbSet<view_Item_group_detail> view_Item_group_detail { get; set; }
         public virtual DbSet<view_Menu> view_Menu { get; set; }
         public virtual DbSet<view_Person_all> view_Person_all { get; set; }
         public virtual DbSet<view_Person_list> view_Person_list { get; set; }

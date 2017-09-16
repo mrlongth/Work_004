@@ -4,40 +4,65 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f65d066a82d24b6e9e0b303d0e31c179" Name="Diagram1" ZoomLevel="75">
-        <EntityTypeShape EntityType="mju_budgetModel.Activity" Width="1.5" PointX="5.25" PointY="2.375" />
-        <EntityTypeShape EntityType="mju_budgetModel.Budget" Width="1.5" PointX="0.75" PointY="2.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.Budget_plan" Width="1.5" PointX="7.5" PointY="1.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Config_item" Width="1.5" PointX="9.75" PointY="12.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Director" Width="1.5" PointX="3" PointY="8.25" />
-        <EntityTypeShape EntityType="mju_budgetModel.Fund" Width="1.5" PointX="5.25" PointY="13" />
-        <EntityTypeShape EntityType="mju_budgetModel.General" Width="1.5" PointX="11.75" PointY="12.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Item" Width="1.5" PointX="16.5" PointY="8.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Item_detail" Width="1.5" PointX="0.75" PointY="13.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Item_group" Width="1.5" PointX="12" PointY="8.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Item_group_detail" Width="1.5" PointX="14.25" PointY="8.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Level_position" Width="1.5" PointX="13.75" PointY="12.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Lot" Width="1.5" PointX="9.75" PointY="8" />
-        <EntityTypeShape EntityType="mju_budgetModel.Major" Width="1.5" PointX="7.5" PointY="10.625" />
-        <EntityTypeShape EntityType="mju_budgetModel.Menu" Width="1.5" PointX="15.75" PointY="12.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.New" Width="1.5" PointX="16.75" PointY="0.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Person_group" Width="1.5" PointX="7.5" PointY="24.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Person_his" Width="1.5" PointX="14" PointY="1" />
-        <EntityTypeShape EntityType="mju_budgetModel.Person_manage" Width="1.5" PointX="7.5" PointY="7.375" />
-        <EntityTypeShape EntityType="mju_budgetModel.Person_work" Width="1.5" PointX="9.75" PointY="1.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Person_work_status" Width="1.5" PointX="7.5" PointY="14.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Plan" Width="1.5" PointX="5.25" PointY="16.625" />
-        <EntityTypeShape EntityType="mju_budgetModel.Position" Width="1.5" PointX="7.5" PointY="20.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Produce" Width="1.5" PointX="3" PointY="2.125" />
-        <EntityTypeShape EntityType="mju_budgetModel.Title" Width="1.5" PointX="11.75" PointY="1.875" />
-        <EntityTypeShape EntityType="mju_budgetModel.Type_position" Width="1.5" PointX="7.5" PointY="17.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.Unit" Width="1.5" PointX="5.25" PointY="8.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.User_group" Width="1.5" PointX="11.75" PointY="16.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.User_group_menu" Width="1.5" PointX="0.75" PointY="17.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Work" Width="1.5" PointX="5.25" PointY="20.375" />
+      <Diagram DiagramId="f65d066a82d24b6e9e0b303d0e31c179" Name="Diagram1" ZoomLevel="49">
+        <EntityTypeShape EntityType="mju_budgetModel.Activity" Width="1.5" PointX="1.5" PointY="69.375" />
+        <EntityTypeShape EntityType="mju_budgetModel.Budget" Width="1.5" PointX="1.5" PointY="79.5" />
+        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_detail" Width="1.5" PointX="0.75" PointY="22.375" />
+        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_head" Width="1.5" PointX="1.5" PointY="36.25" />
+        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_major" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="mju_budgetModel.Budget_plan" Width="1.5" PointX="1.5" PointY="49.375" />
+        <EntityTypeShape EntityType="mju_budgetModel.Config_item" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Degree" Width="1.5" PointX="1.5" PointY="32.375" />
+        <EntityTypeShape EntityType="mju_budgetModel.Director" Width="1.5" PointX="1.5" PointY="64.5" />
+        <EntityTypeShape EntityType="mju_budgetModel.Fund" Width="1.5" PointX="1.5" PointY="83.625" />
+        <EntityTypeShape EntityType="mju_budgetModel.General" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Item" Width="1.5" PointX="15.5" PointY="1.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Item_detail" Width="1.5" PointX="1.5" PointY="28.625" />
+        <EntityTypeShape EntityType="mju_budgetModel.Item_group" Width="1.5" PointX="11" PointY="1.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Item_group_detail" Width="1.5" PointX="13.25" PointY="1.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Level_position" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Lot" Width="1.5" PointX="8.75" PointY="1" />
+        <EntityTypeShape EntityType="mju_budgetModel.Major" Width="1.5" PointX="0.75" PointY="5" />
+        <EntityTypeShape EntityType="mju_budgetModel.Menu" Width="1.5" PointX="5.75" PointY="10.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.New" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Person_group" Width="1.5" PointX="3.75" PointY="13.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Person_his" Width="1.5" PointX="11" PointY="6" />
+        <EntityTypeShape EntityType="mju_budgetModel.Person_manage" Width="1.5" PointX="3.75" PointY="16.375" />
+        <EntityTypeShape EntityType="mju_budgetModel.Person_work" Width="1.5" PointX="6" PointY="3.625" />
+        <EntityTypeShape EntityType="mju_budgetModel.Person_work_status" Width="1.5" PointX="3.75" PointY="19.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Plan" Width="1.5" PointX="1.5" PointY="42.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Position" Width="1.5" PointX="3.75" PointY="9.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Produce" Width="1.5" PointX="1.5" PointY="74.125" />
+        <EntityTypeShape EntityType="mju_budgetModel.Title" Width="1.5" PointX="8.75" PointY="6.875" />
+        <EntityTypeShape EntityType="mju_budgetModel.Type_position" Width="1.5" PointX="3.75" PointY="23" />
+        <EntityTypeShape EntityType="mju_budgetModel.Unit" Width="1.5" PointX="1.5" PointY="59.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.User_group" Width="1.5" PointX="9.75" PointY="11.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.User_group_menu" Width="1.5" PointX="11.75" PointY="11.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.Work" Width="1.5" PointX="1.5" PointY="55.875" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Activity" Width="1.5" PointX="0.75" PointY="13.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_detail" Width="1.5" PointX="13.75" PointY="5.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_head" Width="1.5" PointX="15.75" PointY="5.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_major" Width="1.5" PointX="7.75" PointY="15.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_plan" Width="1.5" PointX="15.75" PointY="14.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item" Width="1.5" PointX="9.75" PointY="16.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item_detail" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item_group" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Item_group_detail" Width="1.5" PointX="17.75" PointY="11.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Menu" Width="1.5" PointX="11.75" PointY="17.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Person_all" Width="1.5" PointX="17.75" PointY="16.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Person_list" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Person_user" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Unit" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_User_group_menu" Width="1.5" PointX="19.75" PointY="12.75" />
         <AssociationConnector Association="mju_budgetModel.FK_activity_produce_code" />
         <AssociationConnector Association="mju_budgetModel.FK_budget_plan_activity_code" />
         <AssociationConnector Association="mju_budgetModel.FK_produce_budget_code" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_budget_money_doc" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_item_detail_id" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_head_budget_plan_code" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_head_degree_code" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_major_major_code" />
         <AssociationConnector Association="mju_budgetModel.FK_budget_plan_fund_code" />
         <AssociationConnector Association="mju_budgetModel.FK_budget_plan_plan_code" />
         <AssociationConnector Association="mju_budgetModel.FK_budget_plan_unit_code" />
@@ -55,33 +80,6 @@
         <AssociationConnector Association="mju_budgetModel.FK_person_work_person_work_status_code" />
         <AssociationConnector Association="mju_budgetModel.FK_person_work_position_code" />
         <AssociationConnector Association="mju_budgetModel.FK_person_work_type_position_code" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Item_group" Width="1.5" PointX="14.375" PointY="18.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Item_group_detail" Width="1.5" PointX="16.375" PointY="18.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Item" Width="1.5" PointX="18.375" PointY="17.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Item_detail" Width="1.5" PointX="19.375" PointY="0.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_detail" Width="1.5" PointX="22.125" PointY="10.25" />
-        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_head" Width="1.5" PointX="10.125" PointY="0.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.Budget_money_major" Width="1.5" PointX="24.375" PointY="13" />
-        <EntityTypeShape EntityType="mju_budgetModel.Degree" Width="1.5" PointX="7.875" PointY="33.25" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Activity" Width="1.5" PointX="20.75" PointY="16.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_detail" Width="1.5" PointX="20.75" PointY="21.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_head" Width="1.5" PointX="10.75" PointY="27.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_money_major" Width="1.5" PointX="0.75" PointY="28.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_plan" Width="1.5" PointX="2.75" PointY="28.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Menu" Width="1.5" PointX="22.75" PointY="17.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Person_all" Width="1.5" PointX="22.75" PointY="23.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Person_list" Width="1.5" PointX="12.75" PointY="29.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Person_user" Width="1.5" PointX="21.75" PointY="6.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Unit" Width="1.5" PointX="23.75" PointY="6.5" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_User_group_menu" Width="1.5" PointX="14.75" PointY="29.5" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_budget_money_doc" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_item_code" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_item_detail_id" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_detail_item_group_detail_id" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_head_budget_plan_code" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_head_degree_code" />
-        <AssociationConnector Association="mju_budgetModel.FK_Budget_money_major_major_code" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

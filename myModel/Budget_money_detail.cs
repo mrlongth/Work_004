@@ -22,23 +22,19 @@ namespace myModel
     
         public long budget_money_detail_id { get; set; }
         public string budget_money_doc { get; set; }
-        public int item_group_detail_id { get; set; }
-        public string item_code { get; set; }
         public Nullable<int> item_detail_id { get; set; }
-        public Nullable<decimal> budget_detail_money_plan { get; set; }
-        public Nullable<decimal> budget_detail_money_contribute { get; set; }
-        public Nullable<decimal> budget_detail_money_use { get; set; }
-        public Nullable<decimal> budget_detail_money_remain { get; set; }
-        public string budget_detail_comment { get; set; }
+        public Nullable<decimal> budget_money_detail_plan { get; set; }
+        public Nullable<decimal> budget_money_detail_contribute { get; set; }
+        public Nullable<decimal> budget_money_detail_use { get; set; }
+        public Nullable<decimal> budget_money_detail_remain { get; set; }
+        public string budget_money_detail_comment { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
     
         public virtual Budget_money_head Budget_money_head { get; set; }
-        public virtual Item Item { get; set; }
         public virtual Item_detail Item_detail { get; set; }
-        public virtual Item_group_detail Item_group_detail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_money_major> Budget_money_major { get; set; }
     }

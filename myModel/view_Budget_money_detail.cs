@@ -16,13 +16,11 @@ namespace myModel
     {
         public long budget_money_detail_id { get; set; }
         public string budget_money_doc { get; set; }
-        public int item_group_detail_id { get; set; }
-        public string item_code { get; set; }
         public Nullable<int> item_detail_id { get; set; }
-        public Nullable<decimal> budget_detail_money_plan { get; set; }
-        public Nullable<decimal> budget_detail_money_contribute { get; set; }
-        public Nullable<decimal> budget_detail_money_use { get; set; }
-        public Nullable<decimal> budget_detail_money_remain { get; set; }
+        public Nullable<decimal> budget_money_detail_plan { get; set; }
+        public Nullable<decimal> budget_money_detail_contribute { get; set; }
+        public Nullable<decimal> budget_money_detail_use { get; set; }
+        public Nullable<decimal> budget_money_detail_remain { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
@@ -52,7 +50,22 @@ namespace myModel
         public string work_name { get; set; }
         public string fund_name { get; set; }
         public string degree_name { get; set; }
-        public string budget_detail_comment { get; set; }
+        public string budget_money_detail_comment { get; set; }
         public string comments { get; set; }
+        public string item_detail_code { get; set; }
+        public string item_detail_name { get; set; }
+        public string item_code { get; set; }
+        public string item_year { get; set; }
+        public string item_name { get; set; }
+        public string item_type { get; set; }
+        public Nullable<int> item_group_detail_id { get; set; }
+        public string item_group_detail_code { get; set; }
+        public string item_group_detail_name { get; set; }
+        public string item_group_code { get; set; }
+        public string item_group_year { get; set; }
+        public string item_group_name { get; set; }
+        public string lot_code { get; set; }
+        public string lot_year { get; set; }
+        public string lot_name { get; set; }
     }
 }

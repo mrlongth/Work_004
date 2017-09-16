@@ -18,7 +18,6 @@ namespace myModel
         public Item_group_detail()
         {
             this.Items = new HashSet<Item>();
-            this.Budget_money_detail = new HashSet<Budget_money_detail>();
         }
     
         public int item_group_detail_id { get; set; }
@@ -34,7 +33,5 @@ namespace myModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
         public virtual Item_group Item_group { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Budget_money_detail> Budget_money_detail { get; set; }
     }
 }
