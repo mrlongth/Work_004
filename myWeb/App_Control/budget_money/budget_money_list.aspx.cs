@@ -800,14 +800,18 @@ namespace myWeb.App_Control.budget_money
             cBudget_money oBudget_money = new cBudget_money();
             try
             {
-                if (!oBudget_money.SP_BUDGET_MONEY_HEAD_DEL(lblbudget_money_doc.Text, ref strMessage))
-                {
-                    lblError.Text = strMessage;
-                }
+                oBudget_money.SP_BUDGET_MONEY_HEAD_DEL(lblbudget_money_doc.Text);
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

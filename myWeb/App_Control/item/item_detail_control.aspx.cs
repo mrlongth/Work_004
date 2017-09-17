@@ -565,7 +565,14 @@ namespace myWeb.App_Control.item
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

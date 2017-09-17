@@ -93,7 +93,15 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_MONEY_HEAD_INS";
-                oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_head.budget_money_doc;
+
+                SqlParameter oParambudget_money_doc = new SqlParameter("budget_money_doc", SqlDbType.VarChar, 10)
+                {
+                    Direction = ParameterDirection.Output,
+                    Value = budget_money_head.budget_money_doc
+                };
+                oCommand.Parameters.Add(oParambudget_money_doc);
+                //oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_head.budget_money_doc;
+
                 oCommand.Parameters.Add("budget_money_year", SqlDbType.VarChar).Value = budget_money_head.budget_money_year;
                 oCommand.Parameters.Add("budget_type", SqlDbType.VarChar).Value = budget_money_head.budget_type;
                 oCommand.Parameters.Add("budget_plan_code", SqlDbType.VarChar).Value = budget_money_head.budget_plan_code;
@@ -105,6 +113,8 @@ namespace myDLL
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = budget_money_head.c_active;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_head.c_created_by;
                 oCommand.ExecuteNonQuery();
+                budget_money_head.budget_money_doc = oParambudget_money_doc.Value.ToString();
+
                 blnResult = true;
             }
             catch (Exception ex)
@@ -165,7 +175,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_MONEY_HEAD_DEL
-        public bool SP_BUDGET_MONEY_HEAD_DEL(string pBudget_money_doc, ref string strMessage)
+        public bool SP_BUDGET_MONEY_HEAD_DEL(string pBudget_money_doc)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -184,7 +194,7 @@ namespace myDLL
             }
             catch (Exception ex)
             {
-                strMessage = ex.Message.ToString();
+                throw ex;
             }
             finally
             {
@@ -260,7 +270,12 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_INS";
-                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_detail.budget_money_detail_id;
+
+                SqlParameter oParambudget_money_detail_id = new SqlParameter("budget_money_detail_id", SqlDbType.BigInt);
+                oParambudget_money_detail_id.Direction = ParameterDirection.Output;
+                oParambudget_money_detail_id.Value = budget_money_detail.budget_money_detail_id;
+                oCommand.Parameters.Add(oParambudget_money_detail_id);
+                //oCommand.Parameters.Add("budget_money_detail_id",  SqlDbType.BigInt, ).Value = budget_money_detail.budget_money_detail_id;
                 oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_detail.budget_money_doc;
                 oCommand.Parameters.Add("item_detail_id", SqlDbType.BigInt).Value = budget_money_detail.item_detail_id;
                 oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
@@ -270,6 +285,7 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_detail.c_created_by;
                 oCommand.ExecuteNonQuery();
+                budget_money_detail.budget_money_detail_id = long.Parse(oParambudget_money_detail_id.Value.ToString());
                 blnResult = true;
             }
             catch (Exception ex)
@@ -327,7 +343,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_MONEY_DETAIL_DEL
-        public bool SP_BUDGET_MONEY_DETAIL_DEL(string pBudget_money_detail_id, ref string strMessage)
+        public bool SP_BUDGET_MONEY_DETAIL_DEL(string pBudget_money_detail_id)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -340,13 +356,13 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_MONEY_DETAIL_DEL";
-                oCommand.Parameters.Add("pBudget_money_detail_id", SqlDbType.BigInt).Value = pBudget_money_detail_id;
+                oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = pBudget_money_detail_id;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
             }
             catch (Exception ex)
             {
-                strMessage = ex.Message.ToString();
+                throw ex;
             }
             finally
             {
@@ -490,7 +506,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_MONEY_MAJOR_DEL
-        public bool SP_BUDGET_MONEY_MAJOR_DEL(string pBudget_money_major_id, ref string strMessage)
+        public bool SP_BUDGET_MONEY_MAJOR_DEL(string pBudget_money_major_id)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -503,13 +519,13 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_DEL";
-                oCommand.Parameters.Add("pBudget_money_major_id", SqlDbType.BigInt).Value = pBudget_money_major_id;
+                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.BigInt).Value = pBudget_money_major_id;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
             }
             catch (Exception ex)
             {
-                strMessage = ex.Message.ToString();
+                throw ex;
             }
             finally
             {

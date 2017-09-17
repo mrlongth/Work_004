@@ -74,5 +74,7 @@ namespace myModel
         public string item_year { get; set; }
         public string item_group_year { get; set; }
         public string lot_year { get; set; }
+        public string major_year { get; set; }
+        public string major_name { get; set; }
     }
 }

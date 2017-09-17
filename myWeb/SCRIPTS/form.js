@@ -740,6 +740,19 @@ function OpenPopUp(pwidth,pheight,iframeheight,headname,url,level)
     return false;
 }
 
+function ResizePopUp(pwidth, pheight, iframeheight, headname, url, level) {
+    var panel = 'ctl00_panelShow' + level;
+    var divdes = 'divdes' + level;
+    var iframe = 'iframeShow' + level;
+    window.parent.document.getElementById(panel).style.width = pwidth;
+    window.parent.document.getElementById(panel).style.height = pheight;
+    window.parent.document.getElementById(divdes).innerHTML = headname;
+    window.parent.document.getElementById(iframe).style.height = iframeheight;
+    window.parent.document.getElementById(iframe).style.width = "100%";
+    window.parent.document.getElementById(iframe).src = url;
+    return false;
+}
+
 function ClosePopUp(level){
     var iframe = 'iframeShow' + level ;
     var modal = 'show' +level + '_ModalPopupExtender' ;

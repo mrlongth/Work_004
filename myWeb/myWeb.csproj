@@ -108,6 +108,7 @@
     <Content Include="App_Control\budget_money\budget_money_control.aspx" />
     <Content Include="App_Control\budget_money\budget_money_list.aspx" />
     <Content Include="App_Control\budget_money\budget_money_detail_control.aspx" />
+    <Content Include="App_Control\budget_money\budget_money_major_select.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
@@ -346,6 +347,13 @@
     </Compile>
     <Compile Include="App_Control\budget_money\budget_money_detail_control.aspx.designer.cs">
       <DependentUpon>budget_money_detail_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_major_select.aspx.cs">
+      <DependentUpon>budget_money_major_select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_money\budget_money_major_select.aspx.designer.cs">
+      <DependentUpon>budget_money_major_select.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\budget_plan\budget_plan_control.aspx.cs">
       <DependentUpon>budget_plan_control.aspx</DependentUpon>
