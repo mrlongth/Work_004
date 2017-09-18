@@ -19,6 +19,7 @@ namespace myDLL
                             // TextBox
                             ((TextBox)(ctrl)).ReadOnly = true;
                             ((TextBox)(ctrl)).CssClass = "textboxdis";
+                            ((TextBox)(ctrl)).TabIndex = -1;
                             if (isClear)
                             {
                                 ((TextBox)(ctrl)).Text = string.Empty;
@@ -29,9 +30,10 @@ namespace myDLL
                             // DropDownList
                             ((DropDownList)(ctrl)).Enabled = false;
                             ((DropDownList)(ctrl)).CssClass = "textboxdis";
+                            ((DropDownList)(ctrl)).TabIndex = -1;
                             if (isClear)
                             {
-                                ((TextBox)(ctrl)).Text = string.Empty;
+                                ((DropDownList)(ctrl)).SelectedIndex = 0;
                             }
                         }
                         else if ((ctrl is Button))
@@ -49,6 +51,7 @@ namespace myDLL
                         else if ((ctrl is CheckBox))
                         {
                             ((CheckBox)(ctrl)).Enabled = false;
+                            ((CheckBox)(ctrl)).TabIndex = -1;
                             if (isClear)
                             {
                                 ((CheckBox)(ctrl)).Checked = false;

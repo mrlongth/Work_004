@@ -117,7 +117,7 @@
                             <cc1:AwNumeric ID="txtbudget_money_detail_contribute" runat="server" CssClassDefault="numberdis" ReadOnly="true" LeadZero="Show" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px"></cc1:AwNumeric>
                         </td>
                         <td rowspan="2" style="text-align: right">
-                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
+                            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="display: none;">LinkButton</asp:LinkButton>
                             <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg" ValidationGroup="A" />
                         </td>
                     </tr>
@@ -175,19 +175,19 @@
                         <asp:TemplateField HeaderText="ยอดรับจริง">
                             <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
                             <ItemTemplate>
-                                <cc1:AwNumeric ID="txtbudget_money_major_contribute" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_contribute") %>' Width="100px"></cc1:AwNumeric>
+                                <cc1:AwNumeric ID="txtbudget_money_major_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_contribute") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดใช้แล้ว">
                             <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
                             <ItemTemplate>
-                                <cc1:AwNumeric ID="txtbudget_money_major_use" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_use") %>' Width="100px"></cc1:AwNumeric>
+                                <cc1:AwNumeric ID="txtbudget_money_major_use" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_use") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดคงเหลือ">
                             <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
                             <ItemTemplate>
-                                <cc1:AwNumeric ID="txtbudget_money_major_remain" runat="server" CssClass="numberdis" LeadZero="Show" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="100px"></cc1:AwNumeric>
+                                <cc1:AwNumeric ID="txtbudget_money_major_remain" runat="server" CssClass="numberdis" LeadZero="Show" DisplayMode="View" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField>
@@ -210,7 +210,8 @@
     <script type="text/javascript">
 
 
-        function RegisterScript() {
+        function RegisterScript()
+        {
 
             $(document).on('keypress', 'form input[type=text]', function (event) {
                 event.stopImmediatePropagation();
@@ -257,7 +258,56 @@
                 return false;
             });
 
+            var GridView1 = '<%=GridViewMajor.ClientID%>';
+
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan]").live("keyup", function () {
+                CalAmount();
+            });
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan]").live("blur", function () {
+                CalAmount();
+            });
+
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan]").live("change", function () {
+                CalAmount();
+            });
+
+        
+
+            function CalAmount() {
+                var GridView1 = '<%=GridViewMajor.ClientID%>';
+                var rowCount = document.getElementById(GridView1).rows.length;
+                var txtbudget_money_major_plan = 0;
+                var txtbudget_money_major_plan_all = 0;
+                var strbudget_money_major_plan = "";
+
+                for (var i = 2; i < rowCount + 1; i++) {
+
+                    var numbudget_money_major_plan = 0;
+
+                    if (i < 10) {
+                        strbudget_money_major_plan = GridView1 + '_ctl0' + i + '_txtbudget_money_major_plan';
+                    }
+                    else {
+                        strbudget_money_major_plan = GridView1 + '_ctl' + i + '_txtbudget_money_major_plan';
+                    }
+                    txtbudget_money_major_plan = document.getElementById(strbudget_money_major_plan).value.replace(/,/g, "");
+                    numbudget_money_major_plan = parseFloat(txtbudget_money_major_plan);
+                    if (checkNaN(numbudget_money_major_plan)) numbudget_money_major_plan = 0;
+                    txtbudget_money_major_plan_all = txtbudget_money_major_plan_all + numbudget_money_major_plan;
+
+                }
+
+           
+                document.getElementById('<%=txtbudget_money_detail_plan.ClientID%>').value = txtbudget_money_major_plan_all.toFixed('2');
+                   CommaFormatted(document.getElementById('<%=txtbudget_money_detail_plan.ClientID%>'));
+
+            }
+
+
         };
+
+
+
 
 
 

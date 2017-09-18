@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using myDLL;
 using myModel;
+using Aware.WebControls;
 
 namespace myWeb.App_Control.item
 {
@@ -61,12 +62,17 @@ namespace myWeb.App_Control.item
                 else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
                     setData();
+                    BindGridView();
                     Utils.SetControls(pnlControl, myDLL.Common.Enumeration.Mode.VIEW);
+                    imgSaveOnly.Visible = true;
+                    txtbudget_money_detail_comment.ReadOnly = false;
+                    txtbudget_money_detail_comment.CssClass = "textbox";
 
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("view"))
                 {
                     setData();
+                    BindGridView();
                 }
 
                 #endregion
@@ -221,6 +227,7 @@ namespace myWeb.App_Control.item
 
         private void imgSaveOnly_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
+            string strScript = string.Empty;
             if (saveData())
             {
                 if (ViewState["mode"].ToString().ToLower().Equals("add"))
@@ -228,17 +235,17 @@ namespace myWeb.App_Control.item
                     txtitem_detail_code.Text = string.Empty;
                     txtitem_detail_name.Text = string.Empty;
                     txtitem_detail_name.Focus();
-                    string strScript = string.Empty;
                     strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder1$lkbRefresh','');";
                     strScript += "ResizePopUp('1000px','700px','98%','แก้ไขข้อมูลรายละเอียดงบประมาณประจำปี','budget_money_detail_control.aspx?mode=edit&budget_money_detail_id=" + ViewState["budget_money_detail_id"].ToString() + "&budget_type=" + this.BudgetType + "','1');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript, true);
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
-                    string strScript1 = "ClosePopUpListPost('" + ViewState["page"].ToString() + "','1');";
-                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);
+                    strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');";
+                    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript, true);
                 }
                 MsgBox("บันทึกข้อมูลสมบูรณ์");
+                setData();
             }
         }
 
@@ -266,7 +273,10 @@ namespace myWeb.App_Control.item
                 #endregion
                 if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
-                    oBudget_money.SP_BUDGET_MONEY_DETAIL_UPD(budget_money_detail);
+                    if (oBudget_money.SP_BUDGET_MONEY_DETAIL_UPD(budget_money_detail))
+                    {
+                        saveDataDetail();
+                    };
                 }
                 else
                 {
@@ -279,16 +289,7 @@ namespace myWeb.App_Control.item
             {
                 if (ex.Message.Contains("duplicate key"))
                 {
-                    strScript = @"ไม่สามารถแก้ไขข้อมูลได้";
-                    //if (ex.Message.Contains("IX_item_group_detail_code"))
-                    //{
-                    //    strScript += "ข้อมูลรหัสรายละเอียดหมวดค่าใช้จ่าย : " + txtitem_group_detail_code.Text + " ซ้ำ";
-                    //}
-                    //else if (ex.Message.Contains("IX_item_group_detail_name"))
-                    //{
-                    //    strScript += "ข้อมูลรายละเอียดหมวดค่าใช้จ่าย : " + txtitem_group_detail_name.Text + " ซ้ำ";
-                    //}
-                    MsgBox(strScript);
+                    MsgBox("ข้อมูลซ้ำโปรดตรวจสอบ");
                 }
                 else
                 {
@@ -302,6 +303,50 @@ namespace myWeb.App_Control.item
             return blnResult;
         }
 
+        private bool saveDataDetail()
+        {
+            bool blnResult = false;
+            string strScript = string.Empty;
+            cBudget_money oBudget_money = new cBudget_money();
+            HiddenField hddbudget_money_major_id = null;
+            AwNumeric txtbudget_money_major_plan = null;
+            Budget_money_major budget_money_major = null;
+
+            try
+            {
+                #region set Data
+                //GridViewRow item = (GridViewRow)GridView1.Controls[0].Controls[0];
+                for (var index = 0; index < GridViewMajor.Rows.Count; index++)
+                {
+                    hddbudget_money_major_id = (HiddenField)GridViewMajor.Rows[index].FindControl("hddbudget_money_major_id");
+                    txtbudget_money_major_plan = (AwNumeric)GridViewMajor.Rows[index].FindControl("txtbudget_money_major_plan");
+                    budget_money_major = new Budget_money_major
+                    {
+                        budget_money_major_id = long.Parse(hddbudget_money_major_id.Value),
+                        budget_money_major_plan = decimal.Parse(txtbudget_money_major_plan.Value.ToString()),
+                        c_updated_by = Session["username"].ToString()
+                    };
+                    oBudget_money.SP_BUDGET_MONEY_MAJOR_UPD(budget_money_major);
+                }
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("duplicate key"))
+                {
+                    MsgBox("ข้อมูลซ้ำโปรดตรวจสอบ");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
+            }
+            finally
+            {
+                oBudget_money.Dispose();
+            }
+            return blnResult;
+        }
 
         private void setData()
         {
@@ -334,6 +379,8 @@ namespace myWeb.App_Control.item
                         cboItem_group_detail.SelectedIndex = -1;
                         cboItem_group_detail.Items.FindByValue(item.item_group_detail_id.ToString()).Selected = true;
                     }
+                    ViewState["budget_money_doc"] = item.budget_money_doc;
+                    hdditem_detail_id.Value = item.item_detail_id.ToString();
                     txtitem_detail_code.Text = item.item_detail_code;
                     txtitem_detail_name.Text = item.item_detail_name;
                     txtitem_name.Text = item.item_name;
@@ -345,7 +392,7 @@ namespace myWeb.App_Control.item
                     txtUpdatedBy.Text = item.c_updated_by;
                     txtUpdatedDate.Text = item.d_updated_date.ToString();
 
-                    BindGridView();
+                
 
                     #endregion
 
@@ -361,7 +408,7 @@ namespace myWeb.App_Control.item
         {
             InitcboItemGroupDetail();
         }
-
+        #endregion
 
 
         #region EmptyGridFix
@@ -545,15 +592,15 @@ namespace myWeb.App_Control.item
 
         protected void GridViewMajor_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            string strMessage = string.Empty;
-            string strCheck = string.Empty;
             string strScript = string.Empty;
-            string strUpdatedBy = Session["username"].ToString();
-            HiddenField hddbudget_money_major_id = (HiddenField)GridViewMajor.Rows[e.RowIndex].FindControl("hddbudget_money_major_id");
+             HiddenField hddbudget_money_major_id = (HiddenField)GridViewMajor.Rows[e.RowIndex].FindControl("hddbudget_money_major_id");
             cBudget_money oBudget_money = new cBudget_money();
             try
             {
                 oBudget_money.SP_BUDGET_MONEY_MAJOR_DEL(hddbudget_money_major_id.Value);
+                setData();
+                strScript = "window.parent.__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript, true);
             }
             catch (Exception ex)
             {

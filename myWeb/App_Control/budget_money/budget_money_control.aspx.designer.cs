@@ -49,6 +49,15 @@ namespace myWeb.App_Control.budget_money {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
+        /// LinkButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>

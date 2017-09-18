@@ -171,7 +171,7 @@ namespace myWeb.App_Control.budget_money
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                 }
                 #endregion
-                DataRowView dv = (DataRowView)e.Row.DataItem;
+               
             }
         }
 

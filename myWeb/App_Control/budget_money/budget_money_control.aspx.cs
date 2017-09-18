@@ -121,7 +121,6 @@ namespace myWeb.App_Control.budget_money
             }
             catch (Exception ex)
             {
-
                 if (ex.Message.Contains("duplicate key"))
                 {
                     MsgBox("ข้อมูลซ้ำโปรดตรวจสอบ");
@@ -639,6 +638,11 @@ namespace myWeb.App_Control.budget_money
         #endregion
 
         protected void lkbRefresh_Click(object sender, EventArgs e)
+        {
+            BindGridViewDetail();
+        }
+
+        protected void LinkButton1_Click(object sender, EventArgs e)
         {
             BindGridViewDetail();
         }

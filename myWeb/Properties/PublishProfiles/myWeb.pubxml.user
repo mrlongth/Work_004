@@ -27,10 +27,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2017 23:20:52</publishTime>
     </File>
     <File Include="App_Control/budget_money/budget_money_control.aspx">
-      <publishTime>09/14/2017 00:28:47</publishTime>
+      <publishTime>09/19/2017 00:30:09</publishTime>
+    </File>
+    <File Include="App_Control/budget_money/budget_money_detail_control.aspx">
+      <publishTime>09/19/2017 00:04:24</publishTime>
     </File>
     <File Include="App_Control/budget_money/budget_money_list.aspx">
-      <publishTime>09/13/2017 23:32:39</publishTime>
+      <publishTime>09/15/2017 00:47:36</publishTime>
+    </File>
+    <File Include="App_Control/budget_money/budget_money_major_select.aspx">
+      <publishTime>09/18/2017 21:30:40</publishTime>
     </File>
     <File Include="App_Control/budget_plan/budget_plan_control.aspx">
       <publishTime>08/28/2017 23:24:28</publishTime>
@@ -103,6 +109,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="App_Control/lov/fund_lov.aspx">
       <publishTime>09/08/2009 15:11:28</publishTime>
+    </File>
+    <File Include="App_Control/lov/item_detail_lov.aspx">
+      <publishTime>09/17/2017 11:21:54</publishTime>
     </File>
     <File Include="App_Control/lov/level_position_lov.aspx">
       <publishTime>03/11/2011 00:57:08</publishTime>
@@ -1092,10 +1101,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="bin/App_GlobalResources.compiled">
-      <publishTime>09/14/2017 00:39:59</publishTime>
+      <publishTime>09/19/2017 00:43:19</publishTime>
     </File>
     <File Include="bin/App_GlobalResources.dll">
-      <publishTime>09/14/2017 00:39:59</publishTime>
+      <publishTime>09/19/2017 00:43:19</publishTime>
     </File>
     <File Include="bin/Aware.DAL.dll">
       <publishTime>04/01/2017 14:28:52</publishTime>
@@ -1176,31 +1185,34 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="bin/myDLL.dll">
-      <publishTime>09/12/2017 23:54:11</publishTime>
+      <publishTime>09/18/2017 23:14:14</publishTime>
     </File>
     <File Include="bin/myDLL.dll.config">
       <publishTime>09/05/2017 22:58:03</publishTime>
     </File>
     <File Include="bin/myDLL.pdb">
-      <publishTime>09/12/2017 23:54:11</publishTime>
+      <publishTime>09/18/2017 23:14:14</publishTime>
     </File>
     <File Include="bin/myModel.dll">
-      <publishTime>09/12/2017 22:31:36</publishTime>
+      <publishTime>09/17/2017 15:05:40</publishTime>
     </File>
     <File Include="bin/myModel.dll.config">
       <publishTime>09/05/2017 23:15:16</publishTime>
     </File>
     <File Include="bin/myModel.pdb">
-      <publishTime>09/12/2017 22:31:36</publishTime>
+      <publishTime>09/17/2017 15:05:40</publishTime>
     </File>
     <File Include="bin/myWeb.dll">
-      <publishTime>09/14/2017 00:39:53</publishTime>
+      <publishTime>09/19/2017 00:42:17</publishTime>
     </File>
     <File Include="bin/myWeb.pdb">
-      <publishTime>09/14/2017 00:39:53</publishTime>
+      <publishTime>09/19/2017 00:42:17</publishTime>
     </File>
     <File Include="bin/stdole.dll">
       <publishTime>09/08/2017 09:41:39</publishTime>
+    </File>
+    <File Include="css/buttons.css">
+      <publishTime>09/14/2017 00:12:19</publishTime>
     </File>
     <File Include="css/default.css">
       <publishTime>08/26/2017 15:47:39</publishTime>
@@ -2159,6 +2171,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="js/alertbox.js">
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
+    <File Include="js/buttons.js">
+      <publishTime>09/13/2017 17:03:54</publishTime>
+    </File>
     <File Include="js/jquery-1.7.2.min.js">
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
@@ -2178,7 +2193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2017 23:24:31</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/14/2017 00:39:55</publishTime>
+      <publishTime>09/19/2017 00:43:16</publishTime>
     </File>
     <File Include="scripts/CheckBoxScript.js">
       <publishTime>04/01/2017 14:28:52</publishTime>
@@ -2187,13 +2202,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="scripts/form.js">
-      <publishTime>09/10/2017 16:18:19</publishTime>
+      <publishTime>09/17/2017 14:55:15</publishTime>
     </File>
     <File Include="scripts/mju_vbscripts.vbs">
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="Site_list.Master">
-      <publishTime>09/14/2017 00:05:24</publishTime>
+      <publishTime>09/16/2017 16:54:25</publishTime>
     </File>
     <File Include="Site_lov.Master">
       <publishTime>08/26/2017 14:07:44</publishTime>
@@ -2214,7 +2229,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/11/2017 23:08:03</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/11/2017 23:08:04</publishTime>
+      <publishTime>09/19/2017 00:42:05</publishTime>
     </File>
     <File Include="Web.sitemap">
       <publishTime>04/01/2017 14:28:52</publishTime>

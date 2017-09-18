@@ -33,7 +33,7 @@
         <tr align="center">
             <td align="center" nowrap valign="middle" colspan="2">
                 <div class="div-lov" style="height: 280px ">
-                    <asp:GridView runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="2"
+                    <asp:GridView runat="server" AllowSorting="false" AutoGenerateColumns="False" CellPadding="2"
                         BackColor="White" BorderWidth="1px" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
                         Width="100%" ID="GridView1" OnRowCreated="GridView1_RowCreated" OnRowDataBound="GridView1_RowDataBound">
                         <AlternatingRowStyle BackColor="#EAEAEA"></AlternatingRowStyle>
@@ -51,13 +51,13 @@
                                 <ItemTemplate>
                                     <asp:Label ID="lblmajor_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_code") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" Width="30%" Wrap="True" />
+                                <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="หลักสูตร" SortExpression="g_name">
                                 <ItemTemplate>
                                     <asp:Label ID="lblmajor_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_name") %>'></asp:Label>
                                 </ItemTemplate>
-                                <ItemStyle HorizontalAlign="Left" Width="50%" Wrap="True" />
+                                <ItemStyle HorizontalAlign="Left" Width="60%" Wrap="True" />
                             </asp:TemplateField>
                         </Columns>
                         <HeaderStyle HorizontalAlign="Center" CssClass="stGridHeader" Font-Bold="True"></HeaderStyle>
