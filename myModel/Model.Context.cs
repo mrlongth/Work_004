@@ -74,5 +74,9 @@ namespace myModel
         public virtual DbSet<view_Person_user> view_Person_user { get; set; }
         public virtual DbSet<view_Unit> view_Unit { get; set; }
         public virtual DbSet<view_User_group_menu> view_User_group_menu { get; set; }
+        public virtual DbSet<Budget_receive_detail> Budget_receive_detail { get; set; }
+        public virtual DbSet<Budget_receive_head> Budget_receive_head { get; set; }
+        public virtual DbSet<view_Budget_receive_detail> view_Budget_receive_detail { get; set; }
+        public virtual DbSet<view_Budget_receive_head> view_Budget_receive_head { get; set; }
     }
 }

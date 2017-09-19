@@ -1101,10 +1101,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="bin/App_GlobalResources.compiled">
-      <publishTime>09/19/2017 00:43:19</publishTime>
+      <publishTime>09/19/2017 01:19:31</publishTime>
     </File>
     <File Include="bin/App_GlobalResources.dll">
-      <publishTime>09/19/2017 00:43:19</publishTime>
+      <publishTime>09/19/2017 01:19:31</publishTime>
     </File>
     <File Include="bin/Aware.DAL.dll">
       <publishTime>04/01/2017 14:28:52</publishTime>
@@ -1167,7 +1167,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/14/2009 17:41:23</publishTime>
     </File>
     <File Include="bin/DevExpress.Web.ASPxEditors.v9.1.dll">
-      <publishTime>04/01/2017 14:28:52</publishTime>
+      <publishTime>04/14/2009 17:44:05</publishTime>
     </File>
     <File Include="bin/DevExpress.Web.v9.1.dll">
       <publishTime>04/14/2009 17:43:59</publishTime>
@@ -1185,28 +1185,28 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/01/2017 14:28:52</publishTime>
     </File>
     <File Include="bin/myDLL.dll">
-      <publishTime>09/18/2017 23:14:14</publishTime>
+      <publishTime>09/19/2017 01:19:22</publishTime>
     </File>
     <File Include="bin/myDLL.dll.config">
       <publishTime>09/05/2017 22:58:03</publishTime>
     </File>
     <File Include="bin/myDLL.pdb">
-      <publishTime>09/18/2017 23:14:14</publishTime>
+      <publishTime>09/19/2017 01:19:22</publishTime>
     </File>
     <File Include="bin/myModel.dll">
-      <publishTime>09/17/2017 15:05:40</publishTime>
+      <publishTime>09/19/2017 01:19:20</publishTime>
     </File>
     <File Include="bin/myModel.dll.config">
       <publishTime>09/05/2017 23:15:16</publishTime>
     </File>
     <File Include="bin/myModel.pdb">
-      <publishTime>09/17/2017 15:05:40</publishTime>
+      <publishTime>09/19/2017 01:19:20</publishTime>
     </File>
     <File Include="bin/myWeb.dll">
-      <publishTime>09/19/2017 00:42:17</publishTime>
+      <publishTime>09/19/2017 01:19:24</publishTime>
     </File>
     <File Include="bin/myWeb.pdb">
-      <publishTime>09/19/2017 00:42:17</publishTime>
+      <publishTime>09/19/2017 01:19:24</publishTime>
     </File>
     <File Include="bin/stdole.dll">
       <publishTime>09/08/2017 09:41:39</publishTime>
@@ -2193,7 +2193,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/28/2017 23:24:31</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/19/2017 00:43:16</publishTime>
+      <publishTime>09/19/2017 01:19:28</publishTime>
     </File>
     <File Include="scripts/CheckBoxScript.js">
       <publishTime>04/01/2017 14:28:52</publishTime>

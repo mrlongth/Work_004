@@ -154,6 +154,26 @@
       <End Role="Type_position" EntitySet="Type_position" />
       <End Role="Person_work" EntitySet="Person_work" />
     </AssociationSet>
+    <EntitySet Name="Budget_receive_detail" EntityType="mju_budgetModel.Budget_receive_detail" />
+    <EntitySet Name="Budget_receive_head" EntityType="mju_budgetModel.Budget_receive_head" />
+    <EntitySet Name="view_Budget_receive_detail" EntityType="mju_budgetModel.view_Budget_receive_detail" />
+    <EntitySet Name="view_Budget_receive_head" EntityType="mju_budgetModel.view_Budget_receive_head" />
+    <AssociationSet Name="FK_Budget_receive_detail_budget_money_major_id" Association="mju_budgetModel.FK_Budget_receive_detail_budget_money_major_id">
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
+      <End Role="Budget_receive_detail" EntitySet="Budget_receive_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_head_budget_plan_code" Association="mju_budgetModel.FK_Budget_receive_head_budget_plan_code">
+      <End Role="Budget_plan" EntitySet="Budget_plan" />
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_detail_budget_receive_doc" Association="mju_budgetModel.FK_Budget_receive_detail_budget_receive_doc">
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+      <End Role="Budget_receive_detail" EntitySet="Budget_receive_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" Association="mju_budgetModel.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id">
+      <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Activity">
     <Key>
@@ -248,6 +268,7 @@
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Budget_money_detail" Relationship="mju_budgetModel.FK_Budget_money_major_budget_money_detail_id" FromRole="Budget_money_major" ToRole="Budget_money_detail" />
     <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Budget_money_major_major_code" FromRole="Budget_money_major" ToRole="Major" />
+    <NavigationProperty Name="Budget_receive_detail" Relationship="mju_budgetModel.FK_Budget_receive_detail_budget_money_major_id" FromRole="Budget_money_major" ToRole="Budget_receive_detail" />
   </EntityType>
   <EntityType Name="Budget_plan">
     <Key>
@@ -273,6 +294,7 @@
     <NavigationProperty Name="Unit" Relationship="mju_budgetModel.FK_budget_plan_unit_code" FromRole="Budget_plan" ToRole="Unit" />
     <NavigationProperty Name="Work" Relationship="mju_budgetModel.FK_budget_plan_work_code" FromRole="Budget_plan" ToRole="Work" />
     <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_budget_plan_code" FromRole="Budget_plan" ToRole="Person_work" />
+    <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_head_budget_plan_code" FromRole="Budget_plan" ToRole="Budget_receive_head" />
   </EntityType>
   <EntityType Name="Config_item">
     <Key>
@@ -414,6 +436,7 @@
     <Property Name="d_updated_date" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Items" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item_group_detail" ToRole="Item" />
     <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_detail_item_group" FromRole="Item_group_detail" ToRole="Item_group" />
+    <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" FromRole="Item_group_detail" ToRole="Budget_receive_head" />
   </EntityType>
   <EntityType Name="Level_position">
     <Key>
@@ -1566,6 +1589,215 @@
       </Principal>
       <Dependent Role="Person_work">
         <PropertyRef Name="type_position_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Budget_receive_detail">
+    <Key>
+      <PropertyRef Name="budget_receive_detail_id" />
+    </Key>
+    <Property Name="budget_receive_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="budget_receive_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_major_id" Type="Int64" />
+    <Property Name="budget_receive_detail_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_money_major" Relationship="mju_budgetModel.FK_Budget_receive_detail_budget_money_major_id" FromRole="Budget_receive_detail" ToRole="Budget_money_major" />
+    <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_detail_budget_receive_doc" FromRole="Budget_receive_detail" ToRole="Budget_receive_head" />
+  </EntityType>
+  <EntityType Name="Budget_receive_head">
+    <Key>
+      <PropertyRef Name="budget_receive_doc" />
+    </Key>
+    <Property Name="budget_receive_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_receive_date" Type="DateTime" Precision="0" />
+    <Property Name="budget_receive_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" />
+    <Property Name="budget_receive_total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_receive_comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Budget_receive_head_budget_plan_code" FromRole="Budget_receive_head" ToRole="Budget_plan" />
+    <NavigationProperty Name="Budget_receive_detail" Relationship="mju_budgetModel.FK_Budget_receive_detail_budget_receive_doc" FromRole="Budget_receive_head" ToRole="Budget_receive_detail" />
+    <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" FromRole="Budget_receive_head" ToRole="Item_group_detail" />
+  </EntityType>
+  <EntityType Name="view_Budget_receive_detail">
+    <Key>
+      <PropertyRef Name="budget_receive_detail_id" />
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="major_code" />
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_receive_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="budget_receive_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_major_id" Type="Int64" />
+    <Property Name="budget_receive_detail_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_created_date" Type="DateTime" Precision="3" />
+    <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+    <Property Name="budget_receive_date" Type="DateTime" Precision="0" />
+    <Property Name="budget_receive_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_detail_id" Type="Int32" />
+    <Property Name="budget_receive_total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_receive_comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="receive_item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="receive_lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="receive_lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="receive_lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
+    <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_major_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" />
+    <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_id" Type="Int32" />
+    <Property Name="budget_money_detail_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_detail_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_detail_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_detail_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_money_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="view_Budget_receive_head">
+    <Key>
+      <PropertyRef Name="budget_receive_doc" />
+    </Key>
+    <Property Name="budget_receive_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="budget_receive_date" Type="DateTime" Precision="0" />
+    <Property Name="budget_receive_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_id" Type="Int32" />
+    <Property Name="budget_receive_total" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="budget_receive_comment" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="director_sign_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="director_sign_image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Expr1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Budget_receive_detail_budget_money_major_id">
+    <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_receive_detail" Role="Budget_receive_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_major">
+        <PropertyRef Name="budget_money_major_id" />
+      </Principal>
+      <Dependent Role="Budget_receive_detail">
+        <PropertyRef Name="budget_money_major_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_head_budget_plan_code">
+    <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_receive_head" Role="Budget_receive_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_plan">
+        <PropertyRef Name="budget_plan_code" />
+      </Principal>
+      <Dependent Role="Budget_receive_head">
+        <PropertyRef Name="budget_plan_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_detail_budget_receive_doc">
+    <End Type="mju_budgetModel.Budget_receive_head" Role="Budget_receive_head" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_receive_detail" Role="Budget_receive_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_receive_head">
+        <PropertyRef Name="budget_receive_doc" />
+      </Principal>
+      <Dependent Role="Budget_receive_detail">
+        <PropertyRef Name="budget_receive_doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_head_Budget_receive_headitem_group_detail_id">
+    <End Type="mju_budgetModel.Item_group_detail" Role="Item_group_detail" Multiplicity="0..1" />
+    <End Type="mju_budgetModel.Budget_receive_head" Role="Budget_receive_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_group_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_receive_head">
+        <PropertyRef Name="item_group_detail_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

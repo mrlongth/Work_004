@@ -101,6 +101,36 @@
     <Property Name="d_updated_date" Type="datetime" />
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="Budget_receive_detail">
+    <Key>
+      <PropertyRef Name="budget_receive_detail_id" />
+    </Key>
+    <Property Name="budget_receive_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_major_id" Type="bigint" />
+    <Property Name="budget_receive_detail_contribute" Type="money" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Budget_receive_head">
+    <Key>
+      <PropertyRef Name="budget_receive_doc" />
+    </Key>
+    <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_receive_date" Type="date" />
+    <Property Name="budget_receive_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_group_detail_id" Type="int" />
+    <Property Name="budget_receive_total" Type="money" />
+    <Property Name="budget_receive_comment" Type="varchar" MaxLength="255" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+  </EntityType>
   <EntityType Name="Config_item">
     <Key>
       <PropertyRef Name="config_id" />
@@ -753,6 +783,136 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a p
     <Property Name="budget_type" Type="varchar" MaxLength="10" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_receive_detail">
+    <Key>
+      <PropertyRef Name="budget_receive_detail_id" />
+      <PropertyRef Name="budget_money_detail_id" />
+      <PropertyRef Name="major_code" />
+      <PropertyRef Name="budget_money_doc" />
+    </Key>
+    <Property Name="budget_receive_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_major_id" Type="bigint" />
+    <Property Name="budget_receive_detail_contribute" Type="money" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
+    <Property Name="budget_receive_date" Type="date" />
+    <Property Name="budget_receive_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="receive_item_group_detail_id" Type="int" />
+    <Property Name="budget_receive_total" Type="money" />
+    <Property Name="budget_receive_comment" Type="varchar" MaxLength="255" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="receive_item_group_detail_code" Type="varchar" MaxLength="10" />
+    <Property Name="receive_item_group_detail_name" Type="varchar" MaxLength="100" />
+    <Property Name="receive_item_group_code" Type="varchar" MaxLength="6" />
+    <Property Name="receive_item_group_year" Type="varchar" MaxLength="4" />
+    <Property Name="receive_item_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="receive_lot_code" Type="varchar" MaxLength="6" />
+    <Property Name="receive_lot_year" Type="varchar" MaxLength="4" />
+    <Property Name="receive_lot_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
+    <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_money_major_plan" Type="money" />
+    <Property Name="budget_money_major_contribute" Type="money" />
+    <Property Name="budget_money_major_use" Type="money" />
+    <Property Name="budget_money_major_remain" Type="money" />
+    <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="item_group_detail_id" Type="int" />
+    <Property Name="item_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_detail_id" Type="int" />
+    <Property Name="budget_money_detail_plan" Type="money" />
+    <Property Name="budget_money_detail_contribute" Type="money" />
+    <Property Name="budget_money_detail_use" Type="money" />
+    <Property Name="budget_money_detail_remain" Type="money" />
+    <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="budget_money_plan" Type="money" />
+    <Property Name="budget_money_contribute" Type="money" />
+    <Property Name="budget_money_use" Type="money" />
+    <Property Name="budget_money_remain" Type="money" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_money_detail_comment" Type="ntext" />
+    <Property Name="comments" Type="varchar" MaxLength="255" />
+    <Property Name="item_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_type" Type="varchar" MaxLength="1" />
+    <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+    <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="lot_code" Type="varchar" MaxLength="6" />
+    <Property Name="lot_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_year" Type="varchar" MaxLength="4" />
+    <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+    <Property Name="lot_year" Type="varchar" MaxLength="4" />
+    <Property Name="major_year" Type="varchar" MaxLength="4" />
+    <Property Name="major_name" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_Budget_receive_head">
+    <Key>
+      <PropertyRef Name="budget_receive_doc" />
+    </Key>
+    <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="budget_receive_date" Type="date" />
+    <Property Name="budget_receive_year" Type="varchar" MaxLength="4" />
+    <Property Name="budget_type" Type="varchar" MaxLength="1" />
+    <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_group_detail_id" Type="int" />
+    <Property Name="budget_receive_total" Type="money" />
+    <Property Name="budget_receive_comment" Type="varchar" MaxLength="255" />
+    <Property Name="c_created_by" Type="varchar" MaxLength="255" />
+    <Property Name="unit_code" Type="varchar" MaxLength="10" />
+    <Property Name="activity_code" Type="varchar" MaxLength="6" />
+    <Property Name="plan_code" Type="varchar" MaxLength="6" />
+    <Property Name="work_code" Type="varchar" MaxLength="6" />
+    <Property Name="fund_code" Type="varchar" MaxLength="6" />
+    <Property Name="unit_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_code" Type="varchar" MaxLength="6" />
+    <Property Name="director_name" Type="varchar" MaxLength="100" />
+    <Property Name="activity_name" Type="varchar" MaxLength="100" />
+    <Property Name="produce_code" Type="varchar" MaxLength="10" />
+    <Property Name="produce_name" Type="varchar" MaxLength="100" />
+    <Property Name="budget_code" Type="varchar" MaxLength="6" />
+    <Property Name="budget_name" Type="varchar" MaxLength="100" />
+    <Property Name="plan_name" Type="varchar" MaxLength="100" />
+    <Property Name="work_name" Type="varchar" MaxLength="100" />
+    <Property Name="fund_name" Type="varchar" MaxLength="100" />
+    <Property Name="director_sign_name" Type="varchar" MaxLength="255" />
+    <Property Name="director_sign_image" Type="image" />
+    <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+    <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+    <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+    <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+    <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+    <Property Name="lot_code" Type="varchar" MaxLength="6" />
+    <Property Name="lot_year" Type="varchar" MaxLength="4" />
+    <Property Name="lot_name" Type="varchar" MaxLength="100" />
+    <Property Name="Expr1" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="view_Item">
     <Key>
@@ -1224,6 +1384,54 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Budget_receive_detail_budget_money_major_id">
+    <End Role="Budget_money_major" Type="Self.Budget_money_major" Multiplicity="0..1" />
+    <End Role="Budget_receive_detail" Type="Self.Budget_receive_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_money_major">
+        <PropertyRef Name="budget_money_major_id" />
+      </Principal>
+      <Dependent Role="Budget_receive_detail">
+        <PropertyRef Name="budget_money_major_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_detail_budget_receive_doc">
+    <End Role="Budget_receive_head" Type="Self.Budget_receive_head" Multiplicity="0..1" />
+    <End Role="Budget_receive_detail" Type="Self.Budget_receive_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_receive_head">
+        <PropertyRef Name="budget_receive_doc" />
+      </Principal>
+      <Dependent Role="Budget_receive_detail">
+        <PropertyRef Name="budget_receive_doc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_head_budget_plan_code">
+    <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="0..1" />
+    <End Role="Budget_receive_head" Type="Self.Budget_receive_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Budget_plan">
+        <PropertyRef Name="budget_plan_code" />
+      </Principal>
+      <Dependent Role="Budget_receive_head">
+        <PropertyRef Name="budget_plan_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Budget_receive_head_Budget_receive_headitem_group_detail_id">
+    <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="0..1" />
+    <End Role="Budget_receive_head" Type="Self.Budget_receive_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item_group_detail">
+        <PropertyRef Name="item_group_detail_id" />
+      </Principal>
+      <Dependent Role="Budget_receive_head">
+        <PropertyRef Name="item_group_detail_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_item_group_detail_item_group">
     <End Role="Item_group" Type="Self.Item_group" Multiplicity="0..1" />
     <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="*" />
@@ -1399,6 +1607,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     <EntitySet Name="Budget_money_head" EntityType="Self.Budget_money_head" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Budget_money_major" EntityType="Self.Budget_money_major" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Budget_plan" EntityType="Self.Budget_plan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget_receive_detail" EntityType="Self.Budget_receive_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Budget_receive_head" EntityType="Self.Budget_receive_head" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Config_item" EntityType="Self.Config_item" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
@@ -1635,6 +1845,127 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_plan].[director_sign_image] AS [director_sign_image], 
     [view_Budget_plan].[budget_type] AS [budget_type]
     FROM [dbo].[view_Budget_plan] AS [view_Budget_plan]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_receive_detail" EntityType="Self.view_Budget_receive_detail" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_receive_detail].[budget_receive_detail_id] AS [budget_receive_detail_id], 
+    [view_Budget_receive_detail].[budget_receive_doc] AS [budget_receive_doc], 
+    [view_Budget_receive_detail].[budget_money_major_id] AS [budget_money_major_id], 
+    [view_Budget_receive_detail].[budget_receive_detail_contribute] AS [budget_receive_detail_contribute], 
+    [view_Budget_receive_detail].[c_created_by] AS [c_created_by], 
+    [view_Budget_receive_detail].[d_created_date] AS [d_created_date], 
+    [view_Budget_receive_detail].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_receive_detail].[d_updated_date] AS [d_updated_date], 
+    [view_Budget_receive_detail].[budget_receive_date] AS [budget_receive_date], 
+    [view_Budget_receive_detail].[budget_receive_year] AS [budget_receive_year], 
+    [view_Budget_receive_detail].[budget_type] AS [budget_type], 
+    [view_Budget_receive_detail].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_receive_detail].[receive_item_group_detail_id] AS [receive_item_group_detail_id], 
+    [view_Budget_receive_detail].[budget_receive_total] AS [budget_receive_total], 
+    [view_Budget_receive_detail].[budget_receive_comment] AS [budget_receive_comment], 
+    [view_Budget_receive_detail].[unit_code] AS [unit_code], 
+    [view_Budget_receive_detail].[activity_code] AS [activity_code], 
+    [view_Budget_receive_detail].[plan_code] AS [plan_code], 
+    [view_Budget_receive_detail].[work_code] AS [work_code], 
+    [view_Budget_receive_detail].[fund_code] AS [fund_code], 
+    [view_Budget_receive_detail].[unit_name] AS [unit_name], 
+    [view_Budget_receive_detail].[director_code] AS [director_code], 
+    [view_Budget_receive_detail].[director_name] AS [director_name], 
+    [view_Budget_receive_detail].[activity_name] AS [activity_name], 
+    [view_Budget_receive_detail].[produce_code] AS [produce_code], 
+    [view_Budget_receive_detail].[produce_name] AS [produce_name], 
+    [view_Budget_receive_detail].[budget_code] AS [budget_code], 
+    [view_Budget_receive_detail].[budget_name] AS [budget_name], 
+    [view_Budget_receive_detail].[plan_name] AS [plan_name], 
+    [view_Budget_receive_detail].[work_name] AS [work_name], 
+    [view_Budget_receive_detail].[fund_name] AS [fund_name], 
+    [view_Budget_receive_detail].[receive_item_group_detail_code] AS [receive_item_group_detail_code], 
+    [view_Budget_receive_detail].[receive_item_group_detail_name] AS [receive_item_group_detail_name], 
+    [view_Budget_receive_detail].[receive_item_group_code] AS [receive_item_group_code], 
+    [view_Budget_receive_detail].[receive_item_group_year] AS [receive_item_group_year], 
+    [view_Budget_receive_detail].[receive_item_group_name] AS [receive_item_group_name], 
+    [view_Budget_receive_detail].[receive_lot_code] AS [receive_lot_code], 
+    [view_Budget_receive_detail].[receive_lot_year] AS [receive_lot_year], 
+    [view_Budget_receive_detail].[receive_lot_name] AS [receive_lot_name], 
+    [view_Budget_receive_detail].[budget_money_detail_id] AS [budget_money_detail_id], 
+    [view_Budget_receive_detail].[major_code] AS [major_code], 
+    [view_Budget_receive_detail].[budget_money_major_plan] AS [budget_money_major_plan], 
+    [view_Budget_receive_detail].[budget_money_major_contribute] AS [budget_money_major_contribute], 
+    [view_Budget_receive_detail].[budget_money_major_use] AS [budget_money_major_use], 
+    [view_Budget_receive_detail].[budget_money_major_remain] AS [budget_money_major_remain], 
+    [view_Budget_receive_detail].[budget_money_doc] AS [budget_money_doc], 
+    [view_Budget_receive_detail].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Budget_receive_detail].[item_code] AS [item_code], 
+    [view_Budget_receive_detail].[item_detail_id] AS [item_detail_id], 
+    [view_Budget_receive_detail].[budget_money_detail_plan] AS [budget_money_detail_plan], 
+    [view_Budget_receive_detail].[budget_money_detail_contribute] AS [budget_money_detail_contribute], 
+    [view_Budget_receive_detail].[budget_money_detail_use] AS [budget_money_detail_use], 
+    [view_Budget_receive_detail].[budget_money_detail_remain] AS [budget_money_detail_remain], 
+    [view_Budget_receive_detail].[budget_money_year] AS [budget_money_year], 
+    [view_Budget_receive_detail].[degree_code] AS [degree_code], 
+    [view_Budget_receive_detail].[budget_money_plan] AS [budget_money_plan], 
+    [view_Budget_receive_detail].[budget_money_contribute] AS [budget_money_contribute], 
+    [view_Budget_receive_detail].[budget_money_use] AS [budget_money_use], 
+    [view_Budget_receive_detail].[budget_money_remain] AS [budget_money_remain], 
+    [view_Budget_receive_detail].[degree_name] AS [degree_name], 
+    [view_Budget_receive_detail].[budget_money_detail_comment] AS [budget_money_detail_comment], 
+    [view_Budget_receive_detail].[comments] AS [comments], 
+    [view_Budget_receive_detail].[item_name] AS [item_name], 
+    [view_Budget_receive_detail].[item_type] AS [item_type], 
+    [view_Budget_receive_detail].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Budget_receive_detail].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Budget_receive_detail].[item_group_code] AS [item_group_code], 
+    [view_Budget_receive_detail].[item_group_name] AS [item_group_name], 
+    [view_Budget_receive_detail].[lot_code] AS [lot_code], 
+    [view_Budget_receive_detail].[lot_name] AS [lot_name], 
+    [view_Budget_receive_detail].[item_detail_code] AS [item_detail_code], 
+    [view_Budget_receive_detail].[item_detail_name] AS [item_detail_name], 
+    [view_Budget_receive_detail].[item_year] AS [item_year], 
+    [view_Budget_receive_detail].[item_group_year] AS [item_group_year], 
+    [view_Budget_receive_detail].[lot_year] AS [lot_year], 
+    [view_Budget_receive_detail].[major_year] AS [major_year], 
+    [view_Budget_receive_detail].[major_name] AS [major_name]
+    FROM [dbo].[view_Budget_receive_detail] AS [view_Budget_receive_detail]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="view_Budget_receive_head" EntityType="Self.view_Budget_receive_head" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_Budget_receive_head].[budget_receive_doc] AS [budget_receive_doc], 
+    [view_Budget_receive_head].[budget_receive_date] AS [budget_receive_date], 
+    [view_Budget_receive_head].[budget_receive_year] AS [budget_receive_year], 
+    [view_Budget_receive_head].[budget_type] AS [budget_type], 
+    [view_Budget_receive_head].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_receive_head].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Budget_receive_head].[budget_receive_total] AS [budget_receive_total], 
+    [view_Budget_receive_head].[budget_receive_comment] AS [budget_receive_comment], 
+    [view_Budget_receive_head].[c_created_by] AS [c_created_by], 
+    [view_Budget_receive_head].[unit_code] AS [unit_code], 
+    [view_Budget_receive_head].[activity_code] AS [activity_code], 
+    [view_Budget_receive_head].[plan_code] AS [plan_code], 
+    [view_Budget_receive_head].[work_code] AS [work_code], 
+    [view_Budget_receive_head].[fund_code] AS [fund_code], 
+    [view_Budget_receive_head].[unit_name] AS [unit_name], 
+    [view_Budget_receive_head].[director_code] AS [director_code], 
+    [view_Budget_receive_head].[director_name] AS [director_name], 
+    [view_Budget_receive_head].[activity_name] AS [activity_name], 
+    [view_Budget_receive_head].[produce_code] AS [produce_code], 
+    [view_Budget_receive_head].[produce_name] AS [produce_name], 
+    [view_Budget_receive_head].[budget_code] AS [budget_code], 
+    [view_Budget_receive_head].[budget_name] AS [budget_name], 
+    [view_Budget_receive_head].[plan_name] AS [plan_name], 
+    [view_Budget_receive_head].[work_name] AS [work_name], 
+    [view_Budget_receive_head].[fund_name] AS [fund_name], 
+    [view_Budget_receive_head].[director_sign_name] AS [director_sign_name], 
+    [view_Budget_receive_head].[director_sign_image] AS [director_sign_image], 
+    [view_Budget_receive_head].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Budget_receive_head].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Budget_receive_head].[item_group_code] AS [item_group_code], 
+    [view_Budget_receive_head].[item_group_year] AS [item_group_year], 
+    [view_Budget_receive_head].[item_group_name] AS [item_group_name], 
+    [view_Budget_receive_head].[lot_code] AS [lot_code], 
+    [view_Budget_receive_head].[lot_year] AS [lot_year], 
+    [view_Budget_receive_head].[lot_name] AS [lot_name], 
+    [view_Budget_receive_head].[Expr1] AS [Expr1]
+    FROM [dbo].[view_Budget_receive_head] AS [view_Budget_receive_head]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Item" EntityType="Self.view_Item" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
@@ -1959,6 +2290,22 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     <AssociationSet Name="FK_budget_plan_work_code" Association="Self.FK_budget_plan_work_code">
       <End Role="Work" EntitySet="Work" />
       <End Role="Budget_plan" EntitySet="Budget_plan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_detail_budget_money_major_id" Association="Self.FK_Budget_receive_detail_budget_money_major_id">
+      <End Role="Budget_money_major" EntitySet="Budget_money_major" />
+      <End Role="Budget_receive_detail" EntitySet="Budget_receive_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_detail_budget_receive_doc" Association="Self.FK_Budget_receive_detail_budget_receive_doc">
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+      <End Role="Budget_receive_detail" EntitySet="Budget_receive_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_head_budget_plan_code" Association="Self.FK_Budget_receive_head_budget_plan_code">
+      <End Role="Budget_plan" EntitySet="Budget_plan" />
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" Association="Self.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id">
+      <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
     </AssociationSet>
     <AssociationSet Name="FK_item_group_detail_item_group" Association="Self.FK_item_group_detail_item_group">
       <End Role="Item_group" EntitySet="Item_group" />

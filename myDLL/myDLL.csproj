@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\cBudget_receive.cs" />
     <Compile Include="Command\cDegree.cs" />
     <Compile Include="Command\cItem.cs" />
     <Compile Include="Command\cBudget_money.cs" />

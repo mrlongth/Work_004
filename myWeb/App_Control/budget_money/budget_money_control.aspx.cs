@@ -259,7 +259,7 @@ namespace myWeb.App_Control.budget_money
             string strCode = cboBudget_type.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = " Select * from  general where g_type = 'budget_type'  Order by g_sort ";
+            strCriteria = " Select * from  general where g_type = 'budget_type' and g_code = '"+  BudgetType +"'  Order by g_sort ";
             if (oCommon.SEL_SQL(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];

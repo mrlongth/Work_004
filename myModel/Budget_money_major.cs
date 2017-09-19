@@ -14,6 +14,12 @@ namespace myModel
     
     public partial class Budget_money_major
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Budget_money_major()
+        {
+            this.Budget_receive_detail = new HashSet<Budget_receive_detail>();
+        }
+    
         public long budget_money_major_id { get; set; }
         public long budget_money_detail_id { get; set; }
         public string major_code { get; set; }
@@ -29,5 +35,7 @@ namespace myModel
     
         public virtual Budget_money_detail Budget_money_detail { get; set; }
         public virtual Major Major { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_receive_detail> Budget_receive_detail { get; set; }
     }
 }

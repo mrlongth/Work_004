@@ -1073,5 +1073,162 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Budget_receive_detail">
+      <EntityTypeMapping TypeName="mju_budgetModel.Budget_receive_detail">
+        <MappingFragment StoreEntitySet="Budget_receive_detail">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_receive_detail_contribute" ColumnName="budget_receive_detail_contribute" />
+          <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
+          <ScalarProperty Name="budget_receive_doc" ColumnName="budget_receive_doc" />
+          <ScalarProperty Name="budget_receive_detail_id" ColumnName="budget_receive_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Budget_receive_head">
+      <EntityTypeMapping TypeName="mju_budgetModel.Budget_receive_head">
+        <MappingFragment StoreEntitySet="Budget_receive_head">
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_receive_comment" ColumnName="budget_receive_comment" />
+          <ScalarProperty Name="budget_receive_total" ColumnName="budget_receive_total" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_receive_year" ColumnName="budget_receive_year" />
+          <ScalarProperty Name="budget_receive_date" ColumnName="budget_receive_date" />
+          <ScalarProperty Name="budget_receive_doc" ColumnName="budget_receive_doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_receive_detail">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_receive_detail">
+        <MappingFragment StoreEntitySet="view_Budget_receive_detail">
+          <ScalarProperty Name="major_name" ColumnName="major_name" />
+          <ScalarProperty Name="major_year" ColumnName="major_year" />
+          <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+          <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+          <ScalarProperty Name="item_year" ColumnName="item_year" />
+          <ScalarProperty Name="item_detail_name" ColumnName="item_detail_name" />
+          <ScalarProperty Name="item_detail_code" ColumnName="item_detail_code" />
+          <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+          <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+          <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+          <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+          <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+          <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+          <ScalarProperty Name="item_type" ColumnName="item_type" />
+          <ScalarProperty Name="item_name" ColumnName="item_name" />
+          <ScalarProperty Name="comments" ColumnName="comments" />
+          <ScalarProperty Name="budget_money_detail_comment" ColumnName="budget_money_detail_comment" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="budget_money_remain" ColumnName="budget_money_remain" />
+          <ScalarProperty Name="budget_money_use" ColumnName="budget_money_use" />
+          <ScalarProperty Name="budget_money_contribute" ColumnName="budget_money_contribute" />
+          <ScalarProperty Name="budget_money_plan" ColumnName="budget_money_plan" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+          <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+          <ScalarProperty Name="budget_money_detail_remain" ColumnName="budget_money_detail_remain" />
+          <ScalarProperty Name="budget_money_detail_use" ColumnName="budget_money_detail_use" />
+          <ScalarProperty Name="budget_money_detail_contribute" ColumnName="budget_money_detail_contribute" />
+          <ScalarProperty Name="budget_money_detail_plan" ColumnName="budget_money_detail_plan" />
+          <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+          <ScalarProperty Name="item_code" ColumnName="item_code" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_money_doc" ColumnName="budget_money_doc" />
+          <ScalarProperty Name="budget_money_major_remain" ColumnName="budget_money_major_remain" />
+          <ScalarProperty Name="budget_money_major_use" ColumnName="budget_money_major_use" />
+          <ScalarProperty Name="budget_money_major_contribute" ColumnName="budget_money_major_contribute" />
+          <ScalarProperty Name="budget_money_major_plan" ColumnName="budget_money_major_plan" />
+          <ScalarProperty Name="major_code" ColumnName="major_code" />
+          <ScalarProperty Name="budget_money_detail_id" ColumnName="budget_money_detail_id" />
+          <ScalarProperty Name="receive_lot_name" ColumnName="receive_lot_name" />
+          <ScalarProperty Name="receive_lot_year" ColumnName="receive_lot_year" />
+          <ScalarProperty Name="receive_lot_code" ColumnName="receive_lot_code" />
+          <ScalarProperty Name="receive_item_group_name" ColumnName="receive_item_group_name" />
+          <ScalarProperty Name="receive_item_group_year" ColumnName="receive_item_group_year" />
+          <ScalarProperty Name="receive_item_group_code" ColumnName="receive_item_group_code" />
+          <ScalarProperty Name="receive_item_group_detail_name" ColumnName="receive_item_group_detail_name" />
+          <ScalarProperty Name="receive_item_group_detail_code" ColumnName="receive_item_group_detail_code" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="budget_receive_comment" ColumnName="budget_receive_comment" />
+          <ScalarProperty Name="budget_receive_total" ColumnName="budget_receive_total" />
+          <ScalarProperty Name="receive_item_group_detail_id" ColumnName="receive_item_group_detail_id" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_receive_year" ColumnName="budget_receive_year" />
+          <ScalarProperty Name="budget_receive_date" ColumnName="budget_receive_date" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_receive_detail_contribute" ColumnName="budget_receive_detail_contribute" />
+          <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
+          <ScalarProperty Name="budget_receive_doc" ColumnName="budget_receive_doc" />
+          <ScalarProperty Name="budget_receive_detail_id" ColumnName="budget_receive_detail_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_Budget_receive_head">
+      <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_receive_head">
+        <MappingFragment StoreEntitySet="view_Budget_receive_head">
+          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+          <ScalarProperty Name="lot_year" ColumnName="lot_year" />
+          <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+          <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+          <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+          <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+          <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+          <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+          <ScalarProperty Name="director_sign_image" ColumnName="director_sign_image" />
+          <ScalarProperty Name="director_sign_name" ColumnName="director_sign_name" />
+          <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+          <ScalarProperty Name="work_name" ColumnName="work_name" />
+          <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+          <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+          <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+          <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+          <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+          <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+          <ScalarProperty Name="director_name" ColumnName="director_name" />
+          <ScalarProperty Name="director_code" ColumnName="director_code" />
+          <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+          <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+          <ScalarProperty Name="work_code" ColumnName="work_code" />
+          <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+          <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+          <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+          <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+          <ScalarProperty Name="budget_receive_comment" ColumnName="budget_receive_comment" />
+          <ScalarProperty Name="budget_receive_total" ColumnName="budget_receive_total" />
+          <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+          <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+          <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+          <ScalarProperty Name="budget_receive_year" ColumnName="budget_receive_year" />
+          <ScalarProperty Name="budget_receive_date" ColumnName="budget_receive_date" />
+          <ScalarProperty Name="budget_receive_doc" ColumnName="budget_receive_doc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
