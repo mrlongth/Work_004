@@ -83,11 +83,12 @@
         <EntityTypeShape EntityType="mju_budgetModel.Budget_receive_detail" Width="1.5" PointX="20.75" PointY="20.75" />
         <EntityTypeShape EntityType="mju_budgetModel.Budget_receive_head" Width="1.5" PointX="15.5" PointY="25.875" />
         <EntityTypeShape EntityType="mju_budgetModel.view_Budget_receive_detail" Width="1.5" PointX="22.375" PointY="0.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_receive_head" Width="1.5" PointX="10.375" PointY="23.75" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_receive_detail_budget_money_major_id" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_receive_head_budget_plan_code" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_receive_detail_budget_receive_doc" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" />
+        <AssociationConnector Association="mju_budgetModel.FK_Budget_receive_head_degree_code" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_receive_head" Width="1.5" PointX="10.375" PointY="23.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

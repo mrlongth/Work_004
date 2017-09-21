@@ -49,6 +49,10 @@ namespace myModel
         public string lot_code { get; set; }
         public string lot_year { get; set; }
         public string lot_name { get; set; }
-        public string Expr1 { get; set; }
+        public string degree_code { get; set; }
+        public string degree_name { get; set; }
+        public Nullable<System.DateTime> d_created_date { get; set; }
+        public string c_updated_by { get; set; }
+        public Nullable<System.DateTime> d_updated_date { get; set; }
     }
 }

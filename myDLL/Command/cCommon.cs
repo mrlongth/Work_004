@@ -166,6 +166,31 @@ namespace myDLL
             return inDay + "/" + inMonth + "/" + mChkyear.ToString();
         }
 
+        public static DateTime GetDate(string strinputDate)
+        {
+            DateTime inputDate;
+            inputDate = DateTime.Parse(strinputDate);
+            // ----- Use For Add And Update Date Data Type-----
+            string inDay = inputDate.Day.ToString();
+            string inMonth = inputDate.Month.ToString();
+            string inYear = inputDate.Year.ToString();
+            int mChkyear = 0;
+            if (inDay.Length == 1)
+            {
+                inDay = "0" + inDay;
+            }
+            if (inMonth.Length == 1)
+            {
+                inMonth = "0" + inMonth;
+            }
+            mChkyear = int.Parse(inYear);
+            if (mChkyear < 2200)
+            {
+                mChkyear = mChkyear + 543;
+            }
+            return new DateTime(mChkyear, int.Parse(inMonth) , int.Parse(inDay) );
+        }
+
 
         public static string CheckDateTime(string strinputDate)
         {

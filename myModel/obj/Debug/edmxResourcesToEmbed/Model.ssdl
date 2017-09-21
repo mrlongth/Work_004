@@ -123,6 +123,7 @@
     <Property Name="budget_receive_year" Type="varchar" MaxLength="4" />
     <Property Name="budget_type" Type="varchar" MaxLength="1" />
     <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
     <Property Name="item_group_detail_id" Type="int" />
     <Property Name="budget_receive_total" Type="money" />
     <Property Name="budget_receive_comment" Type="varchar" MaxLength="255" />
@@ -845,12 +846,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
     <Property Name="budget_money_detail_use" Type="money" />
     <Property Name="budget_money_detail_remain" Type="money" />
     <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
-    <Property Name="degree_code" Type="varchar" MaxLength="10" />
     <Property Name="budget_money_plan" Type="money" />
     <Property Name="budget_money_contribute" Type="money" />
     <Property Name="budget_money_use" Type="money" />
     <Property Name="budget_money_remain" Type="money" />
-    <Property Name="degree_name" Type="varchar" MaxLength="100" />
     <Property Name="budget_money_detail_comment" Type="ntext" />
     <Property Name="comments" Type="varchar" MaxLength="255" />
     <Property Name="item_name" Type="varchar" MaxLength="100" />
@@ -868,6 +867,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
     <Property Name="lot_year" Type="varchar" MaxLength="4" />
     <Property Name="major_year" Type="varchar" MaxLength="4" />
     <Property Name="major_name" Type="varchar" MaxLength="100" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -910,7 +911,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_head' does not 
     <Property Name="lot_code" Type="varchar" MaxLength="6" />
     <Property Name="lot_year" Type="varchar" MaxLength="4" />
     <Property Name="lot_name" Type="varchar" MaxLength="100" />
-    <Property Name="Expr1" Type="varchar" MaxLength="10" />
+    <Property Name="degree_code" Type="varchar" MaxLength="10" />
+    <Property Name="degree_name" Type="varchar" MaxLength="100" />
+    <Property Name="d_created_date" Type="datetime" />
+    <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+    <Property Name="d_updated_date" Type="datetime" />
   </EntityType>
   <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1432,6 +1437,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Budget_receive_head_degree_code">
+    <End Role="Degree" Type="Self.Degree" Multiplicity="0..1" />
+    <End Role="Budget_receive_head" Type="Self.Budget_receive_head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Degree">
+        <PropertyRef Name="degree_code" />
+      </Principal>
+      <Dependent Role="Budget_receive_head">
+        <PropertyRef Name="degree_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_item_group_detail_item_group">
     <End Role="Item_group" Type="Self.Item_group" Multiplicity="0..1" />
     <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="*" />
@@ -1902,12 +1919,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_receive_detail].[budget_money_detail_use] AS [budget_money_detail_use], 
     [view_Budget_receive_detail].[budget_money_detail_remain] AS [budget_money_detail_remain], 
     [view_Budget_receive_detail].[budget_money_year] AS [budget_money_year], 
-    [view_Budget_receive_detail].[degree_code] AS [degree_code], 
     [view_Budget_receive_detail].[budget_money_plan] AS [budget_money_plan], 
     [view_Budget_receive_detail].[budget_money_contribute] AS [budget_money_contribute], 
     [view_Budget_receive_detail].[budget_money_use] AS [budget_money_use], 
     [view_Budget_receive_detail].[budget_money_remain] AS [budget_money_remain], 
-    [view_Budget_receive_detail].[degree_name] AS [degree_name], 
     [view_Budget_receive_detail].[budget_money_detail_comment] AS [budget_money_detail_comment], 
     [view_Budget_receive_detail].[comments] AS [comments], 
     [view_Budget_receive_detail].[item_name] AS [item_name], 
@@ -1924,7 +1939,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_receive_detail].[item_group_year] AS [item_group_year], 
     [view_Budget_receive_detail].[lot_year] AS [lot_year], 
     [view_Budget_receive_detail].[major_year] AS [major_year], 
-    [view_Budget_receive_detail].[major_name] AS [major_name]
+    [view_Budget_receive_detail].[major_name] AS [major_name], 
+    [view_Budget_receive_detail].[degree_code] AS [degree_code], 
+    [view_Budget_receive_detail].[degree_name] AS [degree_name]
     FROM [dbo].[view_Budget_receive_detail] AS [view_Budget_receive_detail]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Budget_receive_head" EntityType="Self.view_Budget_receive_head" store:Type="Views" store:Schema="dbo">
@@ -1964,7 +1981,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_receive_head].[lot_code] AS [lot_code], 
     [view_Budget_receive_head].[lot_year] AS [lot_year], 
     [view_Budget_receive_head].[lot_name] AS [lot_name], 
-    [view_Budget_receive_head].[Expr1] AS [Expr1]
+    [view_Budget_receive_head].[degree_code] AS [degree_code], 
+    [view_Budget_receive_head].[degree_name] AS [degree_name], 
+    [view_Budget_receive_head].[d_created_date] AS [d_created_date], 
+    [view_Budget_receive_head].[c_updated_by] AS [c_updated_by], 
+    [view_Budget_receive_head].[d_updated_date] AS [d_updated_date]
     FROM [dbo].[view_Budget_receive_head] AS [view_Budget_receive_head]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="view_Item" EntityType="Self.view_Item" store:Type="Views" store:Schema="dbo">
@@ -2305,6 +2326,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     </AssociationSet>
     <AssociationSet Name="FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" Association="Self.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id">
       <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+      <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Budget_receive_head_degree_code" Association="Self.FK_Budget_receive_head_degree_code">
+      <End Role="Degree" EntitySet="Degree" />
       <End Role="Budget_receive_head" EntitySet="Budget_receive_head" />
     </AssociationSet>
     <AssociationSet Name="FK_item_group_detail_item_group" Association="Self.FK_item_group_detail_item_group">

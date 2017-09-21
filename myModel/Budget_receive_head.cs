@@ -32,10 +32,12 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+        public string degree_code { get; set; }
     
         public virtual Budget_plan Budget_plan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_receive_detail> Budget_receive_detail { get; set; }
         public virtual Item_group_detail Item_group_detail { get; set; }
+        public virtual Degree Degree { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace myDLL
 {
-    public class ccBudget_receive : IDisposable
+    public class cBudget_receive : IDisposable
     {
         private string _strConn = string.Empty;
         public string ConnectionString
@@ -28,7 +28,7 @@ namespace myDLL
             }
         }
 
-        public ccBudget_receive()
+        public cBudget_receive()
         {
             //
             // TODO: Add constructor logic here
@@ -105,6 +105,7 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_receive_year", SqlDbType.VarChar).Value = budget_receive_head.budget_receive_year;
                 oCommand.Parameters.Add("budget_type", SqlDbType.VarChar).Value = budget_receive_head.budget_type;
                 oCommand.Parameters.Add("budget_plan_code", SqlDbType.VarChar).Value = budget_receive_head.budget_plan_code;
+                oCommand.Parameters.Add("degree_code", SqlDbType.VarChar).Value = budget_receive_head.degree_code;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = budget_receive_head.item_group_detail_id;
                 oCommand.Parameters.Add("budget_receive_total", SqlDbType.Money).Value = budget_receive_head.budget_receive_total;
                 oCommand.Parameters.Add("budget_receive_comment", SqlDbType.VarChar).Value = budget_receive_head.@budget_receive_comment;
@@ -147,6 +148,7 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_receive_year", SqlDbType.VarChar).Value = budget_receive_head.budget_receive_year;
                 oCommand.Parameters.Add("budget_type", SqlDbType.VarChar).Value = budget_receive_head.budget_type;
                 oCommand.Parameters.Add("budget_plan_code", SqlDbType.VarChar).Value = budget_receive_head.budget_plan_code;
+                oCommand.Parameters.Add("degree_code", SqlDbType.VarChar).Value = budget_receive_head.degree_code;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = budget_receive_head.item_group_detail_id;
                 oCommand.Parameters.Add("budget_receive_total", SqlDbType.Money).Value = budget_receive_head.budget_receive_total;
                 oCommand.Parameters.Add("budget_receive_comment", SqlDbType.VarChar).Value = budget_receive_head.@budget_receive_comment;

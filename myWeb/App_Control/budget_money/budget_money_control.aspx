@@ -28,7 +28,7 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:Panel ID="pnlMain" runat="server">
 
-        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1"
+        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0"
             BorderWidth="0px" Style="text-align: left">
             <ajaxtoolkit:TabPanel ID="TabPanel1" runat="server" HeaderText="ข้อมูลการทำงาน">
                 <HeaderTemplate>

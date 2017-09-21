@@ -66,7 +66,10 @@ namespace myWeb.App_Control.lov
                     ViewState["BudgetType"] = Helper.CStr(Request.QueryString["budget_type"]);
                 }
 
-
+                if (Request.QueryString["cboDegree"] != null)
+                {
+                    ViewState["cboDegree"] = Helper.CStr(Request.QueryString["cboDegree"]);
+                }
 
                 txtyear.Text = ViewState["year"].ToString();
                 txtyear.CssClass = "textboxdis";
@@ -393,6 +396,11 @@ namespace myWeb.App_Control.lov
                 }
             }
 
+            if (ViewState["cboDegree"] != null)
+            {
+                strCriteria = strCriteria + " and budget_plan_code IN (SELECT budget_plan_code FROM Budget_money_head WHERE degree_code = '" + ViewState["cboDegree"].ToString() + "')";
+            }
+
             if (DirectorLock == "Y")
             {
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
@@ -510,18 +518,30 @@ namespace myWeb.App_Control.lov
                         }
                         else
                         {
-                            strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n " +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + strpbudget_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl3"].ToString() + "').value='" + strpproduce_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl4"].ToString() + "').value='" + strpactivity_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl5"].ToString() + "').value='" + strpplan_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl6"].ToString() + "').value='" + strpwork_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl7"].ToString() + "').value='" + strpfund_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl9"].ToString() + "').value='" + strpdirector_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl10"].ToString() + "').value='" + strpunit_name + "';\n" +
-                                                "window.parent.document.getElementById('" + ViewState["ctrl11"].ToString() + "').value='" + txtyear.Text + "';\n" +
-                                                "window.parent.$find('show_ModalPopupExtender').hide();" +
-                                                "ClosePopUp('" + ViewState["show"].ToString() + "');";
+                            if (ViewState["cboDegree"] != null)
+                            {
+                                strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
+                                strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
+                                strScript += "window.parent.$find('show_ModalPopupExtender').hide();";
+                                strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+
+                            }
+                            else
+                            {
+                                strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n " +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + strpbudget_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl3"].ToString() + "').value='" + strpproduce_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl4"].ToString() + "').value='" + strpactivity_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl5"].ToString() + "').value='" + strpplan_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl6"].ToString() + "').value='" + strpwork_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl7"].ToString() + "').value='" + strpfund_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl9"].ToString() + "').value='" + strpdirector_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl10"].ToString() + "').value='" + strpunit_name + "';\n" +
+                                                    "window.parent.document.getElementById('" + ViewState["ctrl11"].ToString() + "').value='" + txtyear.Text + "';\n" +
+                                                    "window.parent.$find('show_ModalPopupExtender').hide();" +
+                                                    "ClosePopUp('" + ViewState["show"].ToString() + "');";
+
+                            }
                         }
                         ScriptManager.RegisterStartupScript(Page, Page.GetType(), "close", strScript, true);
                     }
@@ -906,46 +926,55 @@ namespace myWeb.App_Control.lov
                 {
                     string strShow;
                     strShow = "<a href=\"\" onclick=\"";
-                    if (!ViewState["ctrl1"].ToString().Equals(""))
-                    {
 
+                    if (ViewState["cboDegree"] != null)
+                    {
                         strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
+                        strShow += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
                     }
-                    if (!ViewState["ctrl2"].ToString().Equals(""))
+                    else
                     {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + lblbudget_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl3"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl3"].ToString() + "').value='" + lblproduce_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl4"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl4"].ToString() + "').value='" + lblactivity_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl5"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl5"].ToString() + "').value='" + lblplan_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl6"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl6"].ToString() + "').value='" + lblwork_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl7"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl7"].ToString() + "').value='" + lblfund_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl9"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl9"].ToString() + "').value='" + lbldirector_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl10"].ToString().Equals(""))
-                    {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl10"].ToString() + "').value='" + lblunit_name.Text + "';\n";
-                    }
-                    if (!ViewState["ctrl11"].ToString().Equals(""))
-                    {
-                        strShow = strShow + "window.parent.document.getElementById('" + ViewState["ctrl11"].ToString() + "').value='" + txtyear.Text + "';\n";
+                        if (!ViewState["ctrl1"].ToString().Equals(""))
+                        {
+
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
+                        }
+                        if (!ViewState["ctrl2"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + lblbudget_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl3"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl3"].ToString() + "').value='" + lblproduce_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl4"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl4"].ToString() + "').value='" + lblactivity_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl5"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl5"].ToString() + "').value='" + lblplan_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl6"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl6"].ToString() + "').value='" + lblwork_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl7"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl7"].ToString() + "').value='" + lblfund_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl9"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl9"].ToString() + "').value='" + lbldirector_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl10"].ToString().Equals(""))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl10"].ToString() + "').value='" + lblunit_name.Text + "';\n";
+                        }
+                        if (!ViewState["ctrl11"].ToString().Equals(""))
+                        {
+                            strShow = strShow + "window.parent.document.getElementById('" + ViewState["ctrl11"].ToString() + "').value='" + txtyear.Text + "';\n";
+                        }
                     }
                     strShow = strShow + "ClosePopUp('" + ViewState["show"].ToString() + "');";
                     strShow = strShow + "return false;\" >" + lblbudget_plan_code.Text + "</a>";

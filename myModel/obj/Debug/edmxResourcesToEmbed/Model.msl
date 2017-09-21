@@ -1090,6 +1090,7 @@
     <EntitySetMapping Name="Budget_receive_head">
       <EntityTypeMapping TypeName="mju_budgetModel.Budget_receive_head">
         <MappingFragment StoreEntitySet="Budget_receive_head">
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
           <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
           <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
           <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
@@ -1191,7 +1192,11 @@
     <EntitySetMapping Name="view_Budget_receive_head">
       <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_receive_head">
         <MappingFragment StoreEntitySet="view_Budget_receive_head">
-          <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+          <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+          <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+          <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+          <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+          <ScalarProperty Name="degree_code" ColumnName="degree_code" />
           <ScalarProperty Name="lot_name" ColumnName="lot_name" />
           <ScalarProperty Name="lot_year" ColumnName="lot_year" />
           <ScalarProperty Name="lot_code" ColumnName="lot_code" />

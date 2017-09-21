@@ -98,6 +98,8 @@
     <Content Include="App_Control\budget_money\budget_money_list.aspx" />
     <Content Include="App_Control\budget_money\budget_money_detail_control.aspx" />
     <Content Include="App_Control\budget_money\budget_money_major_select.aspx" />
+    <Content Include="App_Control\budget_receive\budget_receive_control.aspx" />
+    <Content Include="App_Control\budget_receive\budget_receive_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
@@ -357,6 +359,20 @@
     </Compile>
     <Compile Include="App_Control\budget_plan\budget_plan_list.aspx.designer.cs">
       <DependentUpon>budget_plan_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_receive\budget_receive_control.aspx.cs">
+      <DependentUpon>budget_receive_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_receive\budget_receive_control.aspx.designer.cs">
+      <DependentUpon>budget_receive_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_receive\budget_receive_list.aspx.cs">
+      <DependentUpon>budget_receive_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_receive\budget_receive_list.aspx.designer.cs">
+      <DependentUpon>budget_receive_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\director\director_view.aspx.cs">
       <DependentUpon>director_view.aspx</DependentUpon>
