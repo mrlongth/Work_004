@@ -375,7 +375,8 @@ namespace myWeb.App_Control.budget_money
             #region Criteria
             budget_money_head.degree_code = cboDegree.SelectedValue;
             budget_money_head.budget_money_year = cboYear.SelectedValue;
-            budget_money_head.budget_money_doc = txtbudget_plan_code.Text.Replace("'", "''").Trim();
+            budget_money_head.budget_money_doc = txtbudget_money_doc.Text.Replace("'", "''").Trim();
+            budget_money_head.budget_plan_code = txtbudget_plan_code.Text.Replace("'", "''").Trim();
             budget_money_head.budget_code = cboBudget.SelectedValue;
             budget_money_head.produce_code = cboProduce.SelectedValue;
             budget_money_head.director_code = cboDirector.SelectedValue;
@@ -390,6 +391,10 @@ namespace myWeb.App_Control.budget_money
             if (!budget_money_head.budget_money_doc.Equals(""))
             {
                 strCriteria = strCriteria + "  And  (budget_money_doc ='" + budget_money_head.budget_money_doc + "') ";
+            }
+            if (!budget_money_head.budget_plan_code.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (budget_plan_code ='" + budget_money_head.budget_plan_code + "') ";
             }
 
             if (!budget_money_head.degree_code.Equals(""))

@@ -499,14 +499,21 @@ namespace myWeb.App_Control.major
             cMajor oMajor = new cMajor();
             try
             {
-                if (!oMajor.SP_DEL_Major(lblmajor_code.Text, ref strMessage))
+                if (!oMajor.SP_DEL_Major(lblmajor_code.Text))
                 {
                     lblError.Text = strMessage;
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

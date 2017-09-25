@@ -28,7 +28,7 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:Panel ID="pnlMain" runat="server">
 
-        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0"
+        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1"
             BorderWidth="0px" Style="text-align: left">
             <ajaxtoolkit:TabPanel ID="TabPanel1" runat="server" HeaderText="ข้อมูลการทำงาน">
                 <HeaderTemplate>
@@ -237,42 +237,71 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <asp:Panel ID="pnlDetail" runat="server">
-                        <asp:GridView ID="GridViewDetail" runat="server" AllowSorting="True"
+                        <asp:GridView ID="GridViewDetail" runat="server" AllowSorting="false"
                             AutoGenerateColumns="False" BackColor="White" BorderWidth="1px"
                             CellPadding="2" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
                             OnRowCreated="GridViewDetail_RowCreated" OnRowDataBound="GridViewDetail_RowDataBound"
                             OnSorting="GridViewDetail_Sorting" Width="100%" OnRowCommand="GridViewDetail_RowCommand">
                             <AlternatingRowStyle BackColor="#EAEAEA" />
                             <Columns>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:ImageButton ID="imgView" runat="server" CausesValidation="False" CommandName="VIEW" CommandArgument="<%# Container.DisplayIndex + 1 %>" />
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Wrap="False" Width="2%"></ItemStyle>
-                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="No.">
                                     <ItemTemplate>
-                                        <asp:HiddenField ID="hddBudget_receive_detail_id" runat="server" Value='<%# DataBinder.Eval(Container, "DataItem.budget_receive_detail_id") %>' />
                                         <asp:Label ID="lblNo" runat="server"> </asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Width="2%" Wrap="False" />
+                                    <ItemStyle HorizontalAlign="Center" Width="1%" Wrap="False" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="รายละเอียดงบประมาณ" SortExpression="lot_name">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                    <ItemStyle HorizontalAlign="Left" Width="99%" Wrap="True" />
                                     <ItemTemplate>
-                                        <asp:Label ID="lbllot_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name") %>'>
-                                        </asp:Label>
+                                        <asp:Label ID="lbllot_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name") %>' />
+                                        <div style="clear: both; padding-left: 10px;">
+                                            <asp:Repeater ID="rptItem_group" runat="server" OnItemDataBound="rptItem_group_ItemDataBound">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblitem_group_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_group_name") %>' />
+                                                    <div style="clear: both; padding-left: 10px;">
+                                                        <asp:Repeater ID="rptItem_group_detail" runat="server" OnItemDataBound="rptItem_group_detail_ItemDataBound">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblItem_group_detail_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_group_detail_name") %>' />
+                                                                <div style="clear: both; padding-left: 10px;">
+                                                                    <asp:Repeater ID="rptItem" runat="server" OnItemDataBound="rptItem_ItemDataBound">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="lblItem_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_name") %>' />
+                                                                            <div style="clear: both; padding-left: -30px;">
+
+                                                                                <asp:GridView ID="GridViewMajor" runat="server" AllowSorting="True"
+                                                                                    AutoGenerateColumns="False" BackColor="White" BorderWidth="1px"
+                                                                                    CellPadding="2" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
+                                                                                    OnRowCreated="GridViewMajor_RowCreated" OnRowDataBound="GridViewMajor_RowDataBound"
+                                                                                    OnSorting="GridViewMajor_Sorting" Width="100%" OnRowCommand="GridViewMajor_RowCommand">
+                                                                                    <AlternatingRowStyle BackColor="#EAEAEA" />
+                                                                                    <Columns >
+                                                                                        <asp:TemplateField HeaderText="No." Visible="true">
+                                                                                            <ItemTemplate>
+                                                                                                <asp:Label ID="lblNo" runat="server"> </asp:Label>
+                                                                                            </ItemTemplate>
+                                                                                            <ItemStyle HorizontalAlign="Center" Width="2%" Wrap="False" />
+                                                                                        </asp:TemplateField>
+                                                                                        <asp:TemplateField HeaderText="รายการ" Visible="true">
+                                                                                            <ItemTemplate>
+                                                                                                <asp:Label ID="lblItem_detail_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_detail_name") %>' />
+                                                                                            </ItemTemplate>
+                                                                                            <ItemStyle HorizontalAlign="Left" Width="200px" Wrap="true" />
+                                                                                        </asp:TemplateField>
+                                                                                    </Columns>
+                                                                                    <HeaderStyle CssClass="stGridHeader" Font-Bold="True" HorizontalAlign="Center" />
+                                                                                </asp:GridView>
+                                                                            </div>
+                                                                        </ItemTemplate>
+                                                                    </asp:Repeater>
+                                                                </div>
+                                                            </ItemTemplate>
+                                                        </asp:Repeater>
+                                                    </div>
+                                                </ItemTemplate>
+                                            </asp:Repeater>
+                                        </div>
                                     </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:ImageButton ID="imgDelete" runat="server" CausesValidation="False" CommandName="DELETEDETAIL" CommandArgument="<%# Container.DisplayIndex + 1 %>" />
-                                    </ItemTemplate>
-                                    <HeaderTemplate>
-                                        <asp:ImageButton ID="imgAdd" runat="server" />
-                                    </HeaderTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="False" />
                                 </asp:TemplateField>
                             </Columns>
                             <HeaderStyle CssClass="stGridHeader" Font-Bold="True" HorizontalAlign="Center" />

@@ -79,7 +79,7 @@ namespace myDLL
         #endregion
 
         #region SP_INS_Major
-        public bool SP_INS_Major(string pMajor_year, string pMajor_name, string pActive, string pC_created_by, ref string strMessage)
+        public bool SP_INS_Major(string pMajor_year, string pMajor_name, string pmajor_abbrev, string pActive, string pC_created_by, ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -102,6 +102,14 @@ namespace myDLL
                 oParam_Major_name.Direction = ParameterDirection.Input;
                 oParam_Major_name.Value = pMajor_name;
                 oCommand.Parameters.Add(oParam_Major_name);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_major_abbrev = new SqlParameter("major_abbrev", SqlDbType.NVarChar);
+                oParam_major_abbrev.Direction = ParameterDirection.Input;
+                oParam_major_abbrev.Value = pMajor_name;
+                oCommand.Parameters.Add(oParam_major_abbrev);
+
+
                 // - - - - - - - - - - - -             
                 SqlParameter oParam_Active = new SqlParameter("c_active", SqlDbType.NVarChar);
                 oParam_Active.Direction = ParameterDirection.Input;
@@ -132,7 +140,7 @@ namespace myDLL
         #endregion
 
         #region SP_UPD_Major
-        public bool SP_UPD_Major(string pMajor_code, string pMajor_year, string pMajor_name, string pActive, string pC_updated_by, ref string strMessage)
+        public bool SP_UPD_Major(string pMajor_code, string pMajor_year, string pMajor_name, string pMajor_abbrev, string pActive, string pC_updated_by, ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -160,6 +168,13 @@ namespace myDLL
                 oParam_Major_name.Direction = ParameterDirection.Input;
                 oParam_Major_name.Value = pMajor_name;
                 oCommand.Parameters.Add(oParam_Major_name);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_major_abbrev = new SqlParameter("major_abbrev", SqlDbType.NVarChar);
+                oParam_major_abbrev.Direction = ParameterDirection.Input;
+                oParam_major_abbrev.Value = pMajor_abbrev;
+                oCommand.Parameters.Add(oParam_major_abbrev);
+
                 // - - - - - - - - - - - -             
                 SqlParameter oParam_Active = new SqlParameter("C_active", SqlDbType.NVarChar);
                 oParam_Active.Direction = ParameterDirection.Input;
@@ -190,7 +205,7 @@ namespace myDLL
         #endregion
 
         #region SP_DEL_Major
-        public bool SP_DEL_Major(string pMajor_code, ref string strMessage)
+        public bool SP_DEL_Major(string pMajor_code)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -215,7 +230,7 @@ namespace myDLL
             }
             catch (Exception ex)
             {
-                strMessage = ex.Message.ToString();
+                throw ex;
             }
             finally
             {

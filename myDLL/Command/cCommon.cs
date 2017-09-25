@@ -184,9 +184,9 @@ namespace myDLL
                 inMonth = "0" + inMonth;
             }
             mChkyear = int.Parse(inYear);
-            if (mChkyear < 2200)
+            if (mChkyear > 2200)
             {
-                mChkyear = mChkyear + 543;
+                mChkyear = mChkyear - 543;
             }
             return new DateTime(mChkyear, int.Parse(inMonth) , int.Parse(inDay) );
         }

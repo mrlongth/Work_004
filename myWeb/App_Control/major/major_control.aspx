@@ -58,6 +58,19 @@
         </tr>
         <tr align="left">
             <td align="right" nowrap valign="top">
+                <asp:Label ID="Label72" runat="server">ชื่อย่อ :</asp:Label>
+            </td>
+            <td align="left" colspan="2" nowrap valign="top">
+                <font face="Tahoma">
+                    <asp:TextBox ID="txtmajor_abbrev" runat="server" CssClass="textbox"
+                        MaxLength="100" Width="344px" CausesValidation="True" ValidationGroup="A"></asp:TextBox>
+                </font>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr align="left">
+            <td align="right" nowrap valign="top">
                 <asp:Label ID="Label13" runat="server">ปีงบประมาณ :</asp:Label>
             </td>
             <td align="left" colspan="2" nowrap valign="top">

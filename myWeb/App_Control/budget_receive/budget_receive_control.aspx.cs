@@ -4,6 +4,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using myDLL;
 using myModel;
+using System.Linq;
+using System.Collections.Generic;
+using myDLL.Common;
+using Aware.WebControls;
 
 namespace myWeb.App_Control.budget_receive
 {
@@ -27,6 +31,24 @@ namespace myWeb.App_Control.budget_receive
                 ViewState["BudgetType"] = value;
             }
         }
+
+
+        protected List<view_Budget_money_major> lstBudgetMajor
+        {
+            get
+            {
+                if (ViewState["lstBudgetMajor"] == null)
+                {
+                    ViewState["lstBudgetMajor"] = new List<view_Budget_money_major>();
+                }
+                return (List<view_Budget_money_major>)ViewState["lstBudgetMajor"];
+            }
+            set
+            {
+                ViewState["lstBudgetMajor"] = value;
+            }
+        }
+
 
         #endregion
 
@@ -90,7 +112,6 @@ namespace myWeb.App_Control.budget_receive
             }
         }
 
-
         private bool saveData()
         {
             bool blnResult = false;
@@ -112,13 +133,106 @@ namespace myWeb.App_Control.budget_receive
                 #endregion
                 if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
-                    oBudget_receive.SP_BUDGET_RECEIVE_HEAD_UPD(budget_receive_head);
+                    if (oBudget_receive.SP_BUDGET_RECEIVE_HEAD_UPD(budget_receive_head))
+                    {
+                        saveDataDetail();
+                    }
                 }
                 else
                 {
                     oBudget_receive.SP_BUDGET_RECEIVE_HEAD_INS(budget_receive_head);
                     ViewState["budget_receive_doc"] = budget_receive_head.budget_receive_doc;
                 }
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("duplicate key"))
+                {
+                    MsgBox("ข้อมูลซ้ำโปรดตรวจสอบ");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
+            }
+            finally
+            {
+                oBudget_receive.Dispose();
+            }
+            return blnResult;
+        }
+
+        private bool saveDataDetail()
+        {
+            bool blnResult = false;
+            cBudget_receive oBudget_receive = new cBudget_receive();
+            List<Budget_receive_detail> listBudget_receive_detail = new List<Budget_receive_detail>();
+            try
+            {
+                var lstMajor = lstBudgetMajor
+                    .GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev })
+                    .Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
+               
+                foreach (GridViewRow row in GridViewDetail.Rows)
+                {
+                    if (row.RowType == DataControlRowType.DataRow)
+                    {
+                        //rptItem_group
+                        var rptItem_group = row.FindControl("rptItem_group") as Repeater;
+                        foreach (RepeaterItem row_item_group in rptItem_group.Items)
+                        {
+                            //rptItem_group_detail
+                            var rptItem_group_detail = row_item_group.FindControl("rptItem_group_detail") as Repeater;
+                            foreach (RepeaterItem row_item_group_detail in rptItem_group_detail.Items)
+                            {
+                                //rptItem
+                                var rptItem = row_item_group_detail.FindControl("rptItem") as Repeater;
+                                foreach (RepeaterItem row_item in rptItem.Items)
+                                {
+                                    // GridViewMajor
+                                    var GridViewMajor = row_item.FindControl("GridViewMajor") as GridView;
+                                    foreach (GridViewRow row_Major in GridViewMajor.Rows)
+                                    {
+                                        //if (row_Major.RowType == DataControlRowType.DataRow)
+                                        {
+                                            var lblItem_detail_name = row_Major.FindControl("lblItem_detail_name");
+                                            foreach (var major in lstMajor)
+                                            {
+                                                var txtMajor = row_Major.FindControl("txt" + major.major_code);
+                                                  var hddMajor = row_Major.FindControl("hdd" + major.major_code);
+                                                if (txtMajor != null && hddMajor != null)
+                                                {
+                                                    listBudget_receive_detail.Add(new Budget_receive_detail
+                                                    {
+                                                        budget_receive_doc = txtbudget_receive_doc.Text,
+                                                        budget_money_major_id = long.Parse(((HiddenField)hddMajor).Value),
+                                                        budget_receive_detail_contribute = decimal.Parse(((AwNumeric)txtMajor).Value.ToString()),
+                                                        c_created_by = Session["username"].ToString(),
+                                                        c_updated_by = Session["username"].ToString()
+                                                    });
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+                if (listBudget_receive_detail.Any())
+                {
+
+                    DeleteDetail(txtbudget_receive_doc.Text);
+                    // TODO Delete recieve detail
+                    foreach (var major in listBudget_receive_detail)
+                    {
+                        oBudget_receive.SP_BUDGET_RECEIVE_DETAIL_INS(major);
+                    }
+
+                }
+
                 blnResult = true;
             }
             catch (Exception ex)
@@ -156,7 +270,7 @@ namespace myWeb.App_Control.budget_receive
                     txtUpdatedBy.Text = budget_receive_head.c_updated_by;
                     txtUpdatedDate.Text = budget_receive_head.d_updated_date.ToString();
                     txtbudget_receive_doc.Text = budget_receive_head.budget_receive_doc;
-                    txtbudget_receive_date.Text = budget_receive_head.budget_receive_date.ToString();
+                    txtbudget_receive_date.Text = budget_receive_head.budget_receive_date.Value.ToString("dd/MM/yyyy");
 
                     InitcboYear();
                     if (cboYear.Items.FindByValue(budget_receive_head.budget_receive_year) != null)
@@ -199,10 +313,10 @@ namespace myWeb.App_Control.budget_receive
                     }
 
                     InitcboItem_group_detail();
-                    if (cboItem_group_detail.Items.FindByValue(budget_receive_head.item_group_detail_code) != null)
+                    if (cboItem_group_detail.Items.FindByValue(budget_receive_head.item_group_detail_id.ToString()) != null)
                     {
                         cboItem_group_detail.SelectedIndex = -1;
-                        cboItem_group_detail.Items.FindByValue(budget_receive_head.item_group_detail_code).Selected = true;
+                        cboItem_group_detail.Items.FindByValue(budget_receive_head.item_group_detail_id.ToString()).Selected = true;
                     }
 
                     BindGridViewDetail();
@@ -277,7 +391,7 @@ namespace myWeb.App_Control.budget_receive
             string strCode = cboBudget_type.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = " Select * from  general where g_type = 'budget_type' and g_code = '"+  BudgetType +"'  Order by g_sort ";
+            strCriteria = " Select * from  general where g_type = 'budget_type' and g_code = '" + BudgetType + "'  Order by g_sort ";
             if (oCommon.SEL_SQL(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -357,7 +471,7 @@ namespace myWeb.App_Control.budget_receive
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //if (!IsPostBack)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "RegisterScript();createDate('" + txtbudget_receive_date.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
             }
@@ -369,7 +483,7 @@ namespace myWeb.App_Control.budget_receive
             {
                 if (ViewState["mode"].ToString().ToLower().Equals("add"))
                 {
-                    var url = @"~/App_Control/budget_receive/budget_receive_control.aspx?mode=edit&budget_receive_doc="+ ViewState["budget_receive_doc"].ToString() + "&budget_type=" + this.BudgetType;
+                    var url = @"~/App_Control/budget_receive/budget_receive_control.aspx?mode=edit&budget_receive_doc=" + ViewState["budget_receive_doc"].ToString() + "&budget_type=" + this.BudgetType;
                     Response.Redirect(url);
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
@@ -428,33 +542,37 @@ namespace myWeb.App_Control.budget_receive
 
         private void BindGridViewDetail()
         {
-            cBudget_receive oBudget_receive = new cBudget_receive();
+            cBudget_money oBudget_money = new cBudget_money();
             DataSet ds = new DataSet();
             string strMessage = string.Empty;
             string strCriteria = string.Empty;
-            strCriteria = " And  (budget_receive_doc = '" + ViewState["budget_receive_doc"].ToString() + "') ";
+            strCriteria = " And  (budget_plan_code = '" + txtbudget_plan_code.Text + "' AND degree_code = '" + cboDegree.SelectedValue + "') ";
             try
             {
-                if (!oBudget_receive.SP_BUDGET_RECEIVE_DETAIL_SEL(strCriteria, ref ds, ref strMessage))
+                if (!oBudget_money.SP_BUDGET_MONEY_MAJOR_SEL(strCriteria, ref ds, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }
                 else
                 {
-                    try
-                    {
-                        GridViewDetail.PageIndex = 0;
-                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
-                        GridViewDetail.DataSource = ds.Tables[0];
-                        GridViewDetail.DataBind();
-                    }
-                    catch
-                    {
-                        GridViewDetail.PageIndex = 0;
-                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
-                        GridViewDetail.DataSource = ds.Tables[0];
-                        GridViewDetail.DataBind();
-                    }
+                    var dtBudgetMajor = ds.Tables[0];
+                    lstBudgetMajor = Helper.ToClassInstanceCollection<view_Budget_money_major>(dtBudgetMajor).ToList();
+                    var lstLot = lstBudgetMajor.GroupBy(m => new { m.lot_code, m.lot_name }).Select(r => new Lot { lot_code = r.Key.lot_code, lot_name = r.Key.lot_name });
+                    //var lstMajor = lstBudgetMajor.GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev }).Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
+                    //foreach (var major in lstMajor)
+                    //{
+                    //    TemplateField tfield = new TemplateField
+                    //    {
+
+                    //        HeaderText = major.major_abbrev,
+                    //        ItemTemplate = new MyGridViewTemplate(DataControlRowType.DataRow, "txt" + major.major_code),
+                    //    };
+                    //    GridViewDetail.Columns.Add(tfield);
+                    //}
+                    GridViewDetail.PageIndex = 0;
+                    ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
+                    GridViewDetail.DataSource = lstLot;
+                    GridViewDetail.DataBind();
                 }
             }
             catch (Exception ex)
@@ -463,11 +581,11 @@ namespace myWeb.App_Control.budget_receive
             }
             finally
             {
-                if (GridViewDetail.Rows.Count == 0)
-                {
-                    EmptyGridFix(GridViewDetail);
-                }
-                oBudget_receive.Dispose();
+                //if (GridViewDetail.Rows.Count == 0)
+                //{
+                //    EmptyGridFix(GridViewDetail);
+                //}
+                oBudget_money.Dispose();
                 ds.Dispose();
             }
         }
@@ -483,10 +601,10 @@ namespace myWeb.App_Control.budget_receive
                     e.Row.Cells[iCol].Wrap = false;
                 }
 
-                ImageButton imgAdd = (ImageButton)e.Row.FindControl("imgAdd");
-                imgAdd.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGridAdd"].Rows[0]["img"].ToString();
-                imgAdd.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgGridAdd"].Rows[0]["title"].ToString());
-                imgAdd.Attributes.Add("onclick", "OpenPopUp('1000px','380px','98%','เพิ่มข้อมูลรายละเอียดงบประมาณประจำปี','budget_receive_detail_control.aspx?mode=add&budget_receive_doc=" + ViewState["budget_receive_doc"].ToString() + "&budget_type=" + this.BudgetType + "','1');return false;");
+                //ImageButton imgAdd = (ImageButton)e.Row.FindControl("imgAdd");
+                //imgAdd.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgGridAdd"].Rows[0]["img"].ToString();
+                //imgAdd.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgGridAdd"].Rows[0]["title"].ToString());
+                //imgAdd.Attributes.Add("onclick", "OpenPopUp('1000px','380px','98%','เพิ่มข้อมูลรายละเอียดงบประมาณประจำปี','budget_receive_detail_control.aspx?mode=add&budget_receive_doc=" + ViewState["budget_receive_doc"].ToString() + "&budget_type=" + this.BudgetType + "','1');return false;");
             }
             else if (e.Row.RowType.Equals(DataControlRowType.DataRow) || e.Row.RowState.Equals(DataControlRowState.Alternate))
             {
@@ -511,32 +629,23 @@ namespace myWeb.App_Control.budget_receive
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                 }
                 #endregion
+                var lot = (Lot)e.Row.DataItem;
                 Label lblNo = (Label)e.Row.FindControl("lblNo");
-                HiddenField hddbudget_receive_detail_id = (HiddenField)e.Row.FindControl("hddbudget_receive_detail_id");
+
+                //HiddenField hddbudget_receive_detail_id = (HiddenField)e.Row.FindControl("hddbudget_receive_detail_id");
                 int nNo = (GridViewDetail.PageSize * GridViewDetail.PageIndex) + e.Row.RowIndex + 1;
 
                 lblNo.Text = nNo.ToString();
 
-                #region set ImageView
-                ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('1000px','700px','98%','แสดงข้อมูลรายละเอียดงบประมาณประจำปี','budget_receive_detail_control.aspx?mode=view&budget_receive_detail_id=" + hddbudget_receive_detail_id.Value.ToString() + "&budget_type=" + this.BudgetType + "','1');return false;");
-                imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
-                imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
-                #endregion
-
-                #region set Image Edit & Delete
-
-                ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
-                imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
-                imgDelete.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
-                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบข้อมูลนี้หรือไม่ ?\");");
-                #endregion
+                var rptItem_group = (Repeater)e.Row.FindControl("rptItem_group");
+                var lstItem_group = this.lstBudgetMajor
+                    .Where(b => b.lot_code == lot.lot_code)
+                    .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_name })
+                    .Select(r => new Item_group { lot_code = r.Key.lot_code, item_group_code = r.Key.item_group_code, item_group_name = r.Key.item_group_name });
+                rptItem_group.DataSource = lstItem_group;
+                rptItem_group.DataBind();
 
 
-                #region check user can edit/delete
-                //imgEdit.Visible = base.IsUserEdit;
-                //imgDelete.Visible = base.IsUserDelete;
-                #endregion
             }
         }
 
@@ -624,12 +733,12 @@ namespace myWeb.App_Control.budget_receive
             }
         }
 
-        private bool DeleteDetail(string pbudget_receive_detail_id)
+        private bool DeleteDetail(string pbudget_receive_doc)
         {
             var oBudget_receive = new cBudget_receive();
             try
             {
-                return oBudget_receive.SP_BUDGET_RECEIVE_DETAIL_DEL(pbudget_receive_detail_id);
+                return oBudget_receive.SP_BUDGET_RECEIVE_DETAIL_DEL(pbudget_receive_doc);
             }
             catch (Exception ex)
             {
@@ -776,5 +885,282 @@ namespace myWeb.App_Control.budget_receive
         {
             ClearBudgetPlan();
         }
+
+
+        protected void rptItem_group_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            {
+                var item_group = (Item_group)e.Item.DataItem;
+                var rptItem_group_detail = (Repeater)e.Item.FindControl("rptItem_group_detail");
+                var lstItem_group_detail = this.lstBudgetMajor
+                    .Where(b => b.lot_code == item_group.lot_code && b.item_group_code == item_group.item_group_code)
+                    .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_name, ig.item_group_detail_id, ig.item_group_detail_code, ig.item_group_detail_name })
+                    .Select(r => new view_Item_group_detail
+                    {
+                        lot_code = r.Key.lot_code,
+                        item_group_code = r.Key.item_group_code,
+                        item_group_detail_id = r.Key.item_group_detail_id.GetValueOrDefault(),
+                        item_group_detail_code = r.Key.item_group_detail_code,
+                        item_group_detail_name = r.Key.item_group_detail_name
+                    });
+                rptItem_group_detail.DataSource = lstItem_group_detail;
+                rptItem_group_detail.DataBind();
+            }
+        }
+
+        protected void rptItem_group_detail_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
+            {
+                var item_group_detail = (view_Item_group_detail)e.Item.DataItem;
+                var rptItem = (Repeater)e.Item.FindControl("rptItem");
+                var lstItem = this.lstBudgetMajor
+                    .Where(b => b.lot_code == item_group_detail.lot_code && b.item_group_code == item_group_detail.item_group_code && b.item_group_detail_id == item_group_detail.item_group_detail_id)
+                    .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_detail_id, ig.item_code, ig.item_name })
+                    .Select(r => new view_Item
+                    {
+                        lot_code = r.Key.lot_code,
+                        item_group_code = r.Key.item_group_code,
+                        item_group_detail_id = r.Key.item_group_detail_id.GetValueOrDefault(),
+                        item_code = r.Key.item_code,
+                        item_name = r.Key.item_name
+                    });
+                rptItem.DataSource = lstItem;
+                rptItem.DataBind();
+            }
+        }
+
+        protected void rptItem_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            var item = (view_Item)e.Item.DataItem;
+            var GridViewMajor = (GridView)e.Item.FindControl("GridViewMajor");
+            var lstItem = this.lstBudgetMajor
+                .Where(b => b.lot_code == item.lot_code && b.item_group_code == item.item_group_code && b.item_group_detail_id == item.item_group_detail_id && b.item_code == item.item_code)
+                .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_detail_id, ig.item_code, ig.item_detail_id, ig.item_detail_code, ig.item_detail_name })
+                .Select(r => new view_Item_detail
+                {
+                    lot_code = r.Key.lot_code,
+                    item_group_code = r.Key.item_group_code,
+                    item_group_detail_id = r.Key.item_group_detail_id.GetValueOrDefault(),
+                    item_code = r.Key.item_code,
+                    item_detail_id = r.Key.item_detail_id.GetValueOrDefault(),
+                    item_detail_code = r.Key.item_detail_code,
+                    item_detail_name = r.Key.item_detail_name
+                });
+            BindGridViewMajorColumn(GridViewMajor, item.item_code);
+            GridViewMajor.DataSource = lstItem;
+            GridViewMajor.DataBind();
+        }
+
+        #region GridViewMajor
+
+        protected void GridViewMajor_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            var GridViewMajor = (GridView)sender;
+            if (e.Row.RowType.Equals(DataControlRowType.Header))
+            {
+
+                for (int iCol = 0; iCol < e.Row.Cells.Count; iCol++)
+                {
+                    e.Row.Cells[iCol].Attributes.Add("class", "table_h");
+                    e.Row.Cells[iCol].Wrap = false;
+                }
+
+
+
+            }
+            else if (e.Row.RowType.Equals(DataControlRowType.DataRow) || e.Row.RowState.Equals(DataControlRowState.Alternate))
+            {
+                #region Set datagrid row color
+                string strEvenColor, strOddColor, strMouseOverColor;
+                strEvenColor = ((DataSet)Application["xmlconfig"]).Tables["colorDataGridRow"].Rows[0]["Even"].ToString();
+                strOddColor = ((DataSet)Application["xmlconfig"]).Tables["colorDataGridRow"].Rows[0]["Odd"].ToString();
+                strMouseOverColor = ((DataSet)Application["xmlconfig"]).Tables["colorDataGridRow"].Rows[0]["MouseOver"].ToString();
+
+                e.Row.Style.Add("valign", "top");
+                e.Row.Style.Add("cursor", "hand");
+                e.Row.Attributes.Add("onMouseOver", "this.style.backgroundColor='" + strMouseOverColor + "'");
+
+                if (e.Row.RowState.Equals(DataControlRowState.Alternate))
+                {
+                    e.Row.Attributes.Add("bgcolor", strOddColor);
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strOddColor + "'");
+                }
+                else
+                {
+                    e.Row.Attributes.Add("bgcolor", strEvenColor);
+                    e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
+                }
+                #endregion
+                Label lblNo = (Label)e.Row.FindControl("lblNo");
+
+                //HiddenField hddbudget_receive_detail_id = (HiddenField)e.Row.FindControl("hddbudget_receive_detail_id");
+                int nNo = (GridViewMajor.PageSize * GridViewMajor.PageIndex) + e.Row.RowIndex + 1;
+
+                lblNo.Text = nNo.ToString();
+
+                var item_detail = (view_Item_detail)e.Row.DataItem;
+                var lstItemMajor = this.lstBudgetMajor
+               .Where(b => b.lot_code == item_detail.lot_code && b.item_group_code == item_detail.item_group_code &&
+                           b.item_group_detail_id == item_detail.item_group_detail_id && item_detail.item_code == item_detail.item_code &&
+                           b.item_detail_id == item_detail.item_detail_id);
+                //.GroupBy(ig => new
+                // {
+                //     ig.major_code,
+                //     ig.major_name,
+                //     ig.major_abbrev
+                // })
+                //.Select(r => new Major
+                //{                   
+                //    major_code = r.Key.major_code,
+                //    major_name = r.Key.major_name,
+                //    major_abbrev = r.Key.major_abbrev
+                //});
+                var major_name = string.Empty;
+                var control_name = string.Empty;
+                foreach (var major in lstItemMajor)
+                {
+                    var txtMajor = e.Row.FindControl("txt" + major.major_code);
+                    if (txtMajor != null)
+                    {
+                        ((AwNumeric)txtMajor).Visible = true;
+                    }
+                    var hddMajor = e.Row.FindControl("hdd" + major.major_code);
+                    if (hddMajor != null)
+                    {
+                        ((HiddenField)hddMajor).Value = major.budget_money_major_id.ToString();
+                    }
+                }
+
+                //foreach (GridViewRow row in GridViewMajor.Rows)
+                //{
+                //    if (row.RowType == DataControlRowType.DataRow)
+                //    {
+
+                //    }
+                //}
+            }
+        }
+
+
+        protected void GridViewMajor_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            var GridViewMajor = (GridView)sender;
+            if (e.Row.RowType.Equals(DataControlRowType.Header))
+            {
+                #region Create Item Header
+                bool bSort = false;
+                int i = 0;
+                for (i = 0; i < GridViewMajor.Columns.Count; i++)
+                {
+                    if (ViewState["sort"].Equals(GridViewMajor.Columns[i].SortExpression))
+                    {
+                        bSort = true;
+                        break;
+                    }
+                }
+                if (bSort)
+                {
+                    foreach (System.Web.UI.Control c in e.Row.Controls[i].Controls)
+                    {
+                        if (c.GetType().ToString().Equals("System.Web.UI.WebControls.DataControlLinkButton"))
+                        {
+                            if (ViewState["direction"].Equals("ASC"))
+                            {
+                                ((LinkButton)c).Text += "<img border=0 src='" + ((DataSet)Application["xmlconfig"]).Tables["imgAsc"].Rows[0]["img"].ToString() + "'>";
+                            }
+                            else
+                            {
+                                ((LinkButton)c).Text += "<img border=0 src='" + ((DataSet)Application["xmlconfig"]).Tables["imgDesc"].Rows[0]["img"].ToString() + "'>";
+                            }
+                        }
+                    }
+                }
+                #endregion
+            }
+        }
+
+        protected void GridViewMajor_Sorting(object sender, GridViewSortEventArgs e)
+        {
+            try
+            {
+                var GridViewMajor = (GridView)sender;
+                if (ViewState["sort"].ToString().Equals(e.SortExpression.ToString()))
+                {
+                    if (ViewState["direction"].Equals("DESC"))
+                        ViewState["direction"] = "ASC";
+                    else
+                        ViewState["direction"] = "DESC";
+                }
+                else
+                {
+                    ViewState["sort"] = e.SortExpression;
+                    ViewState["direction"] = "ASC";
+                }
+                // BindGridViewMajorColumn(GridViewMajor);
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+        }
+
+        protected void GridViewMajor_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            //var GridViewMajor = (GridView)sender;
+            //GridViewRow gvRow;
+            //HiddenField hddBudget_receive_detail_id = null;
+            //if (!e.CommandName.ToUpper().Equals("SORT") && !e.CommandName.ToUpper().Equals("ADD"))
+            //{
+            //    gvRow = GridViewMajor.Rows[Helper.CInt(e.CommandArgument) - 1];
+            //    hddBudget_receive_detail_id = (HiddenField)gvRow.FindControl("hddBudget_receive_detail_id");
+            //}
+            //switch (e.CommandName.ToUpper())
+            //{
+            //    case "DELETEDETAIL":
+            //        if (DeleteDetail(hddBudget_receive_detail_id.Value))
+            //        {
+            //            BindGridViewMajor();
+            //        }
+            //        break;
+            //    case "SORT":
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+
+        private void BindGridViewMajorColumn(GridView girdMajor, string item_code)
+        {
+            try
+            {
+                var lstMajor = lstBudgetMajor
+                    .Where(m => m.item_code == item_code)
+                    .GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev })
+                    .Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
+                foreach (var major in lstMajor)
+                {
+                    TemplateField tfield = new TemplateField
+                    {
+
+                        HeaderText = major.major_abbrev,
+                        ItemTemplate = new MyGridViewTemplate(DataControlRowType.DataRow, "txt" + major.major_code),
+                    };
+                    tfield.ItemStyle.HorizontalAlign = HorizontalAlign.Center;
+                    girdMajor.Columns.Add(tfield);
+                }
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+        }
+
+
+        #endregion
+
+
+
     }
 }

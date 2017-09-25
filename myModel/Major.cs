@@ -29,6 +29,7 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+        public string major_abbrev { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_money_major> Budget_money_major { get; set; }

@@ -330,7 +330,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_RECEIVE_DETAIL_DEL
-        public bool SP_BUDGET_RECEIVE_DETAIL_DEL(string pBudget_receive_detail_id)
+        public bool SP_BUDGET_RECEIVE_DETAIL_DEL(string budget_receive_doc)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -343,7 +343,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_RECEIVE_DETAIL_DEL";
-                oCommand.Parameters.Add("budget_revieve_detail_id", SqlDbType.BigInt).Value = pBudget_receive_detail_id;
+                //oCommand.Parameters.Add("budget_revieve_detail_id", SqlDbType.BigInt).Value = pBudget_receive_detail_id;
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_doc;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
             }

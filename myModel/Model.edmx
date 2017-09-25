@@ -302,6 +302,7 @@
           <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="major_year" Type="varchar" MaxLength="4" />
           <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
           <Property Name="c_active" Type="varchar" MaxLength="1" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
@@ -754,6 +755,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major' does not h
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="major_year" Type="varchar" MaxLength="4" />
           <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1835,7 +1837,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_money_major].[item_group_year] AS [item_group_year], 
     [view_Budget_money_major].[lot_year] AS [lot_year], 
     [view_Budget_money_major].[major_year] AS [major_year], 
-    [view_Budget_money_major].[major_name] AS [major_name]
+    [view_Budget_money_major].[major_name] AS [major_name], 
+    [view_Budget_money_major].[major_abbrev] AS [major_abbrev]
     FROM [dbo].[view_Budget_money_major] AS [view_Budget_money_major]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_plan" EntityType="Self.view_Budget_plan" store:Type="Views" store:Schema="dbo">
@@ -2884,6 +2887,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Budget_money_major" Relationship="mju_budgetModel.FK_Budget_money_major_major_code" FromRole="Major" ToRole="Budget_money_major" />
           <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_major_code" FromRole="Major" ToRole="Person_work" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -3343,6 +3347,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Budget_plan">
           <Key>
@@ -4507,6 +4512,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="Majors">
             <EntityTypeMapping TypeName="mju_budgetModel.Major">
               <MappingFragment StoreEntitySet="Major">
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
                 <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
                 <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
@@ -4907,6 +4913,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_money_major">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_money_major">
               <MappingFragment StoreEntitySet="view_Budget_money_major">
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />
                 <ScalarProperty Name="major_year" ColumnName="major_year" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />

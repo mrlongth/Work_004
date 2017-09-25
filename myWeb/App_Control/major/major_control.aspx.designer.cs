@@ -103,6 +103,24 @@ namespace myWeb.App_Control.major {
         protected global::System.Web.UI.WebControls.TextBox txtmajor_name;
         
         /// <summary>
+        /// Label72 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label72;
+        
+        /// <summary>
+        /// txtmajor_abbrev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtmajor_abbrev;
+        
+        /// <summary>
         /// Label13 control.
         /// </summary>
         /// <remarks>
