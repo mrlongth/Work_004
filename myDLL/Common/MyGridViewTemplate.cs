@@ -42,7 +42,7 @@ namespace myDLL.Common
                     {
                         Width = System.Web.UI.WebControls.Unit.Percentage(90),
                         ID = columnName,
-                        Value = false
+                        Visible = false
                     };
                     container.Controls.Add(textbox);
                     HiddenField hidden = new HiddenField

@@ -33,15 +33,15 @@ namespace myWeb.App_Control.budget_receive
         }
 
 
-        protected List<view_Budget_money_major> lstBudgetMajor
+        protected List<view_Budget_receive_detail> lstBudgetMajor
         {
             get
             {
                 if (ViewState["lstBudgetMajor"] == null)
                 {
-                    ViewState["lstBudgetMajor"] = new List<view_Budget_money_major>();
+                    ViewState["lstBudgetMajor"] = new List<view_Budget_receive_detail>();
                 }
-                return (List<view_Budget_money_major>)ViewState["lstBudgetMajor"];
+                return (List<view_Budget_receive_detail>)ViewState["lstBudgetMajor"];
             }
             set
             {
@@ -173,18 +173,18 @@ namespace myWeb.App_Control.budget_receive
                 var lstMajor = lstBudgetMajor
                     .GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev })
                     .Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
-               
+
                 foreach (GridViewRow row in GridViewDetail.Rows)
                 {
                     if (row.RowType == DataControlRowType.DataRow)
                     {
-                        //rptItem_group
-                        var rptItem_group = row.FindControl("rptItem_group") as Repeater;
-                        foreach (RepeaterItem row_item_group in rptItem_group.Items)
+                        //rptItemgroup
+                        var rptItemgroup = row.FindControl("rptItemgroup") as Repeater;
+                        foreach (RepeaterItem row_item_group in rptItemgroup.Items)
                         {
-                            //rptItem_group_detail
-                            var rptItem_group_detail = row_item_group.FindControl("rptItem_group_detail") as Repeater;
-                            foreach (RepeaterItem row_item_group_detail in rptItem_group_detail.Items)
+                            //rptItemgroupdetail
+                            var rptItemgroupdetail = row_item_group.FindControl("rptItemgroupdetail") as Repeater;
+                            foreach (RepeaterItem row_item_group_detail in rptItemgroupdetail.Items)
                             {
                                 //rptItem
                                 var rptItem = row_item_group_detail.FindControl("rptItem") as Repeater;
@@ -194,20 +194,21 @@ namespace myWeb.App_Control.budget_receive
                                     var GridViewMajor = row_item.FindControl("GridViewMajor") as GridView;
                                     foreach (GridViewRow row_Major in GridViewMajor.Rows)
                                     {
-                                        //if (row_Major.RowType == DataControlRowType.DataRow)
+                                        if (row_Major.RowType == DataControlRowType.DataRow)
                                         {
                                             var lblItem_detail_name = row_Major.FindControl("lblItem_detail_name");
                                             foreach (var major in lstMajor)
                                             {
-                                                var txtMajor = row_Major.FindControl("txt" + major.major_code);
-                                                  var hddMajor = row_Major.FindControl("hdd" + major.major_code);
-                                                if (txtMajor != null && hddMajor != null)
+                                                var txtMajor = Request.Form[lblItem_detail_name.ClientID.Replace("lblItem_detail_name", "txt" + major.major_code).Replace("_", "$")];
+                                                var hddMajor = Request.Form[lblItem_detail_name.ClientID.Replace("lblItem_detail_name", "hdd" + major.major_code).Replace("_", "$")];
+                                                var budget_receive_detail_contribute = string.IsNullOrEmpty(txtMajor) ? 0 : decimal.Parse(txtMajor);
+                                                if (!string.IsNullOrEmpty(hddMajor) && !string.IsNullOrEmpty(txtMajor) && budget_receive_detail_contribute > 0)
                                                 {
                                                     listBudget_receive_detail.Add(new Budget_receive_detail
                                                     {
                                                         budget_receive_doc = txtbudget_receive_doc.Text,
-                                                        budget_money_major_id = long.Parse(((HiddenField)hddMajor).Value),
-                                                        budget_receive_detail_contribute = decimal.Parse(((AwNumeric)txtMajor).Value.ToString()),
+                                                        budget_money_major_id = long.Parse(hddMajor),
+                                                        budget_receive_detail_contribute = decimal.Parse(txtMajor),
                                                         c_created_by = Session["username"].ToString(),
                                                         c_updated_by = Session["username"].ToString()
                                                     });
@@ -221,11 +222,10 @@ namespace myWeb.App_Control.budget_receive
                         }
                     }
                 }
+                DeleteDetail(txtbudget_receive_doc.Text);
                 if (listBudget_receive_detail.Any())
                 {
 
-                    DeleteDetail(txtbudget_receive_doc.Text);
-                    // TODO Delete recieve detail
                     foreach (var major in listBudget_receive_detail)
                     {
                         oBudget_receive.SP_BUDGET_RECEIVE_DETAIL_INS(major);
@@ -545,18 +545,19 @@ namespace myWeb.App_Control.budget_receive
             cBudget_money oBudget_money = new cBudget_money();
             DataSet ds = new DataSet();
             string strMessage = string.Empty;
-            string strCriteria = string.Empty;
-            strCriteria = " And  (budget_plan_code = '" + txtbudget_plan_code.Text + "' AND degree_code = '" + cboDegree.SelectedValue + "') ";
+            string strbudget_receive_doc = txtbudget_receive_doc.Text;
+            string strdegree_code = cboDegree.SelectedValue;
+            string strbudget_plan_code = txtbudget_plan_code.Text;
             try
             {
-                if (!oBudget_money.SP_BUDGET_MONEY_MAJOR_SEL(strCriteria, ref ds, ref strMessage))
+                if (!oBudget_money.SP_BUDGET_RECEIVE_DETAIL_TMP_SEL(strbudget_receive_doc, strdegree_code, strbudget_plan_code, ref ds, ref strMessage))
                 {
                     lblError.Text = strMessage;
                 }
                 else
                 {
                     var dtBudgetMajor = ds.Tables[0];
-                    lstBudgetMajor = Helper.ToClassInstanceCollection<view_Budget_money_major>(dtBudgetMajor).ToList();
+                    lstBudgetMajor = Helper.ToClassInstanceCollection<view_Budget_receive_detail>(dtBudgetMajor).ToList();
                     var lstLot = lstBudgetMajor.GroupBy(m => new { m.lot_code, m.lot_name }).Select(r => new Lot { lot_code = r.Key.lot_code, lot_name = r.Key.lot_name });
                     //var lstMajor = lstBudgetMajor.GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev }).Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
                     //foreach (var major in lstMajor)
@@ -637,13 +638,13 @@ namespace myWeb.App_Control.budget_receive
 
                 lblNo.Text = nNo.ToString();
 
-                var rptItem_group = (Repeater)e.Row.FindControl("rptItem_group");
+                var rptItemgroup = (Repeater)e.Row.FindControl("rptItemgroup");
                 var lstItem_group = this.lstBudgetMajor
                     .Where(b => b.lot_code == lot.lot_code)
                     .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_name })
                     .Select(r => new Item_group { lot_code = r.Key.lot_code, item_group_code = r.Key.item_group_code, item_group_name = r.Key.item_group_name });
-                rptItem_group.DataSource = lstItem_group;
-                rptItem_group.DataBind();
+                rptItemgroup.DataSource = lstItem_group;
+                rptItemgroup.DataBind();
 
 
             }
@@ -887,12 +888,12 @@ namespace myWeb.App_Control.budget_receive
         }
 
 
-        protected void rptItem_group_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptItemgroup_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
                 var item_group = (Item_group)e.Item.DataItem;
-                var rptItem_group_detail = (Repeater)e.Item.FindControl("rptItem_group_detail");
+                var rptItemgroupdetail = (Repeater)e.Item.FindControl("rptItemgroupdetail");
                 var lstItem_group_detail = this.lstBudgetMajor
                     .Where(b => b.lot_code == item_group.lot_code && b.item_group_code == item_group.item_group_code)
                     .GroupBy(ig => new { ig.lot_code, ig.item_group_code, ig.item_group_name, ig.item_group_detail_id, ig.item_group_detail_code, ig.item_group_detail_name })
@@ -904,12 +905,12 @@ namespace myWeb.App_Control.budget_receive
                         item_group_detail_code = r.Key.item_group_detail_code,
                         item_group_detail_name = r.Key.item_group_detail_name
                     });
-                rptItem_group_detail.DataSource = lstItem_group_detail;
-                rptItem_group_detail.DataBind();
+                rptItemgroupdetail.DataSource = lstItem_group_detail;
+                rptItemgroupdetail.DataBind();
             }
         }
 
-        protected void rptItem_group_detail_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void rptItemgroupdetail_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
             if (e.Item.ItemType == ListItemType.AlternatingItem || e.Item.ItemType == ListItemType.Item)
             {
@@ -1025,6 +1026,8 @@ namespace myWeb.App_Control.budget_receive
                     if (txtMajor != null)
                     {
                         ((AwNumeric)txtMajor).Visible = true;
+                        if (major.budget_receive_detail_contribute > 0)
+                            ((AwNumeric)txtMajor).Value = major.budget_receive_detail_contribute.ToString();
                     }
                     var hddMajor = e.Row.FindControl("hdd" + major.major_code);
                     if (hddMajor != null)

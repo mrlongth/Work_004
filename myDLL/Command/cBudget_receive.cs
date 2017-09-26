@@ -253,7 +253,7 @@ namespace myDLL
         #endregion
 
         #region sp_BUDGET_RECEIVE_DETAIL_INS
-        public bool SP_BUDGET_RECEIVE_DETAIL_INS(Budget_receive_detail budget_revieve_detail)
+        public bool SP_BUDGET_RECEIVE_DETAIL_INS(Budget_receive_detail budget_receive_detail)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -267,16 +267,16 @@ namespace myDLL
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_RECEIVE_DETAIL_INS";
 
-                SqlParameter oParambudget_revieve_detail_id = new SqlParameter("budget_revieve_detail_id", SqlDbType.BigInt);
-                oParambudget_revieve_detail_id.Direction = ParameterDirection.Output;
-                oParambudget_revieve_detail_id.Value = budget_revieve_detail.budget_receive_detail_id;
-                oCommand.Parameters.Add(oParambudget_revieve_detail_id);
-                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_revieve_detail.budget_receive_doc;
-                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_revieve_detail.budget_money_major_id;
-                oCommand.Parameters.Add("budget_receive_detail_contribute", SqlDbType.Money).Value = budget_revieve_detail.budget_receive_detail_contribute;
-                oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_revieve_detail.c_created_by;
+                SqlParameter oParambudget_receive_detail_id = new SqlParameter("budget_receive_detail_id", SqlDbType.BigInt);
+                oParambudget_receive_detail_id.Direction = ParameterDirection.Output;
+                oParambudget_receive_detail_id.Value = budget_receive_detail.budget_receive_detail_id;
+                oCommand.Parameters.Add(oParambudget_receive_detail_id);
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_detail.budget_receive_doc;
+                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_receive_detail.budget_money_major_id;
+                oCommand.Parameters.Add("budget_receive_detail_contribute", SqlDbType.Money).Value = budget_receive_detail.budget_receive_detail_contribute;
+                oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_receive_detail.c_created_by;
                 oCommand.ExecuteNonQuery();
-                budget_revieve_detail.budget_receive_detail_id = long.Parse(oParambudget_revieve_detail_id.Value.ToString());
+                budget_receive_detail.budget_receive_detail_id = long.Parse(oParambudget_receive_detail_id.Value.ToString());
                 blnResult = true;
             }
             catch (Exception ex)
@@ -294,7 +294,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_RECEIVE_DETAIL_UPD
-        public bool SP_BUDGET_RECEIVE_DETAIL_UPD(Budget_receive_detail budget_revieve_detail)
+        public bool SP_BUDGET_RECEIVE_DETAIL_UPD(Budget_receive_detail budget_receive_detail)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -307,11 +307,11 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_RECEIVE_DETAIL_UPD";
-                oCommand.Parameters.Add("budget_revieve_detail_id", SqlDbType.BigInt).Value = budget_revieve_detail.budget_receive_detail_id;
-                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_revieve_detail.budget_receive_doc;
-                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_revieve_detail.budget_money_major_id;
-                oCommand.Parameters.Add("budget_receive_detail_contribute", SqlDbType.Money).Value = budget_revieve_detail.budget_receive_detail_contribute;
-                oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_revieve_detail.c_updated_by;
+                oCommand.Parameters.Add("budget_receive_detail_id", SqlDbType.BigInt).Value = budget_receive_detail.budget_receive_detail_id;
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_detail.budget_receive_doc;
+                oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_receive_detail.budget_money_major_id;
+                oCommand.Parameters.Add("budget_receive_detail_contribute", SqlDbType.Money).Value = budget_receive_detail.budget_receive_detail_contribute;
+                oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_receive_detail.c_updated_by;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
             }
@@ -343,7 +343,7 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_RECEIVE_DETAIL_DEL";
-                //oCommand.Parameters.Add("budget_revieve_detail_id", SqlDbType.BigInt).Value = pBudget_receive_detail_id;
+                //oCommand.Parameters.Add("budget_receive_detail_id", SqlDbType.BigInt).Value = pBudget_receive_detail_id;
                 oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_doc;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;

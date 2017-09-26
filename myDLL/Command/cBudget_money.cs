@@ -425,6 +425,42 @@ namespace myDLL
         }
         #endregion
 
+        #region SP_BUDGET_RECEIVE_DETAIL_TMP_SEL
+        public bool SP_BUDGET_RECEIVE_DETAIL_TMP_SEL(string budget_receive_doc, string degree_code, string budget_plan_code, ref DataSet ds, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_RECEIVE_DETAIL_TMP_SEL";
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_doc;
+                oCommand.Parameters.Add("degree_code", SqlDbType.VarChar).Value = degree_code;
+                oCommand.Parameters.Add("budget_plan_code", SqlDbType.VarChar).Value = budget_plan_code;
+                oAdapter = new SqlDataAdapter(oCommand);
+                ds = new DataSet();
+                oAdapter.Fill(ds, "sp_BUDGET_RECEIVE_DETAIL_TMP_SEL");
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
         #region sp_BUDGET_MONEY_MAJOR_INS
         public bool SP_BUDGET_MONEY_MAJOR_INS(Budget_money_major budget_money_major)
         {

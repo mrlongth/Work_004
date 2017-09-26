@@ -295,6 +295,7 @@ function onKeyDownHandlerAwNumeric(obj, e) {
 
 function onFocusHandlerAwNumeric(obj) {
     RemoveCommasAwNumeric(obj);
+    document.getElementById(obj).select();
 }
 
 function onblurEventHandlerAwNumeric(obj, allowComma, decimalPlaces, leadZero, min, max) {

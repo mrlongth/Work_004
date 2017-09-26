@@ -110,7 +110,7 @@
           <Key>
             <PropertyRef Name="budget_receive_detail_id" />
           </Key>
-          <Property Name="budget_receive_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="budget_receive_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" />
           <Property Name="budget_money_major_id" Type="bigint" />
           <Property Name="budget_receive_detail_contribute" Type="money" />
@@ -876,6 +876,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
           <Property Name="major_name" Type="varchar" MaxLength="100" />
           <Property Name="degree_code" Type="varchar" MaxLength="10" />
           <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1949,7 +1950,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_receive_detail].[major_year] AS [major_year], 
     [view_Budget_receive_detail].[major_name] AS [major_name], 
     [view_Budget_receive_detail].[degree_code] AS [degree_code], 
-    [view_Budget_receive_detail].[degree_name] AS [degree_name]
+    [view_Budget_receive_detail].[degree_name] AS [degree_name], 
+    [view_Budget_receive_detail].[major_abbrev] AS [major_abbrev]
     FROM [dbo].[view_Budget_receive_detail] AS [view_Budget_receive_detail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_receive_head" EntityType="Self.view_Budget_receive_head" store:Type="Views" store:Schema="dbo">
@@ -4121,6 +4123,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Budget_receive_detail_budget_money_major_id">
           <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="0..1" />
@@ -5343,6 +5346,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_receive_detail">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_receive_detail">
               <MappingFragment StoreEntitySet="view_Budget_receive_detail">
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />
                 <ScalarProperty Name="major_year" ColumnName="major_year" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />

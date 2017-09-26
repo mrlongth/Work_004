@@ -8,4 +8,10 @@ namespace myModel
 {
     [Serializable]
     public partial class view_Budget_money_major { }
+
+    [Serializable]
+    public partial class view_Budget_receive_detail
+    {
+    }
+
 }

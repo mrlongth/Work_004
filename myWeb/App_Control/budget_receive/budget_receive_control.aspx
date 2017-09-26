@@ -256,11 +256,11 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lbllot_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name") %>' />
                                         <div style="clear: both; padding-left: 10px;">
-                                            <asp:Repeater ID="rptItem_group" runat="server" OnItemDataBound="rptItem_group_ItemDataBound">
+                                            <asp:Repeater ID="rptItemgroup" runat="server" OnItemDataBound="rptItemgroup_ItemDataBound">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblitem_group_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_group_name") %>' />
                                                     <div style="clear: both; padding-left: 10px;">
-                                                        <asp:Repeater ID="rptItem_group_detail" runat="server" OnItemDataBound="rptItem_group_detail_ItemDataBound">
+                                                        <asp:Repeater ID="rptItemgroupdetail" runat="server" OnItemDataBound="rptItemgroupdetail_ItemDataBound">
                                                             <ItemTemplate>
                                                                 <asp:Label ID="lblItem_group_detail_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_group_detail_name") %>' />
                                                                 <div style="clear: both; padding-left: 10px;">
@@ -269,7 +269,7 @@
                                                                             <asp:Label ID="lblItem_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_name") %>' />
                                                                             <div style="clear: both; padding-left: -30px;">
 
-                                                                                <asp:GridView ID="GridViewMajor" runat="server" AllowSorting="True"
+                                                                                <asp:GridView ID="GridViewMajor" runat="server" AllowSorting="True" ClientIDMode="AutoID"
                                                                                     AutoGenerateColumns="False" BackColor="White" BorderWidth="1px"
                                                                                     CellPadding="2" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
                                                                                     OnRowCreated="GridViewMajor_RowCreated" OnRowDataBound="GridViewMajor_RowDataBound"
@@ -331,6 +331,10 @@
                         $input.eq($input.index(this) + 1).focus();
                     }
                 }
+            });
+
+            $(document).ready(function () {
+                $("input:text").focus(function () { $(this).select(); });
             });
 
            <%-- $("input[id*=imgClear_budget_plan]").live("click", function () {
