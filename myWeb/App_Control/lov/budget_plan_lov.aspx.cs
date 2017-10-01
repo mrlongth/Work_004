@@ -522,7 +522,6 @@ namespace myWeb.App_Control.lov
                             {
                                 strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
                                 strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
-                                strScript += "window.parent.$find('show_ModalPopupExtender').hide();";
                                 strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
 
                             }

@@ -77,5 +77,6 @@ namespace myModel
         public string major_year { get; set; }
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
+        public Nullable<int> major_order { get; set; }
     }
 }

@@ -449,7 +449,7 @@
                                             <asp:TextBox ID="txtbudget_plan_year" runat="server" CssClass="textboxdis" Width="130px"></asp:TextBox>
                                         </td>
                                         <td nowrap style="text-align: right">
-                                            <asp:Label ID="Label78" runat="server" CssClass="label_hbk">สาขา :</asp:Label>
+                                            <asp:Label ID="Label78" runat="server" CssClass="label_hbk">หลักสูตร :</asp:Label>
                                         </td>
                                         <td align="left">
                                             <asp:DropDownList ID="cboMajor" runat="server" CssClass="textbox">

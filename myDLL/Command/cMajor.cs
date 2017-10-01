@@ -79,7 +79,7 @@ namespace myDLL
         #endregion
 
         #region SP_INS_Major
-        public bool SP_INS_Major(string pMajor_year, string pMajor_name, string pmajor_abbrev, string pActive, string pC_created_by, ref string strMessage)
+        public bool SP_INS_Major(string pMajor_year, string pMajor_name, string pmajor_abbrev, string  pMajor_order, string pActive, string pC_created_by, ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -108,6 +108,13 @@ namespace myDLL
                 oParam_major_abbrev.Direction = ParameterDirection.Input;
                 oParam_major_abbrev.Value = pMajor_name;
                 oCommand.Parameters.Add(oParam_major_abbrev);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_major_order = new SqlParameter("major_order", SqlDbType.Int);
+                oParam_major_order.Direction = ParameterDirection.Input;
+                oParam_major_order.Value = pMajor_order;
+                oCommand.Parameters.Add(oParam_major_order);
+
 
 
                 // - - - - - - - - - - - -             
@@ -140,7 +147,7 @@ namespace myDLL
         #endregion
 
         #region SP_UPD_Major
-        public bool SP_UPD_Major(string pMajor_code, string pMajor_year, string pMajor_name, string pMajor_abbrev, string pActive, string pC_updated_by, ref string strMessage)
+        public bool SP_UPD_Major(string pMajor_code, string pMajor_year, string pMajor_name, string pMajor_abbrev, string pMajor_order, string pActive, string pC_updated_by, ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -174,6 +181,13 @@ namespace myDLL
                 oParam_major_abbrev.Direction = ParameterDirection.Input;
                 oParam_major_abbrev.Value = pMajor_abbrev;
                 oCommand.Parameters.Add(oParam_major_abbrev);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_major_order = new SqlParameter("major_order", SqlDbType.Int);
+                oParam_major_order.Direction = ParameterDirection.Input;
+                oParam_major_order.Value = pMajor_order;
+                oCommand.Parameters.Add(oParam_major_order);
+
 
                 // - - - - - - - - - - - -             
                 SqlParameter oParam_Active = new SqlParameter("C_active", SqlDbType.NVarChar);

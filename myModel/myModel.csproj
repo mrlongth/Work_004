@@ -64,6 +64,12 @@
     <Compile Include="Budget_money_major.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Budget_open_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Budget_open_head.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Budget_plan.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -181,6 +187,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Budget_money_major.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_open_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_open_head.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Budget_plan.cs">

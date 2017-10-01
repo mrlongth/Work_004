@@ -19,6 +19,7 @@ namespace myModel
         {
             this.Budget_money_major = new HashSet<Budget_money_major>();
             this.Person_work = new HashSet<Person_work>();
+            this.Budget_open_head = new HashSet<Budget_open_head>();
         }
     
         public string major_code { get; set; }
@@ -30,10 +31,13 @@ namespace myModel
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
         public string major_abbrev { get; set; }
+        public Nullable<int> major_order { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_money_major> Budget_money_major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person_work> Person_work { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_open_head> Budget_open_head { get; set; }
     }
 }

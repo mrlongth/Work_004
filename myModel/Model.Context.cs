@@ -78,5 +78,9 @@ namespace myModel
         public virtual DbSet<Budget_receive_head> Budget_receive_head { get; set; }
         public virtual DbSet<view_Budget_receive_detail> view_Budget_receive_detail { get; set; }
         public virtual DbSet<view_Budget_receive_head> view_Budget_receive_head { get; set; }
+        public virtual DbSet<Budget_open_detail> Budget_open_detail { get; set; }
+        public virtual DbSet<Budget_open_head> Budget_open_head { get; set; }
+        public virtual DbSet<view_Budget_open_detail> view_Budget_open_detail { get; set; }
+        public virtual DbSet<view_Budget_open_head> view_Budget_open_head { get; set; }
     }
 }

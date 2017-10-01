@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" AutoEventWireup="true" CodeBehind="major_list.aspx.cs"
-    Inherits="myWeb.App_Control.major.major_list" Title="แสดงข้อมูลสาขา " %>
+    Inherits="myWeb.App_Control.major.major_list" Title="แสดงข้อมูลหลักสูตร " %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellpadding="1" cellspacing="1" style="width: 100%">
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสสาขา :
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสหลักสูตร :
                 </asp:Label>
             </td>
             <td>
@@ -30,7 +30,7 @@
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อสาขา :
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage1">ชื่อหลักสูตร :
                 </asp:Label>
             </td>
             <td>
@@ -71,7 +71,7 @@
                     <asp:Label ID="lblNo" runat="server"> </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="รหัสสาขา " SortExpression="major_code">
+            <asp:TemplateField HeaderText="รหัสหลักสูตร " SortExpression="major_code">
                 <ItemStyle HorizontalAlign="Center" Width="20%" Wrap="False" />
                 <ItemTemplate>
                     <asp:Label ID="lblmajor_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_code") %>'>
@@ -79,12 +79,20 @@
                 </ItemTemplate>
                 <ItemStyle Wrap="False" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="สาขา " SortExpression="major_name">
+            <asp:TemplateField HeaderText="หลักสูตร " SortExpression="major_name">
                 <ItemTemplate>
                     <asp:Label ID="lblmajor_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_name") %>'>
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
+
+              <asp:TemplateField HeaderText="ลำดับ " SortExpression="major_order">
+                <ItemTemplate>
+                    <asp:Label ID="lblmajor_order" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_order") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
             <asp:TemplateField Visible="False" HeaderText="สถานะ">
                 <HeaderStyle HorizontalAlign="Center" Width="2%"></HeaderStyle>
                 <ItemStyle HorizontalAlign="Center"></ItemStyle>

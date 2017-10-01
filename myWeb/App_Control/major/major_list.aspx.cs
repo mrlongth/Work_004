@@ -38,7 +38,7 @@ namespace myWeb.App_Control.major
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
                 imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
 
-                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลสาขาประจำปี','major_control.aspx?mode=add&page=0','1');return false;");
+                imgNew.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลหลักสูตรประจำปี','major_control.aspx?mode=add&page=0','1');return false;");
                 ViewState["sort"] = "major_code";
                 ViewState["direction"] = "ASC";
                 RadioAll.Checked = true;
@@ -248,7 +248,7 @@ namespace myWeb.App_Control.major
 
                 #region set ImageView
                 ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
-                imgView.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลสาขาประจำปี','major_control.aspx?mode=view&major_code=" + lblmajor_code.Text + "','1');return false;");
+                imgView.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','เพิ่มข้อมูลหลักสูตรประจำปี','major_control.aspx?mode=view&major_code=" + lblmajor_code.Text + "','1');return false;");
                 imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
                 imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
                 #endregion
@@ -257,7 +257,7 @@ namespace myWeb.App_Control.major
 
                 ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
                 Label lblCanEdit = (Label)e.Row.FindControl("lblCanEdit");
-                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','แก้ไขข้อมูลสาขาประจำปี','major_control.aspx?mode=edit&major_code=" + 
+                imgEdit.Attributes.Add("onclick", "OpenPopUp('800px','250px','90%','แก้ไขข้อมูลหลักสูตรประจำปี','major_control.aspx?mode=edit&major_code=" + 
                                                                 lblmajor_code.Text + "&page=" + GridView1.PageIndex.ToString() + "&canEdit=Y','1');return false;");
                 imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
                 imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
@@ -265,7 +265,7 @@ namespace myWeb.App_Control.major
                 ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
                 imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
                 imgDelete.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["title"].ToString());
-                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบสาขา   " + lblmajor_code.Text + " : " + lblmajor_name.Text + " ?\");");
+                imgDelete.Attributes.Add("onclick", "return confirm(\"คุณต้องการลบหลักสูตร   " + lblmajor_code.Text + " : " + lblmajor_name.Text + " ?\");");
                 #endregion
 
                 #region check user can edit/delete

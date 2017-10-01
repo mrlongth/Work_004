@@ -362,6 +362,42 @@ namespace myDLL
         }
         #endregion
 
+
+        #region SP_BUDGET_RECEIVE_TOTAL_UPD
+        public bool SP_BUDGET_RECEIVE_TOTAL_UPD(string budget_receive_doc)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_RECEIVE_TOTAL_UPD";
+                //oCommand.Parameters.Add("budget_receive_detail_id", SqlDbType.BigInt).Value = pBudget_receive_detail_id;
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_doc;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+        
+
         public view_Budget_receive_detail GETDETAIL(string strCriteria)
         {
             view_Budget_receive_detail result = null;

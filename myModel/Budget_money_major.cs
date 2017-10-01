@@ -18,6 +18,7 @@ namespace myModel
         public Budget_money_major()
         {
             this.Budget_receive_detail = new HashSet<Budget_receive_detail>();
+            this.Budget_open_detail = new HashSet<Budget_open_detail>();
         }
     
         public long budget_money_major_id { get; set; }
@@ -37,5 +38,7 @@ namespace myModel
         public virtual Major Major { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_receive_detail> Budget_receive_detail { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_open_detail> Budget_open_detail { get; set; }
     }
 }

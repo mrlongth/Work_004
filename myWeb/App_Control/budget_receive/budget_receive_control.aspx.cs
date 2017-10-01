@@ -136,6 +136,7 @@ namespace myWeb.App_Control.budget_receive
                     if (oBudget_receive.SP_BUDGET_RECEIVE_HEAD_UPD(budget_receive_head))
                     {
                         saveDataDetail();
+                        oBudget_receive.SP_BUDGET_RECEIVE_TOTAL_UPD(txtbudget_receive_doc.Text);
                     }
                 }
                 else
@@ -961,15 +962,11 @@ namespace myWeb.App_Control.budget_receive
             var GridViewMajor = (GridView)sender;
             if (e.Row.RowType.Equals(DataControlRowType.Header))
             {
-
                 for (int iCol = 0; iCol < e.Row.Cells.Count; iCol++)
                 {
                     e.Row.Cells[iCol].Attributes.Add("class", "table_h");
                     e.Row.Cells[iCol].Wrap = false;
                 }
-
-
-
             }
             else if (e.Row.RowType.Equals(DataControlRowType.DataRow) || e.Row.RowState.Equals(DataControlRowState.Alternate))
             {
@@ -1006,18 +1003,7 @@ namespace myWeb.App_Control.budget_receive
                .Where(b => b.lot_code == item_detail.lot_code && b.item_group_code == item_detail.item_group_code &&
                            b.item_group_detail_id == item_detail.item_group_detail_id && item_detail.item_code == item_detail.item_code &&
                            b.item_detail_id == item_detail.item_detail_id);
-                //.GroupBy(ig => new
-                // {
-                //     ig.major_code,
-                //     ig.major_name,
-                //     ig.major_abbrev
-                // })
-                //.Select(r => new Major
-                //{                   
-                //    major_code = r.Key.major_code,
-                //    major_name = r.Key.major_name,
-                //    major_abbrev = r.Key.major_abbrev
-                //});
+
                 var major_name = string.Empty;
                 var control_name = string.Empty;
                 foreach (var major in lstItemMajor)
@@ -1036,13 +1022,6 @@ namespace myWeb.App_Control.budget_receive
                     }
                 }
 
-                //foreach (GridViewRow row in GridViewMajor.Rows)
-                //{
-                //    if (row.RowType == DataControlRowType.DataRow)
-                //    {
-
-                //    }
-                //}
             }
         }
 

@@ -49,7 +49,7 @@ namespace myWeb.App_Control.major
                 if (ViewState["mode"].ToString().ToLower().Equals("add"))
                 {
                     ViewState["page"] = Request.QueryString["page"];
-                    Session["menupopup_name"] = "เพิ่มข้อมูลสาขา ";
+                    Session["menupopup_name"] = "เพิ่มข้อมูลหลักสูตร ";
                     txtmajor_code.ReadOnly = true;
                     txtmajor_code.CssClass = "textboxdis";
                     chkStatus.Checked = true;
@@ -60,7 +60,7 @@ namespace myWeb.App_Control.major
                     setData();
                     txtmajor_code.ReadOnly = true;
                     txtmajor_code.CssClass = "textboxdis";
-                    Session["menupopup_name"] = "แก้ไขข้อมูลสาขา ";
+                    Session["menupopup_name"] = "แก้ไขข้อมูลหลักสูตร ";
                     if (ViewState["PageStatus"] != null)
                     {
                         if (ViewState["PageStatus"].ToString().ToLower().Equals("save"))
@@ -143,6 +143,7 @@ namespace myWeb.App_Control.major
                 strmajor_year = string.Empty,
                 strmajor_name = string.Empty,
                 strmajor_abbrev = string.Empty,
+                strmajor_order = string.Empty,
                 strActive = string.Empty,
                 strCreatedBy = string.Empty,
                 strUpdatedBy = string.Empty;
@@ -156,6 +157,7 @@ namespace myWeb.App_Control.major
                 strmajor_name = txtmajor_name.Text;
                 strmajor_year = cboYear.SelectedItem.Value;
                 strmajor_abbrev = txtmajor_abbrev.Text;
+                strmajor_order = txtmajor_order.Value.ToString();
                 if (chkStatus.Checked == true)
                 {
                     strActive = "Y";
@@ -172,7 +174,7 @@ namespace myWeb.App_Control.major
                     #region edit
                     if (!blnDup)
                     {
-                        if (oMajor.SP_UPD_Major(strmajor_code, strmajor_year, strmajor_name, strmajor_abbrev, strActive, strUpdatedBy, ref strMessage))
+                        if (oMajor.SP_UPD_Major(strmajor_code, strmajor_year, strmajor_name, strmajor_abbrev, strmajor_order, strActive, strUpdatedBy, ref strMessage))
                         {
                             blnResult = true;
                         }
@@ -209,7 +211,7 @@ namespace myWeb.App_Control.major
                     #region insert
                     if (!blnDup)
                     {
-                        if (oMajor.SP_INS_Major(strmajor_year, strmajor_name, strmajor_abbrev, strActive, strCreatedBy, ref strMessage))
+                        if (oMajor.SP_INS_Major(strmajor_year, strmajor_name, strmajor_abbrev, strmajor_order, strActive, strCreatedBy, ref strMessage))
                         {
                             string strGetcode = " and major_name = '" + strmajor_name.Trim() + "' and major_year = '" + strmajor_year + "' ";
                             if (!oMajor.SP_SEL_Major(strGetcode, ref ds, ref strMessage))
@@ -275,6 +277,7 @@ namespace myWeb.App_Control.major
             string strmajor_code = string.Empty,
                 strmajor_name = string.Empty,
                  strmajor_abbrev = string.Empty,
+                 strmajor_order = string.Empty,
                 strYear = string.Empty,
                 strC_active = string.Empty,
                 strCreatedBy = string.Empty,
@@ -296,6 +299,7 @@ namespace myWeb.App_Control.major
                         strmajor_code = ds.Tables[0].Rows[0]["major_code"].ToString();
                         strmajor_name = ds.Tables[0].Rows[0]["major_name"].ToString();
                         strmajor_abbrev = ds.Tables[0].Rows[0]["major_abbrev"].ToString();
+                        strmajor_order = ds.Tables[0].Rows[0]["major_order"].ToString();
                         strYear = ds.Tables[0].Rows[0]["major_year"].ToString();
                         strC_active = ds.Tables[0].Rows[0]["c_active"].ToString();
                         strCreatedBy = ds.Tables[0].Rows[0]["c_created_by"].ToString();
@@ -308,6 +312,7 @@ namespace myWeb.App_Control.major
                         txtmajor_code.Text = strmajor_code;
                         txtmajor_name.Text = strmajor_name;
                         txtmajor_abbrev.Text = strmajor_abbrev;
+                        txtmajor_order.Value = strmajor_order;
                         InitcboYear();
                         if (cboYear.Items.FindByValue(strYear) != null)
                         {
