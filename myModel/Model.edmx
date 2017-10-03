@@ -107,6 +107,7 @@
             <PropertyRef Name="budget_open_doc" />
           </Key>
           <Property Name="budget_open_doc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ef_open_doc" Type="varchar" MaxLength="10" />
           <Property Name="budget_open_year" Type="varchar" MaxLength="4" />
           <Property Name="budget_open_date" Type="datetime" />
           <Property Name="open_code" Type="int" />
@@ -861,6 +862,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_detail' does not h
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
           <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
           <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="ef_open_doc" Type="varchar" MaxLength="10" />
           <Property Name="major_name" Type="varchar" MaxLength="100" />
           <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
           <Property Name="major_order" Type="int" />
@@ -908,6 +910,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_head' does not hav
           <Property Name="work_name" Type="varchar" MaxLength="100" />
           <Property Name="fund_name" Type="varchar" MaxLength="100" />
           <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="ef_open_doc" Type="varchar" MaxLength="10" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
+          <Property Name="major_order" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2116,6 +2122,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_detail].[lot_name] AS [lot_name], 
     [view_Budget_open_detail].[item_detail_code] AS [item_detail_code], 
     [view_Budget_open_detail].[item_detail_name] AS [item_detail_name], 
+    [view_Budget_open_detail].[ef_open_doc] AS [ef_open_doc], 
     [view_Budget_open_detail].[major_name] AS [major_name], 
     [view_Budget_open_detail].[major_abbrev] AS [major_abbrev], 
     [view_Budget_open_detail].[major_order] AS [major_order]
@@ -2159,7 +2166,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_head].[plan_name] AS [plan_name], 
     [view_Budget_open_head].[work_name] AS [work_name], 
     [view_Budget_open_head].[fund_name] AS [fund_name], 
-    [view_Budget_open_head].[degree_name] AS [degree_name]
+    [view_Budget_open_head].[degree_name] AS [degree_name], 
+    [view_Budget_open_head].[ef_open_doc] AS [ef_open_doc], 
+    [view_Budget_open_head].[major_name] AS [major_name], 
+    [view_Budget_open_head].[major_abbrev] AS [major_abbrev], 
+    [view_Budget_open_head].[major_order] AS [major_order]
     FROM [dbo].[view_Budget_open_head] AS [view_Budget_open_head]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_plan" EntityType="Self.view_Budget_plan" store:Type="Views" store:Schema="dbo">
@@ -2924,7 +2935,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="view_Budget_receive_head" EntityType="mju_budgetModel.view_Budget_receive_head" />
           <EntitySet Name="Budget_open_detail" EntityType="mju_budgetModel.Budget_open_detail" />
           <EntitySet Name="Budget_open_head" EntityType="mju_budgetModel.Budget_open_head" />
-          <EntitySet Name="view_Budget_open_detail" EntityType="mju_budgetModel.view_Budget_open_detail" />
           <EntitySet Name="view_Budget_open_head" EntityType="mju_budgetModel.view_Budget_open_head" />
           <AssociationSet Name="FK_Budget_open_detail_budget_money_major_id" Association="mju_budgetModel.FK_Budget_open_detail_budget_money_major_id">
             <End Role="Budget_money_major" EntitySet="Budget_money_major" />
@@ -2946,6 +2956,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Major" EntitySet="Majors" />
             <End Role="Budget_open_head" EntitySet="Budget_open_head" />
           </AssociationSet>
+          <EntitySet Name="view_Budget_open_detail" EntityType="mju_budgetModel.view_Budget_open_detail" />
         </EntityContainer>
         <EntityType Name="Activity">
           <Key>
@@ -4645,7 +4656,114 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Budget_open_head_budget_plan_code" FromRole="Budget_open_head" ToRole="Budget_plan" />
           <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Budget_open_head_degree_code" FromRole="Budget_open_head" ToRole="Degree" />
           <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Budget_open_head_major_code" FromRole="Budget_open_head" ToRole="Major" />
+          <Property Name="ef_open_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="view_Budget_open_head">
+          <Key>
+            <PropertyRef Name="budget_open_doc" />
+          </Key>
+          <Property Name="budget_open_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="budget_open_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="budget_open_date" Type="DateTime" Precision="3" />
+          <Property Name="open_code" Type="Int32" />
+          <Property Name="open_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="open_command_desc" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="open_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="open_remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="open_amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="person_open" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="approve_head_status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ef_open_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Budget_open_detail_budget_money_major_id">
+          <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_detail" Role="Budget_open_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_money_major">
+              <PropertyRef Name="budget_money_major_id" />
+            </Principal>
+            <Dependent Role="Budget_open_detail">
+              <PropertyRef Name="budget_money_major_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_open_detail_budget_open_doc">
+          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_detail" Role="Budget_open_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_open_head">
+              <PropertyRef Name="budget_open_doc" />
+            </Principal>
+            <Dependent Role="Budget_open_detail">
+              <PropertyRef Name="budget_open_doc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_open_head_budget_plan_code">
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_plan">
+              <PropertyRef Name="budget_plan_code" />
+            </Principal>
+            <Dependent Role="Budget_open_head">
+              <PropertyRef Name="budget_plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_open_head_degree_code">
+          <End Type="mju_budgetModel.Degree" Role="Degree" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="degree_code" />
+            </Principal>
+            <Dependent Role="Budget_open_head">
+              <PropertyRef Name="degree_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_open_head_major_code">
+          <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Budget_open_head">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="view_Budget_open_detail">
           <Key>
             <PropertyRef Name="budget_open_detail_id" />
@@ -4708,112 +4826,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ef_open_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_order" Type="Int32" />
         </EntityType>
-        <EntityType Name="view_Budget_open_head">
-          <Key>
-            <PropertyRef Name="budget_open_doc" />
-          </Key>
-          <Property Name="budget_open_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="budget_open_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="budget_open_date" Type="DateTime" Precision="3" />
-          <Property Name="open_code" Type="Int32" />
-          <Property Name="open_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="open_command_desc" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="open_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="open_remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="open_amount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="person_open" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="approve_head_status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="d_created_date" Type="DateTime" Precision="3" />
-          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
-          <Property Name="budget_plan_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <Association Name="FK_Budget_open_detail_budget_money_major_id">
-          <End Type="mju_budgetModel.Budget_money_major" Role="Budget_money_major" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_detail" Role="Budget_open_detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Budget_money_major">
-              <PropertyRef Name="budget_money_major_id" />
-            </Principal>
-            <Dependent Role="Budget_open_detail">
-              <PropertyRef Name="budget_money_major_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Budget_open_detail_budget_open_doc">
-          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_detail" Role="Budget_open_detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Budget_open_head">
-              <PropertyRef Name="budget_open_doc" />
-            </Principal>
-            <Dependent Role="Budget_open_detail">
-              <PropertyRef Name="budget_open_doc" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Budget_open_head_budget_plan_code">
-          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Budget_plan">
-              <PropertyRef Name="budget_plan_code" />
-            </Principal>
-            <Dependent Role="Budget_open_head">
-              <PropertyRef Name="budget_plan_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Budget_open_head_degree_code">
-          <End Type="mju_budgetModel.Degree" Role="Degree" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Degree">
-              <PropertyRef Name="degree_code" />
-            </Principal>
-            <Dependent Role="Budget_open_head">
-              <PropertyRef Name="degree_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Budget_open_head_major_code">
-          <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Major">
-              <PropertyRef Name="major_code" />
-            </Principal>
-            <Dependent Role="Budget_open_head">
-              <PropertyRef Name="major_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6078,6 +6095,54 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="Budget_open_head">
             <EntityTypeMapping TypeName="mju_budgetModel.Budget_open_head">
               <MappingFragment StoreEntitySet="Budget_open_head">
+                <ScalarProperty Name="ef_open_doc" ColumnName="ef_open_doc" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="approve_head_status" ColumnName="approve_head_status" />
+                <ScalarProperty Name="person_open" ColumnName="person_open" />
+                <ScalarProperty Name="open_amount" ColumnName="open_amount" />
+                <ScalarProperty Name="open_remark" ColumnName="open_remark" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="open_desc" ColumnName="open_desc" />
+                <ScalarProperty Name="open_command_desc" ColumnName="open_command_desc" />
+                <ScalarProperty Name="open_title" ColumnName="open_title" />
+                <ScalarProperty Name="open_code" ColumnName="open_code" />
+                <ScalarProperty Name="budget_open_date" ColumnName="budget_open_date" />
+                <ScalarProperty Name="budget_open_year" ColumnName="budget_open_year" />
+                <ScalarProperty Name="budget_open_doc" ColumnName="budget_open_doc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Budget_open_head">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_head">
+              <MappingFragment StoreEntitySet="view_Budget_open_head">
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="ef_open_doc" ColumnName="ef_open_doc" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+                <ScalarProperty Name="work_name" ColumnName="work_name" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="director_name" ColumnName="director_name" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+                <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
                 <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
                 <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
                 <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
@@ -6106,6 +6171,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="major_order" ColumnName="major_order" />
                 <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="ef_open_doc" ColumnName="ef_open_doc" />
                 <ScalarProperty Name="item_detail_name" ColumnName="item_detail_name" />
                 <ScalarProperty Name="item_detail_code" ColumnName="item_detail_code" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
@@ -6162,49 +6228,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
                 <ScalarProperty Name="budget_open_doc" ColumnName="budget_open_doc" />
                 <ScalarProperty Name="budget_open_detail_id" ColumnName="budget_open_detail_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="view_Budget_open_head">
-            <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_head">
-              <MappingFragment StoreEntitySet="view_Budget_open_head">
-                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
-                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
-                <ScalarProperty Name="work_name" ColumnName="work_name" />
-                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
-                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
-                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
-                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
-                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
-                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
-                <ScalarProperty Name="director_name" ColumnName="director_name" />
-                <ScalarProperty Name="director_code" ColumnName="director_code" />
-                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
-                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
-                <ScalarProperty Name="work_code" ColumnName="work_code" />
-                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
-                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
-                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
-                <ScalarProperty Name="budget_plan_year" ColumnName="budget_plan_year" />
-                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
-                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
-                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
-                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
-                <ScalarProperty Name="approve_head_status" ColumnName="approve_head_status" />
-                <ScalarProperty Name="person_open" ColumnName="person_open" />
-                <ScalarProperty Name="open_amount" ColumnName="open_amount" />
-                <ScalarProperty Name="open_remark" ColumnName="open_remark" />
-                <ScalarProperty Name="major_code" ColumnName="major_code" />
-                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
-                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
-                <ScalarProperty Name="open_desc" ColumnName="open_desc" />
-                <ScalarProperty Name="open_command_desc" ColumnName="open_command_desc" />
-                <ScalarProperty Name="open_title" ColumnName="open_title" />
-                <ScalarProperty Name="open_code" ColumnName="open_code" />
-                <ScalarProperty Name="budget_open_date" ColumnName="budget_open_date" />
-                <ScalarProperty Name="budget_open_year" ColumnName="budget_open_year" />
-                <ScalarProperty Name="budget_open_doc" ColumnName="budget_open_doc" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

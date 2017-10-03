@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f65d066a82d24b6e9e0b303d0e31c179" Name="Diagram1" ZoomLevel="49">
+      <Diagram DiagramId="f65d066a82d24b6e9e0b303d0e31c179" Name="Diagram1" ZoomLevel="42">
         <EntityTypeShape EntityType="mju_budgetModel.Activity" Width="1.5" PointX="1.5" PointY="69.375" />
         <EntityTypeShape EntityType="mju_budgetModel.Budget" Width="1.5" PointX="1.5" PointY="79.5" />
         <EntityTypeShape EntityType="mju_budgetModel.Budget_money_detail" Width="1.5" PointX="0.75" PointY="22.375" />
@@ -91,13 +91,13 @@
         <EntityTypeShape EntityType="mju_budgetModel.view_Budget_receive_head" Width="1.5" PointX="10.375" PointY="23.75" />
         <EntityTypeShape EntityType="mju_budgetModel.Budget_open_detail" Width="1.5" PointX="6.875" PointY="0.625" />
         <EntityTypeShape EntityType="mju_budgetModel.Budget_open_head" Width="1.5" PointX="3.75" PointY="30.75" />
-        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_open_detail" Width="1.5" PointX="12.375" PointY="27.375" />
         <EntityTypeShape EntityType="mju_budgetModel.view_Budget_open_head" Width="1.5" PointX="23.375" PointY="21.375" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_open_detail_budget_money_major_id" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_open_detail_budget_open_doc" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_open_head_budget_plan_code" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_open_head_degree_code" />
         <AssociationConnector Association="mju_budgetModel.FK_Budget_open_head_major_code" />
+        <EntityTypeShape EntityType="mju_budgetModel.view_Budget_open_detail" Width="1.5" PointX="12.375" PointY="23.875" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

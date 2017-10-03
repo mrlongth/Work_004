@@ -51,5 +51,9 @@ namespace myModel
         public string work_name { get; set; }
         public string fund_name { get; set; }
         public string degree_name { get; set; }
+        public string ef_open_doc { get; set; }
+        public string major_name { get; set; }
+        public string major_abbrev { get; set; }
+        public Nullable<int> major_order { get; set; }
     }
 }

@@ -70,6 +70,7 @@ namespace myModel
         public string lot_name { get; set; }
         public string item_detail_code { get; set; }
         public string item_detail_name { get; set; }
+        public string ef_open_doc { get; set; }
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }

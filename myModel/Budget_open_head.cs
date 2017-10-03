@@ -39,6 +39,7 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+        public string ef_open_doc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_open_detail> Budget_open_detail { get; set; }
