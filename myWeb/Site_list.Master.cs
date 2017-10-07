@@ -175,6 +175,11 @@ namespace myWeb
             script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "js/buttons.js");
             Page.Header.Controls.Add(script);
 
+            script = new HtmlGenericControl("script");
+            script.Attributes["type"] = "text/javascript";
+            script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "js/tinymce/tinymce.min.js");
+            Page.Header.Controls.Add(script);
+
         }
     
 

@@ -99,6 +99,7 @@
     <Content Include="App_Control\budget_money\budget_money_detail_control.aspx" />
     <Content Include="App_Control\budget_money\budget_money_major_select.aspx" />
     <Content Include="App_Control\budget_open\budget_open_list.aspx" />
+    <Content Include="App_Control\budget_open\budget_open_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
@@ -114,6 +115,8 @@
     <Content Include="App_Control\item_group\item_group_detail_control.aspx" />
     <Content Include="App_Control\lot\lot_view.aspx" />
     <Content Include="App_Control\lov\item_detail_lov.aspx" />
+    <Content Include="App_Control\lov\open_head_lov.aspx" />
+    <Content Include="App_Control\lov\open_lov.aspx" />
     <Content Include="App_Control\major\major_control.aspx" />
     <Content Include="App_Control\major\major_list.aspx" />
     <Content Include="App_Control\person_group\person_group_view.aspx" />
@@ -354,6 +357,13 @@
     <Compile Include="App_Control\budget_open\budget_open_list.aspx.designer.cs">
       <DependentUpon>budget_open_list.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\budget_open\budget_open_control.aspx.cs">
+      <DependentUpon>budget_open_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_open\budget_open_control.aspx.designer.cs">
+      <DependentUpon>budget_open_control.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\budget_plan\budget_plan_control.aspx.cs">
       <DependentUpon>budget_plan_control.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -472,6 +482,20 @@
     </Compile>
     <Compile Include="App_Control\lov\item_detail_lov.aspx.designer.cs">
       <DependentUpon>item_detail_lov.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\lov\open_head_lov.aspx.cs">
+      <DependentUpon>open_head_lov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lov\open_head_lov.aspx.designer.cs">
+      <DependentUpon>open_head_lov.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\lov\open_lov.aspx.cs">
+      <DependentUpon>open_lov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lov\open_lov.aspx.designer.cs">
+      <DependentUpon>open_lov.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\major\major_control.aspx.cs">
       <DependentUpon>major_control.aspx</DependentUpon>

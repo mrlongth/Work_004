@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using myModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace myDLL
 {
@@ -99,7 +100,7 @@ namespace myDLL
                     Value = budget_open_head.budget_open_doc
                 };
                 oCommand.Parameters.Add(oParambudget_open_doc);
-                oCommand.Parameters.Add("ef_open_doc", SqlDbType.DateTime).Value = budget_open_head.ef_open_doc;                
+                oCommand.Parameters.Add("ef_open_doc", SqlDbType.VarChar).Value = budget_open_head.ef_open_doc;                
                 oCommand.Parameters.Add("budget_open_date", SqlDbType.DateTime).Value = budget_open_head.budget_open_date;
                 oCommand.Parameters.Add("budget_open_year", SqlDbType.VarChar).Value = budget_open_head.budget_open_year;
                 oCommand.Parameters.Add("open_code", SqlDbType.VarChar).Value = budget_open_head.open_code;
@@ -148,7 +149,7 @@ namespace myDLL
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_OPEN_HEAD_UPD";
                 oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = budget_open_head.budget_open_doc;
-                oCommand.Parameters.Add("ef_open_doc", SqlDbType.DateTime).Value = budget_open_head.ef_open_doc;
+                oCommand.Parameters.Add("ef_open_doc", SqlDbType.VarChar).Value = budget_open_head.ef_open_doc;
                 oCommand.Parameters.Add("budget_open_date", SqlDbType.DateTime).Value = budget_open_head.budget_open_date;
                 oCommand.Parameters.Add("budget_open_year", SqlDbType.VarChar).Value = budget_open_head.budget_open_year;
                 oCommand.Parameters.Add("open_code", SqlDbType.VarChar).Value = budget_open_head.open_code;
@@ -409,7 +410,18 @@ namespace myDLL
         }
         #endregion
 
-        
+        public List<view_Budget_open_detail> GETDETAILS(string strCriteria)
+        {
+            List<view_Budget_open_detail> results = null;
+            var strMessage = string.Empty;
+            DataSet ds = null;
+            if (SP_BUDGET_OPEN_DETAIL_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                results = Helper.ToClassInstanceCollection<view_Budget_open_detail>(ds.Tables[0]).ToList();
+            }
+            return results;
+        }
+
 
         public view_Budget_open_detail GETDETAIL(string strCriteria)
         {

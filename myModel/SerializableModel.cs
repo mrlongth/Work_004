@@ -14,4 +14,10 @@ namespace myModel
     {
     }
 
+    [Serializable]
+    public partial class view_Budget_open_detail
+    {
+        public string row_status { get; set; }
+    }
+
 }

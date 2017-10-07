@@ -71,6 +71,12 @@ namespace myWeb.App_Control.lov
                     ViewState["cboDegree"] = Helper.CStr(Request.QueryString["cboDegree"]);
                 }
 
+                if (Request.QueryString["cboMajor"] != null)
+                {
+                    ViewState["cboMajor"] = Helper.CStr(Request.QueryString["cboMajor"]);
+                }
+                
+
                 txtyear.Text = ViewState["year"].ToString();
                 txtyear.CssClass = "textboxdis";
                 txtyear.ReadOnly = true;
@@ -85,38 +91,6 @@ namespace myWeb.App_Control.lov
                     txtbudget_plan_code.Text = string.Empty;
                 }
 
-                //if (Request.QueryString["unit_name"] != null)
-                //{
-                //    ViewState["unit_name"] = Request.QueryString["unit_name"].ToString();
-                //    txtunit_name.Text = ViewState["unit_name"].ToString();
-                //}
-                //else
-                //{
-                //    ViewState["unit_name"] = string.Empty;
-                //    txtunit_name.Text = string.Empty;
-                //}
-
-                //if (Request.QueryString["activity_name"] != null)
-                //{
-                //    ViewState["activity_name"] = Request.QueryString["activity_name"].ToString();
-                //    txtactivity_name.Text = ViewState["activity_name"].ToString();
-                //}
-                //else
-                //{
-                //    ViewState["activity_name"] = string.Empty;
-                //    txtactivity_name.Text = string.Empty;
-                //}
-
-                //if (Request.QueryString["plan_name"] != null)
-                //{
-                //    ViewState["plan_name"] = Request.QueryString["plan_name"].ToString();
-                //    txtplan_name.Text = ViewState["plan_name"].ToString();
-                //}
-                //else
-                //{
-                //    ViewState["plan_name"] = string.Empty;
-                //    txtplan_name.Text = string.Empty;
-                //}
 
                 if (Request.QueryString["work_name"] != null)
                 {
@@ -398,7 +372,15 @@ namespace myWeb.App_Control.lov
 
             if (ViewState["cboDegree"] != null)
             {
-                strCriteria = strCriteria + " and budget_plan_code IN (SELECT budget_plan_code FROM Budget_money_head WHERE degree_code = '" + ViewState["cboDegree"].ToString() + "')";
+                if (ViewState["cboMajor"] != null)
+                {
+                    strCriteria = strCriteria + " and budget_plan_code IN (SELECT budget_plan_code FROM view_Budget_money_major WHERE degree_code = '" + ViewState["cboDegree"].ToString() + "' AND major_code = '" + ViewState["cboMajor"].ToString() + "' )";
+                }
+                else
+                {
+                    strCriteria = strCriteria + " and budget_plan_code IN (SELECT budget_plan_code FROM Budget_money_head WHERE degree_code = '" + ViewState["cboDegree"].ToString() + "')";
+                }
+
             }
 
             if (DirectorLock == "Y")

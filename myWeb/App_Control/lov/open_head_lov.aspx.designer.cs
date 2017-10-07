@@ -7,10 +7,37 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace myWeb {
+namespace myWeb.App_Control.lov {
     
     
-    public partial class MainPerson {
+    public partial class open_head_lov {
+        
+        /// <summary>
+        /// lblPage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage2;
+        
+        /// <summary>
+        /// txtopen_doc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtopen_doc;
+        
+        /// <summary>
+        /// txtopen_title control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtopen_title;
         
         /// <summary>
         /// lblError control.
@@ -22,57 +49,48 @@ namespace myWeb {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// ImageButton1 control.
+        /// imgFind control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
+        protected global::System.Web.UI.WebControls.ImageButton imgFind;
         
         /// <summary>
-        /// imbSlip control.
+        /// lblPage3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbSlip;
+        protected global::System.Web.UI.WebControls.Label lblPage3;
         
         /// <summary>
-        /// imbCertificate control.
+        /// txtperson_code control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbCertificate;
+        protected global::System.Web.UI.WebControls.TextBox txtperson_code;
         
         /// <summary>
-        /// imbLoan control.
+        /// txtperson_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton imbLoan;
+        protected global::System.Web.UI.WebControls.TextBox txtperson_name;
         
         /// <summary>
-        /// lnkLogout control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
-        
-        /// <summary>
-        /// lbnChangePassAlert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbnChangePassAlert;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }
