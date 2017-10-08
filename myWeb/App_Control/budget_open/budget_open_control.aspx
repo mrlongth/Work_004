@@ -1,5 +1,6 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" EnableEventValidation="false"
-    AutoEventWireup="true" CodeBehind="budget_open_control.aspx.cs" Inherits="myWeb.App_Control.budget_open.budget_open_control"
+﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master"
+    EnableEventValidation="false" ValidateRequest="false" AutoEventWireup="true"
+    CodeBehind="budget_open_control.aspx.cs" Inherits="myWeb.App_Control.budget_open.budget_open_control"
     Title="จัดการข้อมูลงบประมาณประจำปี" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="ContentPlaceHolder1">
@@ -236,11 +237,9 @@
                             <td align="left" nowrap valign="middle">
                                 <asp:TextBox ID="txtef_open_doc" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
                                 &nbsp;<asp:ImageButton ID="imgList_ef_open_doc" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
-                                <asp:ImageButton ID="imgClear_ef_open_doc" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" OnClick="imgClear_item_Click" Style="width: 18px" />
+                                <asp:ImageButton ID="imgClear_ef_open_doc" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" Style="width: 18px" OnClick="imgClear_ef_open_doc_Click" />
                                 &nbsp; </td>
-                            <td align="left" nowrap valign="middle">
-                                <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">LinkButton</asp:LinkButton>
-                            </td>
+                            <td align="left" nowrap valign="middle"></td>
                             <td align="left" nowrap valign="middle">&nbsp;</td>
                             <td align="left" nowrap style="vertical-align: bottom; width: 1%;" valign="middle">&nbsp;</td>
                         </tr>
@@ -249,9 +248,9 @@
                                 <asp:Label ID="Label21" runat="server" CssClass="label_hbk">รหัสขอเบิก :</asp:Label>
                             </td>
                             <td align="left" nowrap valign="middle">
-                                <asp:TextBox ID="txtopen_code" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                                <asp:TextBox ID="txtopen_code" runat="server" CssClass="textboxdis" Width="100px" ReadOnly="True"></asp:TextBox>
                                 &nbsp;<asp:ImageButton ID="imgList_open" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
-                                <asp:ImageButton ID="imgClear_open" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" OnClick="imgClear_item_Click" Style="width: 18px" />
+                                <asp:ImageButton ID="imgClear_open" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" OnClick="imgClear_open_Click" Style="width: 18px" />
                                 &nbsp; </td>
                             <td align="left" nowrap style="text-align: right;" valign="middle">&nbsp; </td>
                             <td align="left" nowrap valign="middle">&nbsp; </td>
@@ -312,7 +311,8 @@
                             <Columns>
                                 <asp:TemplateField HeaderText="No.">
                                     <ItemTemplate>
-                                        <asp:HiddenField ID="hddopen_detail_id" runat="server" Value='<%# DataBinder.Eval(Container, "DataItem.open_detail_id") %>' />
+                                        <asp:HiddenField ID="hddbudget_open_detail_id" runat="server" Value='<%# DataBinder.Eval(Container, "DataItem.budget_open_detail_id") %>' />
+                                        <asp:HiddenField ID="hddbudget_money_major_id" runat="server" Value='<%# DataBinder.Eval(Container, "DataItem.budget_money_major_id") %>' />
                                         <asp:Label ID="lblNo" runat="server"> </asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" Wrap="False" Width="2%"></ItemStyle>
@@ -320,43 +320,58 @@
                                 <asp:TemplateField HeaderText="รายการขอเบิก">
                                     <ItemTemplate>
                                         <asp:HiddenField ID="hddmaterial_id" runat="server" Value='<%# DataBinder.Eval(Container, "DataItem.material_id") %>' />
-                                        <asp:TextBox runat="server" CssClass="textbox" Width="240" ID="txtmaterial_name"
-                                            Text='<%# DataBinder.Eval(Container, "DataItem.material_name") %>' />
-                                        <asp:ImageButton ID="imgList_material" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
-                                        <asp:ImageButton ID="imgClear_material" runat="server" CausesValidation="False" ImageAlign="AbsBottom"
+                                        <asp:TextBox runat="server" CssClass="textbox" Width="25%" ID="txtitem_detail_code"
+                                            Text='<%# DataBinder.Eval(Container, "DataItem.item_detail_code") %>' />
+                                        <asp:ImageButton ID="imgList_item_detail" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
+                                        <asp:ImageButton ID="imgClear_item_detail" runat="server" CausesValidation="False" ImageAlign="AbsBottom"
                                             ImageUrl="../../images/controls/erase.gif" Style="width: 18px" />
+                                        <asp:TextBox runat="server" CssClass="textbox" Width="60%" ID="txtitem_detail_name"
+                                            Text='<%# DataBinder.Eval(Container, "DataItem.item_detail_name") %>' />
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="30%" Wrap="True" />
+                                    <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
                                 </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="งบประมาณ" SortExpression="lot_name">
+                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                    <ItemTemplate>
+                                        <asp:Label ID="lbllot_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name") %>'>
+                                        </asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
+
+                                <asp:TemplateField HeaderText="รายละเอียดหมวดค่าใช้จ่าย" SortExpression="Item_group_name">
+                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblItem_group_detail_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_detail_name") %>'>
+                                        </asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="รายละเอียดรายการ">
                                     <ItemTemplate>
                                         <asp:TextBox runat="server" CssClass="textbox" Width="99%" ID="txtmaterial_detail"
                                             Text='<%# DataBinder.Eval(Container, "DataItem.material_detail") %>' />
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="30%" Wrap="True" />
+                                    <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
                                     <FooterStyle HorizontalAlign="Right" />
                                     <FooterTemplate>
                                         รวมทั้งสิ้น
                                     </FooterTemplate>
                                 </asp:TemplateField>
+
                                 <asp:TemplateField HeaderText="จำนวนเงิน">
                                     <ItemTemplate>
-                                        <cc1:AwNumeric ID="txtopen_detail_amount" runat="server" Width="80px" LeadZero="Show"
-                                            DisplayMode="Control" Value='<% # DataBinder.Eval(Container, "DataItem.open_detail_amount") %>'>
+                                        <cc1:AwNumeric ID="txtopen_detail_amount" runat="server" Width="99%" LeadZero="Show"
+                                            DisplayMode="Control" Value='<% # DataBinder.Eval(Container, "DataItem.budget_open_detail_amount") %>'>
                                         </cc1:AwNumeric>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <cc1:AwNumeric ID="txtopen_amount" runat="server" Width="80px" LeadZero="Show" DisplayMode="Control">
+                                        <cc1:AwNumeric ID="txtopen_amount" runat="server" Width="99%" LeadZero="Show" DisplayMode="Control">
                                         </cc1:AwNumeric>
                                     </FooterTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="True" />
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="หมายเหตุ">
-                                    <ItemTemplate>
-                                        <asp:TextBox runat="server" CssClass="textbox" Width="99%" ID="txtopen_detail_remark"
-                                            Text='<%# DataBinder.Eval(Container, "DataItem.open_detail_remark") %>' />
-                                    </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
+                                    <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="True" />
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -376,35 +391,38 @@
 
         </ajaxtoolkit:TabContainer>
 
+        <asp:LinkButton ID="LinkButton3" runat="server" OnClick="LinkButton3_Click" Style="display: none;">LinkButton</asp:LinkButton>
+
+
     </asp:Panel>
 
     <script type="text/javascript">
 
+        $(function () {
+            LoadTinyMCE();
+        });
+
+
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
+        function BeforePostback() { tinyMCE.triggerSave(); }
+
+        function EndRequestHandler_Page(sender, args) {
+            LoadTinyMCE();
+        }
+
+        function LoadTinyMCE() {
+
+            tinyMCE.remove('#<%=txtopen_command_desc.ClientID%>');
+            tinyMCE.remove('#<%=txtopen_desc.ClientID%>');
+
+            tinyMCE.init({ selector: "#<%=txtopen_command_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
+            tinyMCE.init({ selector: "#<%=txtopen_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
+
+        }
 
         function RegisterScript() {
 
 
-            $(function () {
-                LoadTinyMCE();
-            });
-
-
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
-            function BeforePostback() { tinyMCE.triggerSave(); }
-
-            function EndRequestHandler_Page(sender, args) {
-                LoadTinyMCE();
-            }
-
-            function LoadTinyMCE() {
-
-                tinyMCE.remove('#<%=txtopen_command_desc.ClientID%>');
-                tinyMCE.remove('#<%=txtopen_desc.ClientID%>');
-
-                tinyMCE.init({ selector: "#<%=txtopen_command_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
-                tinyMCE.init({ selector: "#<%=txtopen_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
-
-            }
 
 
             $(document).on('keypress', 'form input[type=text]', function (event) {
@@ -441,10 +459,10 @@
             });
 
 
-            $("input[id*=imgClear_ef_open_doc]").live("click", function () {
-                $('#' + this.id.replace('imgClear_ef_open_doc', 'txtef_open_doc')).val('');
-                return false;
-            });
+            //$("input[id*=imgClear_ef_open_doc]").live("click", function () {
+            //    $('#' + this.id.replace('imgClear_ef_open_doc', 'txtef_open_doc')).val('');
+            //    return false;
+            //});
 
             $("input[id*=imgList_ef_open_doc]").live("click", function () {
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
@@ -457,6 +475,30 @@
                 OpenPopUp('800px', '400px', '93%', 'ค้นหาข้อมูลรายการเบิกจ่าย', url, '1');
                 return false;
             });
+
+            $("input[id*=imgClear_item_detail]").live("click", function () {
+                $('#' + this.id.replace('imgClear_item_detail', 'hddbudget_money_major_id')).val('0');
+                $('#' + this.id.replace('imgClear_item_detail', 'hddmaterial_id')).val('0');
+                $('#' + this.id.replace('imgClear_item_detail', 'txtmaterial_code')).val('');
+                $('#' + this.id.replace('imgClear_item_detail', 'txtmaterial_name')).val('');
+                return false;
+            });
+
+            $("input[id*=imgList_material]").live("click", function () {
+                var hddmaterial_id = $('#' + this.id.replace('imgList_material', 'hddmaterial_id'));
+                var txtitem_detail_code = $('#' + this.id.replace('imgList_material', 'txtitem_detail_code'));
+                var txtmaterial_name = $('#' + this.id.replace('imgList_material', 'txtmaterial_name'));
+                var url = "../lov/raw_material_lov.aspx?" +
+                    "material_name=" + txtmaterial_name.val() +
+                    "&ctrl2=" + $(txtmaterial_name).attr('id') +
+                    "&ctrl3=" + $(hddmaterial_id).attr('id') +
+                    "&show=2&from=open_control";
+                OpenPopUp('800px', '400px', '93%', 'ค้นหาข้อมูลรายการเบิกจ่าย', url, '2');
+                return false;
+            });
+
+
+
 
         };
 

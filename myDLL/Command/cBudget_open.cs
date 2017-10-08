@@ -287,6 +287,11 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_open_detail.budget_money_major_id;
                 oCommand.Parameters.Add("budget_open_detail_remark", SqlDbType.VarChar).Value = budget_open_detail.budget_open_detail_remark;                
                 oCommand.Parameters.Add("budget_open_detail_amount", SqlDbType.Money).Value = budget_open_detail.budget_open_detail_amount;
+
+                oCommand.Parameters.Add("material_id", SqlDbType.Int).Value = budget_open_detail.material_id;
+                oCommand.Parameters.Add("material_detail", SqlDbType.VarChar).Value = budget_open_detail.material_detail;
+                oCommand.Parameters.Add("material_name", SqlDbType.VarChar).Value = budget_open_detail.material_name;
+
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_open_detail.c_created_by;
                 oCommand.ExecuteNonQuery();
                 budget_open_detail.budget_open_detail_id = long.Parse(oParambudget_open_detail_id.Value.ToString());
@@ -325,6 +330,9 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_major_id", SqlDbType.Int).Value = budget_open_detail.budget_money_major_id;
                 oCommand.Parameters.Add("budget_open_detail_remark", SqlDbType.VarChar).Value = budget_open_detail.budget_open_detail_remark;
                 oCommand.Parameters.Add("budget_open_detail_amount", SqlDbType.Money).Value = budget_open_detail.budget_open_detail_amount;
+                oCommand.Parameters.Add("material_id", SqlDbType.Int).Value = budget_open_detail.material_id;
+                oCommand.Parameters.Add("material_detail", SqlDbType.VarChar).Value = budget_open_detail.material_detail;
+                oCommand.Parameters.Add("material_name", SqlDbType.VarChar).Value = budget_open_detail.material_name;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_open_detail.c_updated_by;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;

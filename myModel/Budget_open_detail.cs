@@ -23,6 +23,9 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+        public Nullable<int> material_id { get; set; }
+        public string material_name { get; set; }
+        public string material_detail { get; set; }
     
         public virtual Budget_money_major Budget_money_major { get; set; }
         public virtual Budget_open_head Budget_open_head { get; set; }

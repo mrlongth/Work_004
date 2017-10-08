@@ -580,15 +580,6 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.ImageButton imgClear_ef_open_doc;
         
         /// <summary>
-        /// LinkButton3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
-        
-        /// <summary>
         /// Label21 control.
         /// </summary>
         /// <remarks>
@@ -713,5 +704,14 @@ namespace myWeb.App_Control.budget_open {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView1;
+        
+        /// <summary>
+        /// LinkButton3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
     }
 }

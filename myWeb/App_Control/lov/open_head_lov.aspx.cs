@@ -369,7 +369,7 @@ namespace myWeb.App_Control.lov
                     else
                     {
                         strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"] + "').value='" + stropen_doc + "';\n " +
-                                    "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel2$LinkButton3','');" +
+                                    "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$LinkButton3','');" +
                                     "ClosePopUp('" + ViewState["show"] + "');";
                         lblopen_doc.Attributes.Add("onclick", strScript);
 

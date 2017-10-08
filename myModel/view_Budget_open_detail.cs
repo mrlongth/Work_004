@@ -74,5 +74,8 @@ namespace myModel
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }
+        public Nullable<int> material_id { get; set; }
+        public string material_name { get; set; }
+        public string material_detail { get; set; }
     }
 }

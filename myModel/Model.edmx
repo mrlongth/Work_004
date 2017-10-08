@@ -97,6 +97,9 @@
           <Property Name="budget_money_major_id" Type="bigint" />
           <Property Name="budget_open_detail_remark" Type="varchar" MaxLength="4000" />
           <Property Name="budget_open_detail_amount" Type="money" />
+          <Property Name="material_id" Type="int" />
+          <Property Name="material_name" Type="varchar" MaxLength="255" />
+          <Property Name="material_detail" Type="varchar" MaxLength="255" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
           <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
@@ -866,6 +869,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_detail' does not h
           <Property Name="major_name" Type="varchar" MaxLength="100" />
           <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
           <Property Name="major_order" Type="int" />
+          <Property Name="material_id" Type="int" />
+          <Property Name="material_name" Type="varchar" MaxLength="255" />
+          <Property Name="material_detail" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2125,7 +2131,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_detail].[ef_open_doc] AS [ef_open_doc], 
     [view_Budget_open_detail].[major_name] AS [major_name], 
     [view_Budget_open_detail].[major_abbrev] AS [major_abbrev], 
-    [view_Budget_open_detail].[major_order] AS [major_order]
+    [view_Budget_open_detail].[major_order] AS [major_order], 
+    [view_Budget_open_detail].[material_id] AS [material_id], 
+    [view_Budget_open_detail].[material_name] AS [material_name], 
+    [view_Budget_open_detail].[material_detail] AS [material_detail]
     FROM [dbo].[view_Budget_open_detail] AS [view_Budget_open_detail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_open_head" EntityType="Self.view_Budget_open_head" store:Type="Views" store:Schema="dbo">
@@ -4628,6 +4637,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Budget_money_major" Relationship="mju_budgetModel.FK_Budget_open_detail_budget_money_major_id" FromRole="Budget_open_detail" ToRole="Budget_money_major" />
           <NavigationProperty Name="Budget_open_head" Relationship="mju_budgetModel.FK_Budget_open_detail_budget_open_doc" FromRole="Budget_open_detail" ToRole="Budget_open_head" />
+          <Property Name="material_id" Type="Int32" />
+          <Property Name="material_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="material_detail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Budget_open_head">
           <Key>
@@ -4830,6 +4842,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_order" Type="Int32" />
+          <Property Name="material_id" Type="Int32" />
+          <Property Name="material_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="material_detail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -6080,6 +6095,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="Budget_open_detail">
             <EntityTypeMapping TypeName="mju_budgetModel.Budget_open_detail">
               <MappingFragment StoreEntitySet="Budget_open_detail">
+                <ScalarProperty Name="material_detail" ColumnName="material_detail" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
                 <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
                 <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
                 <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
@@ -6168,6 +6186,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_open_detail">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_detail">
               <MappingFragment StoreEntitySet="view_Budget_open_detail">
+                <ScalarProperty Name="material_detail" ColumnName="material_detail" />
+                <ScalarProperty Name="material_name" ColumnName="material_name" />
+                <ScalarProperty Name="material_id" ColumnName="material_id" />
                 <ScalarProperty Name="major_order" ColumnName="major_order" />
                 <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />

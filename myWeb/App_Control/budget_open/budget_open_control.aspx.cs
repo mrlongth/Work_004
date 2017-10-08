@@ -8,6 +8,7 @@ using System.Linq;
 using System.Collections.Generic;
 using myDLL.Common;
 using Aware.WebControls;
+using System.Collections;
 
 namespace myWeb.App_Control.budget_open
 {
@@ -62,42 +63,72 @@ namespace myWeb.App_Control.budget_open
                 ViewState["OpenDetailID"] = value;
             }
         }
-        private DataTable dtOpenDetail
+
+        protected List<view_Budget_open_detail> lstBudgetDetail
         {
             get
             {
-                if (ViewState["dtOpenDetail"] == null)
+                if (ViewState["lstBudgetDetail"] == null)
                 {
-                    cefOpen objEfloan = new cefOpen();
+                    cBudget_open oBudget_open = new cBudget_open();
                     _strMessage = string.Empty;
-                    _strCriteria = " and open_head_id = " + Helper.CInt(ViewState["open_head_id"]) + " order by open_detail_id";
-                    DataTable dtTemp = objEfloan.SP_OPEN_DETAIL_SEL(_strCriteria);
-                    dtTemp.Columns.Add("row_status");
-                    if (dtTemp.Rows.Count > 0)
+                    _strCriteria = " and budget_open_doc = '" + txtbudget_open_doc.Text + "' order by item_detail_code";
+                    var dtTemp = oBudget_open.GETDETAILS(_strCriteria);
+                    foreach (var item in dtTemp)
                     {
-                        foreach (DataRow dr in dtTemp.Rows)
-                        {
-                            dr["row_status"] = "O";
-                        }
+                        item.row_status = "O";
                     }
-                    ViewState["dtOpenDetail"] = dtTemp;
+                    ViewState["lstBudgetDetail"] = dtTemp;
                 }
-                return (DataTable)ViewState["dtOpenDetail"];
+                return (List<view_Budget_open_detail>)ViewState["lstBudgetDetail"];
             }
             set
             {
-                ViewState["dtOpenDetail"] = value;
+                ViewState["lstBudgetDetail"] = value;
             }
         }
+
+        //protected List<view_Budget_open_detail> lstBudgetDetail
+        //{
+        //    get
+        //    {
+        //        if (ViewState["lstBudgetDetail"] == null)
+        //        {
+        //            cefOpen objEfloan = new cefOpen();
+        //            _strMessage = string.Empty;
+        //            _strCriteria = " and open_head_id = " + Helper.CInt(ViewState["open_head_id"]) + " order by open_detail_id";
+        //            DataTable dtTemp = objEfloan.SP_OPEN_DETAIL_SEL(_strCriteria);
+        //            dtTemp.Columns.Add("row_status");
+        //            if (dtTemp.Rows.Count > 0)
+        //            {
+        //                foreach (DataRow dr in dtTemp.Rows)
+        //                {
+        //                    dr["row_status"] = "O";
+        //                }
+        //            }
+        //            ViewState["dtOpenDetail"] = dtTemp;
+        //        }
+        //        return (List<view_Budget_open_detail>)ViewState["lstBudgetDetail"];
+        //    }
+        //    set
+        //    {
+        //        ViewState["lstBudgetDetail"] = value;
+        //    }
+        //}
 
 
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblError.Text = "";
+            if (!ScriptManager.GetCurrent(this).IsInAsyncPostBack)
+            {
+                ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "BeforePostback", "BeforePostback()");
+            }
+
             if (!IsPostBack)
             {
-
 
                 ViewState["sort"] = "open_detail_id";
                 ViewState["direction"] = "ASC";
@@ -168,14 +199,16 @@ namespace myWeb.App_Control.budget_open
                 budget_open_head.budget_open_year = cboYear.SelectedValue;
                 budget_open_head.major_code = cboMajor.SelectedValue;
                 budget_open_head.budget_plan_code = txtbudget_plan_code.Text;
+
+                budget_open_head.ef_open_doc = txtef_open_doc.Text;
                 if (!string.IsNullOrEmpty(txtopen_code.Text))
                 {
                     budget_open_head.open_code = int.Parse(txtopen_code.Text);
                 }
-                budget_open_head.open_title= txtopen_title.Text.Trim();
+                budget_open_head.open_title = txtopen_title.Text.Trim();
                 budget_open_head.open_command_desc = txtopen_command_desc.Text.Trim();
                 budget_open_head.open_desc = txtopen_desc.Text.Trim();
-                
+
                 budget_open_head.open_remark = txtopen_remark.Text.Trim();
 
                 budget_open_head.c_created_by = Session["username"].ToString();
@@ -220,7 +253,7 @@ namespace myWeb.App_Control.budget_open
             cBudget_open obudget_open = new cBudget_open();
             try
             {
-          
+
 
                 blnResult = true;
             }
@@ -241,7 +274,6 @@ namespace myWeb.App_Control.budget_open
             }
             return blnResult;
         }
-
 
         private void setData()
         {
@@ -295,7 +327,7 @@ namespace myWeb.App_Control.budget_open
                     txtopen_remark.Text = budget_open_head.open_remark;
 
                     txtef_open_doc.Text = budget_open_head.ef_open_doc;
-                    if(budget_open_head.open_code != null)
+                    if (budget_open_head.open_code != null)
                     {
                         txtopen_code.Text = budget_open_head.open_code.ToString();
                     }
@@ -310,6 +342,8 @@ namespace myWeb.App_Control.budget_open
                         cboMajor.SelectedIndex = -1;
                         cboMajor.Items.FindByValue(budget_open_head.major_code).Selected = true;
                     }
+
+                    BindGridDetail();
 
                     #endregion
                 }
@@ -398,7 +432,7 @@ namespace myWeb.App_Control.budget_open
                 }
             }
         }
-        
+
         private void InitcboMajor()
         {
             cMajor oMajor = new cMajor();
@@ -510,11 +544,9 @@ namespace myWeb.App_Control.budget_open
 
         private void BindGridDetail()
         {
-            DataView dv = null;
             try
             {
-                dv = new DataView(this.dtOpenDetail, "row_status<>'D'", (ViewState["sort"] + " " + ViewState["direction"]), DataViewRowState.CurrentRows);
-                GridView1.DataSource = dv.ToTable();
+                GridView1.DataSource = this.lstBudgetDetail;
                 GridView1.DataBind();
             }
             catch (Exception ex)
@@ -524,10 +556,10 @@ namespace myWeb.App_Control.budget_open
             finally
             {
                 this.bIsGridDetailEmpty = false;
-                if (dv.ToTable().Rows.Count == 0)
+                if (!this.lstBudgetDetail.Any())
                 {
                     this.bIsGridDetailEmpty = true;
-                    EmptyGridFix(GridView1);
+                    EmptyGridFix<view_Budget_open_detail>(GridView1);
                 }
                 else
                 {
@@ -579,7 +611,7 @@ namespace myWeb.App_Control.budget_open
                         e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                     }
                     #endregion
-                    DataRowView dv = (DataRowView)e.Row.DataItem;
+                    view_Budget_open_detail dv = (view_Budget_open_detail)e.Row.DataItem;
                     Label lblNo = (Label)e.Row.FindControl("lblNo");
                     int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
                     lblNo.Text = nNo.ToString();
@@ -594,7 +626,7 @@ namespace myWeb.App_Control.budget_open
                     #endregion
 
                     ViewState["TotalAmount"] = Helper.CDbl(ViewState["TotalAmount"]) +
-                                               Helper.CDbl(dv["open_detail_amount"]);
+                                               Helper.CDbl(dv.budget_open_detail_amount);
                 }
 
             }
@@ -653,15 +685,10 @@ namespace myWeb.App_Control.budget_open
             try
             {
                 StoreDetail();
-                int i = 0;
-                foreach (DataRow dr in this.dtOpenDetail.Rows)
+                var del = this.lstBudgetDetail.FirstOrDefault(b => b.budget_open_detail_id == Helper.CLong(hddopen_detail_id.Value));
+                if (del != null)
                 {
-                    if (Helper.CLong(dr["open_detail_id"]) == Helper.CLong(hddopen_detail_id.Value))
-                    {
-                        dr["row_status"] = "D";
-                        break;
-                    }
-                    ++i;
+                    del.row_status = "D";
                 }
             }
             catch (Exception ex)
@@ -670,8 +697,8 @@ namespace myWeb.App_Control.budget_open
             }
             finally
             {
+                BindGridDetail();
             }
-            BindGridDetail();
         }
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -680,15 +707,12 @@ namespace myWeb.App_Control.budget_open
             {
                 case "ADD":
                     StoreDetail();
-                    DataRow dr = this.dtOpenDetail.NewRow();
-                    dr["open_detail_id"] = ++this.OpenDetailID;
-                    dr["material_id"] = "0";
-                    dr["material_name"] = string.Empty;
-                    dr["material_detail"] = string.Empty;
-                    dr["open_detail_amount"] = 0;
-                    dr["open_detail_remark"] = string.Empty;
-                    dr["row_status"] = "N";
-                    this.dtOpenDetail.Rows.Add(dr);
+                    this.lstBudgetDetail.Add(new view_Budget_open_detail
+                    {
+                        budget_open_detail_id = ++this.OpenDetailID,
+                        budget_open_detail_amount = 0,
+                        row_status = "N"
+                    });
                     BindGridDetail();
                     break;
                 default:
@@ -701,32 +725,27 @@ namespace myWeb.App_Control.budget_open
 
 
         #region EmptyGridFix
-        protected void EmptyGridFix(GridView grdView)
+        protected void EmptyGridFix<T>(GridView grdView) where T : class, new()
         {
             // normally executes after a grid load method
             if (grdView.Rows.Count == 0 &&
                 grdView.DataSource != null)
             {
-                DataTable dt = null;
+                List<T> dt = null;
 
                 // need to clone sources otherwise it will be indirectly adding to 
                 // the original source
 
-                if (grdView.DataSource is DataSet)
+                if (grdView.DataSource is IList)
                 {
-                    dt = ((DataSet)grdView.DataSource).Tables[0].Clone();
+                    dt = (List<T>)grdView.DataSource;
                 }
-                else if (grdView.DataSource is DataTable)
-                {
-                    dt = ((DataTable)grdView.DataSource).Clone();
-                }
-
                 if (dt == null)
                 {
                     return;
                 }
 
-                dt.Rows.Add(dt.NewRow()); // add empty row
+                dt.Add(new T());
                 grdView.DataSource = dt;
                 grdView.DataBind();
 
@@ -812,17 +831,6 @@ namespace myWeb.App_Control.budget_open
             ClearBudgetPlan();
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-           
-        }
-
-        protected void imgClear_item_Click(object sender, ImageClickEventArgs e)
-        {
-            
-
-        }
-
         protected void cboMajor_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearBudgetPlan();
@@ -833,6 +841,12 @@ namespace myWeb.App_Control.budget_open
             setEFormData();
         }
 
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         private void setEFormData()
         {
             cefOpen opjEfloan = new cefOpen();
@@ -841,8 +855,6 @@ namespace myWeb.App_Control.budget_open
                 strCriteria = string.Empty;
             try
             {
-                txtef_open_doc.ReadOnly = true;
-                txtef_open_doc.CssClass = "textboxdis";
                 strCriteria = " and open_doc = '" + txtef_open_doc.Text + "' ";
                 dt = opjEfloan.SP_OPEN_HEAD_SEL(strCriteria);
                 if (dt.Rows.Count > 0)
@@ -871,32 +883,40 @@ namespace myWeb.App_Control.budget_open
         {
             try
             {
-                HiddenField hddopen_detail_id;
+                HiddenField hddbudget_open_detail_id;
+                HiddenField hddbudget_money_major_id;
                 HiddenField hddmaterial_id;
-                TextBox txtmaterial_name;
+                TextBox txtitem_detail_code;
+                TextBox txtitem_detail_name;
                 TextBox txtmaterial_detail;
                 AwNumeric txtopen_detail_amount;
-                TextBox txtopen_detail_remark;
+                Label lbllot_name;
+                Label lblItem_group_detail_name;
                 foreach (GridViewRow gvRow in GridView1.Rows)
                 {
-                    hddopen_detail_id = (HiddenField)gvRow.FindControl("hddopen_detail_id");
+                    hddbudget_open_detail_id = (HiddenField)gvRow.FindControl("hddbudget_open_detail_id");
+                    hddbudget_money_major_id = (HiddenField)gvRow.FindControl("hddbudget_money_major_id");
                     hddmaterial_id = (HiddenField)gvRow.FindControl("hddmaterial_id");
-                    txtmaterial_name = (TextBox)gvRow.FindControl("txtmaterial_name");
+                    txtitem_detail_code = (TextBox)gvRow.FindControl("txtitem_detail_code");
+                    txtitem_detail_name = (TextBox)gvRow.FindControl("txtitem_detail_name");
                     txtmaterial_detail = (TextBox)gvRow.FindControl("txtmaterial_detail");
                     txtopen_detail_amount = (AwNumeric)gvRow.FindControl("txtopen_detail_amount");
-                    txtopen_detail_remark = (TextBox)gvRow.FindControl("txtopen_detail_remark");
-                    foreach (DataRow dr in this.dtOpenDetail.Rows)
+                    lbllot_name = (Label)gvRow.FindControl("lbllot_name");
+                    lblItem_group_detail_name = (Label)gvRow.FindControl("lblItem_group_detail_name");
+                    var item = lstBudgetDetail.FirstOrDefault(b => b.budget_open_detail_id == Helper.CLong(hddbudget_open_detail_id.Value));
+                    if (item != null)
                     {
-                        if (Helper.CLong(dr["open_detail_id"]) == Helper.CLong(hddopen_detail_id.Value))
+                        item.budget_open_detail_id = Helper.CLong(hddbudget_open_detail_id.Value);
+                        item.budget_money_major_id = Helper.CLong(hddbudget_money_major_id.Value);
+                        if (!string.IsNullOrEmpty(hddmaterial_id.Value) && hddmaterial_id.Value != "0")
                         {
-                            dr["open_detail_id"] = hddopen_detail_id.Value;
-                            dr["material_id"] = hddmaterial_id.Value;
-                            dr["material_name"] = txtmaterial_name.Text;
-                            dr["material_detail"] = txtmaterial_detail.Text;
-                            dr["open_detail_amount"] = txtopen_detail_amount.Value;
-                            dr["open_detail_remark"] = txtopen_detail_remark.Text;
-                            break;
+                            item.material_id = Helper.CInt(hddmaterial_id.Value);
                         }
+                        item.lot_name = lbllot_name.Text;
+                        item.item_group_detail_name = lblItem_group_detail_name.Text;
+                        item.item_detail_name = txtitem_detail_name.Text;
+                        item.material_detail = txtmaterial_detail.Text;
+                        item.budget_open_detail_amount = string.IsNullOrEmpty(txtopen_detail_amount.Value.ToString()) ? 0 : decimal.Parse(txtopen_detail_amount.Value.ToString());
                     }
                 }
             }
@@ -909,7 +929,25 @@ namespace myWeb.App_Control.budget_open
             }
         }
 
+        protected void imgClear_open_Click(object sender, ImageClickEventArgs e)
+        {
+            ViewState["open_head_id"] = 0;
+            txtopen_code.Text = string.Empty;
+            txtopen_title.Text = string.Empty;
+            txtopen_desc.Text = string.Empty;
+            txtopen_command_desc.Text = string.Empty;
+            txtopen_remark.Text = string.Empty;
+        }
 
-
+        protected void imgClear_ef_open_doc_Click(object sender, ImageClickEventArgs e)
+        {
+            ViewState["open_head_id"] = 0;
+            txtef_open_doc.Text = string.Empty;
+            txtopen_code.Text = string.Empty;
+            txtopen_title.Text = string.Empty;
+            txtopen_desc.Text = string.Empty;
+            txtopen_command_desc.Text = string.Empty;
+            txtopen_remark.Text = string.Empty;
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site_lov.Master" EnableEventValidation="false"
-    AutoEventWireup="true" CodeBehind="open_head_lov.aspx.cs" Inherits="myWeb.App_Control.lov.open_head_lov"
+    ValidateRequest="false" AutoEventWireup="true" CodeBehind="open_head_lov.aspx.cs" Inherits="myWeb.App_Control.lov.open_head_lov"
     Title="ค้นหาข้อมูลรายการขออนุญาติเบิกจ่าย" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
