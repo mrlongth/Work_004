@@ -463,7 +463,7 @@ namespace myWeb.App_Control.budget_open
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
+            if (!IsPostBack)
             {
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "RegisterScript();createDate('" + txtbudget_open_date.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
             }
@@ -559,7 +559,7 @@ namespace myWeb.App_Control.budget_open
                 if (!this.lstBudgetDetail.Any())
                 {
                     this.bIsGridDetailEmpty = true;
-                    EmptyGridFix<view_Budget_open_detail>(GridView1);
+                    EmptyGridFix(GridView1);
                 }
                 else
                 {
@@ -681,14 +681,14 @@ namespace myWeb.App_Control.budget_open
         {
             string strMessage = string.Empty;
             string strScript = string.Empty;
-            HiddenField hddopen_detail_id = (HiddenField)GridView1.Rows[e.RowIndex].FindControl("hddopen_detail_id");
+            HiddenField hddbudget_open_detail_id = (HiddenField)GridView1.Rows[e.RowIndex].FindControl("hddbudget_open_detail_id");
             try
             {
                 StoreDetail();
-                var del = this.lstBudgetDetail.FirstOrDefault(b => b.budget_open_detail_id == Helper.CLong(hddopen_detail_id.Value));
+                var del = this.lstBudgetDetail.FirstOrDefault(b => b.budget_open_detail_id == Helper.CLong(hddbudget_open_detail_id.Value));
                 if (del != null)
                 {
-                    del.row_status = "D";
+                    this.lstBudgetDetail.Remove(del);
                 }
             }
             catch (Exception ex)
@@ -725,27 +725,28 @@ namespace myWeb.App_Control.budget_open
 
 
         #region EmptyGridFix
-        protected void EmptyGridFix<T>(GridView grdView) where T : class, new()
+        protected void EmptyGridFix(GridView grdView) 
         {
             // normally executes after a grid load method
             if (grdView.Rows.Count == 0 &&
                 grdView.DataSource != null)
             {
-                List<T> dt = null;
+                var dt = new List<view_Budget_open_detail>();
 
                 // need to clone sources otherwise it will be indirectly adding to 
                 // the original source
 
-                if (grdView.DataSource is IList)
-                {
-                    dt = (List<T>)grdView.DataSource;
-                }
-                if (dt == null)
-                {
-                    return;
-                }
+                //if (grdView.DataSource is IList)
+                //{
+                //    var source = (List<view_Budget_open_detail>)grdView.DataSource;
+                //    Helper.CopyTo(source, dt);
+                //}
+                //if (dt == null)
+                //{
+                //    return;
+                //}
 
-                dt.Add(new T());
+                dt.Add(new view_Budget_open_detail());
                 grdView.DataSource = dt;
                 grdView.DataBind();
 
@@ -774,6 +775,7 @@ namespace myWeb.App_Control.budget_open
                     grdView.Rows[0].Visible = false;
                     grdView.Rows[0].Controls.Clear();
                 }
+
             }
         }
 
@@ -846,6 +848,11 @@ namespace myWeb.App_Control.budget_open
 
         }
 
+        protected void LinkButton2_Click(object sender, EventArgs e)
+        {
+            BindGridDetail();
+        }
+
 
         private void setEFormData()
         {
@@ -890,8 +897,8 @@ namespace myWeb.App_Control.budget_open
                 TextBox txtitem_detail_name;
                 TextBox txtmaterial_detail;
                 AwNumeric txtopen_detail_amount;
-                Label lbllot_name;
-                Label lblItem_group_detail_name;
+                TextBox txtlot_name;
+                TextBox txtitem_group_detail_name;
                 foreach (GridViewRow gvRow in GridView1.Rows)
                 {
                     hddbudget_open_detail_id = (HiddenField)gvRow.FindControl("hddbudget_open_detail_id");
@@ -901,8 +908,8 @@ namespace myWeb.App_Control.budget_open
                     txtitem_detail_name = (TextBox)gvRow.FindControl("txtitem_detail_name");
                     txtmaterial_detail = (TextBox)gvRow.FindControl("txtmaterial_detail");
                     txtopen_detail_amount = (AwNumeric)gvRow.FindControl("txtopen_detail_amount");
-                    lbllot_name = (Label)gvRow.FindControl("lbllot_name");
-                    lblItem_group_detail_name = (Label)gvRow.FindControl("lblItem_group_detail_name");
+                    txtlot_name = (TextBox)gvRow.FindControl("txtlot_name");
+                    txtitem_group_detail_name = (TextBox)gvRow.FindControl("txtitem_group_detail_name");
                     var item = lstBudgetDetail.FirstOrDefault(b => b.budget_open_detail_id == Helper.CLong(hddbudget_open_detail_id.Value));
                     if (item != null)
                     {
@@ -912,8 +919,9 @@ namespace myWeb.App_Control.budget_open
                         {
                             item.material_id = Helper.CInt(hddmaterial_id.Value);
                         }
-                        item.lot_name = lbllot_name.Text;
-                        item.item_group_detail_name = lblItem_group_detail_name.Text;
+                        item.lot_name = txtlot_name.Text;
+                        item.item_group_detail_name = txtitem_group_detail_name.Text;
+                        item.item_detail_code = txtitem_detail_code.Text;
                         item.item_detail_name = txtitem_detail_name.Text;
                         item.material_detail = txtmaterial_detail.Text;
                         item.budget_open_detail_amount = string.IsNullOrEmpty(txtopen_detail_amount.Value.ToString()) ? 0 : decimal.Parse(txtopen_detail_amount.Value.ToString());

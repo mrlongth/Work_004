@@ -49,6 +49,42 @@ namespace myWeb.App_Control.budget_receive {
         protected global::System.Web.UI.WebControls.DropDownList cboDegree;
         
         /// <summary>
+        /// lblPage23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage23;
+        
+        /// <summary>
+        /// txtdate_begin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdate_begin;
+        
+        /// <summary>
+        /// lblPage24 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage24;
+        
+        /// <summary>
+        /// txtdate_end control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdate_end;
+        
+        /// <summary>
         /// lblPage19 control.
         /// </summary>
         /// <remarks>
@@ -65,24 +101,6 @@ namespace myWeb.App_Control.budget_receive {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtbudget_receive_doc;
-        
-        /// <summary>
-        /// lblPage22 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage22;
-        
-        /// <summary>
-        /// txtdate_begin control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdate_begin;
         
         /// <summary>
         /// lblPage2 control.

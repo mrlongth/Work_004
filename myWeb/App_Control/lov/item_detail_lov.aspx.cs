@@ -129,6 +129,7 @@ namespace myWeb.App_Control.lov
                     ViewState["hdditem_detail_id"] = string.Empty;
                 }
 
+
                 if (Request.QueryString["lbkRefresh"] != null)
                 {
                     ViewState["lbkRefresh"] = Request.QueryString["lbkRefresh"].ToString();

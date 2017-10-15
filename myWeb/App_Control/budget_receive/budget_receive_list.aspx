@@ -24,73 +24,90 @@
         </tr>
         <tr>
             <td style="text-align: right;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage23">ตั้งแต่วันที่ : </asp:Label>
+            </td>
+            <td style="width: 1%;">
+
+                <asp:TextBox ID="txtdate_begin" runat="server" CssClass="textbox"
+                    Width="100px" />
+
+            </td>
+            <td style="text-align: right;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage24">ถึงวันที่ :</asp:Label>
+            </td>
+            <td colspan="2">
+
+                <asp:TextBox ID="txtdate_end" runat="server" CssClass="textbox"
+                    Width="100px" />
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage19">เลขที่เอกสาร : </asp:Label>
             </td>
             <td style="width: 1%;">
                 <asp:TextBox runat="server" CssClass="textbox"   Width="100px" ID="txtbudget_receive_doc"></asp:TextBox>
             </td>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage22">วันที่ : </asp:Label>
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสผังงบประมาณ : </asp:Label>
             </td>
             <td colspan="2">
                 
-                 <asp:TextBox ID="txtdate_begin" runat="server" CssClass="textbox" ReadOnly="True"
-                    Width="100px" />
+                <asp:TextBox runat="server" CssClass="textbox"   Width="100px" ID="txtbudget_plan_code"></asp:TextBox>
 
             </td>
         </tr>
         <tr>
             <td style="text-align: right;" class="label_d">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสผังงบประมาณ : </asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" CssClass="textbox"   Width="100px" ID="txtbudget_plan_code"></asp:TextBox>
-            </td>
-            <td style="text-align: right;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage8">หน่วยงาน :
                 </asp:Label>
             </td>
-            <td colspan="2">
+            <td>
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboUnit" AutoPostBack="True"
                     OnSelectedIndexChanged="cboUnit_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-        </tr>
-        <tr>
             <td style="text-align: right;">
                 <asp:Label ID="lblPage5" runat="server" CssClass="label_h">แผนงบประมาณ  :</asp:Label>
             </td>
-            <td style="width: 1%;">
+            <td colspan="2">
                 <asp:DropDownList ID="cboBudget" runat="server" CssClass="textbox" AutoPostBack="True"
                     OnSelectedIndexChanged="cboBudget_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
+        </tr>
+        <tr>
             <td style="text-align: right;">
                 <asp:Label ID="lblPage15" runat="server" CssClass="label_h">ผลผลิต :</asp:Label>
             </td>
-            <td colspan="2">
+            <td style="width: 1%;">
                 <asp:DropDownList ID="cboProduce" runat="server" CssClass="textbox" AutoPostBack="True"
                     OnSelectedIndexChanged="cboProduce_SelectedIndexChanged">
+                </asp:DropDownList>
+            </td>
+            <td style="text-align: right;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage16">กิจกรรม :</asp:Label>
+            </td>
+            <td colspan="2">
+                <asp:DropDownList ID="cboActivity" runat="server" CssClass="textbox" AutoPostBack="True"
+                    OnSelectedIndexChanged="cboActivity_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
         </tr>
         <tr>
             <td style="text-align: right;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage16">กิจกรรม :</asp:Label>
-            </td>
-            <td>
-                <asp:DropDownList ID="cboActivity" runat="server" CssClass="textbox" AutoPostBack="True"
-                    OnSelectedIndexChanged="cboActivity_SelectedIndexChanged">
-                </asp:DropDownList>
-            </td>
-            <td style="text-align: right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage17">แผนงาน :</asp:Label>
             </td>
-            <td colspan="2">
+            <td>
                 <asp:DropDownList ID="cboPlan_code" runat="server" CssClass="textbox" AutoPostBack="True"
                     OnSelectedIndexChanged="cboPlan_code_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
+            <td style="text-align: right">
+                &nbsp;</td>
+            <td colspan="2">
+                &nbsp;</td>
         </tr>
         <tr>
             <td style="text-align: right;">
@@ -106,7 +123,7 @@
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
                     ID="imgNew" OnClick="imgNew_Click"></asp:ImageButton>
-                .</td>
+                </td>
         </tr>
         <tr>
             <td style="text-align: right;">

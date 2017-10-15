@@ -32,7 +32,7 @@
         </tr>
         <tr align="center">
             <td align="center" nowrap valign="middle" colspan="2">
-                <div class="div-lov" style="height: 280px ">
+                <div class="div-lov" style="height: 280px">
                     <asp:GridView runat="server" AllowSorting="false" AutoGenerateColumns="False" CellPadding="2"
                         BackColor="White" BorderWidth="1px" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
                         Width="100%" ID="GridView1" OnRowCreated="GridView1_RowCreated" OnRowDataBound="GridView1_RowDataBound">
@@ -65,14 +65,14 @@
                 </div>
             </td>
         </tr>
-        </table>
+    </table>
     <div style="float: right; padding-right: 20px;">
         <asp:ImageButton runat="server" ValidationGroup="A" ImageUrl="~/images/button/save_add.png"
             ID="imgSaveOnly" OnClick="imgSaveOnly_Click"></asp:ImageButton>
     </div>
     <br />
     <br />
-                <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
+    <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
     <br />
 
 

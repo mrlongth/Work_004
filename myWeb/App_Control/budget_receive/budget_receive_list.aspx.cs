@@ -75,7 +75,7 @@ namespace myWeb.App_Control.budget_receive
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "createDate('" + txtdate_begin.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "createDate('" + txtdate_begin.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');createDate('" + txtdate_end.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
         }
 
 
@@ -401,10 +401,12 @@ namespace myWeb.App_Control.budget_receive
             string strScript = string.Empty;
             #region Criteria
             budget_receive_head.budget_receive_year = cboYear.SelectedValue;
-            budget_receive_head.budget_receive_doc = txtbudget_plan_code.Text.Replace("'", "''").Trim();
+            budget_receive_head.degree_code = cboDegree.SelectedValue;
+            budget_receive_head.budget_receive_doc = txtbudget_receive_doc.Text.Replace("'", "''").Trim();
+            budget_receive_head.budget_plan_code = txtbudget_plan_code.Text.Replace("'", "''").Trim();
+            budget_receive_head.unit_code = cboUnit.SelectedValue;
             budget_receive_head.budget_code = cboBudget.SelectedValue;
             budget_receive_head.produce_code = cboProduce.SelectedValue;
-            budget_receive_head.unit_code = cboUnit.SelectedValue;
             budget_receive_head.activity_code = cboActivity.SelectedValue;
             budget_receive_head.plan_code = cboPlan_code.SelectedValue;
             budget_receive_head.item_group_code = cboItem_group.SelectedValue;
@@ -414,24 +416,43 @@ namespace myWeb.App_Control.budget_receive
             {
                 strCriteria = strCriteria + "  And  (budget_receive_year = '" + budget_receive_head.budget_receive_year + "') ";
             }
+            if (!budget_receive_head.degree_code.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (degree_code = '" + budget_receive_head.degree_code + "') ";
+            }
+            if (!string.IsNullOrEmpty(txtdate_begin.Text))
+            {
+                strCriteria = strCriteria + "  And  (budget_receive_date >= '" + cCommon.SeekDate(txtdate_begin.Text) + "') ";
+            }
+
+            if (!string.IsNullOrEmpty(txtdate_end.Text))
+            {
+                strCriteria = strCriteria + "  And  (budget_receive_date <= '" + cCommon.SeekDate(txtdate_end.Text) + "') ";
+            }
+
             if (!budget_receive_head.budget_receive_doc.Equals(""))
             {
                 strCriteria = strCriteria + "  And  (budget_receive_doc ='" + budget_receive_head.budget_receive_doc + "') ";
             }
 
-            if (!budget_receive_head.produce_code.Equals(""))
+            if (!budget_receive_head.budget_plan_code.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (produce_code ='" + budget_receive_head.produce_code + "') ";
+                strCriteria = strCriteria + "  And  (budget_plan_code ='" + budget_receive_head.budget_plan_code + "') ";
+            }
+
+            if (!budget_receive_head.unit_code.Equals(""))
+            {
+                strCriteria = strCriteria + "  And  (unit_code ='" + budget_receive_head.unit_code + "') ";
             }
 
             if (!budget_receive_head.budget_code.Equals(""))
             {
                 strCriteria = strCriteria + "  And  (budget_code ='" + budget_receive_head.budget_code + "') ";
             }
-         
-            if (!budget_receive_head.unit_code.Equals(""))
+
+            if (!budget_receive_head.produce_code.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (unit_code ='" + budget_receive_head.unit_code + "') ";
+                strCriteria = strCriteria + "  And  (produce_code ='" + budget_receive_head.produce_code + "') ";
             }
 
             if (!budget_receive_head.activity_code.Equals(""))

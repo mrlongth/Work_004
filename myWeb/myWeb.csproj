@@ -114,6 +114,7 @@
     <Content Include="App_Control\item_group\item_group_detail_list.aspx" />
     <Content Include="App_Control\item_group\item_group_detail_control.aspx" />
     <Content Include="App_Control\lot\lot_view.aspx" />
+    <Content Include="App_Control\lov\budget_money_item_lov.aspx" />
     <Content Include="App_Control\lov\item_detail_lov.aspx" />
     <Content Include="App_Control\lov\open_head_lov.aspx" />
     <Content Include="App_Control\lov\open_lov.aspx" />
@@ -475,6 +476,13 @@
     </Compile>
     <Compile Include="App_Control\lot\lot_view.aspx.designer.cs">
       <DependentUpon>lot_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\lov\budget_money_item_lov.aspx.cs">
+      <DependentUpon>budget_money_item_lov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lov\budget_money_item_lov.aspx.designer.cs">
+      <DependentUpon>budget_money_item_lov.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\lov\item_detail_lov.aspx.cs">
       <DependentUpon>item_detail_lov.aspx</DependentUpon>
