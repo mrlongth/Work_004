@@ -116,11 +116,17 @@ namespace myWeb.App_Control.item
                         strCriteria = string.Empty,
                         strItem_group_code = string.Empty;
             string stritem_group_year = cboYear.SelectedValue;
+            string stritem_group_type = cboItem_type.SelectedValue;
             strItem_group_code = cboItem_group.SelectedValue;
             int i;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = "and item_group_year='" + stritem_group_year + "' ";
+            if (!string.IsNullOrEmpty(cboItem_type.SelectedValue))
+            {
+                strCriteria = "and item_group_type='" + stritem_group_type + "' ";
+            }
+
             if (oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -152,7 +158,7 @@ namespace myWeb.App_Control.item
             {
                 dt = ds.Tables[0];
                 cboItem_group_detail.Items.Clear();
-                cboItem_group_detail.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
+                cboItem_group_detail.Items.Add(new ListItem("---- กรุณาเลือกข้อมูล ----", ""));
                 int i;
                 for (i = 0; i <= dt.Rows.Count - 1; i++)
                 {
@@ -178,10 +184,6 @@ namespace myWeb.App_Control.item
             base.OnInit(e);
         }
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.imgSaveOnly.Click += new System.Web.UI.ImageClickEventHandler(this.imgSaveOnly_Click);
@@ -224,7 +226,6 @@ namespace myWeb.App_Control.item
                     item_code = txtitem_code.Text.Trim(),
                     item_name = txtitem_name.Text,
                     item_year = cboYear.SelectedItem.Value,
-                    item_type = cboItem_type.SelectedValue,
                     item_group_detail_id = int.Parse(cboItem_group_detail.SelectedItem.Value),
                     c_active = chkStatus.Checked ? "Y" : "N",
                     c_created_by = Session["username"].ToString(),
@@ -290,10 +291,10 @@ namespace myWeb.App_Control.item
                     txtitem_code.Text = item.item_code;
                     txtitem_name.Text = item.item_name;
                     
-                    if (cboItem_type.Items.FindByValue(item.item_type) != null)
+                    if (cboItem_type.Items.FindByValue(item.item_group_type) != null)
                     {
                         cboItem_type.SelectedIndex = -1;
-                        cboItem_type.Items.FindByValue(item.item_type).Selected = true;
+                        cboItem_type.Items.FindByValue(item.item_group_type).Selected = true;
                     }
 
                     InitcboItem_group();
@@ -329,6 +330,11 @@ namespace myWeb.App_Control.item
         protected void cboItem_group_SelectedIndexChanged(object sender, EventArgs e)
         {
             InitcboItemGroupDetail();
+        }
+
+        protected void cboItem_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboItem_group();
         }
     }
 }

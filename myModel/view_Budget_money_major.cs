@@ -62,7 +62,6 @@ namespace myModel
         public string budget_money_detail_comment { get; set; }
         public string comments { get; set; }
         public string item_name { get; set; }
-        public string item_type { get; set; }
         public string item_group_detail_code { get; set; }
         public string item_group_detail_name { get; set; }
         public string item_group_code { get; set; }
@@ -78,5 +77,6 @@ namespace myModel
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }
+        public string item_group_type { get; set; }
     }
 }

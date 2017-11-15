@@ -112,7 +112,6 @@ namespace myDLL
                 oCommand.Parameters.Add("item_code", SqlDbType.VarChar).Value = item.item_code;
                 oCommand.Parameters.Add("item_year", SqlDbType.VarChar).Value = item.item_year;
                 oCommand.Parameters.Add("item_name", SqlDbType.VarChar).Value = item.item_name;
-                oCommand.Parameters.Add("item_type", SqlDbType.VarChar).Value = item.item_type;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = item.item_group_detail_id;
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = item.c_active;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = item.c_created_by;
@@ -150,7 +149,6 @@ namespace myDLL
                 oCommand.Parameters.Add("item_code", SqlDbType.VarChar).Value = item.item_code;
                 oCommand.Parameters.Add("item_year", SqlDbType.VarChar).Value = item.item_year;
                 oCommand.Parameters.Add("item_name", SqlDbType.VarChar).Value = item.item_name;
-                oCommand.Parameters.Add("item_type", SqlDbType.VarChar).Value = item.item_type;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = item.item_group_detail_id;
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = item.c_active;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = item.c_updated_by;

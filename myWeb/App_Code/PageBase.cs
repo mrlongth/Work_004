@@ -403,7 +403,7 @@ namespace myWeb
 
 
         #endregion
-
+        
         public void InitUserAccessRight()
         {
             string currentUrl = this.GetCurrentUrl();
@@ -413,10 +413,29 @@ namespace myWeb
             DataSet ds = new DataSet();
             DataTable table;
             string strCriteria;
-            if ((currentUrl.IndexOf("Rep_paymentGSJbyyear") > -1) || (currentUrl.IndexOf("Rep_paymentGSJbyyear") > -1))
-                strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='Rep_paymentGSJbyyear' ";
-            else
-                strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='" + currentUrl + "' ";
+            if (currentUrl.Contains("budget_money_control.aspx"))
+            {
+                if (currentUrl.Contains("budget_type=B"))
+                    currentUrl = @"~/App_Control/budget_money/budget_money_list.aspx?budget_type=B";
+                else
+                    currentUrl = @"~/App_Control/budget_money/budget_money_list.aspx?budget_type=R";
+            }
+            else if (currentUrl.Contains("budget_receive_control.aspx"))
+            {
+                if (currentUrl.Contains("budget_type=B"))
+                    currentUrl = @"~/App_Control/budget_receive/budget_receive_list.aspx?budget_type=B";
+                else
+                    currentUrl = @"~/App_Control/budget_receive/budget_receive_list.aspx?budget_type=R";
+            }
+            else if (currentUrl.Contains("budget_open_control.aspx"))
+            {
+                if (currentUrl.Contains("budget_type=B"))
+                    currentUrl = @"~/App_Control/budget_open/budget_open_list.aspx?budget_type=B";
+                else
+                    currentUrl = @"~/App_Control/budget_open/budget_open_list.aspx?budget_type=R";
+            }
+
+            strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='" + currentUrl + "' ";
             objUserBLL.SP_USER_GROUP_MENU_SEL(strCriteria, ref ds, ref strMessage);
             if (ds.Tables.Count > 0)
             {
@@ -527,44 +546,7 @@ namespace myWeb
             base.OnLoad(e);
         }
 
-        //protected override void OnLoadComplete(System.EventArgs e)
-        //{
-        //    base.OnLoadComplete(e);
-        //    if (!IsPostBack)
-        //    {
-        //        if (ViewState["IsUserNew"] != null && !this.IsUserNew)
-        //        {
-        //            var imgNew = this.Page.FindControl("imgNew");
-        //            //var imgNew = GetControlByName(this.Page.Controls, "imgNew");
-        //            //if (imgNew != null)
-        //            //{
-        //            //    ((ImageButton)imgNew).Visible = this.IsUserNew;
-        //            //}
-        //        }
-        //    }
-        //}
-
-        private Control GetControlByName(Control control, string Name)
-        {
-            
-            //foreach (Control ctrl in control.Controls)
-            //{
-            //    if (ctrl is ImageButton)
-            //    {
-            //        if (ctrl.ClientID.Contains(Name))
-            //            return ctrl;
-            //    }
-            //    else
-            //    {
-            //        if (ctrl.Controls.Count > 0)
-            //        {
-            //            return GetControlByName(ctrl, Name);
-            //        }
-            //    }
-            //}
-            return null;
-        }
-
+    
         protected void SetProfile()
         {
             if (Application["xmlconfig"] == null)

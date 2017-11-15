@@ -52,7 +52,7 @@
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage5">หมวดค่าใช้จ่าย :</asp:Label>
             </td>
             <td colspan="3" width="20%">
-                <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group">
+                <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group" AutoPostBack="True" OnSelectedIndexChanged="cboItem_group_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
         </tr>

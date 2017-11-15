@@ -14,11 +14,10 @@
                 <asp:LinkButton ID="lkbRefresh" runat="server" OnClick="lkbRefresh_Click" Style="display: none;">LinkButton</asp:LinkButton>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
-            <td nowrap style="text-align: center; vertical-align: bottom; width: 10%;">
+            <td nowrap style="text-align: center; vertical-align: bottom; width: 5%;">
                 <div>
                     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="display: none;">LinkButton</asp:LinkButton>
                     <asp:LinkButton ID="btnSave" runat="server" class="button button-pill button-flat-highlight" OnClick="btnSave_Click" ValidationGroup="A">บันทึก</asp:LinkButton>
-                    <asp:LinkButton ID="btnCancel" runat="server" class="button button-pill button-flat-highlight" OnClick="btnCancel_Click">ยกเลิก</asp:LinkButton>
                 </div>
             </td>
         </tr>
@@ -252,19 +251,12 @@
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                              
-                                <asp:TemplateField HeaderText="รายละเอียดค่าใช้จ่าย " SortExpression="item_detail_name">
-                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblitem_detail_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_detail_name") %>'>
-                                        </asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="ค่าใช้จ่าย" SortExpression="Item_name">
-                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
+                                
+                                  <asp:TemplateField HeaderText="หมวดค่าใช้จ่าย" SortExpression="Item_group_name">
+                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItem_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_name") %>'>
+                                        <asp:Label ID="lblItem_group_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_name") %>'>
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -276,19 +268,22 @@
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                
 
-
-                                  <asp:TemplateField HeaderText="หมวดค่าใช้จ่าย" SortExpression="Item_group_name">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                <asp:TemplateField HeaderText="ค่าใช้จ่าย" SortExpression="Item_name">
+                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
                                     <ItemTemplate>
-                                        <asp:Label ID="lblItem_group_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_name") %>'>
+                                        <asp:Label ID="lblItem_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_name") %>'>
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
                               
-                              
+                                <asp:TemplateField HeaderText="รายละเอียดค่าใช้จ่าย " SortExpression="item_detail_name">
+                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblitem_detail_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_detail_name") %>'>
+                                        </asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="ยอดจัดสรร">
                                     <ItemStyle HorizontalAlign="Right" Width="8%" />

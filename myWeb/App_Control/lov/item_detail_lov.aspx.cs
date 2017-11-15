@@ -20,10 +20,10 @@ namespace myWeb.App_Control.lov
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
                 imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
 
-                if (Request.QueryString["item_type"] != null)
+                if (Request.QueryString["item_group_type"] != null)
                 {
-                    ViewState["item_type"] = Request.QueryString["item_type"].ToString();
-                    var stritem_type = ViewState["item_type"].ToString();
+                    ViewState["item_group_type"] = Request.QueryString["item_group_type"].ToString();
+                    var stritem_type = ViewState["item_group_type"].ToString();
                     if (cboItem_type.Items.FindByValue(stritem_type) != null)
                     {
                         cboItem_type.SelectedIndex = -1;
@@ -33,7 +33,7 @@ namespace myWeb.App_Control.lov
                 }
                 else
                 {
-                    ViewState["item_type"] = string.Empty;
+                    ViewState["item_group_type"] = string.Empty;
                     cboItem_type.SelectedIndex = 0;
                     cboItem_type.Enabled = true;
                 }
@@ -195,7 +195,7 @@ namespace myWeb.App_Control.lov
             view_Item_detail item = new view_Item_detail();
             string strScript = string.Empty;
             item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
-            item.item_type = cboItem_type.SelectedValue;
+            item.item_group_type = cboItem_type.SelectedValue;
             item.lot_code = cboLot.SelectedValue;
             item.item_group_code = cboItem_group.SelectedValue;
             item.item_group_detail_id = string.IsNullOrEmpty(cboItem_group_detail.SelectedValue) ? 0 : int.Parse(cboItem_group_detail.SelectedValue);
@@ -207,9 +207,9 @@ namespace myWeb.App_Control.lov
             {
                 strCriteria = strCriteria + "  And  (item_year = '" + item.item_year + "') ";
             }
-            if (!item.item_type.Equals(""))
+            if (!item.item_group_type.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (item_type = '" + item.item_type + "') ";
+                strCriteria = strCriteria + "  And  (item_group_type = '" + item.item_group_type + "') ";
             }
             if (!item.lot_code.Equals(""))
             {

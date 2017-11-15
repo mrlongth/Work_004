@@ -49,6 +49,24 @@ namespace myWeb.App_Control.item_group {
         protected global::System.Web.UI.WebControls.ImageButton imgNew;
         
         /// <summary>
+        /// lblPage13 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage13;
+        
+        /// <summary>
+        /// cboItem_type control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboItem_type;
+        
+        /// <summary>
         /// lblPage2 control.
         /// </summary>
         /// <remarks>

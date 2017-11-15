@@ -109,7 +109,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_plan", SqlDbType.Money).Value = budget_money_head.budget_money_plan;
                 oCommand.Parameters.Add("budget_money_contribute", SqlDbType.VarChar).Value = budget_money_head.budget_money_contribute;
                 oCommand.Parameters.Add("budget_money_use", SqlDbType.VarChar).Value = budget_money_head.budget_money_use;
-                oCommand.Parameters.Add("budget_money_remain", SqlDbType.VarChar).Value = budget_money_head.budget_money_remain;
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = budget_money_head.c_active;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_head.c_created_by;
                 oCommand.ExecuteNonQuery();
@@ -153,7 +152,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_plan", SqlDbType.Money).Value = budget_money_head.budget_money_plan;
                 oCommand.Parameters.Add("budget_money_contribute", SqlDbType.VarChar).Value = budget_money_head.budget_money_contribute;
                 oCommand.Parameters.Add("budget_money_use", SqlDbType.VarChar).Value = budget_money_head.budget_money_use;
-                oCommand.Parameters.Add("budget_money_remain", SqlDbType.VarChar).Value = budget_money_head.budget_money_remain;
                 oCommand.Parameters.Add("comments", SqlDbType.VarChar).Value = budget_money_head.comments;
                 oCommand.Parameters.Add("c_active", SqlDbType.VarChar).Value = budget_money_head.c_active;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_head.c_updated_by;
@@ -281,7 +279,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
                 oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
                 oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
-                oCommand.Parameters.Add("budget_money_detail_remain", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_remain;
                 oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_detail.c_created_by;
                 oCommand.ExecuteNonQuery();
@@ -322,7 +319,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
                 oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
                 oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
-                oCommand.Parameters.Add("budget_money_detail_remain", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_remain;
                 oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_detail.c_updated_by;
                 oCommand.ExecuteNonQuery();
@@ -481,7 +477,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
                 oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
                 oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
-                oCommand.Parameters.Add("budget_money_major_remain", SqlDbType.Money).Value = budget_money_major.budget_money_major_remain;
                 oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_money_major.c_created_by;
                 oCommand.ExecuteNonQuery();
@@ -521,7 +516,6 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
                 oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
                 oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
-                oCommand.Parameters.Add("budget_money_major_remain", SqlDbType.Money).Value = budget_money_major.budget_money_major_remain;
                 oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_money_major.c_updated_by;
                 oCommand.ExecuteNonQuery();

@@ -12,9 +12,9 @@
     <link href="StyleSheet.css" rel="stylesheet" type="text/css" />
     <link href="js/style.css" rel="stylesheet" type="text/css" />
     <link href="css/default.css" rel="stylesheet" type="text/css" />
-    <link href="themes/ui-lightness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />  
-    <link rel="stylesheet" href="css/buttons.css"/>
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"/>
+    <link href="themes/ui-lightness/jquery-ui-1.9.2.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/buttons.css" rel="stylesheet" type="text/css"  />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
 </head>
 <body onload="on_load_list()">
     <form id="form1" runat="server">
@@ -154,21 +154,21 @@
                                     <iframe id="iframeShow3" class="iframeShow" name="iframeShow3" frameborder="0" src="about:blank"
                                         scrolling="no"></iframe>
                                 </asp:Panel>
-                                <ajaxToolkit:ModalPopupExtender ID="show3_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                                <ajaxtoolkit:ModalPopupExtender ID="show3_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
                                     DropShadow="true" PopupControlID="panelShow3" TargetControlID="btnShow3" BehaviorID="show3_ModalPopupExtender">
-                                </ajaxToolkit:ModalPopupExtender>
+                                </ajaxtoolkit:ModalPopupExtender>
                                 <asp:Button ID="btnShow3" runat="server" />
                             </asp:Panel>
-                            <ajaxToolkit:ModalPopupExtender ID="show2_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                            <ajaxtoolkit:ModalPopupExtender ID="show2_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
                                 DropShadow="true" PopupControlID="panelShow2" TargetControlID="btnShow2" BehaviorID="show2_ModalPopupExtender">
-                            </ajaxToolkit:ModalPopupExtender>
+                            </ajaxtoolkit:ModalPopupExtender>
                             <asp:Button ID="btnShow2" runat="server" />
                         </asp:Panel>
 
-                        <ajaxToolkit:ModalPopupExtender ID="show1_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
+                        <ajaxtoolkit:ModalPopupExtender ID="show1_ModalPopupExtender" runat="server" BackgroundCssClass="modalBackground"
                             PopupControlID="panelShow1" PopupDragHandleControlID="panelShow1" DropShadow="true"
                             TargetControlID="btnShow" BehaviorID="show1_ModalPopupExtender">
-                        </ajaxToolkit:ModalPopupExtender>
+                        </ajaxtoolkit:ModalPopupExtender>
                         <asp:Button ID="btnShow" runat="server" />
 
                     </div>

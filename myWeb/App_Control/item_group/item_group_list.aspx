@@ -12,11 +12,24 @@
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboYear">
                 </asp:DropDownList>
             </td>
-            <td rowspan="4" style="text-align: right" valign="bottom">
+            <td rowspan="5" style="text-align: right" valign="bottom">
                 <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
                     ID="imgNew"></asp:ImageButton>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;" width="20%">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage13">ประเภทรายการ :</asp:Label>
+            </td>
+            <td>
+                <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_type"
+                    AutoPostBack="True" OnSelectedIndexChanged="cboItem_type_SelectedIndexChanged">
+                    <asp:ListItem Value="">---- เลือกข้อมูลทั้งหมด ----</asp:ListItem>
+                    <asp:ListItem Value="D">Debit</asp:ListItem>
+                    <asp:ListItem Value="C">Credit</asp:ListItem>
+                </asp:DropDownList>
             </td>
         </tr>
         <tr>
@@ -70,6 +83,13 @@
                 <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="False" />
                 <ItemTemplate>
                     <asp:Label ID="lblNo" runat="server"> </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+             <asp:TemplateField HeaderText="ประเภทรายการ" SortExpression="item_group_type">
+                <ItemStyle HorizontalAlign="Center" Wrap="True" Width="10%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblitem_type" runat="server" Text='<%# getItemtype(DataBinder.Eval(Container, "DataItem.item_group_type")) %>'>
+                    </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="รหัสหมวดค่าใช้จ่าย " SortExpression="item_group_code">

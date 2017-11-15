@@ -548,17 +548,7 @@ namespace myWeb.App_Control.lov
             }
         }
 
-        public static string getItemtype(object mData)
-        {
-            if (mData.Equals("D"))
-            {
-                return "Debit";
-            }
-            else
-            {
-                return "Credit";
-            }
-        }
+     
 
 
         protected void cboLot_SelectedIndexChanged(object sender, EventArgs e)
@@ -581,7 +571,6 @@ namespace myWeb.App_Control.lov
             if (saveData())
             {
                 MsgBox("บันทึกข้อมูลสมบูรณ์");
-
                 var script = "window.parent.__doPostBack('ctl00$ContentPlaceHolder1$LinkButton2','');" +
                               "ClosePopUp('" + ViewState["show"].ToString() + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", script, true);
@@ -616,8 +605,8 @@ namespace myWeb.App_Control.lov
                         };
                         oBudget_open.SP_BUDGET_OPEN_DETAIL_INS(budget_open_detail);
                     }
+                    blnResult = true;
                 }
-                blnResult = true;
             }
             catch (Exception ex)
             {

@@ -61,6 +61,22 @@
                 </td>
             </tr>
             <tr align="left">
+                <td align="right" nowrap valign="middle">
+                    <asp:Label ID="Label73" runat="server" CssClass="label_error">*</asp:Label>
+                    <asp:Label ID="lblPage3" runat="server">ประเภทรายการ :</asp:Label>
+                </td>
+                <td align="left" colspan="2" nowrap valign="top">
+                    <asp:DropDownList ID="cboItem_type" runat="server" CssClass="textbox">
+                        <asp:ListItem Value="">---- กรุณาเลือกข้อมูล ----</asp:ListItem>
+                        <asp:ListItem Value="D">Debit</asp:ListItem>
+                        <asp:ListItem Value="C">Credit</asp:ListItem>
+                    </asp:DropDownList>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="cboItem_type" Display="None" ErrorMessage="กรุณาเลือกประเภทรายการ" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr align="left">
                 <td align="right" nowrap valign="top">
                     <asp:Label ID="Label13" runat="server">ปีงบประมาณ :</asp:Label>
                 </td>

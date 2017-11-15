@@ -66,12 +66,10 @@
                             <tr align="left">
                                 <td align="right" nowrap valign="middle">
                                     <asp:HiddenField ID="hdditem_group_detail_id" runat="server" />
-                                    <asp:Label runat="server" CssClass="label_error" ID="Label1">*</asp:Label>
                                     <asp:Label ID="lblFName" runat="server">รหัส :</asp:Label>
                                 </td>
-                                <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtitem_group_detail_code" runat="server" CssClass="textbox" MaxLength="5"
-                                    ValidationGroup="A" Width="144px"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtitem_group_detail_code" Display="None" ErrorMessage="กรุณาป้อนรหัสรายละเอียดหมวดค่าใช้จ่าย" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
+                                <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtitem_group_detail_code" runat="server" CssClass="textboxdis" MaxLength="5"
+                                    ValidationGroup="A" Width="144px" ReadOnly="True"></asp:TextBox>
                                 </td>
                                 <td align="center" nowrap rowspan="2" style="width: 1%">
                                     <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg"

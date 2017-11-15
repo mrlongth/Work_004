@@ -44,35 +44,13 @@
                     <asp:Label runat="server" ID="lblPage3">ประเภทรายการ :</asp:Label>
                 </td>
                 <td align="left" nowrap valign="middle">
-                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_type">
+                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_type" AutoPostBack="True" OnSelectedIndexChanged="cboItem_type_SelectedIndexChanged">
                         <asp:ListItem Value="">---- กรุณาเลือกข้อมูล ----</asp:ListItem>
                         <asp:ListItem Value="D">Debit</asp:ListItem>
                         <asp:ListItem Value="C">Credit</asp:ListItem>
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="cboItem_type" ErrorMessage="กรุณาเลือกประเภทรายการ"
                         Display="None" SetFocusOnError="True" ValidationGroup="A" ID="RequiredFieldValidator3"></asp:RequiredFieldValidator>
-                </td>
-                <td align="left" nowrap valign="middle">&nbsp;</td>
-            </tr>
-            <tr align="left">
-                <td align="right" nowrap valign="middle">
-                    <asp:Label runat="server" ID="lblPage8">รหัสรายได้/จ่าย :</asp:Label>
-                </td>
-                <td align="left" nowrap valign="middle">
-                    <asp:TextBox runat="server" CssClass="textboxdis" Width="120px"
-                        ID="txtitem_code"></asp:TextBox>
-                </td>
-                <td align="left" nowrap valign="middle">&nbsp;</td>
-            </tr>
-            <tr align="left">
-                <td align="right" nowrap valign="middle">
-                    <asp:Label runat="server" CssClass="label_error" ID="Label72">*</asp:Label>
-                    <asp:Label runat="server" ID="lblPage9">รายได้/จ่าย :</asp:Label>
-                </td>
-                <td align="left" nowrap valign="middle">
-                    <asp:TextBox runat="server" CssClass="textbox" Width="350px" ID="txtitem_name"></asp:TextBox>
-                    <asp:RequiredFieldValidator runat="server" ControlToValidate="txtitem_name" ErrorMessage="กรุณาป้อนข้อมูลรายได้/ค่าใช้จ่าย"
-                        Display="None" SetFocusOnError="True" ValidationGroup="A" ID="RequiredFieldValidator1"></asp:RequiredFieldValidator>
                 </td>
                 <td align="left" nowrap valign="middle">&nbsp;</td>
             </tr>
@@ -99,9 +77,27 @@
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="cboItem_group_detail" Display="None" ErrorMessage="กรุณาเลือกรายละเอียดหมวดรายได้/จ่าย" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
-                <td align="center" nowrap rowspan="2" style="width: 12%">
+                <td align="center" nowrap rowspan="4" style="width: 12%">
                     <asp:ImageButton runat="server" ValidationGroup="A" ImageUrl="~/images/controls/save.jpg" ID="imgSaveOnly"></asp:ImageButton>
 
+                </td>
+            </tr>
+            <tr align="left">
+                <td align="right" nowrap valign="middle">
+                    <asp:Label ID="lblPage8" runat="server">รหัสรายได้/จ่าย :</asp:Label>
+                </td>
+                <td align="left" nowrap valign="middle">
+                    <asp:TextBox ID="txtitem_code" runat="server" CssClass="textboxdis" Width="120px"></asp:TextBox>
+                </td>
+            </tr>
+            <tr align="left">
+                <td align="right" nowrap valign="middle">
+                    <asp:Label ID="Label75" runat="server" CssClass="label_error">*</asp:Label>
+                    <asp:Label ID="lblPage11" runat="server">รายได้/จ่าย :</asp:Label>
+                </td>
+                <td align="left" nowrap valign="middle">
+                    <asp:TextBox ID="txtitem_name" runat="server" CssClass="textbox" Width="350px"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtitem_name" Display="None" ErrorMessage="กรุณาป้อนข้อมูลรายได้/ค่าใช้จ่าย" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
                 </td>
             </tr>
             <tr align="left">

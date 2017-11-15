@@ -17,8 +17,8 @@ namespace myModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Item_group_detail()
         {
-            this.Items = new HashSet<Item>();
             this.Budget_receive_head = new HashSet<Budget_receive_head>();
+            this.Items = new HashSet<Item>();
         }
     
         public int item_group_detail_id { get; set; }
@@ -32,9 +32,9 @@ namespace myModel
         public Nullable<System.DateTime> d_updated_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_receive_head> Budget_receive_head { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
         public virtual Item_group Item_group { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Budget_receive_head> Budget_receive_head { get; set; }
     }
 }

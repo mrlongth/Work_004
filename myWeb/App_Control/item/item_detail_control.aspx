@@ -49,7 +49,7 @@
                     <asp:Label runat="server" ID="Label13">หมวดค่าใช้จ่าย :</asp:Label>
                 </td>
                 <td align="left" nowrap valign="middle">
-                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group" AutoPostBack="True" OnSelectedIndexChanged="cboItemGroup_SelectedIndexChanged">
+                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group" AutoPostBack="True" OnSelectedIndexChanged="cboItem_group_SelectedIndexChanged">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="cboItem_group" ErrorMessage="กรุณาเลือกหมวดค่าใช้จ่าย"
                         Display="None" ValidationGroup="A" ID="RequiredFieldValidator1" SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -62,7 +62,7 @@
                     <asp:Label runat="server" ID="Label74">รายละเอียดหมวดค่าใช้จ่าย :</asp:Label>
                 </td>
                 <td align="left" nowrap valign="middle">
-                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group_detail" AutoPostBack="True" OnSelectedIndexChanged="cboItemGroup_SelectedIndexChanged">
+                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem_group_detail" AutoPostBack="True" OnSelectedIndexChanged="cboItem_group_detail_SelectedIndexChanged">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="cboItem_group_detail" ErrorMessage="กรุณาเลือกรายละเอียดหมวดค่าใช้จ่าย"
                         Display="None" ValidationGroup="A" ID="RequiredFieldValidator4" SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -74,7 +74,7 @@
                     <asp:Label runat="server" ID="Label76">ค่าใช้จ่าย/โครงการ :</asp:Label>
                 </td>
                 <td align="left" nowrap valign="middle">
-                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem" AutoPostBack="True" OnSelectedIndexChanged="cboItemGroup_SelectedIndexChanged">
+                    <asp:DropDownList runat="server" CssClass="textbox" ID="cboItem">
                     </asp:DropDownList>
                     <asp:RequiredFieldValidator runat="server" ControlToValidate="cboItem" ErrorMessage="กรุณาเลือกค่าใช้จ่าย/โครงการ"
                         Display="None" ValidationGroup="A" ID="RequiredFieldValidator5" SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -86,15 +86,13 @@
                         <table border="0" cellpadding="1" cellspacing="0" style="width: 100%">
                             <tr align="left">
                                 <td align="right" nowrap valign="middle">
-                                    <asp:Label runat="server" CssClass="label_error" ID="Label1">*</asp:Label>
                                     <asp:Label ID="lblFName" runat="server">รหัส :</asp:Label>
                                 </td>
-                                <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtitem_detail_code" runat="server" CssClass="textbox" MaxLength="5"
-                                    ValidationGroup="A" Width="144px"></asp:TextBox>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtitem_detail_code" Display="None" ErrorMessage="กรุณาป้อนรหัสรายละเอียดค่าใช้จ่าย" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
+                                <td align="left" nowrap valign="middle">&nbsp;<asp:TextBox ID="txtitem_detail_code" runat="server" CssClass="textboxdis" MaxLength="5"
+                                    ValidationGroup="A" Width="144px" ReadOnly="True"></asp:TextBox>
                                     <asp:HiddenField ID="hdditem_detail_id" runat="server" />
                                 </td>
-                                <td align="center" nowrap rowspan="2" style="width: 1%">
+                                <td align="center" nowrap rowspan="3" style="width: 1%">
                                     <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg"
                                         ValidationGroup="A" />
                                     &nbsp;
@@ -103,11 +101,11 @@
                                 </td>
                             </tr>
                             <tr align="left">
-                                <td align="right" nowrap valign="middle">
+                                <td align="right" nowrap valign="middle" style="height: 24px">
                                     <asp:Label ID="Label72" runat="server" CssClass="label_error">*</asp:Label>
                                     <asp:Label ID="Label11" runat="server">รายละเอียด :</asp:Label>
                                 </td>
-                                <td align="left" nowrap valign="middle">
+                                <td align="left" nowrap valign="middle" style="height: 24px">
                                     <font face="Tahoma">&nbsp;<asp:TextBox ID="txtitem_detail_name" runat="server" CausesValidation="True"
                                         CssClass="textbox" MaxLength="100" ValidationGroup="A" Width="344px"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtitem_detail_name" Display="None" ErrorMessage="กรุณาป้อนรายละเอียดค่าใช้จ่าย" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
@@ -115,11 +113,16 @@
                                 </td>
                             </tr>
                             <tr align="left">
-                                <td align="right" nowrap valign="middle">
+                                <td align="right" nowrap valign="middle" style="height: 24px">
                                     <asp:Label ID="Label12" runat="server">สถานะ :</asp:Label>
                                 </td>
-                                <td align="left" nowrap valign="middle">
+                                <td align="left" nowrap valign="middle" style="height: 24px">
                                     <asp:CheckBox ID="chkStatus" runat="server" Text="ปกติ" />
+                                </td>
+                            </tr>
+                            <tr align="left">
+                                <td align="right" nowrap valign="middle">&nbsp;</td>
+                                <td align="left" nowrap valign="middle">
                                     <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="A" />
                                 </td>
                             </tr>

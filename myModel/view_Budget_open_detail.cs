@@ -61,7 +61,6 @@ namespace myModel
         public string item_code { get; set; }
         public Nullable<int> item_detail_id { get; set; }
         public string item_name { get; set; }
-        public string item_type { get; set; }
         public string item_group_detail_code { get; set; }
         public string item_group_detail_name { get; set; }
         public string item_group_code { get; set; }
@@ -77,5 +76,6 @@ namespace myModel
         public Nullable<int> material_id { get; set; }
         public string material_name { get; set; }
         public string material_detail { get; set; }
+        public string item_group_type { get; set; }
     }
 }

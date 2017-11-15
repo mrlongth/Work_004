@@ -607,9 +607,18 @@ namespace myWeb.App_Control.item
             txtitem_detail_code.Focus();
         }
 
-        protected void cboItemGroup_SelectedIndexChanged(object sender, EventArgs e)
+     
+        protected void cboItem_group_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            InitcboItem_group_detail();
         }
+
+
+        protected void cboItem_group_detail_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboItem();
+        }
+
+
     }
 }

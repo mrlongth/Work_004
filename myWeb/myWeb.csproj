@@ -54,6 +54,10 @@
     </Reference>
     <Reference Include="Aware.WebControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="cAware, Version=1.0.2351.27739, Culture=neutral" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxEditors.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -98,10 +102,13 @@
     <Content Include="App_Control\budget_money\budget_money_list.aspx" />
     <Content Include="App_Control\budget_money\budget_money_detail_control.aspx" />
     <Content Include="App_Control\budget_money\budget_money_major_select.aspx" />
+    <Content Include="App_Control\budget_open\budget_money_item_select.aspx" />
     <Content Include="App_Control\budget_open\budget_open_list.aspx" />
     <Content Include="App_Control\budget_open\budget_open_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_list.aspx" />
+    <Content Include="App_Control\budget_transfer\budget_transfer_control.aspx" />
+    <Content Include="App_Control\budget_transfer\budget_transfer_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
@@ -123,6 +130,7 @@
     <Content Include="App_Control\person_group\person_group_view.aspx" />
     <Content Include="App_Control\person_manage\person_manage_view.aspx" />
     <Content Include="App_Control\person_work_status\person_work_status_view.aspx" />
+    <Content Include="App_Control\report\main_report.aspx" />
     <Content Include="App_Control\user_group\user_group_control.aspx" />
     <Content Include="App_Control\user_group\user_group_list.aspx" />
     <Content Include="App_Control\menu\menu_list.aspx" />
@@ -233,7 +241,12 @@
     <Content Include="App_Themes\Soft Orange\Web\tcATabBottomBack.gif" />
     <Content Include="App_Themes\Soft Orange\Web\tcTabBack.gif" />
     <Content Include="App_Themes\Soft Orange\Web\tiBackToTop.png" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
     <Content Include="css\buttons.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="images\add.png" />
     <Content Include="images\add_hover.png" />
     <Content Include="images\ASPxRoundPanel\767911302\BottomLeftCorner.png" />
@@ -273,6 +286,22 @@
     <Content Include="images\user_group_select.png" />
     <Content Include="js\buttons.js" />
     <Content Include="js\jquery-ui-1.8.22.custom.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <None Include="scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="scripts\bootstrap.js" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-1.9.1.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\jquery-ui.js" />
+    <Content Include="scripts\jquery-ui.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -351,6 +380,13 @@
     <Compile Include="App_Control\budget_money\budget_money_major_select.aspx.designer.cs">
       <DependentUpon>budget_money_major_select.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\budget_open\budget_money_item_select.aspx.cs">
+      <DependentUpon>budget_money_item_select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_open\budget_money_item_select.aspx.designer.cs">
+      <DependentUpon>budget_money_item_select.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\budget_open\budget_open_list.aspx.cs">
       <DependentUpon>budget_open_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -392,6 +428,20 @@
     </Compile>
     <Compile Include="App_Control\budget_receive\budget_receive_list.aspx.designer.cs">
       <DependentUpon>budget_receive_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_control.aspx.cs">
+      <DependentUpon>budget_transfer_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_control.aspx.designer.cs">
+      <DependentUpon>budget_transfer_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_list.aspx.cs">
+      <DependentUpon>budget_transfer_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_list.aspx.designer.cs">
+      <DependentUpon>budget_transfer_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\director\director_view.aspx.cs">
       <DependentUpon>director_view.aspx</DependentUpon>
@@ -539,6 +589,13 @@
     </Compile>
     <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.designer.cs">
       <DependentUpon>person_work_status_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\report\main_report.aspx.cs">
+      <DependentUpon>main_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\report\main_report.aspx.designer.cs">
+      <DependentUpon>main_report.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\user_group\user_group_control.aspx.cs">
       <DependentUpon>user_group_control.aspx</DependentUpon>
@@ -1052,7 +1109,6 @@
     <Content Include="App_Control\lov\work_lov.aspx" />
     <Content Include="App_Control\person\person_control.aspx" />
     <Content Include="App_Control\person\person_list.aspx" />
-    <Content Include="scripts\mju_vbscripts.vbs" />
     <Content Include="Site_lov.Master" />
     <Content Include="App_Control\activity\activity_control.aspx" />
     <Content Include="App_Control\budget_plan\budget_plan_list.aspx" />
@@ -1309,6 +1365,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Control\lov\type_position_lov.aspx" />
@@ -1612,9 +1669,7 @@
     <None Include="Web References\th.ac.mju.ouop\ws.wsdl" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Control\reportsparameter\" />
     <Folder Include="App_Data\" />
-    <Folder Include="manage\" />
     <Folder Include="obj\Debug\TempPE\" />
     <Folder Include="reports\" />
   </ItemGroup>

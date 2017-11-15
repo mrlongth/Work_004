@@ -17,7 +17,6 @@ namespace myModel
         public string item_code { get; set; }
         public string item_year { get; set; }
         public string item_name { get; set; }
-        public string item_type { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
         public string c_active { get; set; }
         public string c_created_by { get; set; }
@@ -33,5 +32,6 @@ namespace myModel
         public string lot_year { get; set; }
         public string lot_name { get; set; }
         public string budget_type { get; set; }
+        public string item_group_type { get; set; }
     }
 }

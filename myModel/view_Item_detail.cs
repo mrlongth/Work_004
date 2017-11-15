@@ -25,7 +25,6 @@ namespace myModel
         public Nullable<System.DateTime> d_updated_date { get; set; }
         public string item_year { get; set; }
         public string item_name { get; set; }
-        public string item_type { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
         public string item_group_detail_code { get; set; }
         public string item_group_detail_name { get; set; }
@@ -36,5 +35,6 @@ namespace myModel
         public string lot_year { get; set; }
         public string lot_name { get; set; }
         public string budget_type { get; set; }
+        public string item_group_type { get; set; }
     }
 }

@@ -112,9 +112,12 @@ namespace myWeb.App_Control.item_group
             string stritem_group_name = string.Empty;
             string strActive = string.Empty;
             string stritem_group_year = string.Empty;
+            string stritem_group_type = string.Empty;
             stritem_group_code = txtitem_group_code.Text.Replace("'", "''").Trim();
             stritem_group_name = txtitem_group_name.Text.Replace("'", "''").Trim();
             stritem_group_year = cboYear.SelectedValue;
+            stritem_group_type = cboItem_type.SelectedValue;
+
             if (!stritem_group_code.Equals("0"))
             {
                 strCriteria = strCriteria + "  And  (item_group_code like '%" + stritem_group_code + "%') ";
@@ -127,6 +130,11 @@ namespace myWeb.App_Control.item_group
             {
                 strCriteria = strCriteria + "  And  (item_group_year = '" + stritem_group_year + "') ";
             }
+            if (!string.IsNullOrEmpty(stritem_group_type))
+            {
+                strCriteria = strCriteria + "  And  (item_group_type = '" + stritem_group_type + "') ";
+            }
+           
             if (RadioActive.Checked)
             {
                 strCriteria = strCriteria + "  And  (c_active ='Y') ";
@@ -525,5 +533,9 @@ namespace myWeb.App_Control.item_group
             }
         }
 
+        protected void cboItem_type_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridView(0);
+        }
     }
 }

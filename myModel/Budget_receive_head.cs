@@ -25,6 +25,7 @@ namespace myModel
         public string budget_receive_year { get; set; }
         public string budget_type { get; set; }
         public string budget_plan_code { get; set; }
+        public string degree_code { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
         public Nullable<decimal> budget_receive_total { get; set; }
         public string budget_receive_comment { get; set; }
@@ -32,7 +33,6 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
-        public string degree_code { get; set; }
     
         public virtual Budget_plan Budget_plan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

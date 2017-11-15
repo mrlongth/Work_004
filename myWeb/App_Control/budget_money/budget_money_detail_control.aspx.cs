@@ -265,7 +265,6 @@ namespace myWeb.App_Control.item
                     budget_money_detail_plan = decimal.Parse(txtbudget_money_detail_plan.Value.ToString()),
                     budget_money_detail_contribute = decimal.Parse(txtbudget_money_detail_contribute.Value.ToString()),
                     budget_money_detail_use = decimal.Parse(txtbudget_money_detail_contribute.Value.ToString()),
-                    budget_money_detail_remain = decimal.Parse(txtbudget_money_detail_remain.Value.ToString()),
                     budget_money_detail_comment = txtbudget_money_detail_comment.Text.Trim(),
                     c_created_by = Session["username"].ToString(),
                     c_updated_by = Session["username"].ToString()

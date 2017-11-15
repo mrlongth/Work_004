@@ -23,6 +23,7 @@ namespace myModel
         public string item_group_code { get; set; }
         public string item_group_year { get; set; }
         public string item_group_name { get; set; }
+        public string item_group_type { get; set; }
         public string lot_code { get; set; }
         public string c_active { get; set; }
         public string c_created_by { get; set; }

@@ -82,10 +82,15 @@ namespace myWeb.App_Control.item
             string strMessage = string.Empty, strCriteria = string.Empty;
             string strItem_group_code = string.Empty;
             string strYear = cboYear.SelectedValue;
+            string stritem_group_type = cboItem_type.SelectedValue;
             strItem_group_code = cboItemGroup.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' ";
+            if (!string.IsNullOrEmpty(cboItem_type.SelectedValue))
+            {
+                strCriteria = "and item_group_type='" + stritem_group_type + "' ";
+            }
             if (oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -172,7 +177,7 @@ namespace myWeb.App_Control.item
                 item_year = cboYear.SelectedValue,
                 item_code = txtitem_code.Text.Replace("'", "''").Trim(),
                 item_name = txtitem_name.Text.Replace("'", "''").Trim(),
-                item_type = cboItem_type.SelectedValue,
+                item_group_type = cboItem_type.SelectedValue,
                 item_group_code = cboItemGroup.SelectedValue,
                 item_group_detail_id = string.IsNullOrEmpty(cboItemGroupDetail.SelectedValue) ? 0 : int.Parse(cboItemGroupDetail.SelectedValue)
             };
@@ -188,9 +193,9 @@ namespace myWeb.App_Control.item
             {
                 strCriteria = strCriteria + "  And  (item_name like '%" + item.item_name + "%') ";
             }
-            if (!item.item_type.Equals(""))
+            if (!item.item_group_type.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (item_type = '" + item.item_type + "') ";
+                strCriteria = strCriteria + "  And  (item_group_type = '" + item.item_group_type + "') ";
             }
             if (!item.item_group_code.Equals(""))
             {
@@ -296,7 +301,7 @@ namespace myWeb.App_Control.item
                 Label lblc_active = (Label)e.Row.FindControl("lblc_active");
                 Label lblitem_type = (Label)e.Row.FindControl("lblitem_type");
                 DataRowView rowView = (DataRowView)(e.Row.DataItem);
-                //string stritem_type = rowView["item_type"].ToString();
+                //string stritem_type = rowView["item_group_type"].ToString();
                 //string strcheque_code = rowView["cheque_code"].ToString();
                 string strStatus = lblc_active.Text;
 
@@ -603,7 +608,7 @@ namespace myWeb.App_Control.item
 
         protected void cboItem_type_SelectedIndexChanged(object sender, EventArgs e)
         {
-            BindGridView(0);
+            InitcboItemGroup();
         }
 
         protected void cboItemGroup_SelectedIndexChanged(object sender, EventArgs e)

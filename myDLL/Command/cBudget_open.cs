@@ -352,7 +352,7 @@ namespace myDLL
         #endregion
 
         #region SP_BUDGET_OPEN_DETAIL_DEL
-        public bool SP_BUDGET_OPEN_DETAIL_DEL(string budget_open_doc)
+        public bool SP_BUDGET_OPEN_DETAIL_DEL(string pBudget_open_detail_id)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -365,8 +365,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_OPEN_DETAIL_DEL";
-                //oCommand.Parameters.Add("budget_open_detail_id", SqlDbType.BigInt).Value = pBudget_open_detail_id;
-                oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = budget_open_doc;
+                oCommand.Parameters.Add("budget_open_detail_id", SqlDbType.BigInt).Value = pBudget_open_detail_id;
+                //oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = budget_open_doc;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
             }
@@ -385,6 +385,41 @@ namespace myDLL
         #endregion
 
 
+
+        #region SP_BUDGET_OPEN_DETAIL_DEL_BY_DOC
+        public bool SP_BUDGET_OPEN_DETAIL_DEL_BY_DOC(string pBudget_open_doc)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_OPEN_DETAIL_DEL_BY_DOC";
+                oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = pBudget_open_doc;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+        
+
+
         #region SP_BUDGET_OPEN_TOTAL_UPD
         public bool SP_BUDGET_OPEN_TOTAL_UPD(string budget_open_doc)
         {
@@ -399,7 +434,6 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_OPEN_TOTAL_UPD";
-                //oCommand.Parameters.Add("budget_open_detail_id", SqlDbType.BigInt).Value = pBudget_open_detail_id;
                 oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = budget_open_doc;
                 oCommand.ExecuteNonQuery();
                 blnResult = true;

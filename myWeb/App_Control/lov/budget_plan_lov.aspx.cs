@@ -468,10 +468,7 @@ namespace myWeb.App_Control.lov
                             {
                                 strScript = strScript + "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["ctrl11"].ToString() + "').value='" + txtyear.Text + "';\n";
                             }
-                            if (ViewState["from_page"].ToString().Equals("budget_tranfer_control"))
-                            {
-                                strScript = strScript + "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].__doPostBack('ctl00$ContentPlaceHolder1$BtnR1','');";
-                            }
+                          
 
                             if (ViewState["from_page"].ToString().Equals("budgetmoney"))
                             {
@@ -502,9 +499,25 @@ namespace myWeb.App_Control.lov
                         {
                             if (ViewState["cboDegree"] != null)
                             {
-                                strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
-                                strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
-                                strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+
+                                if (ViewState["from_page"].ToString().Equals("budget_transfer_from"))
+                                {
+                                    strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
+                                    strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh_from','');";
+                                    strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+                                }
+                                else if (ViewState["from_page"].ToString().Equals("budget_transfer_to"))
+                                {
+                                    strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
+                                    strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh_to','');";
+                                    strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+                                }
+                                else
+                                {
+                                    strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strpbudget_plan_code + "';\n ";
+                                    strScript += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
+                                    strScript += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+                                }
 
                             }
                             else
@@ -910,8 +923,22 @@ namespace myWeb.App_Control.lov
 
                     if (ViewState["cboDegree"] != null)
                     {
-                        strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
-                        strShow += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
+
+                        if (ViewState["from_page"].ToString().Equals("budget_transfer_from"))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
+                            strShow += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh_from','');";
+                        }
+                        else if (ViewState["from_page"].ToString().Equals("budget_transfer_to"))
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
+                            strShow += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh_to','');";
+                        }
+                        else
+                        {
+                            strShow += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblbudget_plan_code.Text + "';\n ";
+                            strShow += "window.parent.__doPostBack('ctl00$ContentPlaceHolder2$TabContainer1$TabPanel1$lbkRefresh','');";
+                        }
                     }
                     else
                     {

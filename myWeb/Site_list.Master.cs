@@ -143,15 +143,26 @@ namespace myWeb
         {
             HtmlGenericControl script;
 
-
             script = new HtmlGenericControl("script");
             script.Attributes["type"] = "text/javascript";
             script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "js/jquery-1.7.2.min.js");
             Page.Header.Controls.Add(script);
 
+            //script = new HtmlGenericControl("script");
+            //script.Attributes["type"] = "text/javascript";
+            //script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "scripts/jquery-1.9.1.min.js");
+            //Page.Header.Controls.Add(script);
+
+
+            //script = new HtmlGenericControl("script");
+            //script.Attributes["type"] = "text/javascript";
+            //script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "scripts/bootstrap.min.js");
+            //Page.Header.Controls.Add(script);
+
+
             script = new HtmlGenericControl("script");
             script.Attributes["type"] = "text/javascript";
-            script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "js/jquery-ui-1.8.22.custom.js");
+            script.Attributes["src"] = (cCommon.AbsoluteWebRoot + "scripts/jquery-ui.min.js");
             Page.Header.Controls.Add(script);
 
 

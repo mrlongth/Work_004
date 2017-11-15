@@ -28,7 +28,6 @@ namespace myModel
         public Nullable<decimal> budget_money_plan { get; set; }
         public Nullable<decimal> budget_money_contribute { get; set; }
         public Nullable<decimal> budget_money_use { get; set; }
-        public Nullable<decimal> budget_money_remain { get; set; }
         public string comments { get; set; }
         public string c_active { get; set; }
         public string c_created_by { get; set; }

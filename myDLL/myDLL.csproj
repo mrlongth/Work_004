@@ -47,6 +47,10 @@
     <Reference Include="Aware.WebControls">
       <HintPath>C:\Aware\Aware.WebControls.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -69,11 +73,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\cBudget_transfer.cs" />
     <Compile Include="Command\cBudget_open.cs" />
     <Compile Include="Command\cBudget_receive.cs" />
     <Compile Include="Command\cDegree.cs" />
     <Compile Include="Command\cItem.cs" />
     <Compile Include="Command\cBudget_money.cs" />
+    <Compile Include="Command\cReport.cs" />
     <Compile Include="Command\cItem_detail.cs" />
     <Compile Include="Command\cItem_group_detail.cs" />
     <Compile Include="Command\cItem_group.cs" />
@@ -105,6 +111,7 @@
     <Compile Include="Command\cProduce.cs" />
     <Compile Include="Command\cTitle.cs" />
     <Compile Include="Common\Enumeration.cs" />
+    <Compile Include="Common\GenerateReport.cs" />
     <Compile Include="Common\MyGridViewTemplate.cs" />
     <Compile Include="Common\Utils.cs" />
     <Compile Include="Common\Helper.cs" />

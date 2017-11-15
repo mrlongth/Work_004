@@ -79,6 +79,12 @@
     <Compile Include="Budget_receive_head.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Budget_transfer_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Budget_transfer_head.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Config_item.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -202,6 +208,15 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Budget_receive_head.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_summary.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_transfer_detail.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="view_Budget_transfer_head.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="view_Item.cs">

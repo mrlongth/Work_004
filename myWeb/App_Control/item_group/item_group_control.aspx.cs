@@ -172,6 +172,7 @@ namespace myWeb.App_Control.item_group
                     item_group_name = txtitem_group_name.Text,
                     item_group_year = cboYear.SelectedItem.Value,
                     lot_code = cboLot_code.SelectedItem.Value,
+                    item_group_type = cboItem_type.SelectedItem.Value,
                     c_active = chkStatus.Checked ? "Y" : "N",
                     c_created_by = Session["username"].ToString(),
                     c_updated_by = Session["username"].ToString()
@@ -293,6 +294,13 @@ namespace myWeb.App_Control.item_group
                     #region set Control
                     txtitem_group_code.Text = item_group.item_group_code;
                     txtitem_group_name.Text = item_group.item_group_name;
+
+                    if (cboItem_type.Items.FindByValue(item_group.item_group_type) != null)
+                    {
+                        cboItem_type.SelectedIndex = -1;
+                        cboItem_type.Items.FindByValue(item_group.item_group_type).Selected = true;
+                    }
+
                     InitcboYear();
                     if (cboYear.Items.FindByValue(item_group.item_group_year) != null)
                     {

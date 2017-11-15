@@ -73,7 +73,6 @@
                         <td align="right" nowrap valign="middle">
                             <asp:Label ID="Label6" runat="server" CssClass="label_error">*</asp:Label>
                             <asp:Label ID="Label91" runat="server" CssClass="label_hbk">รายละเอียดค่าใช้จ่าย :</asp:Label>
-
                         </td>
                         <td align="left" nowrap valign="middle" colspan="4">
                             <asp:TextBox ID="txtitem_detail_code" runat="server" CssClass="textbox" MaxLength="10" Width="100px"></asp:TextBox>
@@ -168,24 +167,24 @@
                         <asp:TemplateField HeaderText="ยอดจัดสรร">
                             <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
                             <ItemTemplate>
-                                <cc1:AwNumeric ID="txtbudget_money_major_plan" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_plan") %>' Width="100px">
+                                <cc1:AwNumeric ID="txtbudget_money_major_plan" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_plan") %>' Width="95%">
                                 </cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดรับจริง">
-                            <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_contribute") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดใช้แล้ว">
-                            <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_use" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_use") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดคงเหลือ">
-                            <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_remain" runat="server" CssClass="numberdis" LeadZero="Show" DisplayMode="View" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
@@ -226,6 +225,10 @@
                 }
             });
 
+            $(document).ready(function () {
+                $("input:text").focus(function () { $(this).select(); });
+            });
+
             $("input[id*=imgClear_item_detail]").live("click", function () {
                 $('#<%=txtitem_detail_code.ClientID%>').val('');
                 $('#<%=txtitem_detail_name.ClientID%>').val('');
@@ -247,7 +250,7 @@
                     "lot_code=" + cboLot.val() +
                     "&item_detail_code=" + txtitem_detail_code.val() +
                     "&item_detail_name=" + txtitem_detail_name.val() +
-                    "&item_type=C" +
+                    "&item_group_type=C" +
                     "&budget_type=<%=BudgetType%>" +
                     "&item_group_code=" + cboItem_group.val() +
                     "&item_group_detail_id=" + cboItem_group_detail.val() +

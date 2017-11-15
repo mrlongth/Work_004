@@ -18,9 +18,11 @@ namespace myModel
         public Budget_plan()
         {
             this.Budget_money_head = new HashSet<Budget_money_head>();
-            this.Person_work = new HashSet<Person_work>();
-            this.Budget_receive_head = new HashSet<Budget_receive_head>();
             this.Budget_open_head = new HashSet<Budget_open_head>();
+            this.Budget_receive_head = new HashSet<Budget_receive_head>();
+            this.Person_work = new HashSet<Person_work>();
+            this.Budget_transfer_head = new HashSet<Budget_transfer_head>();
+            this.Budget_transfer_head1 = new HashSet<Budget_transfer_head>();
         }
     
         public string budget_plan_code { get; set; }
@@ -40,15 +42,19 @@ namespace myModel
         public virtual Activity Activity { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_money_head> Budget_money_head { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_open_head> Budget_open_head { get; set; }
         public virtual Fund Fund { get; set; }
         public virtual Plan Plan { get; set; }
         public virtual Unit Unit { get; set; }
         public virtual Work Work { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Person_work> Person_work { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_receive_head> Budget_receive_head { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Budget_open_head> Budget_open_head { get; set; }
+        public virtual ICollection<Person_work> Person_work { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_transfer_head> Budget_transfer_head { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Budget_transfer_head> Budget_transfer_head1 { get; set; }
     }
 }

@@ -14,11 +14,10 @@
                 <asp:LinkButton ID="lkbRefresh" runat="server" OnClick="lkbRefresh_Click" Style="display: none;">LinkButton</asp:LinkButton>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
-            <td nowrap style="text-align: center; vertical-align: bottom; width: 10%;">
+            <td nowrap style="text-align: center; vertical-align: bottom; width: 5%;">
                 <div>
                     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="display: none;">LinkButton</asp:LinkButton>
                     <asp:LinkButton ID="btnSave" runat="server" class="button button-pill button-flat-highlight" OnClick="btnSave_Click" ValidationGroup="A">บันทึก</asp:LinkButton>
-                    <asp:LinkButton ID="btnCancel" runat="server" class="button button-pill button-flat-highlight" OnClick="btnCancel_Click">ยกเลิก</asp:LinkButton>
                 </div>
             </td>
         </tr>
@@ -237,7 +236,7 @@
                 </HeaderTemplate>
                 <ContentTemplate>
                     <asp:Panel ID="pnlDetail" runat="server">
-                        <asp:GridView ID="GridViewDetail" runat="server" AllowSorting="false"
+                        <asp:GridView ID="GridViewDetail" runat="server"
                             AutoGenerateColumns="False" BackColor="White" BorderWidth="1px"
                             CellPadding="2" CssClass="stGrid" Font-Bold="False" Font-Size="10pt"
                             OnRowCreated="GridViewDetail_RowCreated" OnRowDataBound="GridViewDetail_RowDataBound"

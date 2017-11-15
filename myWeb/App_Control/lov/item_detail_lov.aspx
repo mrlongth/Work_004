@@ -84,10 +84,10 @@
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" Wrap="True" Width="5%"></ItemStyle>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ประเภทรายการ" SortExpression="item_type" Visible="false">
+                <asp:TemplateField HeaderText="ประเภทรายการ" SortExpression="item_group_type" Visible="false">
                     <ItemStyle HorizontalAlign="Center" Wrap="True" Width="10%"></ItemStyle>
                     <ItemTemplate>
-                        <asp:Label ID="lblitem_type" runat="server" Text='<%# getItemtype(DataBinder.Eval(Container, "DataItem.item_type")) %>'>
+                        <asp:Label ID="lblitem_type" runat="server" Text='<%# getItemtype(DataBinder.Eval(Container, "DataItem.item_group_type")) %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>

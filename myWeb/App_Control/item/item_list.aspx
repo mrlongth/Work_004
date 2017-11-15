@@ -20,13 +20,6 @@
         </tr>
         <tr>
             <td style="text-align: right; width: 15%;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสรายได้/จ่าย :</asp:Label>
-            </td>
-            <td>
-                <asp:TextBox runat="server" CssClass="textbox" Width="120px" ID="txtitem_code"
-                    MaxLength="10"></asp:TextBox>
-            </td>
-            <td style="text-align: right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage13">ประเภทรายการ :</asp:Label>
             </td>
             <td>
@@ -37,40 +30,42 @@
                     <asp:ListItem Value="C">Credit</asp:ListItem>
                 </asp:DropDownList>
             </td>
-            <td colspan="2">&nbsp;</td>
-        </tr>
-        <tr>
-            <td style="text-align: right; width: 15%;">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage12">ชื่อรายได้/จ่าย :</asp:Label>
-            </td>
+            <td style="text-align: right">
+                &nbsp;</td>
             <td colspan="3">
-                <asp:TextBox runat="server" CssClass="textbox" Width="520px" ID="txtitem_name"></asp:TextBox>
-            </td>
-            <td colspan="2">&nbsp;
-            </td>
+                &nbsp;</td>
         </tr>
         <tr>
             <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage16">หมวดค่าใช้จ่าย :</asp:Label>
             </td>
-            <td colspan="4">
+            <td colspan="5">
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboItemGroup" AutoPostBack="True" OnSelectedIndexChanged="cboItemGroup_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td rowspan="3" style="text-align: right">
-                <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
-                    ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
-                &nbsp;<asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
-                    ID="imgNew"></asp:ImageButton>
-                &nbsp;</td>
         </tr>
         <tr>
             <td style="text-align: right; width: 15%;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage1">รายละเอียดหมวดค่าใช้จ่าย :</asp:Label>
             </td>
-            <td colspan="4">
+            <td colspan="5">
                 <asp:DropDownList runat="server" CssClass="textbox" ID="cboItemGroupDetail">
                 </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; width: 15%;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสรายได้/จ่าย :</asp:Label>
+            </td>
+            <td>
+                <asp:TextBox runat="server" CssClass="textbox" Width="120px" ID="txtitem_code"
+                    MaxLength="10"></asp:TextBox>
+            </td>
+            <td style="text-align: right">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage12">ชื่อรายได้/จ่าย :</asp:Label>
+            </td>
+            <td colspan="3">
+                <asp:TextBox runat="server" CssClass="textbox" Width="400px" ID="txtitem_name"></asp:TextBox>
             </td>
         </tr>
         <tr>
@@ -84,6 +79,12 @@
                 <asp:RadioButton runat="server" GroupName="A" Text="ยกเลิก" CssClass="label_h" ID="RadioCancel"></asp:RadioButton>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
+            <td style="text-align: right">
+                <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
+                    ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
+                &nbsp;<asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
+                    ID="imgNew"></asp:ImageButton>
+                &nbsp;</td>
         </tr>
     </table>
 </asp:Content>
@@ -108,10 +109,10 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" Wrap="False" Width="5%"></ItemStyle>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="ประเภทรายการ" SortExpression="item_type">
+            <asp:TemplateField HeaderText="ประเภทรายการ" SortExpression="item_group_type">
                 <ItemStyle HorizontalAlign="Center" Wrap="True" Width="10%"></ItemStyle>
                 <ItemTemplate>
-                    <asp:Label ID="lblitem_type" runat="server" Text='<%# getItemtype(DataBinder.Eval(Container, "DataItem.item_type")) %>'>
+                    <asp:Label ID="lblitem_type" runat="server" Text='<%# getItemtype(DataBinder.Eval(Container, "DataItem.item_group_type")) %>'>
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>

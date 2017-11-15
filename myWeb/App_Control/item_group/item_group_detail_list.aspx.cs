@@ -169,14 +169,7 @@ namespace myWeb.App_Control.item_group_detail
             stritem_group_detail_code = txtitem_group_detail_code.Text.Replace("'", "''").Trim();
             stritem_group_detail_name = txtitem_group_detail_name.Text.Replace("'", "''").Trim();
             stritem_group_year = cboYear.SelectedValue;
-            if (Request.Form[strPrefixCtr + "cboItem_group"] != null)
-            {
-                strItem_group_code = Request.Form[strPrefixCtr + "cboItem_group"].ToString();
-            }
-            else
-            {
-                strItem_group_code = "";
-            }
+            strItem_group_code = cboItem_group.SelectedValue;
             if (!stritem_group_detail_code.Equals(""))
             {
                 strCriteria = strCriteria + "  And  (item_group_detail_code like '%" + stritem_group_detail_code + "%') ";
@@ -577,5 +570,9 @@ namespace myWeb.App_Control.item_group_detail
             BindGridView(0);
         }
 
+        protected void cboItem_group_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindGridView(0);
+        }
     }
 }

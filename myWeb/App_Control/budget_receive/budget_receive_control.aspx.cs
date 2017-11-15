@@ -419,7 +419,7 @@ namespace myWeb.App_Control.budget_receive
             strItem_group_code = cboItem_group.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' ";
+            strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' and item_group_type = 'D' ";
             if (oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];

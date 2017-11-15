@@ -104,6 +104,14 @@ namespace myDLL
                 oParam_Item_group_name.Direction = ParameterDirection.Input;
                 oParam_Item_group_name.Value = item_group.item_group_name;
                 oCommand.Parameters.Add(oParam_Item_group_name);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_Item_group_type = new SqlParameter("item_group_type", SqlDbType.NVarChar);
+                oParam_Item_group_type.Direction = ParameterDirection.Input;
+                oParam_Item_group_type.Value = item_group.item_group_type;
+                oCommand.Parameters.Add(oParam_Item_group_type);
+
+
                 // - - - - - - - - - - - -             
                 SqlParameter oParam_lot_code = new SqlParameter("lot_code", SqlDbType.NVarChar);
                 oParam_lot_code.Direction = ParameterDirection.Input;
@@ -167,6 +175,14 @@ namespace myDLL
                 oParam_Item_group_name.Direction = ParameterDirection.Input;
                 oParam_Item_group_name.Value = item_group.item_group_name;
                 oCommand.Parameters.Add(oParam_Item_group_name);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_Item_group_type = new SqlParameter("item_group_type", SqlDbType.NVarChar);
+                oParam_Item_group_type.Direction = ParameterDirection.Input;
+                oParam_Item_group_type.Value = item_group.item_group_type;
+                oCommand.Parameters.Add(oParam_Item_group_type);
+
+
                 // - - - - - - - - - - - -             
                 SqlParameter oParam_lot_code = new SqlParameter("lot_code", SqlDbType.NVarChar);
                 oParam_lot_code.Direction = ParameterDirection.Input;
