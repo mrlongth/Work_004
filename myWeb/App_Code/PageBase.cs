@@ -434,6 +434,13 @@ namespace myWeb
                 else
                     currentUrl = @"~/App_Control/budget_open/budget_open_list.aspx?budget_type=R";
             }
+            else if (currentUrl.Contains("budget_transfer_control.aspx"))
+            {
+                if (currentUrl.Contains("budget_type=B"))
+                    currentUrl = @"~/App_Control/budget_transfer/budget_transfer_list.aspx?budget_type=B";
+                else
+                    currentUrl = @"~/App_Control/budget_transfer/budget_transfer_list.aspx?budget_type=R";
+            }
 
             strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='" + currentUrl + "' ";
             objUserBLL.SP_USER_GROUP_MENU_SEL(strCriteria, ref ds, ref strMessage);

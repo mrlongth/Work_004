@@ -107,6 +107,7 @@
     <Content Include="App_Control\budget_open\budget_open_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_control.aspx" />
     <Content Include="App_Control\budget_receive\budget_receive_list.aspx" />
+    <Content Include="App_Control\budget_transfer\budget_transfer_detail_control.aspx" />
     <Content Include="App_Control\budget_transfer\budget_transfer_control.aspx" />
     <Content Include="App_Control\budget_transfer\budget_transfer_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
@@ -428,6 +429,13 @@
     </Compile>
     <Compile Include="App_Control\budget_receive\budget_receive_list.aspx.designer.cs">
       <DependentUpon>budget_receive_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_detail_control.aspx.cs">
+      <DependentUpon>budget_transfer_detail_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\budget_transfer\budget_transfer_detail_control.aspx.designer.cs">
+      <DependentUpon>budget_transfer_detail_control.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\budget_transfer\budget_transfer_control.aspx.cs">
       <DependentUpon>budget_transfer_control.aspx</DependentUpon>

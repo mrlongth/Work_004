@@ -97,6 +97,8 @@ namespace myWeb.App_Control.budget_transfer
                 {
                     setData();
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    btnSave.Visible = false;
+                    GridViewDetail.AllowSorting = false;
                 }
 
 
@@ -107,7 +109,11 @@ namespace myWeb.App_Control.budget_transfer
             }
             else
             {
-
+                if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    btnSave.Visible = false;
+                }
             }
         }
 
@@ -581,7 +587,26 @@ namespace myWeb.App_Control.budget_transfer
                     int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
                     lblNo.Text = nNo.ToString();
 
-                    #region set Image Delete
+
+                    #region set ImageView
+                    ImageButton imgView = (ImageButton)e.Row.FindControl("imgView");
+                    imgView.Attributes.Add("onclick", "OpenPopUp('1000px','400px','96%','แสดงข้อมูลรายการโอนเงิน','budget_transfer_detail_control.aspx?mode=view&budget_transfer_doc=" + dv.budget_transfer_doc + 
+                        "&budget_transfer_detail_id=" + dv.budget_transfer_detail_id.ToString() + 
+                        "&year=" + dv.budget_transfer_year + 
+                        "&budget_type=" + this.BudgetType + "','1');return false;");
+                    imgView.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["img"].ToString();
+                    imgView.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgView"].Rows[0]["title"].ToString());
+                    #endregion
+
+                    #region set Image Edit & Delete
+
+                    ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+                    imgEdit.Attributes.Add("onclick", "OpenPopUp('1000px','400px','96%','แก้ไขข้อมูลรายการโอนเงิน','budget_transfer_detail_control.aspx?mode=edit&budget_transfer_doc=" + dv.budget_transfer_doc + 
+                        "&budget_transfer_detail_id=" + dv.budget_transfer_detail_id.ToString() + 
+                        "&year=" + dv.budget_transfer_year + 
+                        "&budget_type=" + this.BudgetType + "','1');return false;");
+                    imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
+                    imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
 
                     ImageButton imgDelete = (ImageButton)e.Row.FindControl("imgDelete");
                     imgDelete.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgDelete"].Rows[0]["img"].ToString();
@@ -889,11 +914,6 @@ namespace myWeb.App_Control.budget_transfer
 
 
         protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void LinkButton2_Click(object sender, EventArgs e)
         {
             BindGridDetail();
         }

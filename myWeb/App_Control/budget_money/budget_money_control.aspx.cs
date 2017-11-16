@@ -75,6 +75,8 @@ namespace myWeb.App_Control.budget_money
                 {
                     setData();
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    GridViewDetail.AllowSorting = false;
+                    btnSave.Visible = false;
                 }
 
 
@@ -85,7 +87,11 @@ namespace myWeb.App_Control.budget_money
             }
             else
             {
-
+                if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    btnSave.Visible = false;
+                }
             }
         }
 

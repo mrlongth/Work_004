@@ -243,15 +243,15 @@
             <asp:TemplateField HeaderText="รหัสผังงบต้นทาง" SortExpression="budget_plan_code_from">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="30%"></ItemStyle>
                 <ItemTemplate>
-                    <asp:Label ID="lblbudget_plan_code_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_plan_code_from") %>' />
-                    : 
-                    <asp:Label ID="lblunit_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name_from") %>' />
-                    / 
-                    <asp:Label ID="lblbudget_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_name_from") %>' />
-                    / 
-                    <asp:Label ID="lblproduce_name_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name_from") %>' />
-                    / 
-                    <asp:Label ID="lblactivity_name_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name_from") %>' />
+                    <asp:Label ID="lblbudget_plan_code_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_plan_code_from") %>' /> 
+                    <br />
+                    - <asp:Label ID="lblunit_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name_from") %>' />
+                    <br />
+                    - <asp:Label ID="lblbudget_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_name_from") %>' />
+                    <br />
+                    - <asp:Label ID="lblproduce_name_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name_from") %>' />
+                    <br />
+                    - <asp:Label ID="lblactivity_name_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name_from") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
 
@@ -264,7 +264,7 @@
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="หลักสูตรปลายทาง" SortExpression="major_name_to">
-                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
+                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblmajor_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_name_to") %>'></asp:Label>
                 </ItemTemplate>
@@ -274,19 +274,19 @@
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="30%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblbudget_plan_code_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_plan_code_to") %>' />
-                    : 
-                    <asp:Label ID="lblunit_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name_to") %>' />
-                    / 
-                    <asp:Label ID="lblbudget_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_name_to") %>' />
-                    / 
-                    <asp:Label ID="lblproduce_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name_to") %>' />
-                    / 
-                    <asp:Label ID="lblactivity_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name_to") %>' />
+                    <br />
+                    - <asp:Label ID="lblunit_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name_to") %>' />
+                    <br />
+                    - <asp:Label ID="lblbudget_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_name_to") %>' />
+                    <br />
+                    - <asp:Label ID="lblproduce_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name_to") %>' />
+                    <br />
+                    - <asp:Label ID="lblactivity_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name_to") %>' />
                 </ItemTemplate>
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="จำนวนเงิน" SortExpression="budget_transfer_amount" Visible="true">
-                <ItemStyle HorizontalAlign="Right" Wrap="True" Width="80px"></ItemStyle>
+                <ItemStyle HorizontalAlign="Right" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <cc1:AwNumeric ID="txtbudget_transfer_amount" runat="server" Width="80px" LeadZero="Show" DisplayMode="View"
                         Value='<% # DataBinder.Eval(Container, "DataItem.budget_transfer_amount")%>' />

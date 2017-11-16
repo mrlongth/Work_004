@@ -102,6 +102,8 @@ namespace myWeb.App_Control.budget_open
                 {
                     setData();
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    btnSave.Visible = false;
+                    GridViewDetail.AllowSorting = false;
                 }
 
 
@@ -112,7 +114,11 @@ namespace myWeb.App_Control.budget_open
             }
             else
             {
-
+                if (ViewState["mode"].ToString().ToLower().Equals("view"))
+                {
+                    Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    btnSave.Visible = false;
+                }
             }
         }
 

@@ -281,7 +281,7 @@ namespace myDLL
                 oCommand.Parameters.Add(oParambudget_transfer_detail_id);
                 oCommand.Parameters.Add("budget_transfer_doc", SqlDbType.VarChar).Value = budget_transfer_detail.budget_transfer_doc;
                 oCommand.Parameters.Add("budget_money_major_id_from", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_from;
-                oCommand.Parameters.Add("budget_money_major_id_to", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_from;
+                oCommand.Parameters.Add("budget_money_major_id_to", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_to;
                 oCommand.Parameters.Add("budget_transfer_detail_amount", SqlDbType.Money).Value = budget_transfer_detail.budget_transfer_detail_amount;
                 oCommand.Parameters.Add("budget_transfer_detail_remark", SqlDbType.VarChar).Value = budget_transfer_detail.budget_transfer_detail_remark;
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = budget_transfer_detail.c_created_by;
@@ -320,7 +320,7 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_transfer_detail_id", SqlDbType.BigInt).Value = budget_transfer_detail.budget_transfer_detail_id;
                 oCommand.Parameters.Add("budget_transfer_doc", SqlDbType.VarChar).Value = budget_transfer_detail.budget_transfer_doc;
                 oCommand.Parameters.Add("budget_money_major_id_from", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_from;
-                oCommand.Parameters.Add("budget_money_major_id_to", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_from;
+                oCommand.Parameters.Add("budget_money_major_id_to", SqlDbType.BigInt).Value = budget_transfer_detail.budget_money_major_id_to;
                 oCommand.Parameters.Add("budget_transfer_detail_amount", SqlDbType.Money).Value = budget_transfer_detail.budget_transfer_detail_amount;
                 oCommand.Parameters.Add("budget_transfer_detail_remark", SqlDbType.VarChar).Value = budget_transfer_detail.budget_transfer_detail_remark;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = budget_transfer_detail.c_updated_by;

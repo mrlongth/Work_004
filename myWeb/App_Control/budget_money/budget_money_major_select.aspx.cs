@@ -278,7 +278,6 @@ namespace myWeb.App_Control.budget_money
             if (saveData())
             {
                 MsgBox("บันทึกข้อมูลสมบูรณ์");
-
                 var script = "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');" +
                               "ClosePopUp('" + ViewState["show"].ToString() + "');";
                 ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", script, true);

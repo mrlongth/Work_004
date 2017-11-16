@@ -18,7 +18,6 @@
             <td nowrap style="text-align: center; vertical-align: bottom; width: 5%;">
                 <div>
                     <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="display: none;">LinkButton</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButton2" runat="server" OnClick="LinkButton2_Click" Style="display: none;">LinkButton2</asp:LinkButton>
                     <asp:LinkButton ID="btnSave" runat="server" class="button button-pill button-flat-highlight" OnClick="btnSave_Click" ValidationGroup="A">บันทึก</asp:LinkButton>
                 </div>
             </td>
@@ -57,12 +56,6 @@
                     </table>
                     <table border="0" cellpadding="2" cellspacing="2" class="ui-accordion">
 
-                        <tr align="left">
-                            <td align="right" nowrap valign="middle">&nbsp;</td>
-                            <td align="left" nowrap valign="middle">&nbsp;</td>
-                            <td nowrap style="text-align: right" width="10%">&nbsp;</td>
-                            <td style="text-align: left">&nbsp;</td>
-                        </tr>
                         <tr align="left">
                             <td align="right" nowrap valign="middle">
                                 <asp:Label ID="Label79" runat="server" CssClass="label_hbk">เลขที่เอกสาร :</asp:Label>
@@ -292,12 +285,6 @@
                             <td nowrap style="text-align: right">&nbsp;</td>
                             <td align="left">&nbsp;</td>
                         </tr>
-                        <tr align="left">
-                            <td align="right" nowrap valign="middle"></td>
-                            <td align="left" nowrap valign="middle"></td>
-                            <td nowrap style=""></td>
-                            <td align="left"></td>
-                        </tr>
                     </table>
                 </ContentTemplate>
             </ajaxtoolkit:TabPanel>
@@ -315,6 +302,12 @@
                             ShowFooter="True">
                             <AlternatingRowStyle BackColor="#EAEAEA"></AlternatingRowStyle>
                             <Columns>
+                                <asp:TemplateField Visible="true">
+                                    <ItemTemplate>
+                                        <asp:ImageButton ID="imgView" runat="server" CausesValidation="False"  />
+                                    </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Center" Wrap="False" Width="2%"></ItemStyle>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="No.">
                                     <HeaderStyle HorizontalAlign="Center" Wrap="False" Width="2%"></HeaderStyle>
                                     <ItemTemplate>
@@ -327,53 +320,48 @@
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="งบประมาณต้นทาง" SortExpression="lot_name_from">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
                                     <ItemTemplate>
                                         <asp:Label ID="lbllot_name_from" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name_from") %>'>
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="หมวดค่าใช้จ่ายต้นทาง" SortExpression="Item_group_name_from">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                <asp:TemplateField HeaderText="รายการค่าใช้จ่ายต้นทาง" SortExpression="Item_group_name_from">
+                                    <ItemStyle HorizontalAlign="Left" Width="25%" Wrap="True" />
                                     <ItemTemplate>
                                         <asp:Label ID="lblItem_group_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_name_from") %>' />
-                                        / 
+                                        <br />
+                                        &nbsp;&nbsp;
                                         <asp:Label ID="lblItem_group_detail_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_detail_name_from") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="รายการค่าใช้จ่ายต้นทาง" SortExpression="Item_name_from">
-                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
-                                    <ItemTemplate>
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Label ID="lblItem_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_name_from") %>' />
-                                        / 
-                                        <asp:Label ID="lblitem_detail_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_detail_name_from") %>' />
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblitem_detail_name_from" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_detail_name_from") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="งบประมาณปลายทาง" SortExpression="lot_name_to">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                <asp:TemplateField HeaderText="งบประมาณปลายทาง" SortExpression="lot_name_to">
+                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
                                     <ItemTemplate>
                                         <asp:Label ID="lbllot_name_to" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.lot_name_to") %>'>
                                         </asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="หมวดค่าใช้จ่ายปลายทาง" SortExpression="Item_group_name_to">
-                                    <ItemStyle HorizontalAlign="Left" Width="10%" Wrap="True" />
+                                <asp:TemplateField HeaderText="รายการค่าใช้จ่ายปลายทาง" SortExpression="Item_group_name_to">
+                                    <ItemStyle HorizontalAlign="Left" Width="25%" Wrap="True" />
                                     <ItemTemplate>
                                         <asp:Label ID="lblItem_group_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_name_to") %>' />
-                                        / 
+                                        <br />
+                                        &nbsp;&nbsp;
                                         <asp:Label ID="lblItem_group_detail_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_group_detail_name_to") %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-
-                                <asp:TemplateField HeaderText="รายการค่าใช้จ่ายปลายทาง" SortExpression="Item_name_to">
-                                    <ItemStyle HorizontalAlign="Left" Width="15%" Wrap="True" />
-                                    <ItemTemplate>
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Label ID="lblItem_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.Item_name_to") %>' />
-                                        / 
+                                        <br />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <asp:Label ID="lblitem_detail_name_to" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.item_detail_name_to") %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -381,19 +369,20 @@
                                 <asp:TemplateField HeaderText="จำนวนเงิน">
                                     <ItemTemplate>
                                         <cc1:AwNumeric ID="txtbudget_transfer_detail_amount" runat="server" Width="99%" LeadZero="Show"
-                                            DisplayMode="Control" Value='<% # DataBinder.Eval(Container, "DataItem.budget_transfer_detail_amount") %>'>
+                                            DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_transfer_detail_amount") %>'>
                                         </cc1:AwNumeric>
                                     </ItemTemplate>
                                     <FooterTemplate>
-                                        <cc1:AwNumeric ID="txttransfer_amount" runat="server" Width="99%" LeadZero="Show" DisplayMode="Control" ReadOnly="true">
+                                        <cc1:AwNumeric ID="txttransfer_amount" runat="server" Width="99%" LeadZero="Show" DisplayMode="View" ReadOnly="true">
                                         </cc1:AwNumeric>
                                     </FooterTemplate>
-                                    <HeaderStyle HorizontalAlign="Left" Wrap="True" Width="8%"></HeaderStyle>
-                                    <ItemStyle HorizontalAlign="Center" Width="8%" Wrap="True" />
-                                    <FooterStyle HorizontalAlign="Right" Width="8%" />
+                                    <HeaderStyle HorizontalAlign="Center" Wrap="True" Width="10%"></HeaderStyle>
+                                    <ItemStyle HorizontalAlign="Right" Width="10%" Wrap="True" />
+                                    <FooterStyle HorizontalAlign="Right" Width="10%" />
                                 </asp:TemplateField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
+                                        <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False"  />
                                         <asp:ImageButton ID="imgDelete" runat="server" CausesValidation="False" CommandName="Delete" />
                                     </ItemTemplate>
                                     <HeaderTemplate>
@@ -418,27 +407,34 @@
 
 
 
-        function RegisterScript() {
+        function RegisterScript()
+        {
 
 
-            $(document).on('keypress', 'form input[type=text]', function (event) {
+            $(document).on('keypress', 'form input[type=text]', function (event)
+            {
                 event.stopImmediatePropagation();
-                if (event.which == 13) {
+                if (event.which == 13)
+                {
                     event.preventDefault();
                     var $input = $('form input[type=text]');
-                    if ($(this).is($input.last())) {
+                    if ($(this).is($input.last()))
+                    {
                         $input.eq(0).focus();
-                    } else {
+                    } else
+                    {
                         $input.eq($input.index(this) + 1).focus();
                     }
                 }
             });
 
-            $(document).ready(function () {
+            $(document).ready(function ()
+            {
                 $("input:text").focus(function () { $(this).select(); });
             });
 
-            $("input[id*=imgList_budget_plan_from]").live("click", function () {
+            $("input[id*=imgList_budget_plan_from]").live("click", function ()
+            {
                 var txtbudget_plan_code_from = $('#<%=txtbudget_plan_code_from.ClientID%>');
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree_from.ClientID%>');
@@ -455,7 +451,8 @@
             });
 
 
-            $("input[id*=imgList_budget_plan_to]").live("click", function () {
+            $("input[id*=imgList_budget_plan_to]").live("click", function ()
+            {
                 var txtbudget_plan_code_to = $('#<%=txtbudget_plan_code_to.ClientID%>');
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree_to.ClientID%>');
@@ -475,25 +472,18 @@
             //    return window.confirm("ยืนยันการเปลี่ยนผังงบประมาณ");
             //});
 
-            $("input[id*=imgAdd]").live("click", function () {
-                var cboDegree_from = $('#<%=cboDegree_from.ClientID%>');
-                var cboMajor_from = $('#<%=cboMajor_from.ClientID%>');
-                var txtbudget_plan_code_from = $('#<%=txtbudget_plan_code_from.ClientID%>');
-                var cboDegree_to = $('#<%=cboDegree_to.ClientID%>');
-                var cboMajor_to = $('#<%=cboMajor_to.ClientID%>');
-                var txtbudget_plan_code_to = $('#<%=txtbudget_plan_code_to.ClientID%>');
+            $("input[id*=imgAdd]").live("click", function ()
+            {
+                var cboYear = $('#<%=cboYear.ClientID%>');
+                var cboBudgetType = $('#<%=cboBudget_type.ClientID%>');
                 var txtbudget_transfer_doc = $('#<%=txtbudget_transfer_doc.ClientID%>');
                 var url = "budget_transfer_detail_control.aspx?" +
-                    "major_code_from=" + cboMajor_from.val() +
-                    "&degree_code=" + cboDegree_from.val() +
-                    "&budget_plan_code_from=" + txtbudget_plan_code_from.val() +
-                    "&major_code_to=" + cboMajor_to.val() +
-                    "&degree_code_to=" + cboDegree_to.val() +
-                    "&budget_plan_code_to=" + txtbudget_plan_code_to.val() +
+                    "year=" + cboYear.val() +
+                    "&mode=add" +
+                    "&budget_type=" + cboBudgetType.val() +
                     "&budget_transfer_doc=" + txtbudget_transfer_doc.val() +
                     "&show=1&from=budget_transfer_control";
-
-                OpenPopUp('900px', '500px', '96%', 'บันทึกข้อมูลรายการโอนเงิน', url, '1');
+                OpenPopUp('1000px', '400px', '96%', 'บันทึกข้อมูลรายการโอนเงิน', url, '1');
                 return false;
             });
 
