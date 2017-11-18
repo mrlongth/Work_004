@@ -5,6 +5,7 @@ using myModel;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ using System.Web.UI.WebControls;
 
 namespace myDLL.Common
 {
-    public class GenerateReport : IDisposable
+    public class GenerateReport<T> : IDisposable
     {
 
         string strCompanyName = ConfigurationSettings.AppSettings["CompanyName"];
@@ -67,7 +68,7 @@ namespace myDLL.Common
 
         }
 
-        public string Retive_Rep_007(string criteria,  string strCriteriaDesc , string userPrint , bool isPdf , bool isExcel)
+        public string Retive_Rep_Data(Report_param<T> condition, string strReportPath, DataSet ds)
         {
             var result = string.Empty;
             var oReport = new cReport();
@@ -78,20 +79,19 @@ namespace myDLL.Common
                 Helper.DeleteUnusedFile(strReportDirectoryTempPhysicalPath, ReportAliveTime);
                 string strFilename;
                 strFilename = "report_" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                string strPath = "~/reports/Rep_007.rpt";
+                string strPath = strReportPath;
                 rptSource.Load(HttpContext.Current.Server.MapPath(strPath));
-                var ds = oReport.SP_REP_007(criteria);
                 rptSource.SetDataSource(ds.Tables[0]);
-                rptSource.SetParameterValue("UserName", userPrint);
+                rptSource.SetParameterValue("UserName", condition.Report_user_print);
                 rptSource.SetParameterValue("CompanyName", strCompanyName);
-                rptSource.SetParameterValue("CriteriaDesc", strCriteriaDesc);
-                if (isPdf)
+                rptSource.SetParameterValue("CriteriaDesc", condition.Report_criteria_desc);
+                if (condition.Report_is_pdf)
                 {
                     rptSource.ExportToDisk(ExportFormatType.PortableDocFormat, HttpContext.Current.Server.MapPath("~/temp/") + strFilename + ".pdf");
                 }
-                if (isExcel)
+                if (condition.Report_is_excel)
                 {
-                    rptSource.ExportToDisk(ExportFormatType.ExcelWorkbook, HttpContext.Current.Server.MapPath("~/temp/") + strFilename + ".xlsx");
+                    rptSource.ExportToDisk(ExportFormatType.Excel, HttpContext.Current.Server.MapPath("~/temp/") + strFilename + ".xls");
                 }
                 result = strFilename;
             }
@@ -103,6 +103,134 @@ namespace myDLL.Common
             {
                 oReport.Dispose();
                 rptSource.Dispose();
+            }
+            return result;
+        }
+
+
+
+        public string Retive_Rep_001(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_001(condition.Report_criteria);
+                string strPath = "~/reports/Rep_001.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_002(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_002(condition.Report_criteria);
+                string strPath = "~/reports/Rep_002.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_003(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_002(condition.Report_criteria);
+                string strPath = "~/reports/Rep_003.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_004(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_004(condition.Report_criteria);
+                string strPath = "~/reports/Rep_004.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_005(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_005(condition.Report_criteria);
+                string strPath = "~/reports/Rep_005.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_007(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_007(condition.Report_criteria);
+                string strPath = "~/reports/Rep_007.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
             }
             return result;
         }

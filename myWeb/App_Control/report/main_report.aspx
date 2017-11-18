@@ -172,15 +172,7 @@
     </asp:Panel>
 
 
-    <asp:Panel ID="pnlExportOption" runat="server" CssClass="row ">
-        <div class="col-lg-2 text-right">
-            <asp:Label runat="server" CssClass="label_h" ID="Label1">รูปแบบรายงาน :</asp:Label>
-        </div>
-        <div class="col-lg-4">
-            <asp:CheckBox ID="chkPdf" runat="server" Checked="true" Text="Pdf" />
-            <asp:CheckBox ID="chkExcel" runat="server" Checked="false" Text="Excel" />
-        </div>
-    </asp:Panel>
+    
 
     <asp:Panel ID="pnlApproveStatus" runat="server" CssClass="row ">
         <div class="col-lg-2 text-right">
@@ -193,6 +185,16 @@
                 <asp:ListItem Value="A">อนุมัติ</asp:ListItem>
                 <asp:ListItem Value="C">ยกเลิกรายการ</asp:ListItem>
             </asp:DropDownList>
+        </div>
+    </asp:Panel>
+
+    <asp:Panel ID="pnlExportOption" runat="server" CssClass="row ">
+        <div class="col-lg-2 text-right">
+            <asp:Label runat="server" CssClass="label_h" ID="Label1">รูปแบบรายงาน :</asp:Label>
+        </div>
+        <div class="col-lg-4">
+            <asp:CheckBox ID="chkPdf" runat="server" Checked="true" Text="Pdf" />
+            <asp:CheckBox ID="chkExcel" runat="server" Checked="false" Text="Excel" />
         </div>
     </asp:Panel>
 

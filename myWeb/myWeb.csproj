@@ -131,6 +131,7 @@
     <Content Include="App_Control\person_group\person_group_view.aspx" />
     <Content Include="App_Control\person_manage\person_manage_view.aspx" />
     <Content Include="App_Control\person_work_status\person_work_status_view.aspx" />
+    <Content Include="App_Control\report\main_transfer_report.aspx" />
     <Content Include="App_Control\report\main_report.aspx" />
     <Content Include="App_Control\user_group\user_group_control.aspx" />
     <Content Include="App_Control\user_group\user_group_list.aspx" />
@@ -597,6 +598,13 @@
     </Compile>
     <Compile Include="App_Control\person_work_status\person_work_status_view.aspx.designer.cs">
       <DependentUpon>person_work_status_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\report\main_transfer_report.aspx.cs">
+      <DependentUpon>main_transfer_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\report\main_transfer_report.aspx.designer.cs">
+      <DependentUpon>main_transfer_report.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\report\main_report.aspx.cs">
       <DependentUpon>main_report.aspx</DependentUpon>

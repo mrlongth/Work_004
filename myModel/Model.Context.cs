@@ -35,6 +35,8 @@ namespace myModel
         public virtual DbSet<Budget_plan> Budget_plan { get; set; }
         public virtual DbSet<Budget_receive_detail> Budget_receive_detail { get; set; }
         public virtual DbSet<Budget_receive_head> Budget_receive_head { get; set; }
+        public virtual DbSet<Budget_transfer_detail> Budget_transfer_detail { get; set; }
+        public virtual DbSet<Budget_transfer_head> Budget_transfer_head { get; set; }
         public virtual DbSet<Config_item> Config_item { get; set; }
         public virtual DbSet<Degree> Degrees { get; set; }
         public virtual DbSet<Director> Directors { get; set; }
@@ -67,11 +69,16 @@ namespace myModel
         public virtual DbSet<view_Budget_money_detail> view_Budget_money_detail { get; set; }
         public virtual DbSet<view_Budget_money_head> view_Budget_money_head { get; set; }
         public virtual DbSet<view_Budget_money_major> view_Budget_money_major { get; set; }
+        public virtual DbSet<view_Budget_money_major_report> view_Budget_money_major_report { get; set; }
         public virtual DbSet<view_Budget_open_detail> view_Budget_open_detail { get; set; }
         public virtual DbSet<view_Budget_open_head> view_Budget_open_head { get; set; }
         public virtual DbSet<view_Budget_plan> view_Budget_plan { get; set; }
         public virtual DbSet<view_Budget_receive_detail> view_Budget_receive_detail { get; set; }
         public virtual DbSet<view_Budget_receive_head> view_Budget_receive_head { get; set; }
+        public virtual DbSet<view_Budget_summary> view_Budget_summary { get; set; }
+        public virtual DbSet<view_Budget_transfer_detail> view_Budget_transfer_detail { get; set; }
+        public virtual DbSet<view_Budget_transfer_head> view_Budget_transfer_head { get; set; }
+        public virtual DbSet<view_Budget_transfer_report> view_Budget_transfer_report { get; set; }
         public virtual DbSet<view_Item> view_Item { get; set; }
         public virtual DbSet<view_Item_detail> view_Item_detail { get; set; }
         public virtual DbSet<view_Item_group> view_Item_group { get; set; }
@@ -82,10 +89,5 @@ namespace myModel
         public virtual DbSet<view_Person_user> view_Person_user { get; set; }
         public virtual DbSet<view_Unit> view_Unit { get; set; }
         public virtual DbSet<view_User_group_menu> view_User_group_menu { get; set; }
-        public virtual DbSet<view_Budget_summary> view_Budget_summary { get; set; }
-        public virtual DbSet<Budget_transfer_detail> Budget_transfer_detail { get; set; }
-        public virtual DbSet<Budget_transfer_head> Budget_transfer_head { get; set; }
-        public virtual DbSet<view_Budget_transfer_detail> view_Budget_transfer_detail { get; set; }
-        public virtual DbSet<view_Budget_transfer_head> view_Budget_transfer_head { get; set; }
     }
 }

@@ -38,9 +38,9 @@ namespace myModel
         public string budget_type { get; set; }
         public string budget_plan_code { get; set; }
         public string degree_code { get; set; }
-        public Nullable<decimal> budget_money_plan { get; set; }
-        public Nullable<decimal> budget_money_contribute { get; set; }
-        public Nullable<decimal> budget_money_use { get; set; }
+        public decimal budget_money_plan { get; set; }
+        public decimal budget_money_contribute { get; set; }
+        public decimal budget_money_use { get; set; }
         public Nullable<decimal> budget_money_remain { get; set; }
         public string unit_code { get; set; }
         public string activity_code { get; set; }
@@ -78,5 +78,7 @@ namespace myModel
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }
         public string item_group_type { get; set; }
+        public Nullable<decimal> budget_money_major_transfer_in { get; set; }
+        public Nullable<decimal> budget_money_major_transfer_out { get; set; }
     }
 }

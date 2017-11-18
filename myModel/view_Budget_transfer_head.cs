@@ -71,5 +71,6 @@ namespace myModel
         public string plan_name_to { get; set; }
         public string work_name_to { get; set; }
         public string fund_name_to { get; set; }
+        public string budget_transfer_status { get; set; }
     }
 }

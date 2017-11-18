@@ -98,7 +98,7 @@ namespace myWeb.App_Control.budget_transfer
                     setData();
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
                     btnSave.Visible = false;
-                    GridViewDetail.AllowSorting = false;
+                    GridView1.AllowSorting = false;
                 }
 
 

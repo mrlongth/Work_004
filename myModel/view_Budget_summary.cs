@@ -43,6 +43,6 @@ namespace myModel
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }
         public string budget_type { get; set; }
-        public decimal budget_money_major_plan { get; set; }
+        public Nullable<decimal> budget_money_major_plan { get; set; }
     }
 }

@@ -400,6 +400,33 @@ namespace myWeb.App_Control.report {
         protected global::System.Web.UI.WebControls.DropDownList cboItem_detail;
         
         /// <summary>
+        /// pnlApproveStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlApproveStatus;
+        
+        /// <summary>
+        /// lblPage26 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage26;
+        
+        /// <summary>
+        /// cboApproveStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cboApproveStatus;
+        
+        /// <summary>
         /// pnlExportOption control.
         /// </summary>
         /// <remarks>
@@ -434,33 +461,6 @@ namespace myWeb.App_Control.report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox chkExcel;
-        
-        /// <summary>
-        /// pnlApproveStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlApproveStatus;
-        
-        /// <summary>
-        /// lblPage26 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPage26;
-        
-        /// <summary>
-        /// cboApproveStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboApproveStatus;
         
         /// <summary>
         /// pnlControl control.

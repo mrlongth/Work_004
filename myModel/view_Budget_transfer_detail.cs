@@ -102,5 +102,6 @@ namespace myModel
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
+        public string budget_transfer_status { get; set; }
     }
 }

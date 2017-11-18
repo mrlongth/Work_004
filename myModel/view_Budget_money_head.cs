@@ -18,9 +18,9 @@ namespace myModel
         public string budget_money_year { get; set; }
         public string budget_plan_code { get; set; }
         public string degree_code { get; set; }
-        public Nullable<decimal> budget_money_plan { get; set; }
-        public Nullable<decimal> budget_money_contribute { get; set; }
-        public Nullable<decimal> budget_money_use { get; set; }
+        public decimal budget_money_plan { get; set; }
+        public decimal budget_money_contribute { get; set; }
+        public decimal budget_money_use { get; set; }
         public Nullable<decimal> budget_money_remain { get; set; }
         public string comments { get; set; }
         public string c_active { get; set; }

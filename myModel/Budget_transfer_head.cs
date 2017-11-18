@@ -33,6 +33,7 @@ namespace myModel
         public string budget_plan_code_to { get; set; }
         public string budget_transfer_remark { get; set; }
         public Nullable<decimal> budget_transfer_amount { get; set; }
+        public string budget_transfer_status { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
