@@ -94,6 +94,15 @@ namespace myWeb.App_Control.report {
         protected global::System.Web.UI.WebControls.Panel pnlDate;
         
         /// <summary>
+        /// pnlDateFrom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDateFrom;
+        
+        /// <summary>
         /// lblPage22 control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace myWeb.App_Control.report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtdate_begin;
+        
+        /// <summary>
+        /// pnlDateTo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDateTo;
         
         /// <summary>
         /// lblPage24 control.

@@ -185,6 +185,20 @@
             </td>
         </tr>
         <tr>
+            <td style="text-align: right;">
+            <asp:Label runat="server" CssClass="label_h" ID="Label8">ผลการโอน :</asp:Label>
+            </td>
+            <td colspan="2">
+                <asp:RadioButtonList ID="rdoImpact" runat="server" CssClass="label_h" RepeatDirection="Horizontal">
+                    <asp:ListItem Selected="True" Value="A">ทั้งหมด</asp:ListItem>
+                    <asp:ListItem Value="Y">กระทบ</asp:ListItem>
+                    <asp:ListItem Value="N">ไม่กระทบ</asp:ListItem>
+                </asp:RadioButtonList>
+            </td>
+            <td colspan="2">
+                &nbsp;</td>
+        </tr>
+        <tr>
             <td style="text-align: right;"><asp:Label runat="server" CssClass="label_h" ID="Label1">รูปแบบรายงาน :</asp:Label></td>
             <td colspan="3"> <asp:CheckBox ID="chkPdf" runat="server" Checked="true" Text="Pdf" />
             <asp:CheckBox ID="chkExcel" runat="server" Checked="false" Text="Excel" /></td>

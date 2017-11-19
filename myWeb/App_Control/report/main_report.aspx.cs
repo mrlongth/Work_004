@@ -36,7 +36,6 @@ namespace myWeb.App_Control.report
             }
         }
 
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -482,9 +481,21 @@ namespace myWeb.App_Control.report
             {
                 report_result_path = PrintData005();
             }
+            else if (this.ReportCode == "006")
+            {
+                report_result_path = PrintData006();
+            }
             else if (this.ReportCode == "007")
             {
                 report_result_path = PrintData007();
+            }
+            else if (this.ReportCode == "009")
+            {
+                report_result_path = PrintData009();
+            }
+            else if (this.ReportCode == "010")
+            {
+                report_result_path = PrintData010();
             }
             if (!string.IsNullOrEmpty(report_result_path))
             {
@@ -502,7 +513,6 @@ namespace myWeb.App_Control.report
                 }
             }
         }
-
 
         private Report_param<view_Budget_money_major_report> GetCondition()
         {
@@ -552,6 +562,24 @@ namespace myWeb.App_Control.report
             {
                 condition.Report_criteria = condition.Report_criteria + "  And  (degree_code ='" + condition.Report_condition.degree_code + "') ";
                 condition.Report_criteria_desc += "ระดับการศึกษา : " + cboDegree.SelectedItem.Text + "    ";
+            }
+
+            if (pnlDateFrom.Visible)
+            {
+                if (!string.IsNullOrEmpty(txtdate_begin.Text))
+                {
+                    condition.Report_criteria = condition.Report_criteria + "  And  (budget_transfer_date >= '" + cCommon.SeekDate(txtdate_begin.Text) + "') ";
+                    condition.Report_criteria_desc += "ตั้งแต่วันที่ : " + txtdate_begin.Text + "    ";
+                }
+            }
+
+            if (pnlDateTo.Visible)
+            {
+                if (!string.IsNullOrEmpty(txtdate_end.Text))
+                {
+                    condition.Report_criteria = condition.Report_criteria + "  And  (budget_date <= '" + cCommon.SeekDate(txtdate_end.Text) + "') ";
+                    condition.Report_criteria_desc += "ถึงวันที่ : " + txtdate_end.Text + "    ";
+                }
             }
 
             if (!string.IsNullOrEmpty(condition.Report_condition.budget_plan_code))
@@ -628,6 +656,149 @@ namespace myWeb.App_Control.report
             return condition;
         }
 
+        private Report_param<view_Budget_money_major_report> GetConditionRPT009()
+        {
+            var condition = new Report_param<view_Budget_money_major_report>
+            {
+                Report_condition = new view_Budget_money_major_report(),
+                Report_criteria = string.Empty,
+                Report_criteria_desc = string.Empty,
+                Report_is_excel = chkExcel.Checked,
+                Report_is_pdf = chkPdf.Checked,
+                Report_user_print = base.UserLoginName
+
+            };
+
+            condition.Report_condition.budget_money_year = cboYear.SelectedValue;
+            condition.Report_condition.budget_type = cboBudgetType.SelectedValue;
+            condition.Report_condition.degree_code = cboDegree.SelectedValue;
+            condition.Report_condition.budget_plan_code = txtbudget_plan_code.Text;
+            condition.Report_condition.unit_code = cboUnit.SelectedValue;
+            condition.Report_condition.budget_code = cboBudget.SelectedValue;
+            condition.Report_condition.produce_code = cboProduce.SelectedValue;
+            condition.Report_condition.activity_code = cboActivity.SelectedValue;
+            condition.Report_condition.major_code = cboMajor.SelectedValue;
+
+            if (pnlItem.Visible)
+            {
+                condition.Report_condition.lot_code = cboLot.SelectedValue;
+                condition.Report_condition.item_group_code = cboItem_group.SelectedValue;
+                condition.Report_condition.item_group_detail_id = string.IsNullOrEmpty(cboItem_group_detail.SelectedValue) ? 0 : int.Parse(cboItem_group_detail.SelectedValue);
+                condition.Report_condition.item_code = cboItem.SelectedValue;
+                condition.Report_condition.item_detail_id = string.IsNullOrEmpty(cboItem_detail.SelectedValue) ? 0 : int.Parse(cboItem_detail.SelectedValue);
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.budget_money_year))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_money_year = '" + condition.Report_condition.budget_money_year + "') ";
+                condition.Report_criteria_desc += "ปีงบประมาณ : " + condition.Report_condition.budget_money_year + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.budget_type))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_type ='" + condition.Report_condition.budget_type + "') ";
+                condition.Report_criteria_desc += "ประเภทงบประมาณ : " + cboBudgetType.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.degree_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.degree_code ='" + condition.Report_condition.degree_code + "') ";
+                condition.Report_criteria_desc += "ระดับการศึกษา : " + cboDegree.SelectedItem.Text + "    ";
+            }
+
+            if (pnlDateFrom.Visible)
+            {
+                if (!string.IsNullOrEmpty(txtdate_begin.Text))
+                {
+                    condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_transfer_date >= '" + cCommon.SeekDate(txtdate_begin.Text) + "') ";
+                    condition.Report_criteria_desc += "ตั้งแต่วันที่ : " + txtdate_begin.Text + "    ";
+                }
+            }
+
+            if (pnlDateTo.Visible)
+            {
+                if (!string.IsNullOrEmpty(txtdate_end.Text))
+                {
+                    condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_date <= '" + cCommon.SeekDate(txtdate_end.Text) + "') ";
+                    condition.Report_criteria_desc += "ถึงวันที่ : " + txtdate_end.Text + "    ";
+                }
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.budget_plan_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_plan_code ='" + condition.Report_condition.budget_plan_code + "') ";
+                condition.Report_criteria_desc += "รหัสผังงบประมาณ : " + txtbudget_plan_code.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.unit_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.unit_code ='" + condition.Report_condition.unit_code + "') ";
+                condition.Report_criteria_desc += "หน่วยงาน : " + cboUnit.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.budget_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.budget_code ='" + condition.Report_condition.budget_code + "') ";
+                condition.Report_criteria_desc += "แผนงบประมาณ : " + cboBudget.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.produce_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.produce_code ='" + condition.Report_condition.produce_code + "') ";
+                condition.Report_criteria_desc += "ผลผลิต : " + cboProduce.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.activity_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.activity_code = '" + condition.Report_condition.activity_code + "') ";
+                condition.Report_criteria_desc += "กิจกรรม : " + cboActivity.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.major_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.major_code = '" + condition.Report_condition.major_code + "') ";
+                condition.Report_criteria_desc += "หลักสูตร : " + cboMajor.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.lot_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.lot_code = '" + condition.Report_condition.lot_code + "') ";
+                condition.Report_criteria_desc += "งบ : " + cboLot.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.item_group_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.item_group_code = '" + condition.Report_condition.item_group_code + "') ";
+                condition.Report_criteria_desc += "หมวดค่าจ่าย  : " + cboItem_group.SelectedItem.Text + "    ";
+            }
+
+            if (condition.Report_condition.item_group_detail_id != null && condition.Report_condition.item_group_detail_id > 0)
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.item_group_detail_id = '" + condition.Report_condition.item_group_detail_id + "') ";
+                condition.Report_criteria_desc += "รายละเอียดหมวดค่าจ่าย  : " + cboItem_group_detail.SelectedItem.Text + "    ";
+            }
+
+            if (!string.IsNullOrEmpty(condition.Report_condition.item_code))
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.item_code = '" + condition.Report_condition.item_code + "') ";
+                condition.Report_criteria_desc += "รายการค่าใช้จ่าย  : " + cboItem.SelectedItem.Text + "    ";
+            }
+
+            if (condition.Report_condition.item_detail_id != null && condition.Report_condition.item_detail_id > 0)
+            {
+                condition.Report_criteria = condition.Report_criteria + "  And  (bs.item_detail_id = '" + condition.Report_condition.item_detail_id + "') ";
+                condition.Report_criteria_desc += "รายละเอียดค่าใช้จ่า  : " + cboItem_detail.SelectedItem.Text + "    ";
+            }
+
+            if (DirectorLock == "Y")
+            {
+                condition.Report_criteria += " and substring(bs.director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
+            }
+
+            return condition;
+        }
+
+
         private string PrintData004()
         {
             var result = string.Empty;
@@ -664,6 +835,23 @@ namespace myWeb.App_Control.report
             return result;
         }
 
+        private string PrintData006()
+        {
+            var result = string.Empty;
+            try
+            {
+                var condition = GetCondition();
+                var oGenerateReport = new GenerateReport<view_Budget_money_major_report>();
+                var strFilename = oGenerateReport.Retive_Rep_006(condition);
+                result = strFilename;
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+            return result;
+        }
 
         private string PrintData007()
         {
@@ -682,8 +870,47 @@ namespace myWeb.App_Control.report
             }
             return result;
         }
+
+        private string PrintData009()
+        {
+            var result = string.Empty;
+            try
+            {
+                var condition = GetConditionRPT009();
+                var oGenerateReport = new GenerateReport<view_Budget_money_major_report>();
+                var strFilename = oGenerateReport.Retive_Rep_009(condition);
+                result = strFilename;
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+            return result;
+        }
+
+        private string PrintData010()
+        {
+            var result = string.Empty;
+            try
+            {
+                var condition = GetCondition();
+                var oGenerateReport = new GenerateReport<view_Budget_money_major_report>();
+                var strFilename = oGenerateReport.Retive_Rep_010(condition);
+                result = strFilename;
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+            return result;
+        }
+
+
         private void SetUpControl()
         {
+            VisibleAllControl();
             if (ReportCode == "004")
             {
                 pnlDate.Visible = false;
@@ -697,6 +924,17 @@ namespace myWeb.App_Control.report
                 pnlDocno.Visible = false;
                 pnlApproveStatus.Visible = false;
             }
+
+            else if (ReportCode == "006")
+            {
+                pnlDateFrom.Visible = false;
+                txtdate_end.Text = cCommon.CheckDate(DateTime.Now.ToShortDateString());
+                pnlDocno.Visible = false;
+                pnlItem.Visible = false;
+                pnlApproveStatus.Visible = false;
+
+            }
+
             else if (ReportCode == "007")
             {
                 pnlDate.Visible = false;
@@ -704,6 +942,24 @@ namespace myWeb.App_Control.report
                 pnlItem.Visible = false;
                 pnlApproveStatus.Visible = false;
             }
+
+            else if (ReportCode == "009")
+            {
+                pnlDate.Visible = false;
+                pnlDocno.Visible = false;
+                pnlItem.Visible = false;
+                pnlApproveStatus.Visible = false;
+            }
+
+            else if (ReportCode == "010")
+            {
+                pnlDocno.Visible = false;
+                pnlApproveStatus.Visible = false;
+                pnlDateFrom.Visible = false;
+                txtdate_end.Text = cCommon.CheckDate(DateTime.Now.ToShortDateString());
+
+            }
+
         }
 
         private void VisibleAllControl()
@@ -711,6 +967,8 @@ namespace myWeb.App_Control.report
             pnlYear.Visible = true;
             pnlDegree.Visible = true;
             pnlDate.Visible = true;
+            pnlDateFrom.Visible = true;
+            pnlDateTo.Visible = true;
             pnlSearchDoc.Visible = true;
             pnlDocno.Visible = true;
             pnlBudgetplan.Visible = true;

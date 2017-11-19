@@ -36,25 +36,29 @@
     </asp:Panel>
 
     <asp:Panel ID="pnlDate" runat="server" CssClass="row ">
-        <div class="col-lg-2 text-right">
-            <asp:Label runat="server" CssClass="label_h" ID="lblPage22">ตั้งแต่วันที่ : </asp:Label>
-        </div>
-        <div class="col-lg-2 nopadding">
-            <asp:TextBox ID="txtdate_begin" runat="server" CssClass="textbox"
-                Width="100px" />
-        </div>
-        <div class="col-lg-2 text-right">
-            <asp:Label runat="server" CssClass="label_h" ID="lblPage24">ถึงวันที่ :</asp:Label>
-        </div>
-        <div class="col-lg-2 nopadding">
-            <asp:TextBox ID="txtdate_end" runat="server" CssClass="textbox"
-                Width="100px" />
-        </div>
+
+        <asp:Panel ID="pnlDateFrom" runat="server" CssClass="row ">
+            <div class="col-lg-2 text-right">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage22">ตั้งแต่วันที่ : </asp:Label>
+            </div>
+            <div class="col-lg-2 nopadding">
+                <asp:TextBox ID="txtdate_begin" runat="server" CssClass="textbox"
+                    Width="100px" />
+            </div>
+        </asp:Panel>
+        <asp:Panel ID="pnlDateTo" runat="server" CssClass="row ">
+            <div class="col-lg-2 text-right">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage24">ถึงวันที่ :</asp:Label>
+            </div>
+            <div class="col-lg-2 nopadding">
+                <asp:TextBox ID="txtdate_end" runat="server" CssClass="textbox"
+                    Width="100px" />
+            </div>
+        </asp:Panel>
     </asp:Panel>
 
-
     <asp:Panel ID="pnlSearchDoc" runat="server" CssClass="row ">
-        <asp:Panel ID="pnlDocno" runat="server" >
+        <asp:Panel ID="pnlDocno" runat="server">
             <div class="col-lg-2 text-right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage19">เลขที่เอกสาร : </asp:Label>
             </div>
@@ -62,7 +66,7 @@
                 <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtbudget_open_doc"></asp:TextBox>
             </div>
         </asp:Panel>
-        <asp:Panel ID="pnlBudgetplan" runat="server" >
+        <asp:Panel ID="pnlBudgetplan" runat="server">
             <div class="col-lg-2 text-right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage2">รหัสผังงบประมาณ : </asp:Label>
             </div>
@@ -172,7 +176,7 @@
     </asp:Panel>
 
 
-    
+
 
     <asp:Panel ID="pnlApproveStatus" runat="server" CssClass="row ">
         <div class="col-lg-2 text-right">

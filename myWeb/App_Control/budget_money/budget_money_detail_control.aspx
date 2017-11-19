@@ -177,6 +177,15 @@
                                 <cc1:AwNumeric ID="txtbudget_money_major_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_contribute") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="ยอดปรับปรุง">
+                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemTemplate>
+                                <cc1:AwNumeric ID="txtbudget_money_major_transfer_amount" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_transfer_amount") %>' Width="100px"></cc1:AwNumeric>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+
                         <asp:TemplateField HeaderText="ยอดใช้แล้ว">
                             <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
                             <ItemTemplate>

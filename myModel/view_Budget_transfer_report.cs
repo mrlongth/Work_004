@@ -104,5 +104,6 @@ namespace myModel
         public Nullable<System.DateTime> d_updated_date { get; set; }
         public Nullable<decimal> budget_transfer_detail_amount_impact { get; set; }
         public Nullable<decimal> budget_transfer_detail_amount_no_impact { get; set; }
+        public string budget_transfer_detail_is_impact { get; set; }
     }
 }

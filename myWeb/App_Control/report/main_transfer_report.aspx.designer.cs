@@ -355,6 +355,24 @@ namespace myWeb.App_Control.report {
         protected global::System.Web.UI.WebControls.DropDownList cboMajor_to;
         
         /// <summary>
+        /// Label8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label8;
+        
+        /// <summary>
+        /// rdoImpact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdoImpact;
+        
+        /// <summary>
         /// Label1 control.
         /// </summary>
         /// <remarks>

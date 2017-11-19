@@ -107,8 +107,6 @@ namespace myDLL.Common
             return result;
         }
 
-
-
         public string Retive_Rep_001(Report_param<T> condition)
         {
             var result = string.Empty;
@@ -157,7 +155,7 @@ namespace myDLL.Common
             var oReport = new cReport();
             try
             {
-                var ds = oReport.SP_REP_002(condition.Report_criteria);
+                var ds = oReport.SP_REP_003(condition.Report_criteria);
                 string strPath = "~/reports/Rep_003.rpt";
                 result = Retive_Rep_Data(condition, strPath, ds);
             }
@@ -214,6 +212,27 @@ namespace myDLL.Common
             return result;
         }
 
+        public string Retive_Rep_006(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_006(condition.Report_criteria);
+                string strPath = "~/reports/Rep_006.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
         public string Retive_Rep_007(Report_param<T> condition)
         {
             var result = string.Empty;
@@ -234,6 +253,49 @@ namespace myDLL.Common
             }
             return result;
         }
+
+        public string Retive_Rep_009(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_009(condition.Report_criteria);
+                string strPath = "~/reports/Rep_009.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
+        public string Retive_Rep_010(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_010(condition.Report_criteria);
+                string strPath = "~/reports/Rep_010.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
 
         #region IDisposable Members
 

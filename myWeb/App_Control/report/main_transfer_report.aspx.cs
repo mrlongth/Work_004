@@ -512,11 +512,11 @@ namespace myWeb.App_Control.report
 
         #endregion
 
-        private Report_param<view_Budget_transfer_head> GetCondition()
+        private Report_param<view_Budget_transfer_report> GetCondition()
         {
-            var result = new Report_param<view_Budget_transfer_head>
+            var result = new Report_param<view_Budget_transfer_report>
             {
-                Report_condition = new view_Budget_transfer_head(),
+                Report_condition = new view_Budget_transfer_report(),
                 Report_criteria = string.Empty,
                 Report_criteria_desc = string.Empty,
                 Report_is_excel = chkExcel.Checked ,
@@ -541,7 +541,8 @@ namespace myWeb.App_Control.report
             result.Report_condition.budget_code_to = cboBudget_to.SelectedValue;
             result.Report_condition.produce_code_to = cboProduce_to.SelectedValue;
             result.Report_condition.activity_code_to = cboActivity_to.SelectedValue;
-            result.Report_condition.major_code_to = cboMajor_to.SelectedValue;
+            result.Report_condition.major_code_to = cboMajor_to.SelectedValue;           
+            result.Report_condition.budget_transfer_detail_is_impact = rdoImpact.SelectedValue;
 
             if (!string.IsNullOrEmpty(result.Report_condition.budget_transfer_year))
             {
@@ -651,6 +652,12 @@ namespace myWeb.App_Control.report
                 result.Report_criteria_desc += "หลักสูตรปลายทาง  : " + cboProduce_to.SelectedItem.Text + "    ";
             }
 
+            if (result.Report_condition.budget_transfer_detail_is_impact != "A")
+            {
+                result.Report_criteria = result.Report_criteria + "  And  (budget_transfer_detail_is_impact = '" + result.Report_condition.budget_transfer_detail_is_impact + "') ";
+                result.Report_criteria_desc += "ผลการโอน  : " + rdoImpact.SelectedItem.Text + "    ";
+            }
+
             if (DirectorLock == "Y")
             {
                 result.Report_criteria += " and substring(director_code_from,4,2) = substring('" + DirectorCode + "',4,2) ";
@@ -668,7 +675,7 @@ namespace myWeb.App_Control.report
             try
             {
                 var report_condition = GetCondition();
-                var oGenerateReport = new GenerateReport<view_Budget_transfer_head>();
+                var oGenerateReport = new GenerateReport<view_Budget_transfer_report>();
                 var strFilename = oGenerateReport.Retive_Rep_001(report_condition);
                 result = strFilename;
 
@@ -687,7 +694,7 @@ namespace myWeb.App_Control.report
             try
             {
                 var report_condition = GetCondition();
-                var oGenerateReport = new GenerateReport<view_Budget_transfer_head>();
+                var oGenerateReport = new GenerateReport<view_Budget_transfer_report>();
                 var strFilename = oGenerateReport.Retive_Rep_002(report_condition);
                 result = strFilename;
 
@@ -705,7 +712,7 @@ namespace myWeb.App_Control.report
             try
             {
                 var report_condition = GetCondition();
-                var oGenerateReport = new GenerateReport<view_Budget_transfer_head>();
+                var oGenerateReport = new GenerateReport<view_Budget_transfer_report>();
                 var strFilename = oGenerateReport.Retive_Rep_003(report_condition);
                 result = strFilename;
 
