@@ -428,6 +428,11 @@ namespace myWeb.App_Control.budget_open
             try
             {
                 strCriteria = " AND major_code not in (Select major_code From Budget_money_major where budget_money_detail_id = '" + ViewState["budget_money_detail_id"].ToString() + "') ";
+                if (MajorLock == "Y")
+                {
+                    strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+                }
+
                 if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
                 {
                     dt = ds.Tables[0];

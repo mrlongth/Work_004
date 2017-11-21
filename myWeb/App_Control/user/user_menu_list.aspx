@@ -172,7 +172,6 @@
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False" CommandName="Edit" />
-                    <asp:ImageButton ID="imgReset" runat="server" CausesValidation="False" CommandName="Reset" CommandArgument="<%# Container.DisplayIndex + 1 %>" />
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="False" />
             </asp:TemplateField>

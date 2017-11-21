@@ -409,6 +409,11 @@ namespace myWeb.App_Control.budget_open
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = "  and  c_active='Y' ";
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+            }
+
             if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];

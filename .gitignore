@@ -2,3 +2,6 @@
 /myWeb/bin
 /myDLL/obj
 /myModel/obj
+/myWeb/temp
+/myDLL/bin
+/myModel/bin

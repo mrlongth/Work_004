@@ -282,6 +282,11 @@ namespace myWeb.App_Control.budget_open
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = "  and  c_active='Y' ";
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+            }
+
             if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -410,12 +415,14 @@ namespace myWeb.App_Control.budget_open
                 strCriteria = strCriteria + "  And  (approve_head_status = '" + budget_open_head.approve_head_status + "') ";
             }
 
-
-
-
             if (DirectorLock == "Y")
             {
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
+            }
+
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
             }
 
             #endregion

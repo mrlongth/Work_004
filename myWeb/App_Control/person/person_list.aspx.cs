@@ -326,6 +326,10 @@ namespace myWeb.App_Control.person
             {
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
             }
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+            }
             try
             {
                 if (!oPerson.SP_PERSON_LIST_SEL(strCriteria, ref ds, ref strMessage))

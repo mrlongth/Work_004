@@ -388,10 +388,6 @@ namespace myWeb.App_Control.lov
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
             }
 
-            if (UnitLock == "Y")
-            {
-                strCriteria += " and substring(unit_code,4,5) in (" + this.UnitCodeList + ") ";
-            }
 
             //budget_type
 
@@ -636,11 +632,7 @@ namespace myWeb.App_Control.lov
             {
                 strCriteria = strCriteria + " and unit.budget_type <> 'R' ";
             }
-            if (UnitLock == "Y")
-            {
-                strCriteria += " and substring(unit.unit_code,4,5) in (" + this.UnitCodeList + ") ";
-            }
-
+          
 
             if (oUnit.SP_SEL_UNIT(strCriteria, ref ds, ref strMessage))
             {

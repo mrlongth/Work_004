@@ -364,26 +364,7 @@ namespace myWeb
             {
                 this.IsLogin = "Y";
                 this.DirectorLock = Helper.CStr(dt.Rows[0]["director_lock"]);
-
-                try
-                {
-                    this.UnitLock = Helper.CStr(dt.Rows[0]["unit_lock"]);
-                }
-                catch
-                {
-                    this.UnitLock = "N";
-                }
-
-                if (this.UnitLock == "Y")
-                {
-                    this.UnitCodeList = string.Empty;
-                    string[] strunit_code_list = Helper.CStr(dt.Rows[0]["unit_code_list"]).Split(',');
-                    for (int i = 0; i <= (strunit_code_list.GetUpperBound(0)); i++)
-                    {
-                        this.UnitCodeList += "'" + strunit_code_list[i].Substring(3, 5) + "',";
-                    }
-                    this.UnitCodeList = this.UnitCodeList.Substring(0, this.UnitCodeList.Length - 1);
-                }
+                this.MajorLock = Helper.CStr(dt.Rows[0]["unit_lock"]);
 
                 string[] strperson_group_list = Helper.CStr(dt.Rows[0]["person_group_list"]).Split(',');
                 for (int i = 0; i <= (strperson_group_list.GetUpperBound(0)); i++)
@@ -401,13 +382,13 @@ namespace myWeb
                 if (dt.Rows.Count > 0)
                 {
                     this.UserLoginName = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
+                    this.PersonMajorCode = Helper.CStr(dt.Rows[0]["major_code"]);
+                    this.PersonMajorName = Helper.CStr(dt.Rows[0]["major_name"]);
+                    this.PersonMajorAbbrev = Helper.CStr(dt.Rows[0]["major_abbrev"]);
                     this.DirectorCode = Helper.CStr(dt.Rows[0]["director_code"]);
                     this.DirectorName = Helper.CStr(dt.Rows[0]["director_name"]);
                     Session["username"] = Helper.CStr(dt.Rows[0]["person_thai_name"]) + "  " + Helper.CStr(dt.Rows[0]["person_thai_surname"]);
-
                 }
-
-
 
                 Response.Redirect("Menu_control.aspx");
 

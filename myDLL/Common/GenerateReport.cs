@@ -65,7 +65,6 @@ namespace myDLL.Common
 
         public GenerateReport()
         {
-
         }
 
         public string Retive_Rep_Data(Report_param<T> condition, string strReportPath, DataSet ds)
@@ -78,12 +77,17 @@ namespace myDLL.Common
                 string strReportDirectoryTempPhysicalPath = HttpContext.Current.Server.MapPath(this.ReportDirectoryTemp);
                 Helper.DeleteUnusedFile(strReportDirectoryTempPhysicalPath, ReportAliveTime);
                 string strFilename;
+                string displayCompany = strCompanyName;
+                if (condition.IsLockMajor == "Y")
+                {
+                    displayCompany =  condition.Person_major_name + " - " + strCompanyName;
+                }
                 strFilename = "report_" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 string strPath = strReportPath;
                 rptSource.Load(HttpContext.Current.Server.MapPath(strPath));
                 rptSource.SetDataSource(ds.Tables[0]);
                 rptSource.SetParameterValue("UserName", condition.Report_user_print);
-                rptSource.SetParameterValue("CompanyName", strCompanyName);
+                rptSource.SetParameterValue("CompanyName", displayCompany);
                 rptSource.SetParameterValue("CriteriaDesc", condition.Report_criteria_desc);
                 if (condition.Report_is_pdf)
                 {

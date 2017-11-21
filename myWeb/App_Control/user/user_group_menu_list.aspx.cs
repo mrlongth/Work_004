@@ -805,16 +805,16 @@ namespace myWeb.App_Control.user
                 Label lblunit_code = (Label)e.Row.FindControl("lblunit_code");
                 int nNo = (GridView2.PageSize * GridView2.PageIndex) + e.Row.RowIndex + 1;
                 lblNo.Text = nNo.ToString();
-                string[] strunit_list = this.UnitCodeList.Split(',');
-                CheckBox chkUnit = (CheckBox)e.Row.FindControl("chkUnit");
-                chkUnit.Checked = false;
-                for (int i = 0; i <= (strunit_list.GetUpperBound(0)); i++)
-                {
-                    if (strunit_list[i] == lblunit_code.Text)
-                    {
-                        chkUnit.Checked = true;
-                    }
-                }
+                //string[] strunit_list = this.UnitCodeList.Split(',');
+                //CheckBox chkUnit = (CheckBox)e.Row.FindControl("chkUnit");
+                //chkUnit.Checked = false;
+                //for (int i = 0; i <= (strunit_list.GetUpperBound(0)); i++)
+                //{
+                //    if (strunit_list[i] == lblunit_code.Text)
+                //    {
+                //        chkUnit.Checked = true;
+                //    }
+                //}
             }
         }
 

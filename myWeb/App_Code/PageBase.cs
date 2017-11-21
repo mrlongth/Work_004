@@ -176,40 +176,82 @@ namespace myWeb
         }
 
 
-        public string UnitLock
+        public string MajorLock
         {
             get
             {
-                if (Session["UnitLock"] == null)
+                if (Session["MajorLock"] == null)
                 {
-                    Session["UnitLock"] = "N";
+                    Session["MajorLock"] = "N";
                 }
-                return Session["UnitLock"].ToString();
+                return Session["MajorLock"].ToString();
             }
             set
             {
-                Session["UnitLock"] = value;
+                Session["MajorLock"] = value;
             }
         }
 
-        public string UnitCodeList
+        public string PersonMajorCode
         {
             get
             {
-                if (Session["UnitCodeList"] == null)
+                if (Session["PersonMajorCode"] == null)
                 {
                     return "";
                 }
                 else
                 {
-                    return Session["UnitCodeList"].ToString();
+                    return Session["PersonMajorCode"].ToString();
                 }
             }
             set
             {
-                Session["UnitCodeList"] = value;
+                Session["PersonMajorCode"] = value;
             }
         }
+
+        public string PersonMajorName
+        {
+            get
+            {
+                if (Session["PersonMajorName"] == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return Session["PersonMajorName"].ToString();
+                }
+            }
+            set
+            {
+                Session["PersonMajorName"] = value;
+            }
+        }
+
+        public string PersonMajorAbbrev
+        {
+            get
+            {
+                if (Session["PersonMajoAbbrev"] == null)
+                {
+                    return "";
+                }
+                else
+                {
+                    return Session["PersonMajoAbbrev"].ToString();
+                }
+            }
+            set
+            {
+                Session["PersonMajoAbbrev"] = value;
+            }
+        }
+
+
+        
+
 
         public string UserGroupList
         {

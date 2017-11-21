@@ -267,6 +267,10 @@ namespace myWeb.App_Control.report
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = "  and  c_active='Y' ";
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+            }
             if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -466,6 +470,10 @@ namespace myWeb.App_Control.report
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = "  and  c_active='Y' ";
+            if (MajorLock == "Y")
+            {
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
+            }
             if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
@@ -519,9 +527,11 @@ namespace myWeb.App_Control.report
                 Report_condition = new view_Budget_transfer_report(),
                 Report_criteria = string.Empty,
                 Report_criteria_desc = string.Empty,
-                Report_is_excel = chkExcel.Checked ,
-                Report_is_pdf = chkPdf.Checked ,
-                Report_user_print = base.UserLoginName
+                Report_is_excel = chkExcel.Checked,
+                Report_is_pdf = chkPdf.Checked,
+                Report_user_print = base.UserLoginName,
+                IsLockMajor = this.MajorLock,
+                Person_major_name = this.PersonMajorAbbrev
             };
 
             result.Report_condition.budget_transfer_year = cboYear.SelectedValue;
@@ -541,7 +551,7 @@ namespace myWeb.App_Control.report
             result.Report_condition.budget_code_to = cboBudget_to.SelectedValue;
             result.Report_condition.produce_code_to = cboProduce_to.SelectedValue;
             result.Report_condition.activity_code_to = cboActivity_to.SelectedValue;
-            result.Report_condition.major_code_to = cboMajor_to.SelectedValue;           
+            result.Report_condition.major_code_to = cboMajor_to.SelectedValue;
             result.Report_condition.budget_transfer_detail_is_impact = rdoImpact.SelectedValue;
 
             if (!string.IsNullOrEmpty(result.Report_condition.budget_transfer_year))
@@ -662,6 +672,12 @@ namespace myWeb.App_Control.report
             {
                 result.Report_criteria += " and substring(director_code_from,4,2) = substring('" + DirectorCode + "',4,2) ";
                 result.Report_criteria += " and substring(director_code_to,4,2) = substring('" + DirectorCode + "',4,2) ";
+            }
+
+            if (MajorLock == "Y")
+            {
+                result.Report_criteria += " and major_code_from = '" + PersonMajorCode + "' ";
+                result.Report_criteria += " and major_code_to = '" + PersonMajorCode + "' ";
             }
 
             result.Report_criteria = result.Report_criteria + " and budget_type ='" + this.BudgetType + "' ";

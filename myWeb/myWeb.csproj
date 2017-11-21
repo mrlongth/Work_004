@@ -47,7 +47,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.0.20820.654, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL" />
-    <Reference Include="AjaxPro.2, Version=9.2.17.1, Culture=neutral, PublicKeyToken=4735ae9824c7d3ec, processorArchitecture=MSIL" />
     <Reference Include="Aware.DAL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\360Feedback_Sln\Aware.DAL\bin\Debug\Aware.DAL.dll</HintPath>
@@ -61,10 +60,6 @@
     <Reference Include="DevExpress.Data.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.ASPxEditors.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Web.v9.1, Version=9.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DropDownCheckBoxes, Version=1.1.0.27408, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\MJU\Payroll\Work_001\myWeb\bin\DropDownCheckBoxes.dll</HintPath>
-    </Reference>
     <Reference Include="MattBerseth.WebControls.AJAX, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\modalpopupanimationextender\MattBerseth.WebControls.AJAX\bin\Debug\MattBerseth.WebControls.AJAX.dll</HintPath>
@@ -307,6 +302,12 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\GlobalPageBase.cs">
@@ -1159,7 +1160,6 @@
     <Content Include="App_Control\title\title_control.aspx" />
     <Content Include="App_Control\title\title_list.aspx" />
     <Content Include="App_Control\title\title_view.aspx" />
-    <Content Include="bin\AjaxPro.2.dll" />
     <Content Include="bin\DevExpress.Data.v9.1.dll" />
     <Content Include="bin\DevExpress.Web.ASPxEditors.v9.1.dll" />
     <Content Include="bin\DevExpress.Web.v9.1.dll" />
@@ -1741,4 +1741,7 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="AfterBuild">
+    <TransformXml Source="web.config" Transform="web.$(Configuration).config" Destination="web.config" StackTrace="true" />
+  </Target>
 </Project>

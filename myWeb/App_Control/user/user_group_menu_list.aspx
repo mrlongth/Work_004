@@ -75,7 +75,7 @@
                 <td align="right" nowrap valign="middle" width="20%">&nbsp;</td>
                 <td align="left" nowrap valign="middle">
                     <asp:CheckBox ID="chkunit_lock" runat="server"
-                        Text="เห็นข้อมูลเฉพาหน่วยงานตัวเอง" />
+                        Text="เห็นข้อมูลเฉพาะหลักสูตรตัวเอง" />
                 </td>
             </tr>
         </table>

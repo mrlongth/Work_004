@@ -454,7 +454,7 @@ namespace myWeb.App_Control.user
                 #region set Image Edit & Delete
 
                 ImageButton imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
-                ImageButton imgReset = (ImageButton)e.Row.FindControl("imgReset");
+                //ImageButton imgReset = (ImageButton)e.Row.FindControl("imgReset");
                 Label lblperson_names = (Label)e.Row.FindControl("lblperson_names");
                 if (IsUserEdit)
                 {
@@ -469,11 +469,11 @@ namespace myWeb.App_Control.user
                 imgEdit.ImageUrl = ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["img"].ToString();
                 imgEdit.Attributes.Add("title", ((DataSet)Application["xmlconfig"]).Tables["imgEdit"].Rows[0]["title"].ToString());
 
-                imgReset.ImageUrl = "~/images/unlock.png";
-                imgReset.Attributes.Add("title", "Reset รหัสผ่าน");
-                imgReset.Visible = base.IsUserExtra;
-                if (base.IsUserExtra)
-                    imgReset.Attributes.Add("onclick", "return confirm(\"คุณต้องการ Reset รหัสผ่านของ : " + Helper.CStr(dataView["title_name"]) + Helper.CStr(dataView["person_thai_name"]) + " " + Helper.CStr(dataView["person_thai_surname"]) + " หรือไม่ ?\");");
+                //imgReset.ImageUrl = "~/images/unlock.png";
+                //imgReset.Attributes.Add("title", "Reset รหัสผ่าน");
+                //imgReset.Visible = base.IsUserExtra;
+                //if (base.IsUserExtra)
+                //    imgReset.Attributes.Add("onclick", "return confirm(\"คุณต้องการ Reset รหัสผ่านของ : " + Helper.CStr(dataView["title_name"]) + Helper.CStr(dataView["person_thai_name"]) + " " + Helper.CStr(dataView["person_thai_surname"]) + " หรือไม่ ?\");");
 
                 #endregion
 
