@@ -571,6 +571,15 @@ namespace myWeb.App_Control.budget_receive {
         protected global::AjaxControlToolkit.TabPanel TabPanel2;
         
         /// <summary>
+        /// chkSamePlan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkSamePlan;
+        
+        /// <summary>
         /// pnlDetail control.
         /// </summary>
         /// <remarks>

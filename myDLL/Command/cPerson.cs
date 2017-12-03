@@ -434,6 +434,57 @@ namespace myDLL
         }
         #endregion
 
+
+
+        #region SP_PERSON_MAJOR_UPD
+        public bool SP_PERSON_MAJOR_UPD(string pperson_code,  string pmajor_code, string pc_updated_by, ref string strMessage)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_PERSON_MAJOR_UPD";
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_person_code = new SqlParameter("person_code", SqlDbType.NVarChar);
+                oParam_person_code.Direction = ParameterDirection.Input;
+                oParam_person_code.Value = pperson_code;
+                oCommand.Parameters.Add(oParam_person_code);
+
+                // - - - - - - - - - - - -             
+                SqlParameter oParam_major_code = new SqlParameter("major_code", SqlDbType.NVarChar);
+                oParam_major_code.Direction = ParameterDirection.Input;
+                oParam_major_code.Value = pmajor_code;
+                oCommand.Parameters.Add(oParam_major_code);
+
+                SqlParameter oParam_c_updated_by = new SqlParameter("c_updated_by", SqlDbType.NVarChar);
+                oParam_c_updated_by.Direction = ParameterDirection.Input;
+                oParam_c_updated_by.Value = pc_updated_by;
+                oCommand.Parameters.Add(oParam_c_updated_by);
+
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                strMessage = ex.Message.ToString();
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+
         #region SP_PERSON_STATUS_UPD
         public bool SP_PERSON_STATUS_UPD(string pperson_code, string pperson_sex, string pperson_high, string pperson_width, string pperson_origin, string pperson_nation,
                                                                                         string pperson_religion, string pperson_birth, string pperson_marry, string pc_updated_by, ref string strMessage)

@@ -90,7 +90,9 @@ namespace myWeb.App_Control.budget_money
                 if (ViewState["mode"].ToString().ToLower().Equals("view"))
                 {
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                    GridViewDetail.AllowSorting = false;
                     btnSave.Visible = false;
+
                 }
             }
         }

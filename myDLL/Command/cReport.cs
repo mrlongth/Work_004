@@ -50,6 +50,7 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_001";
+                oCommand.CommandTimeout = 300;
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -83,6 +84,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_002";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -116,6 +119,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_003";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -150,6 +155,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_004";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -183,6 +190,7 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_005";
+                oCommand.CommandTimeout = 300;
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -216,6 +224,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_006";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -250,6 +260,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_006";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -283,6 +295,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_009";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -316,6 +330,8 @@ namespace myDLL
                 oCommand.Connection = oConn;
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_REP_010";
+                oCommand.CommandTimeout = 300;
+
                 oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
                 oAdapter = new SqlDataAdapter(oCommand);
                 ds = new DataSet();
@@ -334,6 +350,42 @@ namespace myDLL
             return ds;
         }
         #endregion
+
+        #region SP_REP_011
+        public DataSet SP_REP_011(string strCriteria)
+        {
+            DataSet ds = null;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_OPEN_DETAIL_SEL";
+                oCommand.CommandTimeout = 300;
+
+                oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
+                oAdapter = new SqlDataAdapter(oCommand);
+                ds = new DataSet();
+                oAdapter.Fill(ds, "sp_REP_011");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return ds;
+        }
+        #endregion
+
 
         public void Dispose()
         {

@@ -386,12 +386,11 @@ namespace myWeb.App_Control.item
                     txtbudget_money_detail_comment.Text = item.budget_money_detail_comment;
                     txtbudget_money_detail_plan.Value = item.budget_money_detail_plan;
                     txtbudget_money_detail_contribute.Value = item.budget_money_detail_contribute;
+                    txtbudget_money_detail_transfer.Value = item.budget_money_detail_transfer;
                     txtbudget_money_detail_use.Value = item.budget_money_detail_use;
                     txtbudget_money_detail_remain.Value = item.budget_money_detail_remain;
                     txtUpdatedBy.Text = item.c_updated_by;
                     txtUpdatedDate.Text = item.d_updated_date.ToString();
-
-                
 
                     #endregion
 

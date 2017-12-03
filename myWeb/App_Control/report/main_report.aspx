@@ -37,7 +37,7 @@
 
     <asp:Panel ID="pnlDate" runat="server" CssClass="row ">
 
-        <asp:Panel ID="pnlDateFrom" runat="server" CssClass="row ">
+        <asp:Panel ID="pnlDateFrom" runat="server">
             <div class="col-lg-2 text-right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage22">ตั้งแต่วันที่ : </asp:Label>
             </div>
@@ -46,7 +46,7 @@
                     Width="100px" />
             </div>
         </asp:Panel>
-        <asp:Panel ID="pnlDateTo" runat="server" CssClass="row ">
+        <asp:Panel ID="pnlDateTo" runat="server" >
             <div class="col-lg-2 text-right">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage24">ถึงวันที่ :</asp:Label>
             </div>
@@ -116,6 +116,25 @@
                 </asp:DropDownList>
             </div>
         </div>
+
+           <div class="row">
+            <div class="col-lg-2 text-right">
+                <asp:Label ID="Label8" runat="server" CssClass="label_h">งาน :</asp:Label>
+            </div>
+            <div class="col-lg-2 nopadding">
+                <asp:DropDownList ID="cboWork" runat="server" CssClass="textbox">
+                </asp:DropDownList>
+
+            </div>
+            <div class="col-lg-2 text-right">
+                <asp:Label runat="server" CssClass="label_h" ID="Label9">กองทุน :</asp:Label>
+            </div>
+            <div class="col-lg-2 nopadding">
+                <asp:DropDownList ID="cboFund" runat="server" CssClass="textbox">
+                </asp:DropDownList>
+            </div>
+        </div>
+
     </asp:Panel>
 
     <asp:Panel ID="pnlMajor" runat="server" CssClass="row ">

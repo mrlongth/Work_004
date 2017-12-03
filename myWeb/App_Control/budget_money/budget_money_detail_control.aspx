@@ -107,17 +107,30 @@
                             <asp:Label ID="Label93" runat="server" CssClass="label_hbk">รวมยอดจัดสรร :</asp:Label>
                         </td>
                         <td align="left" nowrap valign="middle">
-                            <cc1:AwNumeric ID="txtbudget_money_detail_plan" runat="server" CssClass="numberdis" LeadZero="Show" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px"></cc1:AwNumeric>
+                            <cc1:AwNumeric ID="txtbudget_money_detail_plan" runat="server" CssClass="numberdis" LeadZero="Show" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px" CssClassDefault="numberdis" ReadOnly="True"></cc1:AwNumeric>
                         </td>
                         <td nowrap style="text-align: right" width="10%">
-                            <asp:Label ID="Label95" runat="server" CssClass="label_hbk">รวมยอดรับจริง :</asp:Label>
-                        </td>
+                            &nbsp;</td>
                         <td style="text-align: left">
-                            <cc1:AwNumeric ID="txtbudget_money_detail_contribute" runat="server" CssClassDefault="numberdis" ReadOnly="true" LeadZero="Show" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px"></cc1:AwNumeric>
-                        </td>
-                        <td rowspan="2" style="text-align: right">
+                            &nbsp;</td>
+                        <td rowspan="3" style="text-align: right">
                             <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click" Style="display: none;">LinkButton</asp:LinkButton>
                             <asp:ImageButton ID="imgSaveOnly" runat="server" ImageUrl="~/images/controls/save.jpg" ValidationGroup="A" />
+                        </td>
+                    </tr>
+
+                    <tr align="left">
+                        <td align="right" nowrap valign="middle">
+                            <asp:Label ID="Label100" runat="server" CssClass="label_hbk">รวมยอดรับจริง :</asp:Label>
+                        </td>
+                        <td align="left" nowrap valign="middle">
+                            <cc1:AwNumeric ID="txtbudget_money_detail_contribute" runat="server" CssClassDefault="numberdis" LeadZero="Show" ReadOnly="true" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px"></cc1:AwNumeric>
+                        </td>
+                        <td nowrap style="text-align: right" width="10%">
+                            <asp:Label ID="Label99" runat="server" CssClass="label_hbk">รวมปรับปรุง :</asp:Label>
+                        </td>
+                        <td style="text-align: left">
+                            <cc1:AwNumeric ID="txtbudget_money_detail_transfer" runat="server" CssClassDefault="numberdis" LeadZero="Show" ReadOnly="true" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="150px"></cc1:AwNumeric>
                         </td>
                     </tr>
 

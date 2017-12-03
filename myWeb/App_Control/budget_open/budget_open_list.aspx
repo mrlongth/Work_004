@@ -131,7 +131,7 @@
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
                     ID="imgNew" OnClick="imgNew_Click"></asp:ImageButton>
-                .</td>
+                </td>
         </tr>
         <tr>
             <td style="text-align: right;">&nbsp;</td>
@@ -251,6 +251,16 @@
                         Value='<% # DataBinder.Eval(Container, "DataItem.open_amount")%>' />
                 </ItemTemplate>
             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="สถานะ" SortExpression="approve_head_status"
+                Visible="true">
+                <ItemStyle HorizontalAlign="Center" Wrap="True" Width="5%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblapprove_head_status" runat="server" ></asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+
             <asp:TemplateField>
                 <ItemTemplate>
                     <asp:ImageButton ID="imgEdit" runat="server" CausesValidation="False" CommandName="EDIT" CommandArgument="<%# Container.DisplayIndex + 1 %>" />

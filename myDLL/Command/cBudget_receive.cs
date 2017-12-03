@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using myModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace myDLL
 {
@@ -396,7 +397,53 @@ namespace myDLL
         }
         #endregion
 
+        #region SP_BUDGET_RECEIVE_UPDATE_PLAN
+        public bool SP_BUDGET_RECEIVE_UPDATE_PLAN(string budget_receive_doc)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_RECEIVE_UPDATE_PLAN";
+                oCommand.Parameters.Add("budget_receive_doc", SqlDbType.VarChar).Value = budget_receive_doc;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+
         
+
+
+        public List<view_Budget_receive_detail> GETDETAILS(string strCriteria)
+        {
+            List<view_Budget_receive_detail> results = null;
+            var strMessage = string.Empty;
+            DataSet ds = null;
+            if (SP_BUDGET_RECEIVE_DETAIL_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                results = Helper.ToClassInstanceCollection<view_Budget_receive_detail>(ds.Tables[0]).ToList();
+            }
+            return results;
+        }
 
         public view_Budget_receive_detail GETDETAIL(string strCriteria)
         {

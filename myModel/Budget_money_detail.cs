@@ -26,6 +26,8 @@ namespace myModel
         public Nullable<decimal> budget_money_detail_plan { get; set; }
         public Nullable<decimal> budget_money_detail_contribute { get; set; }
         public Nullable<decimal> budget_money_detail_use { get; set; }
+        public Nullable<decimal> budget_money_detail_transfer_in { get; set; }
+        public Nullable<decimal> budget_money_detail_transfer_out { get; set; }
         public string budget_money_detail_comment { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }

@@ -373,6 +373,40 @@ namespace myDLL
         }
         #endregion
 
+
+        #region sp_BUDGET_TRANSFER_TOTAL_UPD
+        public bool SP_BUDGET_TRANSFER_TOTAL_UPD(string budget_transfer_doc)
+        {
+            bool blnResult = false;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_TRANSFER_TOTAL_UPD";
+                oCommand.Parameters.Add("budget_transfer_doc", SqlDbType.VarChar).Value = budget_transfer_doc;
+                oCommand.ExecuteNonQuery();
+                blnResult = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return blnResult;
+        }
+        #endregion
+
+
         public List<view_Budget_transfer_detail> GETDETAILS(string strCriteria)
         {
             List<view_Budget_transfer_detail> results = null;

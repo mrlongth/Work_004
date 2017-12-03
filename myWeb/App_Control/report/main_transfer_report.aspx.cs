@@ -286,6 +286,15 @@ namespace myWeb.App_Control.report
                     cboMajor_from.SelectedIndex = -1;
                     cboMajor_from.Items.FindByValue(strmajor_code).Selected = true;
                 }
+                if (MajorLock == "Y")
+                {
+                    if (cboMajor_from.Items.FindByValue(base.PersonMajorCode) != null)
+                    {
+                        cboMajor_from.SelectedIndex = -1;
+                        cboMajor_from.Items.FindByValue(base.PersonMajorCode).Selected = true;
+                    }
+                    cboMajor_from.Enabled = false;
+                }
             }
         }
 
@@ -488,6 +497,15 @@ namespace myWeb.App_Control.report
                 {
                     cboMajor_to.SelectedIndex = -1;
                     cboMajor_to.Items.FindByValue(strmajor_code).Selected = true;
+                }
+                if (MajorLock == "Y")
+                {
+                    if (cboMajor_to.Items.FindByValue(base.PersonMajorCode) != null)
+                    {
+                        cboMajor_to.SelectedIndex = -1;
+                        cboMajor_to.Items.FindByValue(base.PersonMajorCode).Selected = true;
+                    }
+                    cboMajor_to.Enabled = false;
                 }
             }
         }

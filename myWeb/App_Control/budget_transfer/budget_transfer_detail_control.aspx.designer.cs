@@ -508,6 +508,15 @@ namespace myWeb.App_Control.budget_transfer {
         protected global::Aware.WebControls.AwNumeric txtbudget_transfer_detail_amount;
         
         /// <summary>
+        /// CompareValidator1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValidator1;
+        
+        /// <summary>
         /// Label94 control.
         /// </summary>
         /// <remarks>

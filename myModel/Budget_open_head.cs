@@ -46,5 +46,6 @@ namespace myModel
         public virtual Budget_plan Budget_plan { get; set; }
         public virtual Degree Degree { get; set; }
         public virtual Major Major { get; set; }
+        public virtual Person_his Person_his { get; set; }
     }
 }

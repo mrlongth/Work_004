@@ -1,21 +1,29 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-using System.Threading;
-using System.Text;
 using myDLL;
 
 namespace myWeb.App_Control.lov
 {
     public partial class person_lov : PageBase
     {
+
+        private string Year
+        {
+            get
+            {
+                if (ViewState["year"] == null)
+                {
+                    ViewState["year"] = Helper.CStr(Request.QueryString["year"]);
+                }
+                return ViewState["year"].ToString();
+            }
+            set
+            {
+                ViewState["year"] = value;
+            }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,25 +32,10 @@ namespace myWeb.App_Control.lov
                 imgFind.Attributes.Add("onMouseOver", "src='../../images/button/Search2.png'");
                 imgFind.Attributes.Add("onMouseOut", "src='../../images/button/Search.png'");
 
-                //imgList_unit.Attributes.Add("onclick", "OpenPopUp('800px','400px','93%','ค้นหาข้อมูลหน่วยงาน' ,'../lov/unit_lov.aspx?" +
-                // "unit_year='+document.forms[0]." + strPrefixCtr + "txtyear.value+" +
-                // "'&unit_code='+document.forms[0]." + strPrefixCtr + "txtunit_code.value+" +
-                // "'&unit_name='+document.forms[0]." + strPrefixCtr + "txtunit_name.value+" +
-                // "'&ctrl1=" + strPrefixCtr + "txtunit_code&ctrl2=" + strPrefixCtr + "txtunit_name&show=2', '2');return false;");
-
-                //imgClear_unit.Attributes.Add("onclick", "document.getElementById('" + txtunit_code.ClientID + "').value='';document.getElementById('" + txtunit_name.ClientID + "').value=''; return false;");
-
                 InitcboWork_status();
                 InitcboPerson_group();
-                InitcboDirector();
+                InitcboMajor();
 
-                if (Request.QueryString["year"] != null)
-                {
-                    ViewState["year"] = Request.QueryString["year"].ToString();
-                    txtyear.Text = ViewState["year"].ToString();
-                    txtyear.CssClass = "textboxdis";
-                    txtyear.ReadOnly = true;
-                }
 
                 if (Request.QueryString["person_code"] != null)
                 {
@@ -66,88 +59,25 @@ namespace myWeb.App_Control.lov
                     txtperson_name.Text = string.Empty;
                 }
 
-
-                if (Request.QueryString["hddperson_code"] != null)
+                if (Request.QueryString["txtperson_code"] != null)
                 {
-                    ViewState["hddperson_code"] = Request.QueryString["hddperson_code"].ToString();
+                    ViewState["txtperson_code"] = Request.QueryString["txtperson_code"].ToString();
                 }
                 else
                 {
-                    ViewState["hddperson_code"] = string.Empty;
+                    ViewState["txtperson_code"] = string.Empty;
                 }
 
-
-                if (Request.QueryString["txtperson_id"] != null)
+                if (Request.QueryString["txtperson_name"] != null)
                 {
-                    ViewState["txtperson_id"] = Request.QueryString["txtperson_id"].ToString();
+                    ViewState["txtperson_name"] = Request.QueryString["txtperson_name"].ToString();
                 }
                 else
                 {
-                    ViewState["txtperson_id"] = string.Empty;
+                    ViewState["txtperson_name"] = string.Empty;
                 }
 
-                if (Request.QueryString["lblperson_name"] != null)
-                {
-                    ViewState["lblperson_name"] = Request.QueryString["lblperson_name"].ToString();
-                }
-                else
-                {
-                    ViewState["lblperson_name"] = string.Empty;
-                }
 
-                if (Request.QueryString["lblperson_thai_surname"] != null)
-                {
-                    ViewState["lblperson_thai_surname"] = Request.QueryString["lblperson_thai_surname"].ToString();
-                }
-                else
-                {
-                    ViewState["lblperson_thai_surname"] = string.Empty;
-                }
-
-                if (Request.QueryString["ctrl1"] != null)
-                {
-                    ViewState["ctrl1"] = Request.QueryString["ctrl1"].ToString();
-                }
-                else
-                {
-                    ViewState["ctrl1"] = string.Empty;
-                }
-
-                if (Request.QueryString["ctrl2"] != null)
-                {
-                    ViewState["ctrl2"] = Request.QueryString["ctrl2"].ToString();
-                }
-                else
-                {
-                    ViewState["ctrl2"] = string.Empty;
-                }
-
-                if (Request.QueryString["ctrl3"] != null)
-                {
-                    ViewState["ctrl3"] = Request.QueryString["ctrl3"].ToString();
-                }
-                else
-                {
-                    ViewState["ctrl3"] = string.Empty;
-                }
-
-                if (Request.QueryString["ctrl4"] != null)
-                {
-                    ViewState["ctrl4"] = Request.QueryString["ctrl4"].ToString();
-                }
-                else
-                {
-                    ViewState["ctrl4"] = string.Empty;
-                }
-
-                if (Request.QueryString["ctrl5"] != null)
-                {
-                    ViewState["ctrl5"] = Request.QueryString["ctrl5"].ToString();
-                }
-                else
-                {
-                    ViewState["ctrl5"] = string.Empty;
-                }
 
                 if (Request.QueryString["show"] != null)
                 {
@@ -167,14 +97,6 @@ namespace myWeb.App_Control.lov
                     ViewState["from"] = string.Empty;
                 }
 
-                if (Request.QueryString["req_cer_code"] != null)
-                {
-                    ViewState["req_cer_code"] = Request.QueryString["req_cer_code"].ToString();
-                }
-                else
-                {
-                    ViewState["req_cer_code"] = string.Empty;
-                }
 
 
                 ViewState["sort"] = "person_code";
@@ -243,68 +165,39 @@ namespace myWeb.App_Control.lov
             }
         }
 
-        private void InitcboDirector()
+
+        private void InitcboMajor()
         {
-            cDirector oDirector = new cDirector();
+            cMajor oMajor = new cMajor();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            string strDirector_code = string.Empty;
-            string strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
-            strDirector_code = cboDirector.SelectedValue;
+            string strYear = Year;
+            string strmajor_code = cboMajor.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = " and director_year = '" + strYear + "'  and  c_active='Y' ";
-            if (DirectorLock == "Y")
+            strCriteria = "  and  c_active='Y' ";
+            if (MajorLock == "Y")
             {
-                strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
+                strCriteria += " and major_code = '" + PersonMajorCode + "' ";
             }
 
-            if (oDirector.SP_SEL_DIRECTOR(strCriteria, ref ds, ref strMessage))
+            if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];
-                cboDirector.Items.Clear();
-                cboDirector.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
+                cboMajor.Items.Clear();
+                cboMajor.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
                 int i;
                 for (i = 0; i <= dt.Rows.Count - 1; i++)
                 {
-                    cboDirector.Items.Add(new ListItem(dt.Rows[i]["director_name"].ToString(), dt.Rows[i]["director_code"].ToString()));
+                    cboMajor.Items.Add(new ListItem(dt.Rows[i]["major_name"].ToString(), dt.Rows[i]["major_code"].ToString()));
                 }
-                if (cboDirector.Items.FindByValue(strDirector_code) != null)
+                if (cboMajor.Items.FindByValue(strmajor_code) != null)
                 {
-                    cboDirector.SelectedIndex = -1;
-                    cboDirector.Items.FindByValue(strDirector_code).Selected = true;
+                    cboMajor.SelectedIndex = -1;
+                    cboMajor.Items.FindByValue(strmajor_code).Selected = true;
                 }
-                InitcboUnit();
             }
         }
 
-        private void InitcboUnit()
-        {
-            cUnit oUnit = new cUnit();
-            string strMessage = string.Empty, strCriteria = string.Empty;
-            string strUnit_code = cboUnit.SelectedValue;
-            string strDirector_code = cboDirector.SelectedValue;
-            string strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
-            DataSet ds = new DataSet();
-            DataTable dt = new DataTable();
-            strCriteria = " and unit.unit_year = '" + strYear + "'  and  unit.c_active='Y' " +
-                                   " and unit.director_code = '" + strDirector_code + "' ";
-            if (oUnit.SP_SEL_UNIT(strCriteria, ref ds, ref strMessage))
-            {
-                dt = ds.Tables[0];
-                cboUnit.Items.Clear();
-                cboUnit.Items.Add(new ListItem("---- เลือกข้อมูลทั้งหมด ----", ""));
-                int i;
-                for (i = 0; i <= dt.Rows.Count - 1; i++)
-                {
-                    cboUnit.Items.Add(new ListItem(dt.Rows[i]["unit_name"].ToString(), dt.Rows[i]["unit_code"].ToString()));
-                }
-                if (cboUnit.Items.FindByValue(strUnit_code) != null)
-                {
-                    cboUnit.SelectedIndex = -1;
-                    cboUnit.Items.FindByValue(strUnit_code).Selected = true;
-                }
-            }
-        }
 
         #endregion
 
@@ -327,14 +220,12 @@ namespace myWeb.App_Control.lov
             string strActive = string.Empty;
             string strperson_group_code = string.Empty;
             string strperson_group_name = string.Empty;
-            string strunit_code = string.Empty;
-            string strdirector_code = string.Empty;
+            string strmajor_code = string.Empty;
             string strperson_code = string.Empty;
             string strperson_name = string.Empty;
             string strperson_work_status_code = string.Empty;
             strperson_group_code = cboPerson_group.Text;
-            strdirector_code = cboDirector.SelectedValue;
-            strunit_code = cboUnit.SelectedValue;
+            strmajor_code = cboMajor.SelectedValue;
             strperson_code = txtperson_code.Text.Replace("'", "''").Trim();
             strperson_name = txtperson_name.Text.Replace("'", "''").Trim();
             strperson_work_status_code = cboPerson_work_status.SelectedValue;
@@ -349,14 +240,10 @@ namespace myWeb.App_Control.lov
                 strCriteria = strCriteria + "  And  (person_group_code like '%" + strperson_group_code + "%') ";
             }
 
-            if (!strdirector_code.Equals(""))
-            {
-                strCriteria = strCriteria + "  And  (director_code = '" + strdirector_code + "') ";
-            }
 
-            if (!strunit_code.Equals(""))
+            if (!strmajor_code.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (unit_code= '" + strunit_code + "') ";
+                strCriteria = strCriteria + "  And  (major_code= '" + strmajor_code + "') ";
             }
 
             if (!strperson_code.Equals(""))
@@ -387,22 +274,12 @@ namespace myWeb.App_Control.lov
 
             strCriteria += " and person_group_code IN (" + PersonGroupList + ") ";
 
-            if (ViewState["from"].ToString().Equals("payment_medical_control"))
-            {
-                strCriteria += " and person_group_code = '01'";
-            }
 
             if (DirectorLock == "Y")
             {
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
             }
 
-            if (!string.IsNullOrEmpty(ViewState["req_cer_code"].ToString()))
-            {
-                strCriteria += " and ((exists(SELECT 1 from req_cer where req_code = '" + ViewState["req_cer_code"].ToString() + 
-                    "' and person_group_list  is null) OR person_group_code IN  (SELECT Item from dbo.Split((SELECT req_cer.person_group_list from req_cer where req_code = '" + 
-                    ViewState["req_cer_code"].ToString() + "'), ','))))";
-            }
 
 
             try
@@ -413,34 +290,9 @@ namespace myWeb.App_Control.lov
                 }
                 else
                 {
-                    //if (ds.Tables[0].Rows.Count == 1)
-                    //{
-                    //    string strScript = string.Empty;
-                    //    strperson_code = ds.Tables[0].Rows[0]["person_code"].ToString();
-                    //    strperson_name = ds.Tables[0].Rows[0]["person_thai_name"].ToString() + " " + ds.Tables[0].Rows[0]["person_thai_surname"].ToString();
-
-                    //    if (!ViewState["show"].ToString().Equals("1"))
-                    //    {
-                    //        strScript = "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strperson_code + "';\n " +
-                    //                    "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + strperson_name + "';\n" +
-                    //                    "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');" +
-                    //                    "ClosePopUp('" + ViewState["show"].ToString() + "');";
-                    //    }
-                    //    else
-                    //    {
-                    //        strScript = "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strperson_code + "';\n " +
-                    //                    "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + strperson_name + "';\n" +
-                    //                    "window.parent.__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');" +
-                    //                    "ClosePopUp('" + ViewState["show"].ToString() + "');";
-                    //    }
-                    //    ScriptManager.RegisterStartupScript(Page, Page.GetType(), "close", strScript, true);
-                    //}
-                    //else
-                    {
-                        ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
-                        GridView1.DataSource = ds.Tables[0];
-                        GridView1.DataBind();
-                    }
+                    ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
+                    GridView1.DataSource = ds.Tables[0];
+                    GridView1.DataBind();
                 }
             }
             catch (Exception ex)
@@ -494,6 +346,12 @@ namespace myWeb.App_Control.lov
                 Label lblperson_code = (Label)e.Row.FindControl("lblperson_code");
                 Label lblperson_name = (Label)e.Row.FindControl("lblperson_name");
                 DataRowView dv = (DataRowView)e.Row.DataItem;
+
+                string strPersonCode = lblperson_code.Text;
+                string strPersonSurName = dv["person_thai_surname"].ToString();
+                string strPersonName = lblperson_name.Text + " " + strPersonSurName;
+                string strPersonId = dv["person_id"].ToString();
+
                 if (ViewState["from"].ToString().Equals("user"))
                 {
                     lblperson_code.Text = "<a href=\"\" onclick=\"" +
@@ -507,51 +365,34 @@ namespace myWeb.App_Control.lov
                 }
                 else if (!ViewState["show"].ToString().Equals("1"))
                 {
-                    lblperson_code.Text = "<a href=\"\" onclick=\"" +
-                                                             "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + lblperson_code.Text + "';\n " +
-                                                             "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + lblperson_name.Text + " " + dv["person_thai_surname"].ToString() + "';\n" +
-                                                             "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');" +
-                                                             "ClosePopUp('" + ViewState["show"].ToString() + "');" +
-                                                             "return false;\" >" + lblperson_code.Text + "</a>";
 
+                    lblperson_code.Text = "<a href=\"\" onclick=\"";
+
+                    if (!string.IsNullOrEmpty(ViewState["txtperson_code"].ToString()))
+                        lblperson_code.Text += "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["txtperson_code"].ToString() + "').value='" + strPersonCode + "';\n ";
+
+                    if (!string.IsNullOrEmpty(ViewState["txtperson_name"].ToString()))
+                        lblperson_code.Text += "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].document.getElementById('" + ViewState["txtperson_name"].ToString() + "').value='" + strPersonName + "';\n";
+
+                    lblperson_code.Text += "ClosePopUp('" + ViewState["show"].ToString() + "');";
+                    lblperson_code.Text += "return false;\" >" + strPersonCode + "</a>";
 
                 }
                 else
                 {
-                    string strPersonCode = lblperson_code.Text;
-                    string strPersonName = lblperson_name.Text + " " + dv["person_thai_surname"].ToString();
-                    string strPersonSurName = dv["person_thai_surname"].ToString();
-                    string strPersonId = dv["person_id"].ToString();
 
                     lblperson_code.Text = "<a href=\"\" onclick=\"";
 
-                    if (!string.IsNullOrEmpty(ViewState["ctrl1"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["ctrl1"].ToString() + "').value='" + strPersonCode + "';\n ";
-                    if (!string.IsNullOrEmpty(ViewState["ctrl2"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["ctrl2"].ToString() + "').value='" + strPersonName + "';\n";
+                    if (!string.IsNullOrEmpty(ViewState["txtperson_code"].ToString()))
+                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["txtperson_code"].ToString() + "').value='" + strPersonCode + "';\n ";
 
-                    if (!string.IsNullOrEmpty(ViewState["txtperson_id"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["txtperson_id"].ToString() + "').value='" + strPersonId + "';\n";
+                    if (!string.IsNullOrEmpty(ViewState["txtperson_name"].ToString()))
+                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["txtperson_name"].ToString() + "').value='" + strPersonName + "';\n";
 
-
-                    if (!string.IsNullOrEmpty(ViewState["hddperson_code"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["hddperson_code"].ToString() + "').value='" + strPersonCode + "';\n";
-
-
-                    if (!string.IsNullOrEmpty(ViewState["lblperson_name"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["lblperson_name"].ToString() + "').text='" + strPersonId + "';\n";
-
-                    if (!string.IsNullOrEmpty(ViewState["lblperson_thai_surname"].ToString()))
-                        lblperson_code.Text += "window.parent.document.getElementById('" + ViewState["lblperson_thai_surname"].ToString() + "').text='" + strPersonSurName + "';\n";
-
-
-                    if (ViewState["from"].ToString() == "payment_control")
-                        lblperson_code.Text += "window.parent.frames['iframeShow" + (int.Parse(ViewState["show"].ToString()) - 1) + "'].__doPostBack('ctl00$ContentPlaceHolder1$LinkButton1','');";
-                   
                     lblperson_code.Text += "ClosePopUp('" + ViewState["show"].ToString() + "');";
                     lblperson_code.Text += "return false;\" >" + strPersonCode + "</a>";
                 }
-             
+
 
             }
         }
@@ -616,16 +457,7 @@ namespace myWeb.App_Control.lov
             }
         }
 
-        protected void cboDirector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            InitcboUnit();
-            BindGridView();
-        }
-
-        protected void cboUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            BindGridView();
-        }
+    
 
     }
 }

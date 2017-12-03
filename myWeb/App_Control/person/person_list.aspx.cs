@@ -52,6 +52,7 @@ namespace myWeb.App_Control.person
 
                 imgNew.Visible = base.IsUserNew;
 
+
             }
             else
             {
@@ -244,7 +245,7 @@ namespace myWeb.App_Control.person
 
         private void BindGridView(int nPageNo)
         {
-           
+
             //InitcboDirector();
             // InitcboUnit();
             cPerson oPerson = new cPerson();
@@ -326,10 +327,12 @@ namespace myWeb.App_Control.person
             {
                 strCriteria += " and substring(director_code,4,2) = substring('" + DirectorCode + "',4,2) ";
             }
-            if (MajorLock == "Y")
+
+            if (MajorLock == "Y" && this.IsUserExtra != true)
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
             }
+
             try
             {
                 if (!oPerson.SP_PERSON_LIST_SEL(strCriteria, ref ds, ref strMessage))
@@ -461,7 +464,7 @@ namespace myWeb.App_Control.person
                 #endregion
 
                 #region check user can edit/delete
-                imgEdit.Visible = base.IsUserEdit;
+                imgEdit.Visible = base.IsUserEdit || base.IsUserExtra;
                 imgDelete.Visible = base.IsUserDelete;
                 #endregion
 
@@ -693,12 +696,26 @@ namespace myWeb.App_Control.person
             {
                 if (!oPerson.SP_PERSON_DEL(lblperson_code.Text, "N", strUpdatedBy, ref strMessage))
                 {
-                    lblError.Text = strMessage;
+                    if (strMessage.Contains("REFERENCE constraint"))
+                    {
+                        MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                    }
+                    else
+                    {
+                        lblError.Text = strMessage;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {
@@ -811,7 +828,7 @@ namespace myWeb.App_Control.person
         protected void cboUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             //InitcboUnit();
-           // BindGridView(0);
+            // BindGridView(0);
         }
 
     }

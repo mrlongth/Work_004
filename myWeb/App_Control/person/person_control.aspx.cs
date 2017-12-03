@@ -92,13 +92,20 @@ namespace myWeb.App_Control.person
                     setData();
                     txtperson_code.ReadOnly = true;
                     txtperson_code.CssClass = "textboxdis";
+                    if (base.IsUserExtra == true)
+                    {
+                        Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
+                        cboMajor.Enabled = true;
+                        cboMajor.CssClass = "textbox";
+                        imgSaveOnly.Visible = true;
+                    }
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("view"))
                 {
                     setData();
                     Utils.SetControls(pnlMain, myDLL.Common.Enumeration.Mode.VIEW);
                 }
-                
+
 
                 #endregion
 
@@ -327,7 +334,6 @@ namespace myWeb.App_Control.person
                 }
             }
         }
-
 
         protected void cboBudget_type_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -634,7 +640,7 @@ namespace myWeb.App_Control.person
                 strUpdatedBy = Session["username"].ToString();
                 #endregion
                 #region edit
-                if (oPerson.SP_PERSON_WORK_UPD(strperson_code, strposition_code, strperson_level, strperson_postionno, strperson_start, 
+                if (oPerson.SP_PERSON_WORK_UPD(strperson_code, strposition_code, strperson_level, strperson_postionno, strperson_start,
                                                 strperson_end, strperson_group, strperson_manage_code, strbudget_plan_code,
                                                strperson_work_status, strUpdatedBy, txttype_position_code.Text, strmajor_code, ref strMessage))
                 {
@@ -657,30 +663,82 @@ namespace myWeb.App_Control.person
             return blnResult;
         }
 
+        private bool saveMajor()
+        {
+            bool blnResult = false;
+            string strMessage = string.Empty;
+            string strperson_code = string.Empty, strmajor_code = string.Empty,
+                strUpdatedBy = string.Empty;
+            string strScript = string.Empty;
+            cPerson oPerson = new cPerson();
+            DataSet ds = new DataSet();
+            try
+            {
+                #region set Data
+                strperson_code = txtperson_code.Text;
+                strmajor_code = cboMajor.SelectedValue;
+                strUpdatedBy = Session["username"].ToString();
+                #endregion
+                if (ViewState["mode"].ToString().ToLower().Equals("edit"))
+                {
+                    if (oPerson.SP_PERSON_MAJOR_UPD(strperson_code, strmajor_code, strUpdatedBy, ref strMessage))
+                    {
+                        blnResult = true;
+                    }
+                    else
+                    {
+                        lblError.Text = strMessage.ToString();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+            finally
+            {
+                oPerson.Dispose();
+            }
+            return blnResult;
+        }
 
 
         private void imgSaveOnly_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
-            if (saveData1())
+            if (base.IsUserExtra == true)
             {
-                if (ViewState["mode"].ToString().ToLower().Equals("add"))
+                if (saveMajor())
                 {
-                    Response.Redirect("person_control.aspx?mode=edit&person_code=" + ViewState["person_code"].ToString() + "&page=" + ViewState["page"].ToString() + "&PageStatus=save", true);
-                }
-                else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
-                {
-                    setData();
-                    txtperson_code.ReadOnly = true;
-                    txtperson_code.CssClass = "textboxdis";
-                    // string strScript1 = "RefreshMain('" + ViewState["page"].ToString() + "');";
+                    MsgBox("บันทึกข้อมูลสมบูรณ์");
                     string strScript1 = "ClosePopUpListPost('" + ViewState["page"].ToString() + "','1');";
                     ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);
                 }
-                setData();
-                txtperson_code.ReadOnly = true;
-                txtperson_code.CssClass = "textboxdis";
-                MsgBox("บันทึกข้อมูลสมบูรณ์");
             }
+            else
+            {
+                if (saveData1())
+                {
+                    if (ViewState["mode"].ToString().ToLower().Equals("add"))
+                    {
+                        Response.Redirect("person_control.aspx?mode=edit&person_code=" + ViewState["person_code"].ToString() + "&page=" + ViewState["page"].ToString() + "&PageStatus=save", true);
+                    }
+                    else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
+                    {
+                        setData();
+                        txtperson_code.ReadOnly = true;
+                        txtperson_code.CssClass = "textboxdis";
+                        // string strScript1 = "RefreshMain('" + ViewState["page"].ToString() + "');";
+                        string strScript1 = "ClosePopUpListPost('" + ViewState["page"].ToString() + "','1');";
+                        ScriptManager.RegisterStartupScript(Page, Page.GetType(), "OpenPage", strScript1, true);
+                    }
+                    setData();
+                    txtperson_code.ReadOnly = true;
+                    txtperson_code.CssClass = "textboxdis";
+                    MsgBox("บันทึกข้อมูลสมบูรณ์");
+                }
+            }
+
         }
 
         private void setData()

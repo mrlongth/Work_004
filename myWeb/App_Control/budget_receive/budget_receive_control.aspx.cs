@@ -143,6 +143,10 @@ namespace myWeb.App_Control.budget_receive
                     {
                         saveDataDetail();
                         oBudget_receive.SP_BUDGET_RECEIVE_TOTAL_UPD(txtbudget_receive_doc.Text);
+                        if (chkSamePlan.Checked)
+                        {
+                            oBudget_receive.SP_BUDGET_RECEIVE_UPDATE_PLAN(txtbudget_receive_doc.Text);
+                        }
                     }
                 }
                 else
@@ -258,6 +262,25 @@ namespace myWeb.App_Control.budget_receive
                 oBudget_receive.Dispose();
             }
             return blnResult;
+        }
+
+        private bool CheckRecord()
+        {
+            var result = false;
+            var lstBudgetDetail = new List<view_Budget_receive_detail>();
+            try
+            {
+                cBudget_receive oBudget_receive = new cBudget_receive();
+                _strMessage = string.Empty;
+                _strCriteria = " and budget_plan_code = '" + txtbudget_plan_code.Text + "' AND degree_code = '" + cboDegree.SelectedValue + "' ";
+                lstBudgetDetail = oBudget_receive.GETDETAILS(_strCriteria);
+                result = lstBudgetDetail.Any();
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message.ToString();
+            }
+            return result;
         }
 
 
@@ -566,17 +589,6 @@ namespace myWeb.App_Control.budget_receive
                     var dtBudgetMajor = ds.Tables[0];
                     lstBudgetMajor = Helper.ToClassInstanceCollection<view_Budget_receive_detail>(dtBudgetMajor).ToList();
                     var lstLot = lstBudgetMajor.GroupBy(m => new { m.lot_code, m.lot_name }).Select(r => new Lot { lot_code = r.Key.lot_code, lot_name = r.Key.lot_name });
-                    //var lstMajor = lstBudgetMajor.GroupBy(m => new { m.major_code, m.major_name, m.major_abbrev }).Select(r => new Major { major_code = r.Key.major_code, major_name = r.Key.major_name, major_abbrev = r.Key.major_abbrev });
-                    //foreach (var major in lstMajor)
-                    //{
-                    //    TemplateField tfield = new TemplateField
-                    //    {
-
-                    //        HeaderText = major.major_abbrev,
-                    //        ItemTemplate = new MyGridViewTemplate(DataControlRowType.DataRow, "txt" + major.major_code),
-                    //    };
-                    //    GridViewDetail.Columns.Add(tfield);
-                    //}
                     GridViewDetail.PageIndex = 0;
                     ds.Tables[0].DefaultView.Sort = ViewState["sort"] + " " + ViewState["direction"];
                     GridViewDetail.DataSource = lstLot;
@@ -589,10 +601,6 @@ namespace myWeb.App_Control.budget_receive
             }
             finally
             {
-                //if (GridViewDetail.Rows.Count == 0)
-                //{
-                //    EmptyGridFix(GridViewDetail);
-                //}
                 oBudget_money.Dispose();
                 ds.Dispose();
             }
@@ -1018,8 +1026,16 @@ namespace myWeb.App_Control.budget_receive
                     if (txtMajor != null)
                     {
                         ((AwNumeric)txtMajor).Visible = true;
-                        if (major.budget_receive_detail_contribute > 0)
-                            ((AwNumeric)txtMajor).Value = major.budget_receive_detail_contribute.ToString();
+                        if (chkSamePlan.Checked)
+                        {
+                            if (major.budget_money_major_plan > 0)
+                                ((AwNumeric)txtMajor).Value = major.budget_money_major_plan.ToString();
+                        }
+                        else
+                        {
+                            if (major.budget_receive_detail_contribute > 0)
+                                ((AwNumeric)txtMajor).Value = major.budget_receive_detail_contribute.ToString();
+                        }
                     }
                     var hddMajor = e.Row.FindControl("hdd" + major.major_code);
                     if (hddMajor != null)
@@ -1146,9 +1162,13 @@ namespace myWeb.App_Control.budget_receive
         }
 
 
+
+
         #endregion
 
-
-
+        protected void chkSamePlan_CheckedChanged(object sender, EventArgs e)
+        {
+            BindGridViewDetail();
+        }
     }
 }

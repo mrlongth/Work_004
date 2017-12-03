@@ -215,7 +215,7 @@ body {
 .bottom_mid {
 	background-image:url(../images/bt_mid.png);
 	font:12px Verdana, Geneva, sans-serif;
-	color:#FFF
+	color:black;
 }
 .bottom_right {
 	background:url(../images/bottm_right.png);

@@ -149,6 +149,7 @@ namespace myWeb.App_Control.budget_open
 
                 budget_open_head.open_remark = txtopen_remark.Text.Trim();
                 budget_open_head.approve_head_status = cboApproveStatus.SelectedValue;
+                budget_open_head.person_open = txtperson_code.Text;
 
                 budget_open_head.c_created_by = Session["username"].ToString();
                 budget_open_head.c_updated_by = Session["username"].ToString();
@@ -286,6 +287,9 @@ namespace myWeb.App_Control.budget_open
                     txtunit_name.Text = budget_open_head.unit_name;
                     txtopen_remark.Text = budget_open_head.open_remark;
 
+                    txtperson_code.Text = budget_open_head.person_code ;
+                    txtperson_name.Text = budget_open_head.person_thai_name + " " + budget_open_head.person_thai_surname;
+
                     txtef_open_doc.Text = budget_open_head.ef_open_doc;
                     if (budget_open_head.open_code != null)
                     {
@@ -307,6 +311,11 @@ namespace myWeb.App_Control.budget_open
                     {
                         cboApproveStatus.SelectedIndex = -1;
                         cboApproveStatus.Items.FindByValue(budget_open_head.approve_head_status).Selected = true;
+                    }
+
+                    if (MajorLock == "Y")
+                    {
+                        cboApproveStatus.Enabled = false;
                     }
 
 
@@ -486,6 +495,11 @@ namespace myWeb.App_Control.budget_open
             TabContainer1.Tabs[0].Visible = true;
             TabContainer1.Tabs[1].Visible = false;
             TabContainer1.Tabs[2].Visible = false;
+            if(MajorLock == "Y")
+            {
+                cboApproveStatus.Enabled = false;
+                cboApproveStatus.SelectedIndex = 1;
+            }
 
         }
 
@@ -545,6 +559,7 @@ namespace myWeb.App_Control.budget_open
             }
         }
 
+    
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType.Equals(DataControlRowType.Header))
@@ -662,6 +677,7 @@ namespace myWeb.App_Control.budget_open
             try
             {
                 oBudget_open.SP_BUDGET_OPEN_DETAIL_DEL(hddbudget_open_detail_id.Value);
+                oBudget_open.SP_BUDGET_OPEN_TOTAL_UPD(txtbudget_open_doc.Text);
             }
             catch (Exception ex)
             {

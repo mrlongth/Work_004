@@ -44,6 +44,8 @@
           <Property Name="budget_money_detail_plan" Type="money" />
           <Property Name="budget_money_detail_contribute" Type="money" />
           <Property Name="budget_money_detail_use" Type="money" />
+          <Property Name="budget_money_detail_transfer_in" Type="money" />
+          <Property Name="budget_money_detail_transfer_out" Type="money" />
           <Property Name="budget_money_detail_comment" Type="ntext" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
@@ -669,6 +671,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not 
           <Key>
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="budget_money_doc" />
+            <PropertyRef Name="budget_money_plan" />
+            <PropertyRef Name="budget_money_contribute" />
+            <PropertyRef Name="budget_money_use" />
+            <PropertyRef Name="budget_money_detail_transfer_in" />
+            <PropertyRef Name="budget_money_detail_transfer_out" />
           </Key>
           <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
           <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
@@ -676,7 +683,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not 
           <Property Name="budget_money_detail_plan" Type="money" />
           <Property Name="budget_money_detail_contribute" Type="money" />
           <Property Name="budget_money_detail_use" Type="money" />
-          <Property Name="budget_money_detail_remain" Type="money" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
           <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
@@ -685,9 +691,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not 
           <Property Name="budget_type" Type="varchar" MaxLength="1" />
           <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
           <Property Name="degree_code" Type="varchar" MaxLength="10" />
-          <Property Name="budget_money_plan" Type="money" />
-          <Property Name="budget_money_contribute" Type="money" />
-          <Property Name="budget_money_use" Type="money" />
+          <Property Name="budget_money_plan" Type="money" Nullable="false" />
+          <Property Name="budget_money_contribute" Type="money" Nullable="false" />
+          <Property Name="budget_money_use" Type="money" Nullable="false" />
           <Property Name="budget_money_remain" Type="money" />
           <Property Name="unit_code" Type="varchar" MaxLength="10" />
           <Property Name="activity_code" Type="varchar" MaxLength="6" />
@@ -708,7 +714,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not 
           <Property Name="degree_name" Type="varchar" MaxLength="100" />
           <Property Name="budget_money_detail_comment" Type="ntext" />
           <Property Name="comments" Type="varchar" MaxLength="255" />
-          <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_detail_code" Type="varchar" MaxLength="20" />
           <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
           <Property Name="item_code" Type="varchar" MaxLength="10" />
           <Property Name="item_year" Type="varchar" MaxLength="4" />
@@ -723,6 +729,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_detail' does not 
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
           <Property Name="item_group_type" Type="varchar" MaxLength="1" />
+          <Property Name="budget_money_detail_transfer_in" Type="money" Nullable="false" />
+          <Property Name="budget_money_detail_transfer_out" Type="money" Nullable="false" />
+          <Property Name="budget_money_detail_transfer" Type="money" />
+          <Property Name="budget_money_detail_remain" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -790,7 +800,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major' does not h
           <Property Name="budget_money_major_plan" Type="money" Nullable="false" />
           <Property Name="budget_money_major_contribute" Type="money" Nullable="false" />
           <Property Name="budget_money_major_use" Type="money" Nullable="false" />
-          <Property Name="budget_money_major_remain" Type="money" />
           <Property Name="budget_money_major_comment" Type="ntext" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
@@ -851,6 +860,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major' does not h
           <Property Name="budget_money_major_transfer_in" Type="money" Nullable="false" />
           <Property Name="budget_money_major_transfer_out" Type="money" Nullable="false" />
           <Property Name="budget_money_major_transfer_amount" Type="money" />
+          <Property Name="budget_money_major_remain" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major_report' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1053,6 +1063,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_head' does not hav
           <Property Name="major_name" Type="varchar" MaxLength="100" />
           <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
           <Property Name="major_order" Type="int" />
+          <Property Name="person_code" Type="varchar" MaxLength="10" />
+          <Property Name="title_code" Type="varchar" MaxLength="5" />
+          <Property Name="person_thai_name" Type="varchar" MaxLength="50" />
+          <Property Name="person_thai_surname" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1224,8 +1238,13 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_head' does not 
           <Property Name="d_updated_date" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'mju_budget.dbo.view_Budget_summary' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+warning 6002: The table/view 'mju_budget.dbo.view_Budget_summary' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_Budget_summary">
+          <Key>
+            <PropertyRef Name="budget_money_major_id" />
+            <PropertyRef Name="major_code" />
+          </Key>
+          <Property Name="budget_money_major_id" Type="bigint" Nullable="false" />
           <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
           <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
           <Property Name="budget_date" Type="datetime" />
@@ -1252,13 +1271,23 @@ warning 6013: The table/view 'mju_budget.dbo.view_Budget_summary' does not have 
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
           <Property Name="degree_code" Type="varchar" MaxLength="10" />
           <Property Name="degree_name" Type="varchar" MaxLength="100" />
-          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="major_name" Type="varchar" MaxLength="100" />
           <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
           <Property Name="major_order" Type="int" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+          <Property Name="budget_type" Type="varchar" MaxLength="1" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_detail_id" Type="int" />
+          <Property Name="item_detail_code" Type="varchar" MaxLength="20" />
+          <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
           <Property Name="budget_money_major_plan" Type="money" />
-        </EntityType>-->
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_transfer_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_Budget_transfer_detail">
@@ -1777,6 +1806,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Person_list' does not have a p
           <Property Name="major_code" Type="varchar" MaxLength="10" />
           <Property Name="major_year" Type="varchar" MaxLength="4" />
           <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Person_user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1996,6 +2026,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Principal>
             <Dependent Role="Budget_open_head">
               <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Budget_open_head_person_open">
+          <End Role="Person_his" Type="Self.Person_his" Multiplicity="0..1" />
+          <End Role="Budget_open_head" Type="Self.Budget_open_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_his">
+              <PropertyRef Name="person_code" />
+            </Principal>
+            <Dependent Role="Budget_open_head">
+              <PropertyRef Name="person_open" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2463,7 +2505,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_money_detail].[budget_money_detail_plan] AS [budget_money_detail_plan], 
     [view_Budget_money_detail].[budget_money_detail_contribute] AS [budget_money_detail_contribute], 
     [view_Budget_money_detail].[budget_money_detail_use] AS [budget_money_detail_use], 
-    [view_Budget_money_detail].[budget_money_detail_remain] AS [budget_money_detail_remain], 
     [view_Budget_money_detail].[c_created_by] AS [c_created_by], 
     [view_Budget_money_detail].[d_created_date] AS [d_created_date], 
     [view_Budget_money_detail].[c_updated_by] AS [c_updated_by], 
@@ -2509,7 +2550,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_money_detail].[lot_code] AS [lot_code], 
     [view_Budget_money_detail].[lot_year] AS [lot_year], 
     [view_Budget_money_detail].[lot_name] AS [lot_name], 
-    [view_Budget_money_detail].[item_group_type] AS [item_group_type]
+    [view_Budget_money_detail].[item_group_type] AS [item_group_type], 
+    [view_Budget_money_detail].[budget_money_detail_transfer_in] AS [budget_money_detail_transfer_in], 
+    [view_Budget_money_detail].[budget_money_detail_transfer_out] AS [budget_money_detail_transfer_out], 
+    [view_Budget_money_detail].[budget_money_detail_transfer] AS [budget_money_detail_transfer], 
+    [view_Budget_money_detail].[budget_money_detail_remain] AS [budget_money_detail_remain]
     FROM [dbo].[view_Budget_money_detail] AS [view_Budget_money_detail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_money_head" EntityType="Self.view_Budget_money_head" store:Type="Views" store:Schema="dbo">
@@ -2557,7 +2602,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_money_major].[budget_money_major_plan] AS [budget_money_major_plan], 
     [view_Budget_money_major].[budget_money_major_contribute] AS [budget_money_major_contribute], 
     [view_Budget_money_major].[budget_money_major_use] AS [budget_money_major_use], 
-    [view_Budget_money_major].[budget_money_major_remain] AS [budget_money_major_remain], 
     [view_Budget_money_major].[budget_money_major_comment] AS [budget_money_major_comment], 
     [view_Budget_money_major].[c_created_by] AS [c_created_by], 
     [view_Budget_money_major].[d_created_date] AS [d_created_date], 
@@ -2617,7 +2661,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_money_major].[item_group_type] AS [item_group_type], 
     [view_Budget_money_major].[budget_money_major_transfer_in] AS [budget_money_major_transfer_in], 
     [view_Budget_money_major].[budget_money_major_transfer_out] AS [budget_money_major_transfer_out], 
-    [view_Budget_money_major].[budget_money_major_transfer_amount] AS [budget_money_major_transfer_amount]
+    [view_Budget_money_major].[budget_money_major_transfer_amount] AS [budget_money_major_transfer_amount], 
+    [view_Budget_money_major].[budget_money_major_remain] AS [budget_money_major_remain]
     FROM [dbo].[view_Budget_money_major] AS [view_Budget_money_major]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_money_major_report" EntityType="Self.view_Budget_money_major_report" store:Type="Views" store:Schema="dbo">
@@ -2800,7 +2845,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_head].[ef_open_doc] AS [ef_open_doc], 
     [view_Budget_open_head].[major_name] AS [major_name], 
     [view_Budget_open_head].[major_abbrev] AS [major_abbrev], 
-    [view_Budget_open_head].[major_order] AS [major_order]
+    [view_Budget_open_head].[major_order] AS [major_order], 
+    [view_Budget_open_head].[person_code] AS [person_code], 
+    [view_Budget_open_head].[title_code] AS [title_code], 
+    [view_Budget_open_head].[person_thai_name] AS [person_thai_name], 
+    [view_Budget_open_head].[person_thai_surname] AS [person_thai_surname]
     FROM [dbo].[view_Budget_open_head] AS [view_Budget_open_head]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_plan" EntityType="Self.view_Budget_plan" store:Type="Views" store:Schema="dbo">
@@ -2959,6 +3008,53 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_receive_head].[c_updated_by] AS [c_updated_by], 
     [view_Budget_receive_head].[d_updated_date] AS [d_updated_date]
     FROM [dbo].[view_Budget_receive_head] AS [view_Budget_receive_head]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_Budget_summary" EntityType="Self.view_Budget_summary" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Budget_summary].[budget_money_major_id] AS [budget_money_major_id], 
+    [view_Budget_summary].[budget_plan_code] AS [budget_plan_code], 
+    [view_Budget_summary].[budget_money_year] AS [budget_money_year], 
+    [view_Budget_summary].[budget_date] AS [budget_date], 
+    [view_Budget_summary].[money_type] AS [money_type], 
+    [view_Budget_summary].[report_type] AS [report_type], 
+    [view_Budget_summary].[money_type_name] AS [money_type_name], 
+    [view_Budget_summary].[unit_code] AS [unit_code], 
+    [view_Budget_summary].[activity_code] AS [activity_code], 
+    [view_Budget_summary].[plan_code] AS [plan_code], 
+    [view_Budget_summary].[work_code] AS [work_code], 
+    [view_Budget_summary].[fund_code] AS [fund_code], 
+    [view_Budget_summary].[unit_name] AS [unit_name], 
+    [view_Budget_summary].[director_code] AS [director_code], 
+    [view_Budget_summary].[director_name] AS [director_name], 
+    [view_Budget_summary].[activity_name] AS [activity_name], 
+    [view_Budget_summary].[produce_code] AS [produce_code], 
+    [view_Budget_summary].[produce_name] AS [produce_name], 
+    [view_Budget_summary].[budget_code] AS [budget_code], 
+    [view_Budget_summary].[budget_name] AS [budget_name], 
+    [view_Budget_summary].[plan_name] AS [plan_name], 
+    [view_Budget_summary].[work_name] AS [work_name], 
+    [view_Budget_summary].[fund_name] AS [fund_name], 
+    [view_Budget_summary].[lot_code] AS [lot_code], 
+    [view_Budget_summary].[lot_name] AS [lot_name], 
+    [view_Budget_summary].[degree_code] AS [degree_code], 
+    [view_Budget_summary].[degree_name] AS [degree_name], 
+    [view_Budget_summary].[major_code] AS [major_code], 
+    [view_Budget_summary].[major_name] AS [major_name], 
+    [view_Budget_summary].[major_abbrev] AS [major_abbrev], 
+    [view_Budget_summary].[major_order] AS [major_order], 
+    [view_Budget_summary].[budget_type] AS [budget_type], 
+    [view_Budget_summary].[item_group_code] AS [item_group_code], 
+    [view_Budget_summary].[item_group_name] AS [item_group_name], 
+    [view_Budget_summary].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Budget_summary].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Budget_summary].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Budget_summary].[item_code] AS [item_code], 
+    [view_Budget_summary].[item_name] AS [item_name], 
+    [view_Budget_summary].[item_detail_id] AS [item_detail_id], 
+    [view_Budget_summary].[item_detail_code] AS [item_detail_code], 
+    [view_Budget_summary].[item_detail_name] AS [item_detail_name], 
+    [view_Budget_summary].[budget_money_major_plan] AS [budget_money_major_plan]
+    FROM [dbo].[view_Budget_summary] AS [view_Budget_summary]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_transfer_detail" EntityType="Self.view_Budget_transfer_detail" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -3428,7 +3524,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Person_list].[user_group_list] AS [user_group_list], 
     [view_Person_list].[major_code] AS [major_code], 
     [view_Person_list].[major_year] AS [major_year], 
-    [view_Person_list].[major_name] AS [major_name]
+    [view_Person_list].[major_name] AS [major_name], 
+    [view_Person_list].[major_abbrev] AS [major_abbrev]
     FROM [dbo].[view_Person_list] AS [view_Person_list]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Person_user" EntityType="Self.view_Person_user" store:Type="Views" store:Schema="dbo">
@@ -3534,6 +3631,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           </AssociationSet>
           <AssociationSet Name="FK_Budget_open_head_major_code" Association="Self.FK_Budget_open_head_major_code">
             <End Role="Major" EntitySet="Major" />
+            <End Role="Budget_open_head" EntitySet="Budget_open_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Budget_open_head_person_open" Association="Self.FK_Budget_open_head_person_open">
+            <End Role="Person_his" EntitySet="Person_his" />
             <End Role="Budget_open_head" EntitySet="Budget_open_head" />
           </AssociationSet>
           <AssociationSet Name="FK_budget_plan_activity_code" Association="Self.FK_budget_plan_activity_code">
@@ -3724,6 +3825,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="view_Budget_plan" EntityType="mju_budgetModel.view_Budget_plan" />
           <EntitySet Name="view_Budget_receive_detail" EntityType="mju_budgetModel.view_Budget_receive_detail" />
           <EntitySet Name="view_Budget_receive_head" EntityType="mju_budgetModel.view_Budget_receive_head" />
+          <EntitySet Name="view_Budget_summary" EntityType="mju_budgetModel.view_Budget_summary" />
           <EntitySet Name="view_Budget_transfer_detail" EntityType="mju_budgetModel.view_Budget_transfer_detail" />
           <EntitySet Name="view_Budget_transfer_head" EntityType="mju_budgetModel.view_Budget_transfer_head" />
           <EntitySet Name="view_Budget_transfer_report" EntityType="mju_budgetModel.view_Budget_transfer_report" />
@@ -3917,6 +4019,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Type_position" EntitySet="Type_position" />
             <End Role="Person_work" EntitySet="Person_work" />
           </AssociationSet>
+          <AssociationSet Name="FK_Budget_open_head_person_open" Association="mju_budgetModel.FK_Budget_open_head_person_open">
+            <End Role="Person_his" EntitySet="Person_his" />
+            <End Role="Budget_open_head" EntitySet="Budget_open_head" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Activity">
           <Key>
@@ -3960,6 +4066,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_money_detail_plan" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_detail_contribute" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_detail_use" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_detail_transfer_in" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_detail_transfer_out" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_created_date" Type="DateTime" Precision="3" />
@@ -4062,6 +4170,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Budget_open_head_budget_plan_code" FromRole="Budget_open_head" ToRole="Budget_plan" />
           <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Budget_open_head_degree_code" FromRole="Budget_open_head" ToRole="Degree" />
           <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Budget_open_head_major_code" FromRole="Budget_open_head" ToRole="Major" />
+          <NavigationProperty Name="Person_his" Relationship="mju_budgetModel.FK_Budget_open_head_person_open" FromRole="Budget_open_head" ToRole="Person_his" />
         </EntityType>
         <EntityType Name="Budget_plan">
           <Key>
@@ -4447,6 +4556,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="person_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Title" Relationship="mju_budgetModel.FK_person_his_title_code" FromRole="Person_his" ToRole="Title" />
+          <NavigationProperty Name="Budget_open_head" Relationship="mju_budgetModel.FK_Budget_open_head_person_open" FromRole="Person_his" ToRole="Budget_open_head" />
         </EntityType>
         <EntityType Name="Person_manage">
           <Key>
@@ -4668,6 +4778,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Key>
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="budget_money_doc" />
+            <PropertyRef Name="budget_money_plan" />
+            <PropertyRef Name="budget_money_contribute" />
+            <PropertyRef Name="budget_money_use" />
+            <PropertyRef Name="budget_money_detail_transfer_in" />
+            <PropertyRef Name="budget_money_detail_transfer_out" />
           </Key>
           <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
           <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -4684,9 +4799,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_plan" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_contribute" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_use" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
@@ -4707,7 +4822,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="budget_money_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
@@ -4722,6 +4837,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="budget_money_detail_transfer_in" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_detail_transfer_out" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_detail_transfer" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="view_Budget_money_head">
           <Key>
@@ -5042,6 +5160,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="major_order" Type="Int32" />
+          <Property Name="person_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="title_code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="person_thai_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="person_thai_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Budget_plan">
           <Key>
@@ -5205,6 +5327,55 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_created_date" Type="DateTime" Precision="3" />
           <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="view_Budget_summary">
+          <Key>
+            <PropertyRef Name="budget_money_major_id" />
+            <PropertyRef Name="major_code" />
+          </Key>
+          <Property Name="budget_money_major_id" Type="Int64" Nullable="false" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="budget_date" Type="DateTime" Precision="3" />
+          <Property Name="money_type" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="report_type" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="money_type_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+          <Property Name="budget_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_id" Type="Int32" />
+          <Property Name="item_detail_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="view_Budget_transfer_detail">
           <Key>
@@ -5704,6 +5875,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Person_user">
           <Key>
@@ -6316,6 +6488,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Budget_open_head_person_open">
+          <End Type="mju_budgetModel.Person_his" Role="Person_his" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person_his">
+              <PropertyRef Name="person_code" />
+            </Principal>
+            <Dependent Role="Budget_open_head">
+              <PropertyRef Name="person_open" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6361,6 +6545,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
                 <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
                 <ScalarProperty Name="budget_money_detail_comment" ColumnName="budget_money_detail_comment" />
+                <ScalarProperty Name="budget_money_detail_transfer_out" ColumnName="budget_money_detail_transfer_out" />
+                <ScalarProperty Name="budget_money_detail_transfer_in" ColumnName="budget_money_detail_transfer_in" />
                 <ScalarProperty Name="budget_money_detail_use" ColumnName="budget_money_detail_use" />
                 <ScalarProperty Name="budget_money_detail_contribute" ColumnName="budget_money_detail_contribute" />
                 <ScalarProperty Name="budget_money_detail_plan" ColumnName="budget_money_detail_plan" />
@@ -7021,6 +7207,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_money_detail">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_money_detail">
               <MappingFragment StoreEntitySet="view_Budget_money_detail">
+                <ScalarProperty Name="budget_money_detail_transfer" ColumnName="budget_money_detail_transfer" />
+                <ScalarProperty Name="budget_money_detail_transfer_out" ColumnName="budget_money_detail_transfer_out" />
+                <ScalarProperty Name="budget_money_detail_transfer_in" ColumnName="budget_money_detail_transfer_in" />
                 <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />
@@ -7334,6 +7523,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_open_head">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_head">
               <MappingFragment StoreEntitySet="view_Budget_open_head">
+                <ScalarProperty Name="person_thai_surname" ColumnName="person_thai_surname" />
+                <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
+                <ScalarProperty Name="title_code" ColumnName="title_code" />
+                <ScalarProperty Name="person_code" ColumnName="person_code" />
                 <ScalarProperty Name="major_order" ColumnName="major_order" />
                 <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />
@@ -7538,6 +7731,55 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="budget_receive_year" ColumnName="budget_receive_year" />
                 <ScalarProperty Name="budget_receive_date" ColumnName="budget_receive_date" />
                 <ScalarProperty Name="budget_receive_doc" ColumnName="budget_receive_doc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Budget_summary">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_summary">
+              <MappingFragment StoreEntitySet="view_Budget_summary">
+                <ScalarProperty Name="budget_money_major_plan" ColumnName="budget_money_major_plan" />
+                <ScalarProperty Name="item_detail_name" ColumnName="item_detail_name" />
+                <ScalarProperty Name="item_detail_code" ColumnName="item_detail_code" />
+                <ScalarProperty Name="item_detail_id" ColumnName="item_detail_id" />
+                <ScalarProperty Name="item_name" ColumnName="item_name" />
+                <ScalarProperty Name="item_code" ColumnName="item_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="lot_name" ColumnName="lot_name" />
+                <ScalarProperty Name="lot_code" ColumnName="lot_code" />
+                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+                <ScalarProperty Name="work_name" ColumnName="work_name" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="director_name" ColumnName="director_name" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+                <ScalarProperty Name="money_type_name" ColumnName="money_type_name" />
+                <ScalarProperty Name="report_type" ColumnName="report_type" />
+                <ScalarProperty Name="money_type" ColumnName="money_type" />
+                <ScalarProperty Name="budget_date" ColumnName="budget_date" />
+                <ScalarProperty Name="budget_money_year" ColumnName="budget_money_year" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="budget_money_major_id" ColumnName="budget_money_major_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7978,6 +8220,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Person_list">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Person_list">
               <MappingFragment StoreEntitySet="view_Person_list">
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
                 <ScalarProperty Name="major_name" ColumnName="major_name" />
                 <ScalarProperty Name="major_year" ColumnName="major_year" />
                 <ScalarProperty Name="major_code" ColumnName="major_code" />

@@ -686,6 +686,7 @@ namespace myWeb.App_Control.budget_transfer
             try
             {
                 oBudget_transfer.SP_BUDGET_TRANSFER_DETAIL_DEL(hddbudget_transfer_detail_id.Value);
+                oBudget_transfer.SP_BUDGET_TRANSFER_TOTAL_UPD(txtbudget_transfer_doc.Text);
             }
             catch (Exception ex)
             {

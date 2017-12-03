@@ -235,6 +235,9 @@
                     รายละเอียดงบประมาณ
                 </HeaderTemplate>
                 <ContentTemplate>
+                    <div style="text-align:right;padding:10px;">
+                        <asp:CheckBox ID="chkSamePlan" runat="server" Text="ยอดนำเข้าเท่ากับยอดจัดสรร"  AutoPostBack="True" OnCheckedChanged="chkSamePlan_CheckedChanged" />
+                    </div>
                     <asp:Panel ID="pnlDetail" runat="server">
                         <asp:GridView ID="GridViewDetail" runat="server"
                             AutoGenerateColumns="False" BackColor="White" BorderWidth="1px"

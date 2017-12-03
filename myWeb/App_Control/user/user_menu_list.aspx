@@ -127,7 +127,7 @@
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="กลุ่มผู้ใช้งาน">
+            <asp:TemplateField HeaderText="กลุ่มผู้ใช้งาน" SortExpression="user_group_list">
                 <ItemStyle HorizontalAlign="Left" Width="12%" Wrap="True" />
                 <ItemTemplate>
                     <asp:Label ID="lbluser_group_list" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.user_group_list") %>'>

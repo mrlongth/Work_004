@@ -60,8 +60,7 @@
                 <asp:Label ID="lblError0" runat="server" CssClass="label_error"></asp:Label>
             </td>
             <td>
-                <asp:CheckBox ID="CheckBox1" runat="server" AutoPostBack="True" CssClass="label_h" OnCheckedChanged="CheckBox1_CheckedChanged" Text="ปิดหน้าจอข้อมูลเงินเดือน" />
-            </td>
+                &nbsp;</td>
             <td>
                 &nbsp;</td>
         </tr>

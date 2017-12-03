@@ -42,11 +42,10 @@ namespace myDLL
                         }
                         else if ((ctrl is ImageButton))
                         {
-                            if (((ImageButton)(ctrl)).ID != "imgStatus")
+                            if (((ImageButton)(ctrl)).ID != "imgStatus" || ((ImageButton)(ctrl)).ID != "imgView")
                             {
                                 ((ImageButton)(ctrl)).Visible = false;
                             }
-
                         }
                         else if ((ctrl is CheckBox))
                         {

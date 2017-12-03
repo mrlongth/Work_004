@@ -16,23 +16,11 @@
         </tr>
         <tr>
             <td style="text-align: right; ">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage9">สังกัด :
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage9">หลักสูตร :
                 </asp:Label>
             </td>
             <td colspan="4">
-                <asp:DropDownList runat="server" CssClass="textbox" ID="cboDirector" AutoPostBack="True"
-                    OnSelectedIndexChanged="cboDirector_SelectedIndexChanged">
-                </asp:DropDownList>
-            </td>
-        </tr>
-        <tr>
-            <td style="text-align: right; ">
-                <asp:Label runat="server" CssClass="label_h" ID="lblPage7">หน่วยงาน :
-                </asp:Label>
-            </td>
-            <td colspan="4">
-                <asp:DropDownList runat="server" CssClass="textbox" ID="cboUnit" AutoPostBack="True"
-                    OnSelectedIndexChanged="cboUnit_SelectedIndexChanged">
+                <asp:DropDownList runat="server" CssClass="textbox" ID="cboMajor">
                 </asp:DropDownList>
             </td>
         </tr>
@@ -50,8 +38,6 @@
             <td>
                 <asp:TextBox runat="server" CssClass="textbox" Width="200px" 
                     ID="txtperson_name"></asp:TextBox>
-                <asp:TextBox runat="server" CssClass="textboxdis" Width="100px" 
-                    ID="txtyear" Visible="False"></asp:TextBox>
             </td>
             <td rowspan="2">
                 &nbsp;
@@ -106,13 +92,13 @@
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                 <asp:TemplateField HeaderText="เลขที่บัตรประชาชน" SortExpression="person_id">
+              <%--   <asp:TemplateField HeaderText="เลขที่บัตรประชาชน" SortExpression="person_id">
                     <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="True" />
                     <ItemTemplate>
                         <asp:Label ID="lblperson_id" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.person_id") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                </asp:TemplateField>
+                </asp:TemplateField>--%>
                 <asp:TemplateField HeaderText="ชื่อบุคลากร " SortExpression="person_thai_name">
                     <ItemStyle HorizontalAlign="Left" Width="18%" Wrap="True" />
                     <ItemTemplate>
@@ -136,10 +122,10 @@
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name">
+                <asp:TemplateField HeaderText="หลักสูตร" SortExpression="major_name">
                     <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
                     <ItemTemplate>
-                        <asp:Label ID="lblunit_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name") %>'>
+                        <asp:Label ID="lblmajor_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_name") %>'>
                         </asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>

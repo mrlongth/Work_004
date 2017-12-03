@@ -27,6 +27,12 @@
     <table cellpadding="1" cellspacing="0" style="width: 100%" border="0">
         <tr>
             <td style="text-align: right;" width="25%">
+                &nbsp;</td>
+            <td colspan="2">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align: right;" width="25%">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage4">หมวดรายได้/ค่าใช้จ่าย :</asp:Label>
             </td>
             <td colspan="2">
@@ -53,7 +59,7 @@
                 <asp:DropDownList ID="cboItem" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboItem_group_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td rowspan="2" style="text-align: right">
+            <td rowspan="3" style="text-align: right">
                 <asp:ImageButton runat="server" ImageUrl="~/images/button/save_add.png"
                     ID="imgSaveOnly" OnClick="imgSaveOnly_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
@@ -71,6 +77,12 @@
                     ID="txtitem_detail_name"></asp:TextBox>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
         </tr>
         <tr>
             <td style="text-align: right;" colspan="3">
@@ -133,6 +145,13 @@
                                     </asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                           
+                        <asp:TemplateField HeaderText="ยอดคงเหลือ">
+                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemTemplate>
+                                <cc1:AwNumeric ID="txtbudget_money_major_remain" runat="server" CssClass="numberdis" LeadZero="Show" DisplayMode="View" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="100px"></cc1:AwNumeric>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         </Columns>
                         <EmptyDataRowStyle HorizontalAlign="Center" />
                         <HeaderStyle CssClass="stGridHeader"

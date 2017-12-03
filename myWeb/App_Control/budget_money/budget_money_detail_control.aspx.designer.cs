@@ -355,24 +355,6 @@ namespace myWeb.App_Control.item {
         protected global::Aware.WebControls.AwNumeric txtbudget_money_detail_plan;
         
         /// <summary>
-        /// Label95 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label95;
-        
-        /// <summary>
-        /// txtbudget_money_detail_contribute control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Aware.WebControls.AwNumeric txtbudget_money_detail_contribute;
-        
-        /// <summary>
         /// LinkButton1 control.
         /// </summary>
         /// <remarks>
@@ -389,6 +371,42 @@ namespace myWeb.App_Control.item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ImageButton imgSaveOnly;
+        
+        /// <summary>
+        /// Label100 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label100;
+        
+        /// <summary>
+        /// txtbudget_money_detail_contribute control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Aware.WebControls.AwNumeric txtbudget_money_detail_contribute;
+        
+        /// <summary>
+        /// Label99 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label99;
+        
+        /// <summary>
+        /// txtbudget_money_detail_transfer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Aware.WebControls.AwNumeric txtbudget_money_detail_transfer;
         
         /// <summary>
         /// Label97 control.

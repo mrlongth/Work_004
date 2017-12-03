@@ -444,12 +444,26 @@ namespace myWeb.App_Control.person_group
             {
                 if (!oPerson_group.SP_PERSON_GROUP_DEL(lblperson_group_code.Text, "N", strUpdatedBy, ref strMessage))
                 {
-                    lblError.Text = strMessage;
+                    if (strMessage.Contains("REFERENCE constraint"))
+                    {
+                        MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                    }
+                    else
+                    {
+                        lblError.Text = strMessage;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

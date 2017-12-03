@@ -42,7 +42,6 @@ namespace myWeb.App_Control.menu
                 ViewState["direction"] = "ASC";
                 InitcboMenuParent();
                 BindGridView(0);
-                CheckBox1.Checked = this.CheckClosePayment();
             }
             else
             {
@@ -514,12 +513,26 @@ namespace myWeb.App_Control.menu
             {
                 if (!oMenu.SP_MENU_DEL(hddMenuID.Value.ToString(), ref strMessage))
                 {
-                    lblError.Text = strMessage;
+                    if (strMessage.Contains("REFERENCE constraint"))
+                    {
+                        MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                    }
+                    else
+                    {
+                        lblError.Text = strMessage;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {
@@ -528,10 +541,6 @@ namespace myWeb.App_Control.menu
             BindGridView(0);
         }
 
-        protected void CheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            SaveClosePayment();
-        }
 
         private bool CheckClosePayment()
         {
@@ -555,16 +564,6 @@ namespace myWeb.App_Control.menu
             return false;
         }
 
-
-        private void SaveClosePayment()
-        {
-            bool blnResult = false;
-            string strMessage = string.Empty;
-            cCommon oCommon = new cCommon();
-            var strIsClosePayment = CheckBox1.Checked ? "Y" : "N";
-            var strCriteria = " Update general set g_code = '" + strIsClosePayment + "' where g_type = 'close_payment' ";
-            oCommon.EXE_SQL(strCriteria , ref _strMessage);
-        }
 
     }
 }

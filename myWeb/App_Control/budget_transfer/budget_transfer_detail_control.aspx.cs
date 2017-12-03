@@ -643,6 +643,7 @@ namespace myWeb.App_Control.budget_transfer
                 {
                     oBudget_transfer.SP_BUDGET_TRANSFER_DETAIL_INS(budget_transfer_detail);
                 }
+                oBudget_transfer.SP_BUDGET_TRANSFER_TOTAL_UPD(BudgetTransferDoc);
                 blnResult = true;
             }
             catch (Exception ex)

@@ -588,12 +588,26 @@ namespace myWeb.App_Control.unit
             {
                 if (!oUnit.SP_DEL_UNIT(lblunit_code.Text, "N", strUpdatedBy, ref strMessage))
                 {
-                    lblError.Text = strMessage;
+                    if (strMessage.Contains("REFERENCE constraint"))
+                    {
+                        MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                    }
+                    else
+                    {
+                        lblError.Text = strMessage;
+                    }
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

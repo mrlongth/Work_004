@@ -286,34 +286,34 @@
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="ยอดจัดสรร">
-                                    <ItemStyle HorizontalAlign="Right" Width="8%" />
+                                    <ItemStyle HorizontalAlign="Right" Width="6%" />
                                     <ItemTemplate>
                                         <cc1:AwNumeric ID="txtbudget_money_detail_plan" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_plan") %>' Width="80px"></cc1:AwNumeric>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="ยอดรับจริง">
-                                    <ItemStyle HorizontalAlign="Right" Width="8%" />
+                                    <ItemStyle HorizontalAlign="Right" Width="6%" />
                                     <ItemTemplate>
                                         <cc1:AwNumeric ID="txtbudget_money_detail_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_contribute") %>' Width="80px"></cc1:AwNumeric>
                                     </ItemTemplate>
                                 </asp:TemplateField>
 
-                              <%--   <asp:TemplateField HeaderText="ยอดปรับปรุง">
-                                    <ItemStyle HorizontalAlign="Right" Width="8%" />
+                                 <asp:TemplateField HeaderText="ยอดปรับปรุง">
+                                    <ItemStyle HorizontalAlign="Right" Width="6%" />
                                     <ItemTemplate>
-                                        <cc1:AwNumeric ID="txtbudget_money_detail_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_contribute") %>' Width="80px"></cc1:AwNumeric>
+                                        <cc1:AwNumeric ID="txtbudget_money_detail_transfer" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_transfer") %>' Width="80px"></cc1:AwNumeric>
                                     </ItemTemplate>
-                                </asp:TemplateField>--%>
+                                </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="ยอดใช้แล้ว">
-                                    <ItemStyle HorizontalAlign="Right" Width="8%" />
+                                    <ItemStyle HorizontalAlign="Right" Width="6%" />
                                     <ItemTemplate>
                                         <cc1:AwNumeric ID="txtbudget_money_detail_use" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_use") %>' Width="80px"></cc1:AwNumeric>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="ยอดคงเหลือ">
-                                    <ItemStyle HorizontalAlign="Right" Width="8%" />
+                                    <ItemStyle HorizontalAlign="Right" Width="6%" />
                                     <ItemTemplate>
                                         <cc1:AwNumeric ID="txtbudget_money_detail_remain" runat="server" CssClass="numberdis" LeadZero="Show" TabIndex="-1" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_detail_remain") %>' Width="80px"></cc1:AwNumeric>
                                     </ItemTemplate>

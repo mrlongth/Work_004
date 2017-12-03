@@ -197,12 +197,27 @@
                         </tr>
 
                         <tr align="left">
+                            <td align="right" nowrap style="height: 22px" valign="middle">
+                                <asp:Label ID="Label117" runat="server" CssClass="label_error">*</asp:Label>
+                                <asp:Label ID="Label116" runat="server" CssClass="label_hbk">ผู้ขออนุมัติ :</asp:Label>
+                            </td>
+                            <td align="left" colspan="3" nowrap style="height: 22px" valign="middle">
+                                <asp:TextBox ID="txtperson_code" runat="server" CssClass="textbox" MaxLength="10" Width="80px"></asp:TextBox>
+                                &nbsp;<asp:ImageButton ID="imgList_person" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
+                                <asp:ImageButton ID="imgClear_person" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" />
+                                &nbsp;<asp:TextBox ID="txtperson_name" runat="server" CssClass="textboxdis" ReadOnly="True" Width="300px"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ControlToValidate="txtperson_code" Display="None" ErrorMessage="กรุณาเลือกผู้ขอเบิก" SetFocusOnError="True" ValidationGroup="A"></asp:RequiredFieldValidator>
+                            </td>
+                        </tr>
+
+                        <tr align="left">
                             <td align="right" nowrap valign="middle">
+                                <asp:Label ID="Label115" runat="server" CssClass="label_error">*</asp:Label>
                                 <asp:Label ID="Label114" runat="server" CssClass="label_hbk">สถานะการอนุมัติ :</asp:Label>
                             </td>
                             <td align="left" nowrap valign="middle">
                                 <asp:DropDownList ID="cboApproveStatus" runat="server" CssClass="textbox">
-                                    <asp:ListItem Value="">---- กรุณาเลือกข้อมูล ----</asp:ListItem>
+                                    <asp:ListItem>---- กรุณาเลือกข้อมูล ----</asp:ListItem>
                                     <asp:ListItem Value="P">รออนุมัติ</asp:ListItem>
                                     <asp:ListItem Value="A">อนุมัติ</asp:ListItem>
                                     <asp:ListItem Value="C">ยกเลิกรายการ</asp:ListItem>
@@ -246,21 +261,21 @@
                             </td>
                             <td align="left" nowrap valign="middle">
                                 <asp:TextBox ID="txtef_open_doc" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
-                                &nbsp;<asp:ImageButton ID="imgList_ef_open_doc" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" />
-                                <asp:ImageButton ID="imgClear_ef_open_doc" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" Style="width: 18px" OnClick="imgClear_ef_open_doc_Click" />
+                                &nbsp;<asp:ImageButton ID="imgList_ef_open_doc" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" Visible="false" />
+                                <asp:ImageButton ID="imgClear_ef_open_doc" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" Style="width: 18px" OnClick="imgClear_ef_open_doc_Click" Visible="false" />
                                 &nbsp; </td>
                             <td align="left" nowrap valign="middle"></td>
                             <td align="left" nowrap valign="middle">&nbsp;</td>
                             <td align="left" nowrap style="vertical-align: bottom; width: 1%;" valign="middle">&nbsp;</td>
                         </tr>
-                        <tr align="left">
+                        <tr align="left" style="display:none;">
                             <td align="right" nowrap valign="middle">
                                 <asp:Label ID="Label21" runat="server" CssClass="label_hbk">รหัสขอเบิก :</asp:Label>
                             </td>
                             <td align="left" nowrap valign="middle">
                                 <asp:TextBox ID="txtopen_code" runat="server" CssClass="textboxdis" Width="100px" ReadOnly="True"></asp:TextBox>
                                 &nbsp;<asp:ImageButton ID="imgList_open" runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif" Visible="false" />
-                                <asp:ImageButton ID="imgClear_open" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" OnClick="imgClear_open_Click" Style="width: 18px" Visible="false"  />
+                                <asp:ImageButton ID="imgClear_open" runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif" OnClick="imgClear_open_Click" Style="width: 18px" Visible="false" />
                                 &nbsp; </td>
                             <td align="left" nowrap style="text-align: right;" valign="middle">&nbsp; </td>
                             <td align="left" nowrap valign="middle">&nbsp; </td>
@@ -380,7 +395,7 @@
                                         <cc1:AwNumeric ID="txtopen_amount" runat="server" Width="99%" LeadZero="Show" DisplayMode="Control" ReadOnly="true">
                                         </cc1:AwNumeric>
                                     </FooterTemplate>
-                                    <HeaderStyle HorizontalAlign="Left" Wrap="True" Width="8%"></HeaderStyle>
+                                    <HeaderStyle HorizontalAlign="Center" Wrap="True" Width="8%"></HeaderStyle>
                                     <ItemStyle HorizontalAlign="Center" Width="8%" Wrap="True" />
                                     <FooterStyle HorizontalAlign="Right" Width="8%" />
                                 </asp:TemplateField>
@@ -410,7 +425,8 @@
 
     <script type="text/javascript">
 
-        $(function () {
+        $(function ()
+        {
             LoadTinyMCE();
         });
 
@@ -418,11 +434,13 @@
         Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler_Page);
         function BeforePostback() { tinyMCE.triggerSave(); }
 
-        function EndRequestHandler_Page(sender, args) {
+        function EndRequestHandler_Page(sender, args)
+        {
             LoadTinyMCE();
         }
 
-        function LoadTinyMCE() {
+        function LoadTinyMCE()
+        {
 
             tinyMCE.remove('#<%=txtopen_command_desc.ClientID%>');
             tinyMCE.remove('#<%=txtopen_desc.ClientID%>');
@@ -432,29 +450,33 @@
 
         }
 
-        function RegisterScript() {
+        function RegisterScript()
+        {
 
-
-
-
-            $(document).on('keypress', 'form input[type=text]', function (event) {
+            $(document).on('keypress', 'form input[type=text]', function (event)
+            {
                 event.stopImmediatePropagation();
-                if (event.which == 13) {
+                if (event.which == 13)
+                {
                     event.preventDefault();
                     var $input = $('form input[type=text]');
-                    if ($(this).is($input.last())) {
+                    if ($(this).is($input.last()))
+                    {
                         $input.eq(0).focus();
-                    } else {
+                    } else
+                    {
                         $input.eq($input.index(this) + 1).focus();
                     }
                 }
             });
 
-            $(document).ready(function () {
+            $(document).ready(function ()
+            {
                 $("input:text").focus(function () { $(this).select(); });
             });
 
-            $("input[id*=imgList_budget_plan]").live("click", function () {
+            $("input[id*=imgList_budget_plan]").live("click", function ()
+            {
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree.ClientID%>');
@@ -470,7 +492,8 @@
                 return false;
             });
 
-            $("input[id*=imgList_ef_open_doc]").live("click", function () {
+            $("input[id*=imgList_ef_open_doc]").live("click", function ()
+            {
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
                 var txtef_open_doc = $('#' + this.id.replace('imgList_ef_open_doc', 'txtef_open_doc'));
                 var url = "../lov/open_head_lov.aspx?" +
@@ -482,11 +505,13 @@
                 return false;
             });
 
-            $("input[id*=imgClear_budget_plan]").live("click", function () {
+            $("input[id*=imgClear_budget_plan]").live("click", function ()
+            {
                 return window.confirm("ยืนยันการเปลี่ยนผังงบประมาณ");
             });
 
-            $("input[id*=imgAdd]").live("click", function () {
+            $("input[id*=imgAdd]").live("click", function ()
+            {
                 var cboDegree = $('#<%=cboDegree.ClientID%>');
                 var cboMajor = $('#<%=cboMajor.ClientID%>');
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
@@ -498,7 +523,7 @@
                     "&budget_open_doc=" + txtbudget_open_doc.val() +
                     "&show=1&from=budget_open_control";
 
-                OpenPopUp('900px', '500px', '96%', 'ค้นหาข้อมูลรายละเอียดรายการเบิกจ่าย', url, '1');
+                OpenPopUp('1000px', '500px', '96%', 'ค้นหาข้อมูลรายละเอียดรายการเบิกจ่าย', url, '1');
                 return false;
             });
 
@@ -506,34 +531,40 @@
 
             var GridView1 = '<%=GridView1.ClientID%>';
 
-            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("keyup", function () {
+            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("keyup", function ()
+            {
                 CalAmount();
             });
-            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("blur", function () {
+            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("blur", function ()
+            {
                 CalAmount();
             });
 
-            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("change", function () {
+            $("#" + GridView1 + " input[id*=txtopen_detail_amount]").live("change", function ()
+            {
                 CalAmount();
             });
 
 
-
-            function CalAmount() {
+            function CalAmount()
+            {
                 var GridView1 = '<%=GridView1.ClientID%>';
                 var rowCount = document.getElementById(GridView1).rows.length;
                 var txtopen_detail_amount = 0;
                 var txtopen_detail_amount_all = 0;
                 var stropen_detail_amount = "";
 
-                for (var i = 2; i < rowCount; i++) {
+                for (var i = 2; i < rowCount; i++)
+                {
 
                     var numopen_detail_amount = 0;
 
-                    if (i < 10) {
+                    if (i < 10)
+                    {
                         stropen_detail_amount = GridView1 + '_ctl0' + i + '_txtopen_detail_amount';
                     }
-                    else {
+                    else
+                    {
                         stropen_detail_amount = GridView1 + '_ctl' + i + '_txtopen_detail_amount';
                     }
                     txtopen_detail_amount = document.getElementById(stropen_detail_amount).value.replace(/,/g, "");
@@ -548,6 +579,32 @@
                 CommaFormatted(document.getElementById(txtopen_amount.attr('id')));
 
             }
+
+            $("input[id*=imgList_person]").live("click", function ()
+            {
+                var txtperson_code = $('#<%=txtperson_code.ClientID%>');
+                var txtperson_name = $('#<%=txtperson_name.ClientID%>');
+                var cboMajor = $('#<%=cboMajor.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
+                var url = "../lov/person_lov.aspx?" +
+                    "person_code=" + txtperson_code.val() +
+                    "&person_name=" + txtperson_name.val() +
+                    "&major_code=" + cboMajor.val() +
+                    "&year=" + cboYear.val() +
+                    "&txtperson_code=" + txtperson_code.attr('id') +
+                    "&txtperson_name=" + txtperson_name.attr('id') +
+                    "&cboMajor=" + cboMajor.attr('id') +
+                    "&show=1&from=budget_open_control";
+                OpenPopUp('950px', '500px', '94%', 'ค้นหาข้อมูลบุคลากร', url, '1');
+                return false;
+            });
+
+            $("input[id*=imgClear_person]").live("click", function ()
+            {
+                $('#<%=txtperson_code.ClientID%>').val('');
+                $('#<%=txtperson_name.ClientID%>').val('');
+                return false;
+            });
 
 
 

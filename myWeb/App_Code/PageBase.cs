@@ -484,6 +484,11 @@ namespace myWeb
                     currentUrl = @"~/App_Control/budget_transfer/budget_transfer_list.aspx?budget_type=R";
             }
 
+            else if (currentUrl.Contains("person_control.aspx"))
+            {
+                    currentUrl = @"~/App_Control/person/person_list.aspx";
+            }
+
             strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='" + currentUrl + "' ";
             objUserBLL.SP_USER_GROUP_MENU_SEL(strCriteria, ref ds, ref strMessage);
             if (ds.Tables.Count > 0)

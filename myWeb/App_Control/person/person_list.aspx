@@ -146,13 +146,20 @@
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name">
+             <asp:TemplateField HeaderText="หลักสูตร" SortExpression="major_name">
+                <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
+                <ItemTemplate>
+                    <asp:Label ID="lblmajor_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_name") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+           <%-- <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name">
                 <ItemStyle HorizontalAlign="Left" Width="20%" Wrap="True" />
                 <ItemTemplate>
                     <asp:Label ID="lblunit_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name") %>'>
                     </asp:Label>
                 </ItemTemplate>
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
             <asp:TemplateField HeaderText="การทำงาน" SortExpression="person_work_status_name">
                 <ItemStyle HorizontalAlign="Center" Width="8%" Wrap="True" />
                 <ItemTemplate>

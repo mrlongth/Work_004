@@ -159,6 +159,7 @@
                         </td>
                         <td align="left" colspan="4" nowrap valign="middle">
                             <cc1:AwNumeric ID="txtbudget_transfer_detail_amount" runat="server" CssClass="numberbox" DisplayMode="Control" LeadZero="Show" Width="120px"></cc1:AwNumeric>
+                            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="cboItem_detail_from" ControlToValidate="cboItem_detail_to" Display="None" ErrorMessage="รายละเอียดค่าใช้จ่ายต้นทางและปลายทางซ้ำกัน" Operator="NotEqual" SetFocusOnError="True" ValidationGroup="A"></asp:CompareValidator>
                         </td>
                     </tr>
 

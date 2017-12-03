@@ -394,7 +394,7 @@ namespace myWeb.App_Control.budget_open
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = " and Item_year = '" + strYear + "'  and  c_active='Y' ";
-            if (!string.IsNullOrEmpty(strItem_group_detail_id))
+            //if (!string.IsNullOrEmpty(strItem_group_detail_id))
             {
                 strCriteria += " and item_group_detail_id = '" + strItem_group_detail_id + "'  ";
             }
@@ -495,6 +495,10 @@ namespace myWeb.App_Control.budget_open
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                 }
                 #endregion
+
+                Label lblNo = (Label)e.Row.FindControl("lblNo");
+                int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
+                lblNo.Text = nNo.ToString();
 
             }
         }

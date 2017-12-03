@@ -503,11 +503,15 @@ namespace myWeb.App_Control.budget_open
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                 }
                 #endregion
+
+                DataRowView dv = (DataRowView)(e.Row.DataItem);
+
                 Label lblNo = (Label)e.Row.FindControl("lblNo");
                 int nNo = (GridView1.PageSize * GridView1.PageIndex) + e.Row.RowIndex + 1;
                 lblNo.Text = nNo.ToString();
                 Label lblbudget_plan_code = (Label)e.Row.FindControl("lblbudget_plan_code");
                 Label lblbudget_open_name = (Label)e.Row.FindControl("lblbudget_open_name");
+                Label lblapprove_head_status = (Label)e.Row.FindControl("lblapprove_head_status");
 
 
 
@@ -534,10 +538,37 @@ namespace myWeb.App_Control.budget_open
                 #endregion
 
 
+
+                if(dv["approve_head_status"].ToString() == "P")
+                {
+                    lblapprove_head_status.Text = "รออนุมัติ";
+                }
+                else if (dv["approve_head_status"].ToString() == "A")
+                {
+                    lblapprove_head_status.Text = "อนุมัติ";
+                }
+                else if (dv["approve_head_status"].ToString() == "C")
+                {
+                    lblapprove_head_status.Text = "ยกเลิกรายการ";
+                }
+
+
                 #region check user can edit/delete
                 imgEdit.Visible = base.IsUserEdit;
                 imgDelete.Visible = base.IsUserDelete;
                 #endregion
+
+                if (this.MajorLock == "Y")
+                {
+                    imgEdit.Visible = false;
+                    imgDelete.Visible = false;
+                    if (dv["approve_head_status"].ToString() == "P")
+                    {
+                        imgEdit.Visible = true;
+                        imgDelete.Visible = true;
+                    }
+                }
+
 
             }
         }

@@ -55,6 +55,8 @@ namespace myWeb.App_Control.budget_plan
 
                 imgPrint.Attributes.Add("onMouseOver", "src='../../images/button/print2.png'");
                 imgPrint.Attributes.Add("onMouseOut", "src='../../images/button/print.png'");
+                imgPrint.Visible = false;
+
 
                 #region Set Image
 
@@ -840,7 +842,14 @@ namespace myWeb.App_Control.budget_plan
             }
             catch (Exception ex)
             {
-                lblError.Text = ex.Message.ToString();
+                if (ex.Message.Contains("REFERENCE constraint"))
+                {
+                    MsgBox("ไม่สามารถลบข้อมูลได้เนื่องจากมีการนำไปใช้ในระบบแล้ว");
+                }
+                else
+                {
+                    lblError.Text = ex.Message.ToString();
+                }
             }
             finally
             {

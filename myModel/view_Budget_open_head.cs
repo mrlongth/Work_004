@@ -55,5 +55,9 @@ namespace myModel
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
         public Nullable<int> major_order { get; set; }
+        public string person_code { get; set; }
+        public string title_code { get; set; }
+        public string person_thai_name { get; set; }
+        public string person_thai_surname { get; set; }
     }
 }

@@ -7,6 +7,19 @@
     <table cellpadding="1" cellspacing="0" style="width: 100%" border="0">
         <tr>
             <td style="text-align: right;" width="20%">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+            <td style="text-align: right">
+                &nbsp;</td>
+            <td>
+                &nbsp;</td>
+            <td rowspan="3">&nbsp;
+                &nbsp;
+                </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;" width="20%">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage13">ประเภทรายการ :</asp:Label>
             </td>
             <td>
@@ -23,9 +36,6 @@
                 <asp:DropDownList ID="cboLot" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboLot_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td rowspan="2">&nbsp;
-                &nbsp;
-                </td>
         </tr>
         <tr>
             <td style="text-align: right;" width="15%">
@@ -51,7 +61,7 @@
                 <asp:DropDownList ID="cboItem" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboItem_group_SelectedIndexChanged">
                 </asp:DropDownList>
             </td>
-            <td rowspan="2" style="text-align: right">
+            <td rowspan="3" style="text-align: right">
                 <asp:ImageButton runat="server" AlternateText="ค้นหาข้อมูล" ImageUrl="~/images/button/Search.png"
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
             </td>
@@ -67,6 +77,12 @@
                     ID="txtitem_detail_name"></asp:TextBox>
                 <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
+        </tr>
+        <tr>
+            <td style="text-align: right;">
+                &nbsp;</td>
+            <td colspan="3">
+                &nbsp;</td>
         </tr>
     </table>
 </asp:Content>
