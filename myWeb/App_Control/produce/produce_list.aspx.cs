@@ -122,14 +122,7 @@ namespace myWeb.App_Control.produce
             string strMessage = string.Empty, strCriteria = string.Empty;
             string strbudget_code = string.Empty;
             string strYear = cboYear.SelectedValue;
-            if (Request.Form[strPrefixCtr + "cboBudget"] != null)
-            {
-                strbudget_code = Request.Form[strPrefixCtr + "cboBudget"].ToString();
-            }
-            else
-            {
-                strbudget_code = "";
-            }
+            strbudget_code = cboBudget.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = " and budget_year = '" + strYear + "'  and  c_active='Y' ";
@@ -208,9 +201,9 @@ namespace myWeb.App_Control.produce
             strproduce_code = txtproduce_code.Text.Replace("'", "''").Trim();
             strproduce_name = txtproduce_name.Text.Replace("'", "''").Trim();
             strproduce_year = cboYear.SelectedValue;
-            if (Request.Form[strPrefixCtr + "cboBudget"] != null)
+            if (cboBudget.SelectedValue != "")
             {
-                strbudget_code = Request.Form[strPrefixCtr + "cboBudget"].ToString();
+                strbudget_code = cboBudget.SelectedValue;
             }
             else
             {

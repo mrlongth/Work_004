@@ -133,7 +133,7 @@
             </tr>
             <tr align="left">
                 <td align="right" nowrap valign="middle" colspan="2">
-                    <div class="div-lov" style="height: 210px">
+                    <div class="div-lov" style="height: 160px">
                         <asp:GridView runat="server" AllowSorting="True" AutoGenerateColumns="False" CellPadding="2"
                             EmptyDataText="ยังไม่มีข้อมูล" ShowFooter="True" BackColor="White" BorderWidth="1px"
                             CssClass="stGrid" Font-Bold="False" Font-Size="10pt" ID="GridView1" OnPageIndexChanging="GridView1_PageIndexChanging"

@@ -571,7 +571,7 @@ namespace myWeb.App_Control.budget_transfer
 
             if (!string.IsNullOrEmpty(budget_transfer_head.budget_transfer_doc))
             {
-                strCriteria = strCriteria + "  And  (budget_transfer_doc ='" + budget_transfer_head.budget_transfer_doc + "') ";
+                strCriteria = strCriteria + "  And  (budget_transfer_doc LIKE '%" + budget_transfer_head.budget_transfer_doc + "%') ";
             }
 
             if (!string.IsNullOrEmpty(txtdate_begin.Text))
@@ -1064,6 +1064,7 @@ namespace myWeb.App_Control.budget_transfer
         {
             GridViewRow gvRow;
             Label lblbudget_transfer_doc = null;
+            if (e.CommandName.ToUpper().Equals("PAGE")) return;
             if (!e.CommandName.ToUpper().Equals("SORT"))
             {
                 gvRow = GridView1.Rows[Helper.CInt(e.CommandArgument) - 1];

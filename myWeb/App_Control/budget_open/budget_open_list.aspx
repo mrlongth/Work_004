@@ -35,7 +35,7 @@
             <td style="text-align: right; height: 23px;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage24">ถึงวันที่ :</asp:Label>
             </td>
-            <td colspan="2" style="height: 23px">
+            <td colspan="2">
 
                 <asp:TextBox ID="txtdate_end" runat="server" CssClass="textbox"
                     Width="100px" />
@@ -52,15 +52,46 @@
             <td style="text-align: right; height: 23px;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage25">รายการขออนุมัติ :</asp:Label>
             </td>
-            <td colspan="2" style="height: 23px">
+            <td colspan="2">
 
-                <asp:TextBox runat="server" CssClass="textbox" Width="80px" ID="txtopen_code" MaxLength="20"></asp:TextBox>
+                <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtopen_code" MaxLength="20"></asp:TextBox>
                 &nbsp;<asp:ImageButton runat="server" ImageAlign="AbsBottom" ImageUrl="../../images/controls/view2.gif"
                     ID="imgList_open"></asp:ImageButton>
                 <asp:ImageButton runat="server" CausesValidation="False" ImageAlign="AbsBottom" ImageUrl="../../images/controls/erase.gif"
                     ID="imgClear_open"></asp:ImageButton>
                 &nbsp;<asp:TextBox runat="server" CssClass="textbox" Width="230px" ID="txtopen_title"
-                    MaxLength="100"></asp:TextBox></td>
+                    MaxLength="100"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage28">เลขที่ใบขออนุมัติ : </asp:Label>
+            </td>
+            <td style="width: 1%; height: 23px;">
+                <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtbudget_open_no"></asp:TextBox>
+            </td>
+            <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage27">เลขที่งบ : </asp:Label>
+            </td>
+            <td colspan="2">
+
+                <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtbudget_open_budget_no"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage29">เลขที่ AP : </asp:Label>
+            </td>
+            <td style="width: 1%; height: 23px;">
+                <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtbudget_open_ap"></asp:TextBox>
+            </td>
+            <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage30">เลขที่ PR : </asp:Label>
+            </td>
+            <td colspan="2">
+
+                <asp:TextBox runat="server" CssClass="textbox" Width="100px" ID="txtbudget_open_pr"></asp:TextBox>
+            </td>
         </tr>
         <tr>
             <td style="text-align: right;" class="label_d">
@@ -131,7 +162,7 @@
                     ID="imgFind" OnClick="imgFind_Click"></asp:ImageButton>
                 <asp:ImageButton runat="server" AlternateText="เพิ่มข้อมุล" ImageUrl="~/images/button/Save.png"
                     ID="imgNew" OnClick="imgNew_Click"></asp:ImageButton>
-                </td>
+            </td>
         </tr>
         <tr>
             <td style="text-align: right;">&nbsp;</td>
@@ -143,12 +174,12 @@
     </table>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
-    <asp:GridView runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False"
-        CellPadding="2" EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True"
-        BorderWidth="1px" CssClass="stGrid" Font-Bold="False" Font-Size="10pt" Width="100%"
-        ID="GridView1" OnPageIndexChanging="GridView1_PageIndexChanging" OnRowCreated="GridView1_RowCreated"
-        OnRowDataBound="GridView1_RowDataBound" OnRowDeleting="GridView1_RowDeleting"
-        OnSorting="GridView1_Sorting" OnRowEditing="GridView1_RowEditing" OnRowCommand="GridView1_RowCommand">
+   <asp:GridView ID="GridView1" runat="server" CssClass="stGrid" AllowPaging="True"
+        AllowSorting="True" AutoGenerateColumns="False" BorderWidth="1px"
+        CellPadding="2" Font-Size="10pt" Width="100%" Font-Bold="False" OnRowCreated="GridView1_RowCreated"
+        OnRowDeleting="GridView1_RowDeleting" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound"
+        OnRowEditing="GridView1_RowEditing" OnRowCommand="GridView1_RowCommand"
+        EmptyDataText="ไม่พบข้อมูลที่ต้องการค้นหา" ShowFooter="True" OnPageIndexChanging="GridView1_PageIndexChanging">
         <AlternatingRowStyle BackColor="#EAEAEA"></AlternatingRowStyle>
         <Columns>
             <asp:TemplateField Visible="true">
@@ -171,7 +202,41 @@
                     </asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-              <asp:TemplateField HeaderText="วันที่">
+
+              <asp:TemplateField HeaderText="เลขที่ใบขออนุมัติ" SortExpression="budget_open_no">
+                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblbudget_open_no" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_no") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+              <asp:TemplateField HeaderText="เลขที่งบ" SortExpression="budget_open_budget_no">
+                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblbudget_open_budget_no" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_budget_no") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+              <asp:TemplateField HeaderText="เลขที่ AP" SortExpression="budget_open_ap">
+                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblbudget_open_ap" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_ap") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+               <asp:TemplateField HeaderText="เลขที่ PR" SortExpression="budget_open_pr">
+                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblbudget_open_pr" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_pr") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
+
+            <asp:TemplateField HeaderText="วันที่" SortExpression="budget_open_date">
                 <ItemTemplate>
                     <cc1:AwLabelDateTime ID="txtbudget_open_date" runat="server" Value='<% # DataBinder.Eval(Container, "DataItem.budget_open_date")%>'
                         DateFormat="dd/MM/yyyy">
@@ -195,7 +260,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name">
+            <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name" Visible="false">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblunit_code" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_code") %>'
@@ -237,8 +302,7 @@
                     <asp:Label ID="lblmajor_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_name") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="รายการขออนุมัติเบิกจ่าย" SortExpression="open_title"
-                Visible="true">
+            <asp:TemplateField HeaderText="รายการขออนุมัติเบิกจ่าย" SortExpression="open_title" Visible="false">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="15%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblopen_title" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.open_title")%>'></asp:Label>
@@ -252,11 +316,11 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-             <asp:TemplateField HeaderText="สถานะ" SortExpression="approve_head_status"
+            <asp:TemplateField HeaderText="สถานะ" SortExpression="approve_head_status"
                 Visible="true">
                 <ItemStyle HorizontalAlign="Center" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
-                    <asp:Label ID="lblapprove_head_status" runat="server" ></asp:Label>
+                    <asp:Label ID="lblapprove_head_status" runat="server"></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
 

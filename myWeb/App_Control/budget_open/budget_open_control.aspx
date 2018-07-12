@@ -189,6 +189,35 @@
 
                         <tr align="left">
                             <td align="right" nowrap style="height: 22px" valign="middle">
+                                <asp:Label ID="lblPage28" runat="server" CssClass="label_hbk">เลขที่ใบขออนุมัติ : </asp:Label>
+                            </td>
+                            <td align="left" nowrap style="height: 22px" valign="middle">
+                                <asp:TextBox ID="txtbudget_open_no" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                            </td>
+                            <td nowrap style="text-align: right; height: 22px;">
+                                <asp:Label ID="lblPage27" runat="server" CssClass="label_hbk">เลขที่งบ : </asp:Label>
+                            </td>
+                            <td align="left" style="height: 22px">
+                                <asp:TextBox ID="txtbudget_open_budget_no" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr align="left">
+                            <td align="right" nowrap style="height: 22px" valign="middle">
+                                <asp:Label ID="lblPage29" runat="server" CssClass="label_hbk">เลขที่ AP : </asp:Label>
+                            </td>
+                            <td align="left" nowrap style="height: 22px" valign="middle">
+                                <asp:TextBox ID="txtbudget_open_ap" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                            </td>
+                            <td nowrap style="text-align: right; height: 22px;">
+                                <asp:Label ID="lblPage30" runat="server" CssClass="label_hbk">เลขที่ PR : </asp:Label>
+                            </td>
+                            <td align="left" style="height: 22px">
+                                <asp:TextBox ID="txtbudget_open_pr" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                            </td>
+                        </tr>
+
+                        <tr align="left">
+                            <td align="right" nowrap style="height: 22px" valign="middle">
                                 <asp:Label ID="Label86" runat="server" CssClass="label_hbk">หมายเหตุ :</asp:Label>
                             </td>
                             <td align="left" colspan="3" nowrap style="height: 22px" valign="middle">
@@ -255,7 +284,7 @@
                             <td align="left" nowrap valign="middle">&nbsp;</td>
                             <td align="left" nowrap style="vertical-align: bottom; width: 1%;" valign="middle">&nbsp;</td>
                         </tr>
-                        <tr align="left">
+                        <tr align="left" style="display:none;">
                             <td align="right" nowrap valign="middle">
                                 <asp:Label ID="Label103" runat="server" CssClass="label_hbk">เลขที่เอกสารอ้างอิง :</asp:Label>
                             </td>

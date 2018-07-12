@@ -132,12 +132,17 @@ namespace myWeb.App_Control.budget_open
                 #region set Data
                 budget_open_head.budget_open_doc = txtbudget_open_doc.Text;
                 budget_open_head.degree_code = cboDegree.SelectedValue;
-                budget_open_head.budget_open_date = cCommon.GetDate(txtbudget_open_date.Text);
+                budget_open_head.budget_open_date = cCommon.GetDate(Request.Form[txtbudget_open_date.UniqueID]);
                 budget_open_head.budget_type = cboBudget_type.SelectedValue;
                 budget_open_head.budget_open_year = cboYear.SelectedValue;
                 budget_open_head.major_code = cboMajor.SelectedValue;
                 budget_open_head.budget_plan_code = txtbudget_plan_code.Text;
 
+                budget_open_head.budget_open_no = txtbudget_open_no.Text.Trim();
+                budget_open_head.budget_open_ap = txtbudget_open_ap.Text.Trim();
+                budget_open_head.budget_open_pr = txtbudget_open_pr.Text.Trim();
+
+                budget_open_head.budget_open_budget_no = txtbudget_open_budget_no.Text.Trim();
                 budget_open_head.ef_open_doc = txtef_open_doc.Text;
                 if (!string.IsNullOrEmpty(txtopen_code.Text))
                 {
@@ -254,6 +259,11 @@ namespace myWeb.App_Control.budget_open
                     txtbudget_open_doc.Text = budget_open_head.budget_open_doc;
                     txtbudget_open_date.Text = budget_open_head.budget_open_date.Value.ToString("dd/MM/yyyy");
 
+                    txtbudget_open_no.Text = budget_open_head.budget_open_no;
+                    txtbudget_open_ap.Text = budget_open_head.budget_open_ap;
+                    txtbudget_open_pr.Text = budget_open_head.budget_open_pr;
+                    txtbudget_open_budget_no.Text = budget_open_head.budget_open_budget_no;
+
                     InitcboYear();
                     if (cboYear.Items.FindByValue(budget_open_head.budget_open_year) != null)
                     {
@@ -275,7 +285,6 @@ namespace myWeb.App_Control.budget_open
                         cboBudget_type.Items.FindByValue(budget_open_head.budget_type).Selected = true;
                     }
 
-
                     txtbudget_plan_code.Text = budget_open_head.budget_plan_code;
                     txtbudget_name.Text = budget_open_head.budget_name;
                     txtproduce_name.Text = budget_open_head.produce_name;
@@ -286,7 +295,6 @@ namespace myWeb.App_Control.budget_open
                     txtdirector_name.Text = budget_open_head.director_name;
                     txtunit_name.Text = budget_open_head.unit_name;
                     txtopen_remark.Text = budget_open_head.open_remark;
-
                     txtperson_code.Text = budget_open_head.person_code ;
                     txtperson_name.Text = budget_open_head.person_thai_name + " " + budget_open_head.person_thai_surname;
 

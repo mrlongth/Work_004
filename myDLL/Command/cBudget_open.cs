@@ -100,7 +100,11 @@ namespace myDLL
                     Value = budget_open_head.budget_open_doc
                 };
                 oCommand.Parameters.Add(oParambudget_open_doc);
-                oCommand.Parameters.Add("ef_open_doc", SqlDbType.VarChar).Value = budget_open_head.ef_open_doc;                
+                oCommand.Parameters.Add("ef_open_doc", SqlDbType.VarChar).Value = budget_open_head.ef_open_doc;
+                oCommand.Parameters.Add("budget_open_no", SqlDbType.VarChar).Value = budget_open_head.budget_open_no;
+                oCommand.Parameters.Add("budget_open_ap", SqlDbType.VarChar).Value = budget_open_head.budget_open_ap;
+                oCommand.Parameters.Add("budget_open_pr", SqlDbType.VarChar).Value = budget_open_head.budget_open_pr;
+                oCommand.Parameters.Add("budget_open_budget_no", SqlDbType.VarChar).Value = budget_open_head.budget_open_budget_no;
                 oCommand.Parameters.Add("budget_open_date", SqlDbType.DateTime).Value = budget_open_head.budget_open_date;
                 oCommand.Parameters.Add("budget_open_year", SqlDbType.VarChar).Value = budget_open_head.budget_open_year;
                 oCommand.Parameters.Add("open_code", SqlDbType.VarChar).Value = budget_open_head.open_code;
@@ -149,6 +153,10 @@ namespace myDLL
                 oCommand.CommandType = CommandType.StoredProcedure;
                 oCommand.CommandText = "sp_BUDGET_OPEN_HEAD_UPD";
                 oCommand.Parameters.Add("budget_open_doc", SqlDbType.VarChar).Value = budget_open_head.budget_open_doc;
+                oCommand.Parameters.Add("budget_open_no", SqlDbType.VarChar).Value = budget_open_head.budget_open_no;
+                oCommand.Parameters.Add("budget_open_ap", SqlDbType.VarChar).Value = budget_open_head.budget_open_ap;
+                oCommand.Parameters.Add("budget_open_pr", SqlDbType.VarChar).Value = budget_open_head.budget_open_pr;
+                oCommand.Parameters.Add("budget_open_budget_no", SqlDbType.VarChar).Value = budget_open_head.budget_open_budget_no;
                 oCommand.Parameters.Add("ef_open_doc", SqlDbType.VarChar).Value = budget_open_head.ef_open_doc;
                 oCommand.Parameters.Add("budget_open_date", SqlDbType.DateTime).Value = budget_open_head.budget_open_date;
                 oCommand.Parameters.Add("budget_open_year", SqlDbType.VarChar).Value = budget_open_head.budget_open_year;
@@ -383,7 +391,6 @@ namespace myDLL
             return blnResult;
         }
         #endregion
-
 
 
         #region SP_BUDGET_OPEN_DETAIL_DEL_BY_DOC

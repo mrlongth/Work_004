@@ -234,14 +234,14 @@ namespace myWeb.App_Control.activity
             stractivity_name = txtactivity_name.Text.Replace("'", "''").Trim();
             stractivity_year = cboYear.SelectedValue;
             strbudget_code = "";
-            if (Request.Form[strPrefixCtr + "cboBudget"] != null)
+            if (cboBudget.SelectedValue != "")
             {
-                strbudget_code = Request.Form[strPrefixCtr + "cboBudget"].ToString();
+                strbudget_code = cboBudget.SelectedValue;
             }
             strproduce_code = "";
-            if (Request.Form[strPrefixCtr + "cboProduce"] != null)
+            if (cboProduce.SelectedValue != "")
             {
-                strproduce_code = Request.Form[strPrefixCtr + "cboProduce"].ToString();
+                strproduce_code = cboProduce.SelectedValue;
             }
             if (!stractivity_code.Equals(""))
             {

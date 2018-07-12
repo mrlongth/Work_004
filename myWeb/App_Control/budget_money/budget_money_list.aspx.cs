@@ -876,6 +876,7 @@ namespace myWeb.App_Control.budget_money
         {
             GridViewRow gvRow;
             Label lblbudget_money_doc = null;
+            if (e.CommandName.ToUpper().Equals("PAGE")) return;
             if (!e.CommandName.ToUpper().Equals("SORT"))
             {
                 gvRow = GridView1.Rows[Helper.CInt(e.CommandArgument) - 1];

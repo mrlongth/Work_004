@@ -386,7 +386,7 @@ namespace myWeb.App_Control.report
             string strLot = cboLot.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = " and lot_year = '" + strYear + "'  and  c_active='Y' and budget_type='" + this.BudgetType + "' ";
+            strCriteria = " and lot_year = '" + strYear + "'  and  c_active='Y'  ";
             if (oLot.SP_SEL_LOT(strCriteria, ref ds, ref strMessage))
             {
                 dt = ds.Tables[0];

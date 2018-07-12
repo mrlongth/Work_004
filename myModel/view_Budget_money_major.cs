@@ -20,7 +20,6 @@ namespace myModel
         public decimal budget_money_major_plan { get; set; }
         public decimal budget_money_major_contribute { get; set; }
         public decimal budget_money_major_use { get; set; }
-        public Nullable<decimal> budget_money_major_remain { get; set; }
         public string budget_money_major_comment { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
@@ -81,5 +80,6 @@ namespace myModel
         public decimal budget_money_major_transfer_in { get; set; }
         public decimal budget_money_major_transfer_out { get; set; }
         public Nullable<decimal> budget_money_major_transfer_amount { get; set; }
+        public Nullable<decimal> budget_money_major_remain { get; set; }
     }
 }

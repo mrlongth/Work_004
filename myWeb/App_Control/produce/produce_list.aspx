@@ -1,48 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" EnableEventValidation="false"
     AutoEventWireup="true" CodeBehind="produce_list.aspx.cs" Inherits="myWeb.App_Control.produce.produce_list"
     Title="แสดงข้อมูลผลผลิตประจำปี" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <script type="text/javascript" language="javascript">
-      function RetrieveDTCallBack(res){ 
-        var retVal = res.value; 
-        var cbo = document.getElementById("ctl00_ASPxRoundPanel1_ASPxRoundPanel2_ContentPlaceHolder1_cboBudget");
-        if( retVal != null && retVal.Rows.length > 0) 
-        { 
-             var Len=retVal.Rows.length; 
-              for(i=cbo.options.length-1;i>=0;i--)
-              {
-                cbo.remove(i);
-              }
-               var optn = document.createElement("OPTION");
-               optn.text = "---- เลือกข้อมูลทั้งหมด ----";
-               optn.value = '';
-               cbo.options.add(optn);
-                for(i=0;i<Len;i++) 
-                { 
-                    var opt = document.createElement("OPTION");
-                    opt.text=retVal.Rows[i].budget_name; 
-                    opt.value=retVal.Rows[i].budget_code;
-                    opt.setAttribute("wv",retVal.Rows[i].budget_code); 
-                    cbo.options.add(opt); 
-                } 
-            } 
-            else{ 
-              for(i=cbo.options.length-1;i>=0;i--)
-              {
-                cbo.remove(i);
-              }
-               var optn = document.createElement("OPTION");
-               optn.text = "---- เลือกข้อมูลทั้งหมด ----";
-               optn.value = '';
-               cbo.options.add(optn);
-            } 
-    } 
-
-    function changeBudget(e){ 
-        myWeb.App_Control.produce.produce_list.GetDataBudget(e.options[e.selectedIndex].value,RetrieveDTCallBack); 
-    } 
-
-    </script>    
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">     
     <table cellpadding="1" cellspacing="1" style="width: 100%">
         <tr>
             <td style="text-align: right; width: 21%;">

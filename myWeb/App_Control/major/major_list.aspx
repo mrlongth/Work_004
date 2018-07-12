@@ -86,6 +86,13 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
+                 <asp:TemplateField HeaderText="ชื่อย่อ " SortExpression="major_abbrev">
+                <ItemTemplate>
+                    <asp:Label ID="lblmajor_abbrev" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_abbrev") %>'>
+                    </asp:Label>
+                </ItemTemplate>
+            </asp:TemplateField>
+
               <asp:TemplateField HeaderText="ลำดับ " SortExpression="major_order">
                 <ItemTemplate>
                     <asp:Label ID="lblmajor_order" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.major_order") %>'>

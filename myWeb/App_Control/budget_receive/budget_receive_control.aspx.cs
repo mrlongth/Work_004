@@ -1170,5 +1170,6 @@ namespace myWeb.App_Control.budget_receive
         {
             BindGridViewDetail();
         }
+
     }
 }

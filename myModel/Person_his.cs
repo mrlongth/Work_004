@@ -37,8 +37,8 @@ namespace myModel
         public string person_password { get; set; }
         public string person_email { get; set; }
     
-        public virtual Title Title { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_open_head> Budget_open_head { get; set; }
+        public virtual Title Title { get; set; }
     }
 }

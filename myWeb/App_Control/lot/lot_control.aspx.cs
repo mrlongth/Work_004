@@ -16,23 +16,7 @@ namespace myWeb.App_Control.lot
 {
     public partial class lot_control : PageBase
     {
-
-        private string BudgetType
-        {
-            get
-            {
-                if (ViewState["BudgetType"] == null)
-                {
-                    ViewState["BudgetType"] = Helper.CStr(Request.QueryString["budget_type"]);
-                }
-                return ViewState["BudgetType"].ToString();
-            }
-            set
-            {
-                ViewState["BudgetType"] = value;
-            }
-        }
-        
+              
         protected void Page_Load(object sender, System.EventArgs e)
         {
             //if (Session["username"] == null)
@@ -184,7 +168,7 @@ namespace myWeb.App_Control.lot
                     #region edit
                     if (!blnDup)
                     {
-                        if (olot.SP_UPD_LOT(strlot_code, strlot_year, strlot_name, strActive, strUpdatedBy, this.BudgetType, ref strMessage))
+                        if (olot.SP_UPD_LOT(strlot_code, strlot_year, strlot_name, strActive, strUpdatedBy, ref strMessage))
                         {
                             blnResult = true;
                         }
@@ -221,7 +205,7 @@ namespace myWeb.App_Control.lot
                     #region insert
                     if (!blnDup)
                     {
-                        if (olot.SP_INS_LOT(strlot_year, strlot_name, strActive, strCreatedBy, this.BudgetType, ref strMessage))
+                        if (olot.SP_INS_LOT(strlot_year, strlot_name, strActive, strCreatedBy, ref strMessage))
                         {
                             string  strGetcode = " and lot_name = '" + strlot_name.Trim() + "' and lot_year = '" + strlot_year + "' ";
                             if (!olot.SP_SEL_LOT(strGetcode, ref ds, ref strMessage))

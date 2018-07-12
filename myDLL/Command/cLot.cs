@@ -79,7 +79,7 @@ namespace myDLL
         #endregion
 
         #region SP_INS_LOT
-        public bool SP_INS_LOT(string plot_year, string plot_name, string pactive, string pc_created_by, string pbudget_type, ref string strMessage)
+        public bool SP_INS_LOT(string plot_year, string plot_name, string pactive, string pc_created_by, ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -112,11 +112,7 @@ namespace myDLL
                 oParam_c_created_by.Direction = ParameterDirection.Input;
                 oParam_c_created_by.Value = pc_created_by;
                 oCommand.Parameters.Add(oParam_c_created_by);
-                // - - - - - - - - - - - -             
-                SqlParameter oParam_budget_type = new SqlParameter("budget_type", SqlDbType.NVarChar);
-                oParam_budget_type.Direction = ParameterDirection.Input;
-                oParam_budget_type.Value = pbudget_type;
-                oCommand.Parameters.Add(oParam_budget_type);
+               
                 // - - - - - - - - - - - -             
                 oCommand.ExecuteNonQuery();
                 blnResult = true;
@@ -136,7 +132,7 @@ namespace myDLL
         #endregion
 
         #region SP_UPD_LOT
-        public bool SP_UPD_LOT(string plot_code, string plot_year, string plot_name, string pactive, string pC_updated_by, string pbudget_type, ref string strMessage)
+        public bool SP_UPD_LOT(string plot_code, string plot_year, string plot_name, string pactive, string pC_updated_by,  ref string strMessage)
         {
             bool blnResult = false;
             SqlConnection oConn = new SqlConnection();
@@ -174,11 +170,7 @@ namespace myDLL
                 oParam_c_updated_by.Direction = ParameterDirection.Input;
                 oParam_c_updated_by.Value = pC_updated_by;
                 oCommand.Parameters.Add(oParam_c_updated_by);
-                // - - - - - - - - - - - -             
-                SqlParameter oParam_budget_type = new SqlParameter("budget_type", SqlDbType.NVarChar);
-                oParam_budget_type.Direction = ParameterDirection.Input;
-                oParam_budget_type.Value = pbudget_type;
-                oCommand.Parameters.Add(oParam_budget_type);
+              
                 // - - - - - - - - - - - -             
                 oCommand.ExecuteNonQuery();
                 blnResult = true;

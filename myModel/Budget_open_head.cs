@@ -21,13 +21,17 @@ namespace myModel
         }
     
         public string budget_open_doc { get; set; }
+        public string budget_open_no { get; set; }
+        public string budget_open_ap { get; set; }
+        public string budget_open_pr { get; set; }
+        public string budget_open_budget_no { get; set; }
         public string ef_open_doc { get; set; }
         public string budget_open_year { get; set; }
         public Nullable<System.DateTime> budget_open_date { get; set; }
         public Nullable<int> open_code { get; set; }
         public string open_title { get; set; }
-        public string open_command_desc { get; set; }
         public string open_desc { get; set; }
+        public string open_command_desc { get; set; }
         public string budget_type { get; set; }
         public string budget_plan_code { get; set; }
         public string degree_code { get; set; }

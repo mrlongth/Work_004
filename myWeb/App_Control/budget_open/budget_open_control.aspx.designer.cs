@@ -517,6 +517,78 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.TextBox txtfund_name;
         
         /// <summary>
+        /// lblPage28 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage28;
+        
+        /// <summary>
+        /// txtbudget_open_no control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbudget_open_no;
+        
+        /// <summary>
+        /// lblPage27 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage27;
+        
+        /// <summary>
+        /// txtbudget_open_budget_no control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbudget_open_budget_no;
+        
+        /// <summary>
+        /// lblPage29 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage29;
+        
+        /// <summary>
+        /// txtbudget_open_ap control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbudget_open_ap;
+        
+        /// <summary>
+        /// lblPage30 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage30;
+        
+        /// <summary>
+        /// txtbudget_open_pr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbudget_open_pr;
+        
+        /// <summary>
         /// Label86 control.
         /// </summary>
         /// <remarks>

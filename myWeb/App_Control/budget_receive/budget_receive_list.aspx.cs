@@ -432,7 +432,7 @@ namespace myWeb.App_Control.budget_receive
 
             if (!budget_receive_head.budget_receive_doc.Equals(""))
             {
-                strCriteria = strCriteria + "  And  (budget_receive_doc ='" + budget_receive_head.budget_receive_doc + "') ";
+                strCriteria = strCriteria + "  And  (budget_receive_doc LIKE '%" + budget_receive_head.budget_receive_doc + "%') ";
             }
 
             if (!budget_receive_head.budget_plan_code.Equals(""))
@@ -885,6 +885,7 @@ namespace myWeb.App_Control.budget_receive
         {
             GridViewRow gvRow;
             Label lblbudget_receive_doc = null;
+            if (e.CommandName.ToUpper().Equals("PAGE")) return;
             if (!e.CommandName.ToUpper().Equals("SORT"))
             {
                 gvRow = GridView1.Rows[Helper.CInt(e.CommandArgument) - 1];

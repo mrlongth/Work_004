@@ -346,6 +346,12 @@ namespace myWeb.App_Control.budget_open
             budget_open_head.major_code = cboMajor.SelectedValue;
             budget_open_head.approve_head_status = cboApproveStatus.SelectedValue;
 
+            budget_open_head.budget_open_no = txtbudget_open_no.Text.Trim();
+            budget_open_head.budget_open_ap = txtbudget_open_ap.Text.Trim();
+            budget_open_head.budget_open_pr = txtbudget_open_pr.Text.Trim();
+            budget_open_head.budget_open_budget_no = txtbudget_open_budget_no.Text.Trim();
+
+
             if (!string.IsNullOrEmpty(txtdate_begin.Text))
             {
                 strCriteria = strCriteria + "  And  (budget_open_date >= '" + cCommon.SeekDate(txtdate_begin.Text) + "') ";
@@ -367,8 +373,30 @@ namespace myWeb.App_Control.budget_open
 
             if (!string.IsNullOrEmpty(budget_open_head.budget_open_doc))
             {
-                strCriteria = strCriteria + "  And  (budget_open_doc ='" + budget_open_head.budget_open_doc + "') ";
+                strCriteria = strCriteria + "  And  (budget_open_doc LIKE '%" + budget_open_head.budget_open_doc + "%') ";
             }
+
+            if (!string.IsNullOrEmpty(budget_open_head.budget_open_no))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_no LIKE '%" + budget_open_head.budget_open_no + "%') ";
+            }
+
+
+            if (!string.IsNullOrEmpty(budget_open_head.budget_open_ap))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_ap LIKE '%" + budget_open_head.budget_open_ap + "%') ";
+            }
+
+            if (!string.IsNullOrEmpty(budget_open_head.budget_open_pr))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_pr LIKE '%" + budget_open_head.budget_open_pr + "%') ";
+            }
+
+            if (!string.IsNullOrEmpty(budget_open_head.budget_open_budget_no))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_budget_no LIKE '%" + budget_open_head.budget_open_budget_no + "%') ";
+            }
+
 
             if (budget_open_head.open_code > 0)
             {
@@ -861,6 +889,7 @@ namespace myWeb.App_Control.budget_open
         {
             GridViewRow gvRow;
             Label lblbudget_open_doc = null;
+            if (e.CommandName.ToUpper().Equals("PAGE")) return;
             if (!e.CommandName.ToUpper().Equals("SORT"))
             {
                 gvRow = GridView1.Rows[Helper.CInt(e.CommandArgument) - 1];

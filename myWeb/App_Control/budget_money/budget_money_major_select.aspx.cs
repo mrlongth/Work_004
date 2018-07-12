@@ -108,7 +108,7 @@ namespace myWeb.App_Control.budget_money
             DataTable dt = new DataTable();
             try
             {
-                strCriteria = " AND major_code not in (Select major_code From Budget_money_major where budget_money_detail_id = '" + ViewState["budget_money_detail_id"].ToString() + "') ";
+                strCriteria = " AND  c_active = 'Y' AND major_code not in (Select major_code From Budget_money_major where budget_money_detail_id = '" + ViewState["budget_money_detail_id"].ToString() + "')  order by major_order";
                 if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
                 {
                     dt = ds.Tables[0];
@@ -150,6 +150,7 @@ namespace myWeb.App_Control.budget_money
             else if (e.Row.RowType.Equals(DataControlRowType.DataRow) || e.Row.RowState.Equals(DataControlRowState.Alternate))
             {
 
+               
                 #region Set datagrid row color
                 string strEvenColor, strOddColor, strMouseOverColor;
                 strEvenColor = ((DataSet)Application["xmlconfig"]).Tables["colorDataGridRow"].Rows[0]["Even"].ToString();
@@ -171,7 +172,9 @@ namespace myWeb.App_Control.budget_money
                     e.Row.Attributes.Add("onMouseOut", "this.style.backgroundColor='" + strEvenColor + "'");
                 }
                 #endregion
-               
+
+                var chkSelect = ((CheckBox)e.Row.FindControl("chkSelect"));
+                chkSelect.Checked = true;
             }
         }
 

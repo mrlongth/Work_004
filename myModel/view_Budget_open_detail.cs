@@ -77,5 +77,13 @@ namespace myModel
         public string material_name { get; set; }
         public string material_detail { get; set; }
         public string item_group_type { get; set; }
+        public string person_code { get; set; }
+        public string title_code { get; set; }
+        public string person_thai_name { get; set; }
+        public string person_thai_surname { get; set; }
+        public string budget_open_no { get; set; }
+        public string budget_open_ap { get; set; }
+        public string budget_open_pr { get; set; }
+        public string budget_open_budget_no { get; set; }
     }
 }
