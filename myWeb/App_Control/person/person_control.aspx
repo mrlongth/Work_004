@@ -65,7 +65,7 @@
         <table border="0" cellpadding="1" cellspacing="2" style="width: 100%">
             <tr align="center">
                 <td>
-                    <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1" Height="450px"
+                    <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Height="450px"
                         BorderWidth="0px" Style="text-align: left">
                         <ajaxtoolkit:TabPanel runat="server" HeaderText="ข้อมูลประวัติบุคลากร" ID="TabPanel1">
                             <HeaderTemplate>
@@ -171,10 +171,6 @@
                                         <td align="left" nowrap valign="middle" style="">
                                             <asp:TextBox ID="txtperson_id" runat="server" CssClass="textbox" Width="200px" MaxLength="13"></asp:TextBox>
 
-                                            <%-- <ajaxtoolkit:FilteredTextBoxExtender
-                                            ID="FilteredTextBoxExtender1" runat="server" TargetControlID="txtperson_id" FilterType="Numbers"
-                                            Enabled="True" />--%>
-
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtperson_id"
                                                 Display="None" ErrorMessage="กรุณาป้อนเลขที่บัตรประชาชน" ValidationGroup="A"
                                                 SetFocusOnError="True"></asp:RequiredFieldValidator>
@@ -191,13 +187,13 @@
                                     </tr>
                                     <tr align="left">
                                         <td align="right" nowrap valign="middle">
-                                            <asp:Label ID="Label63" runat="server" CssClass="label_hbk">รูปบุคลากร :</asp:Label>
+                                            <asp:Label ID="Label63" runat="server" CssClass="label_hbk" Visible="False">รูปบุคลากร :</asp:Label>
                                         </td>
                                         <td align="left" nowrap>
-                                            <asp:TextBox ID="txtperson_pic" runat="server" CssClass="textbox" Width="400px"></asp:TextBox><asp:ImageButton
-                                                ID="imgperson_pic" runat="server" ImageAlign="AbsMiddle" ImageUrl="~/images/picture.png" /><asp:ImageButton
+                                            <asp:TextBox ID="txtperson_pic" runat="server" CssClass="textbox" Width="400px" Visible="False"></asp:TextBox><asp:ImageButton
+                                                ID="imgperson_pic" runat="server" ImageAlign="AbsMiddle" ImageUrl="~/images/picture.png" Visible="False" /><asp:ImageButton
                                                     ID="imgClear_person_pic" runat="server" CausesValidation="False" ImageAlign="AbsBottom"
-                                                    ImageUrl="../../images/controls/erase.gif" />
+                                                    ImageUrl="../../images/controls/erase.gif" Visible="False" />
                                         </td>
                                     </tr>
                                     <tr align="left">

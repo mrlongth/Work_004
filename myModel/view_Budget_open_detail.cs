@@ -85,5 +85,6 @@ namespace myModel
         public string budget_open_ap { get; set; }
         public string budget_open_pr { get; set; }
         public string budget_open_budget_no { get; set; }
+        public Nullable<System.DateTime> budget_open_date_actual { get; set; }
     }
 }

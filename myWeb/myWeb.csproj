@@ -38,7 +38,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -108,6 +108,8 @@
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
+    <Content Include="App_Control\recv_item\recv_item_control.aspx" />
+    <Content Include="App_Control\recv_item\recv_item_list.aspx" />
     <Content Include="App_Control\item\item_control.aspx" />
     <Content Include="App_Control\item\item_detail_list.aspx" />
     <Content Include="App_Control\item\item_detail_control.aspx" />
@@ -474,6 +476,20 @@
     </Compile>
     <Compile Include="App_Control\import\basedata_import.aspx.designer.cs">
       <DependentUpon>basedata_import.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\recv_item\recv_item_control.aspx.cs">
+      <DependentUpon>recv_item_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\recv_item\recv_item_control.aspx.designer.cs">
+      <DependentUpon>recv_item_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\recv_item\recv_item_list.aspx.cs">
+      <DependentUpon>recv_item_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\recv_item\recv_item_list.aspx.designer.cs">
+      <DependentUpon>recv_item_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\item\item_control.aspx.cs">
       <DependentUpon>item_control.aspx</DependentUpon>

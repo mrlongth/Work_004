@@ -70,8 +70,12 @@
                             <td align="left" nowrap valign="middle">
                                 <asp:TextBox ID="txtbudget_open_doc" runat="server" CssClass="textbox" Width="130px"></asp:TextBox>
                             </td>
-                            <td nowrap style="text-align: right" width="10%">&nbsp;</td>
-                            <td style="text-align: left">&nbsp;</td>
+                            <td nowrap style="text-align: right" width="10%">
+                                <asp:Label ID="Label118" runat="server" CssClass="label_hbk">วันที่เบิกจริง :</asp:Label>
+                            </td>
+                            <td style="text-align: left">
+                                <asp:TextBox ID="txtbudget_open_date_actual" runat="server" CssClass="textbox" Width="100px"></asp:TextBox>
+                            </td>
                         </tr>
                         <tr align="left">
                             <td align="right" nowrap valign="middle">
@@ -454,7 +458,7 @@
 
     <script type="text/javascript">
 
-        $(function ()
+       <%-- $(function ()
         {
             LoadTinyMCE();
         });
@@ -477,32 +481,32 @@
             tinyMCE.init({ selector: "#<%=txtopen_command_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
             tinyMCE.init({ selector: "#<%=txtopen_desc.ClientID%>", height: 140, statusbar: false, toolbar: false, menubar: false, plugins: ['preview', 'code', 'paste'], paste_auto_cleanup_on_paste: true });
 
-        }
+        }--%>
 
         function RegisterScript()
         {
 
-            $(document).on('keypress', 'form input[type=text]', function (event)
-            {
-                event.stopImmediatePropagation();
-                if (event.which == 13)
-                {
-                    event.preventDefault();
-                    var $input = $('form input[type=text]');
-                    if ($(this).is($input.last()))
-                    {
-                        $input.eq(0).focus();
-                    } else
-                    {
-                        $input.eq($input.index(this) + 1).focus();
-                    }
-                }
-            });
+            //$(document).on('keypress', 'form input[type=text]', function (event)
+            //{
+            //    event.stopImmediatePropagation();
+            //    if (event.which == 13)
+            //    {
+            //        event.preventDefault();
+            //        var $input = $('form input[type=text]');
+            //        if ($(this).is($input.last()))
+            //        {
+            //            $input.eq(0).focus();
+            //        } else
+            //        {
+            //            $input.eq($input.index(this) + 1).focus();
+            //        }
+            //    }
+            //});
 
-            $(document).ready(function ()
-            {
-                $("input:text").focus(function () { $(this).select(); });
-            });
+            //$(document).ready(function ()
+            //{
+            //    $("input:text").focus(function () { $(this).select(); });
+            //});
 
             $("input[id*=imgList_budget_plan]").live("click", function ()
             {

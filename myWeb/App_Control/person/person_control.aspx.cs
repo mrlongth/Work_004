@@ -505,7 +505,7 @@ namespace myWeb.App_Control.person
                     if (!blnDup)
                     {
                         if (oPerson.SP_PERSON_HIS_UPD(strperson_code, strtitle_code, strperson_thai_name, strperson_thai_surname, strperson_eng_name,
-                                                                                                 strperson_eng_surname, strperson_nickname, strperson_id, strperson_pic, strC_active, strUpdatedBy, ref strMessage))
+                                                                                                 strperson_eng_surname, strperson_nickname, strperson_id, string.Empty, strC_active, strUpdatedBy, ref strMessage))
                         {
                             saveData2();
                             blnResult = true;
@@ -546,7 +546,7 @@ namespace myWeb.App_Control.person
                     if (!blnDup)
                     {
                         if (oPerson.SP_PERSON_HIS_INS(strtitle_code, strperson_thai_name, strperson_thai_surname, strperson_eng_name,
-                                                                                                 strperson_eng_surname, strperson_nickname, strperson_id, strperson_pic, strC_active, strCreatedBy, ref strMessage))
+                                                                                                 strperson_eng_surname, strperson_nickname, strperson_id, string.Empty, strC_active, strCreatedBy, ref strMessage))
                         {
                             string strGetcode = " and person_thai_name = '" + strperson_thai_name.Trim() + "' and person_thai_surname = '" + strperson_thai_surname + "' ";
                             if (!oPerson.SP_PERSON_LIST_SEL(strGetcode, ref ds, ref strMessage))
@@ -878,14 +878,14 @@ namespace myWeb.App_Control.person
                         txtperson_nickname.Text = strperson_nickname;
                         txtperson_id.Text = strperson_id;
                         txtperson_pic.Text = strperson_pic;
-                        if (strperson_pic.Length != 0)
-                        {
-                            imgPerson.ImageUrl = "../../person_pic/" + strperson_pic;
-                        }
-                        else
-                        {
-                            imgPerson.ImageUrl = "../../person_pic/image_n_a.jpg";
-                        }
+                        //if (strperson_pic.Length != 0)
+                        //{
+                        //    imgPerson.ImageUrl = "../../person_pic/" + strperson_pic;
+                        //}
+                        //else
+                        //{
+                        //    imgPerson.ImageUrl = "../../person_pic/image_n_a.jpg";
+                        //}
                         txtUpdatedBy.Text = strUpdatedBy;
                         txtUpdatedDate.Text = strUpdatedDate;
 

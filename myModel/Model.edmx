@@ -118,10 +118,11 @@
           <Property Name="ef_open_doc" Type="varchar" MaxLength="10" />
           <Property Name="budget_open_year" Type="varchar" MaxLength="4" />
           <Property Name="budget_open_date" Type="datetime" />
+          <Property Name="budget_open_date_actual" Type="datetime" />
           <Property Name="open_code" Type="int" />
           <Property Name="open_title" Type="varchar" MaxLength="255" />
-          <Property Name="open_desc" Type="varchar(max)" />
           <Property Name="open_command_desc" Type="varchar" MaxLength="4000" />
+          <Property Name="open_desc" Type="varchar(max)" />
           <Property Name="budget_type" Type="varchar" MaxLength="10" />
           <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
           <Property Name="degree_code" Type="varchar" MaxLength="10" />
@@ -235,6 +236,39 @@
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
           <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Deduct_detail">
+          <Key>
+            <PropertyRef Name="deduct_detail_id" />
+          </Key>
+          <Property Name="deduct_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deduct_doc_no" Type="varchar" MaxLength="20" />
+          <Property Name="recv_item_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="recv_item_rate" Type="money" />
+          <Property Name="recv_item_is_director" Type="bit" />
+          <Property Name="recv_item_remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="c_created_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Deduct_head">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="deduct_year" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" />
+          <Property Name="recv_total_remain" Type="money" />
+          <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_remark" Type="varchar" MaxLength="255" />
+          <Property Name="c_created_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="nvarchar" MaxLength="255" />
           <Property Name="d_updated_date" Type="datetime" />
         </EntityType>
         <EntityType Name="Degree">
@@ -378,7 +412,6 @@
           <Property Name="d_created_date" Type="datetime" />
           <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
           <Property Name="d_updated_date" Type="datetime" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Major">
           <Key>
@@ -559,6 +592,59 @@
           <Property Name="project_code" Type="varchar" MaxLength="20" />
           <Property Name="budget_type" Type="varchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Recv_detail">
+          <Key>
+            <PropertyRef Name="recv_detail_id" />
+          </Key>
+          <Property Name="recv_detail_id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" />
+          <Property Name="recv_item_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="recv_item_is_reduce" Type="bit" />
+          <Property Name="recv_item_rate" Type="money" />
+          <Property Name="recv_item_debit" Type="money" />
+          <Property Name="recv_item_credit" Type="money" />
+          <Property Name="c_created_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Recv_head">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+          </Key>
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recv_year" Type="varchar" MaxLength="10" />
+          <Property Name="recv_doc_ref" Type="varchar" MaxLength="20" />
+          <Property Name="recv_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_remark" Type="varchar" MaxLength="255" />
+          <Property Name="recv_total" Type="money" />
+          <Property Name="recv_reduce" Type="money" />
+          <Property Name="item_remain" Type="money" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="c_created_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Recv_item">
+          <Key>
+            <PropertyRef Name="recv_item_code" />
+          </Key>
+          <Property Name="recv_item_code" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="recv_item_year" Type="nvarchar" MaxLength="10" />
+          <Property Name="recv_item_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="recv_item_type" Type="nvarchar" MaxLength="1" />
+          <Property Name="recv_item_rate" Type="money" />
+          <Property Name="recv_item_remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="recv_item_is_director" Type="bit" />
+          <Property Name="c_active" Type="varchar" MaxLength="1" />
+          <Property Name="c_created_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="nvarchar" MaxLength="255" />
+          <Property Name="d_updated_date" Type="datetime" />
+        </EntityType>
         <EntityType Name="Title">
           <Key>
             <PropertyRef Name="title_code" />
@@ -656,7 +742,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Activity' does not have a prim
           <Property Name="activity_code" Type="varchar" MaxLength="6" Nullable="false" />
           <Property Name="activity_year" Type="varchar" MaxLength="4" />
           <Property Name="activity_name" Type="varchar" MaxLength="100" />
-          <Property Name="produce_code" Type="varchar" MaxLength="6" />
+          <Property Name="produce_code" Type="varchar" MaxLength="10" />
           <Property Name="c_active" Type="varchar" MaxLength="1" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
@@ -873,6 +959,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major_report' doe
             <PropertyRef Name="budget_money_major_id" />
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="major_code" />
+            <PropertyRef Name="budget_money_major_plan" />
+            <PropertyRef Name="budget_money_major_contribute" />
+            <PropertyRef Name="budget_money_major_use" />
             <PropertyRef Name="budget_money_doc" />
             <PropertyRef Name="budget_money_plan" />
             <PropertyRef Name="budget_money_contribute" />
@@ -883,9 +972,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_money_major_report' doe
           <Property Name="budget_money_major_id" Type="bigint" Nullable="false" />
           <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
           <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="budget_money_major_plan" Type="money" />
-          <Property Name="budget_money_major_contribute" Type="money" />
-          <Property Name="budget_money_major_use" Type="money" />
+          <Property Name="budget_money_major_plan" Type="money" Nullable="false" />
+          <Property Name="budget_money_major_contribute" Type="money" Nullable="false" />
+          <Property Name="budget_money_major_use" Type="money" Nullable="false" />
           <Property Name="budget_money_major_remain" Type="money" />
           <Property Name="budget_money_major_comment" Type="ntext" />
           <Property Name="c_created_by" Type="varchar" MaxLength="255" />
@@ -1027,6 +1116,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_detail' does not h
           <Property Name="budget_open_ap" Type="varchar" MaxLength="50" />
           <Property Name="budget_open_pr" Type="varchar" MaxLength="50" />
           <Property Name="budget_open_budget_no" Type="varchar" MaxLength="50" />
+          <Property Name="budget_open_date_actual" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1083,6 +1173,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_open_head' does not hav
           <Property Name="budget_open_ap" Type="varchar" MaxLength="50" />
           <Property Name="budget_open_pr" Type="varchar" MaxLength="50" />
           <Property Name="budget_open_budget_no" Type="varchar" MaxLength="50" />
+          <Property Name="budget_open_date_actual" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1098,15 +1189,15 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_plan' does not have a p
           <Property Name="work_code" Type="varchar" MaxLength="6" />
           <Property Name="fund_code" Type="varchar" MaxLength="6" />
           <Property Name="c_active" Type="varchar" MaxLength="1" />
-          <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="255" />
           <Property Name="d_created_date" Type="datetime" />
-          <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="255" />
           <Property Name="d_updated_date" Type="datetime" />
           <Property Name="unit_name" Type="varchar" MaxLength="100" />
           <Property Name="director_code" Type="varchar" MaxLength="6" />
           <Property Name="director_name" Type="varchar" MaxLength="100" />
           <Property Name="activity_name" Type="varchar" MaxLength="100" />
-          <Property Name="produce_code" Type="varchar" MaxLength="6" />
+          <Property Name="produce_code" Type="varchar" MaxLength="10" />
           <Property Name="produce_name" Type="varchar" MaxLength="100" />
           <Property Name="budget_code" Type="varchar" MaxLength="6" />
           <Property Name="budget_name" Type="varchar" MaxLength="100" />
@@ -1124,7 +1215,13 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
             <PropertyRef Name="budget_receive_detail_id" />
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="major_code" />
+            <PropertyRef Name="budget_money_major_plan" />
+            <PropertyRef Name="budget_money_major_contribute" />
+            <PropertyRef Name="budget_money_major_use" />
             <PropertyRef Name="budget_money_doc" />
+            <PropertyRef Name="budget_money_plan" />
+            <PropertyRef Name="budget_money_contribute" />
+            <PropertyRef Name="budget_money_use" />
           </Key>
           <Property Name="budget_receive_detail_id" Type="bigint" Nullable="false" />
           <Property Name="budget_receive_doc" Type="varchar" MaxLength="10" />
@@ -1167,9 +1264,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
           <Property Name="receive_lot_name" Type="varchar" MaxLength="100" />
           <Property Name="budget_money_detail_id" Type="bigint" Nullable="false" />
           <Property Name="major_code" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="budget_money_major_plan" Type="money" />
-          <Property Name="budget_money_major_contribute" Type="money" />
-          <Property Name="budget_money_major_use" Type="money" />
+          <Property Name="budget_money_major_plan" Type="money" Nullable="false" />
+          <Property Name="budget_money_major_contribute" Type="money" Nullable="false" />
+          <Property Name="budget_money_major_use" Type="money" Nullable="false" />
           <Property Name="budget_money_major_remain" Type="money" />
           <Property Name="budget_money_doc" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="item_group_detail_id" Type="int" />
@@ -1180,9 +1277,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
           <Property Name="budget_money_detail_use" Type="money" />
           <Property Name="budget_money_detail_remain" Type="money" />
           <Property Name="budget_money_year" Type="varchar" MaxLength="4" />
-          <Property Name="budget_money_plan" Type="money" />
-          <Property Name="budget_money_contribute" Type="money" />
-          <Property Name="budget_money_use" Type="money" />
+          <Property Name="budget_money_plan" Type="money" Nullable="false" />
+          <Property Name="budget_money_contribute" Type="money" Nullable="false" />
+          <Property Name="budget_money_use" Type="money" Nullable="false" />
           <Property Name="budget_money_remain" Type="money" />
           <Property Name="budget_money_detail_comment" Type="ntext" />
           <Property Name="comments" Type="varchar" MaxLength="255" />
@@ -1193,7 +1290,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_receive_detail' does no
           <Property Name="item_group_name" Type="varchar" MaxLength="100" />
           <Property Name="lot_code" Type="varchar" MaxLength="6" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
-          <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_detail_code" Type="varchar" MaxLength="20" />
           <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
           <Property Name="item_year" Type="varchar" MaxLength="4" />
           <Property Name="item_group_year" Type="varchar" MaxLength="4" />
@@ -1571,6 +1668,125 @@ warning 6002: The table/view 'mju_budget.dbo.view_Budget_transfer_report' does n
           <Property Name="budget_transfer_detail_is_impact" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Deduct_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Deduct_detail">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+            <PropertyRef Name="deduct_detail_id" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="deduct_year" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" />
+          <Property Name="recv_total_remain" Type="money" />
+          <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_remark" Type="varchar" MaxLength="255" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
+          <Property Name="major_order" Type="int" />
+          <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="recv_doc_ref" Type="varchar" MaxLength="20" />
+          <Property Name="recv_date" Type="date" />
+          <Property Name="recv_remark" Type="varchar" MaxLength="255" />
+          <Property Name="recv_total" Type="money" />
+          <Property Name="recv_reduce" Type="money" />
+          <Property Name="item_remain" Type="money" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_type" Type="varchar" MaxLength="1" />
+          <Property Name="unit_code" Type="varchar" MaxLength="10" />
+          <Property Name="activity_code" Type="varchar" MaxLength="6" />
+          <Property Name="plan_code" Type="varchar" MaxLength="6" />
+          <Property Name="work_code" Type="varchar" MaxLength="6" />
+          <Property Name="fund_code" Type="varchar" MaxLength="6" />
+          <Property Name="unit_name" Type="varchar" MaxLength="100" />
+          <Property Name="director_code" Type="varchar" MaxLength="6" />
+          <Property Name="director_name" Type="varchar" MaxLength="100" />
+          <Property Name="activity_name" Type="varchar" MaxLength="100" />
+          <Property Name="produce_code" Type="varchar" MaxLength="10" />
+          <Property Name="produce_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_code" Type="varchar" MaxLength="6" />
+          <Property Name="budget_name" Type="varchar" MaxLength="100" />
+          <Property Name="plan_name" Type="varchar" MaxLength="100" />
+          <Property Name="work_name" Type="varchar" MaxLength="100" />
+          <Property Name="fund_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="recv_item_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="recv_item_rate" Type="money" />
+          <Property Name="recv_item_is_director" Type="bit" />
+          <Property Name="recv_item_remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="recv_item_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="recv_item_type" Type="nvarchar" MaxLength="1" />
+          <Property Name="Expr1" Type="money" />
+          <Property Name="Expr2" Type="nvarchar" MaxLength="255" />
+          <Property Name="Expr3" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Deduct_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Deduct_head">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="deduct_year" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" />
+          <Property Name="recv_total_remain" Type="money" />
+          <Property Name="budget_plan_code" Type="varchar" MaxLength="10" />
+          <Property Name="deduct_remark" Type="varchar" MaxLength="255" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
+          <Property Name="major_order" Type="int" />
+          <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="recv_doc_ref" Type="varchar" MaxLength="20" />
+          <Property Name="recv_date" Type="date" />
+          <Property Name="recv_remark" Type="varchar" MaxLength="255" />
+          <Property Name="recv_total" Type="money" />
+          <Property Name="recv_reduce" Type="money" />
+          <Property Name="item_remain" Type="money" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_type" Type="varchar" MaxLength="1" />
+          <Property Name="unit_code" Type="varchar" MaxLength="10" />
+          <Property Name="activity_code" Type="varchar" MaxLength="6" />
+          <Property Name="plan_code" Type="varchar" MaxLength="6" />
+          <Property Name="work_code" Type="varchar" MaxLength="6" />
+          <Property Name="fund_code" Type="varchar" MaxLength="6" />
+          <Property Name="unit_name" Type="varchar" MaxLength="100" />
+          <Property Name="director_code" Type="varchar" MaxLength="6" />
+          <Property Name="director_name" Type="varchar" MaxLength="100" />
+          <Property Name="activity_name" Type="varchar" MaxLength="100" />
+          <Property Name="produce_code" Type="varchar" MaxLength="10" />
+          <Property Name="produce_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_code" Type="varchar" MaxLength="6" />
+          <Property Name="budget_name" Type="varchar" MaxLength="100" />
+          <Property Name="plan_name" Type="varchar" MaxLength="100" />
+          <Property Name="work_name" Type="varchar" MaxLength="100" />
+          <Property Name="fund_name" Type="varchar" MaxLength="100" />
+          <Property Name="budget_type" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Item' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_Item">
           <Key>
@@ -1593,7 +1809,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item' does not have a primary 
           <Property Name="lot_code" Type="varchar" MaxLength="6" />
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
           <Property Name="item_group_type" Type="varchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -1603,7 +1818,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_detail' does not have a p
             <PropertyRef Name="item_detail_id" />
           </Key>
           <Property Name="item_detail_id" Type="int" Nullable="false" />
-          <Property Name="item_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_detail_code" Type="varchar" MaxLength="20" />
           <Property Name="item_detail_name" Type="varchar" MaxLength="100" />
           <Property Name="item_code" Type="varchar" MaxLength="10" />
           <Property Name="c_active" Type="varchar" MaxLength="1" />
@@ -1622,7 +1837,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_detail' does not have a p
           <Property Name="lot_code" Type="varchar" MaxLength="6" />
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
           <Property Name="item_group_type" Type="varchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -1642,7 +1856,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group' does not have a pr
           <Property Name="d_updated_date" Type="datetime" />
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
           <Property Name="item_group_type" Type="varchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -1664,7 +1877,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_Item_group_detail' does not ha
           <Property Name="lot_code" Type="varchar" MaxLength="6" />
           <Property Name="lot_year" Type="varchar" MaxLength="4" />
           <Property Name="lot_name" Type="varchar" MaxLength="100" />
-          <Property Name="budget_type" Type="varchar" MaxLength="10" />
           <Property Name="item_group_type" Type="varchar" MaxLength="1" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -1698,9 +1910,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_Menu' does not have a primary 
           <Property Name="CanExtra" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="255" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="UpdatedDate" Type="datetime" />
           <Property Name="MenuParentName" Type="nvarchar" MaxLength="255" />
           <Property Name="MenuImageUrl" Type="nvarchar" MaxLength="255" />
@@ -1841,6 +2053,84 @@ warning 6002: The table/view 'mju_budget.dbo.view_Person_user' does not have a p
           <Property Name="person_pic" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Recv_detail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Recv_detail">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+            <PropertyRef Name="recv_detail_id" />
+          </Key>
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recv_doc_ref" Type="varchar" MaxLength="20" />
+          <Property Name="recv_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_remark" Type="varchar" MaxLength="255" />
+          <Property Name="recv_total" Type="money" />
+          <Property Name="recv_reduce" Type="money" />
+          <Property Name="item_remain" Type="money" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
+          <Property Name="major_year" Type="varchar" MaxLength="4" />
+          <Property Name="major_order" Type="int" />
+          <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_type" Type="varchar" MaxLength="1" />
+          <Property Name="recv_year" Type="varchar" MaxLength="10" />
+          <Property Name="recv_detail_id" Type="bigint" Nullable="false" />
+          <Property Name="recv_item_code" Type="nvarchar" MaxLength="10" />
+          <Property Name="recv_item_is_reduce" Type="bit" />
+          <Property Name="recv_item_rate" Type="money" />
+          <Property Name="recv_item_debit" Type="money" />
+          <Property Name="recv_item_credit" Type="money" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="recv_item_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="recv_item_type" Type="nvarchar" MaxLength="1" />
+          <Property Name="Expr1" Type="money" />
+          <Property Name="recv_item_remark" Type="nvarchar" MaxLength="255" />
+          <Property Name="recv_item_is_director" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'mju_budget.dbo.view_Recv_head' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="view_Recv_head">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+          </Key>
+          <Property Name="recv_doc_no" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="recv_doc_ref" Type="varchar" MaxLength="20" />
+          <Property Name="recv_date" Type="date" />
+          <Property Name="major_code" Type="varchar" MaxLength="10" />
+          <Property Name="degree_code" Type="varchar" MaxLength="10" />
+          <Property Name="recv_remark" Type="varchar" MaxLength="255" />
+          <Property Name="recv_total" Type="money" />
+          <Property Name="recv_reduce" Type="money" />
+          <Property Name="item_remain" Type="money" />
+          <Property Name="c_created_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_created_date" Type="datetime" />
+          <Property Name="c_updated_by" Type="varchar" MaxLength="10" />
+          <Property Name="d_updated_date" Type="datetime" />
+          <Property Name="major_name" Type="varchar" MaxLength="100" />
+          <Property Name="major_abbrev" Type="varchar" MaxLength="100" />
+          <Property Name="major_year" Type="varchar" MaxLength="4" />
+          <Property Name="major_order" Type="int" />
+          <Property Name="degree_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_detail_id" Type="int" />
+          <Property Name="item_group_detail_code" Type="varchar" MaxLength="10" />
+          <Property Name="item_group_detail_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_code" Type="varchar" MaxLength="6" />
+          <Property Name="item_group_year" Type="varchar" MaxLength="4" />
+          <Property Name="item_group_name" Type="varchar" MaxLength="100" />
+          <Property Name="item_group_type" Type="varchar" MaxLength="1" />
+          <Property Name="recv_year" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'mju_budget.dbo.view_Unit' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="view_Unit">
           <Key>
@@ -1868,6 +2158,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <PropertyRef Name="MenuCanApprove" />
             <PropertyRef Name="MenuCanExtra" />
             <PropertyRef Name="Menu_Status" />
+            <PropertyRef Name="MenuID" />
           </Key>
           <Property Name="user_group_code" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="CanView" Type="char" MaxLength="1" />
@@ -1876,11 +2167,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="CanDelete" Type="char" MaxLength="1" />
           <Property Name="CanApprove" Type="char" MaxLength="1" />
           <Property Name="CanExtra" Type="char" MaxLength="1" />
-          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedDate" Type="datetime" />
-          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="255" />
           <Property Name="UpdatedDate" Type="datetime" />
-          <Property Name="user_group_name" Type="varchar" MaxLength="10" />
+          <Property Name="user_group_name" Type="varchar" MaxLength="100" />
           <Property Name="MenuName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="MenuNavigationUrl" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="MenuImageUrl" Type="nvarchar" MaxLength="255" />
@@ -1899,7 +2190,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="unit_code_list" Type="varchar" MaxLength="255" />
           <Property Name="Menu_Status" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Remark" Type="nvarchar" MaxLength="255" />
-          <Property Name="MenuID" Type="smallint" />
+          <Property Name="MenuID" Type="smallint" Nullable="false" />
         </EntityType>
         <Association Name="FK_activity_produce_code">
           <End Role="Produce" Type="Self.Produce" Multiplicity="0..1" />
@@ -2042,18 +2333,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Principal>
             <Dependent Role="Budget_open_head">
               <PropertyRef Name="major_code" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Budget_open_head_person_open">
-          <End Role="Person_his" Type="Self.Person_his" Multiplicity="0..1" />
-          <End Role="Budget_open_head" Type="Self.Budget_open_head" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person_his">
-              <PropertyRef Name="person_code" />
-            </Principal>
-            <Dependent Role="Budget_open_head">
-              <PropertyRef Name="person_open" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2285,6 +2564,78 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Deduct_detail_deduct_head">
+          <End Role="Deduct_detail" Type="Self.Deduct_detail" Multiplicity="1" />
+          <End Role="Deduct_detail1" Type="Self.Deduct_detail" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Deduct_detail">
+              <PropertyRef Name="deduct_detail_id" />
+            </Principal>
+            <Dependent Role="Deduct_detail1">
+              <PropertyRef Name="deduct_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_detail_recv_item">
+          <End Role="Recv_item" Type="Self.Recv_item" Multiplicity="0..1" />
+          <End Role="Deduct_detail" Type="Self.Deduct_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_item">
+              <PropertyRef Name="recv_item_code" />
+            </Principal>
+            <Dependent Role="Deduct_detail">
+              <PropertyRef Name="recv_item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_bugget_plan">
+          <End Role="Budget_plan" Type="Self.Budget_plan" Multiplicity="0..1" />
+          <End Role="Deduct_head" Type="Self.Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_plan">
+              <PropertyRef Name="budget_plan_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="budget_plan_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_degree">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="0..1" />
+          <End Role="Deduct_head" Type="Self.Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="degree_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="degree_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_major">
+          <End Role="Major" Type="Self.Major" Multiplicity="0..1" />
+          <End Role="Deduct_head" Type="Self.Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_recv_head">
+          <End Role="Recv_head" Type="Self.Recv_head" Multiplicity="0..1" />
+          <End Role="Deduct_head" Type="Self.Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_item_group_detail_item_group">
           <End Role="Item_group" Type="Self.Item_group" Multiplicity="0..1" />
           <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="*" />
@@ -2441,6 +2792,66 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Recv_detail_recv_doc_no">
+          <End Role="Recv_head" Type="Self.Recv_head" Multiplicity="0..1" />
+          <End Role="Recv_detail" Type="Self.Recv_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Principal>
+            <Dependent Role="Recv_detail">
+              <PropertyRef Name="recv_doc_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_detail_recv_item_code">
+          <End Role="Recv_item" Type="Self.Recv_item" Multiplicity="0..1" />
+          <End Role="Recv_detail" Type="Self.Recv_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_item">
+              <PropertyRef Name="recv_item_code" />
+            </Principal>
+            <Dependent Role="Recv_detail">
+              <PropertyRef Name="recv_item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_head_degree">
+          <End Role="Degree" Type="Self.Degree" Multiplicity="0..1" />
+          <End Role="Recv_head" Type="Self.Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="degree_code" />
+            </Principal>
+            <Dependent Role="Recv_head">
+              <PropertyRef Name="degree_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_head_item_group_detail">
+          <End Role="Item_group_detail" Type="Self.Item_group_detail" Multiplicity="0..1" />
+          <End Role="Recv_head" Type="Self.Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group_detail">
+              <PropertyRef Name="item_group_detail_id" />
+            </Principal>
+            <Dependent Role="Recv_head">
+              <PropertyRef Name="item_group_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_head_major">
+          <End Role="Major" Type="Self.Major" Multiplicity="0..1" />
+          <End Role="Recv_head" Type="Self.Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Recv_head">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_unit_director_code">
           <End Role="Director" Type="Self.Director" Multiplicity="0..1" />
           <End Role="Unit" Type="Self.Unit" Multiplicity="*" />
@@ -2467,6 +2878,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="Budget_transfer_detail" EntityType="Self.Budget_transfer_detail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Budget_transfer_head" EntityType="Self.Budget_transfer_head" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Config_item" EntityType="Self.Config_item" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deduct_detail" EntityType="Self.Deduct_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deduct_head" EntityType="Self.Deduct_head" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Degree" EntityType="Self.Degree" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Director" EntityType="Self.Director" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fund" EntityType="Self.Fund" Schema="dbo" store:Type="Tables" />
@@ -2488,6 +2901,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="Plan" EntityType="Self.Plan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produce" EntityType="Self.Produce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recv_detail" EntityType="Self.Recv_detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recv_head" EntityType="Self.Recv_head" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recv_item" EntityType="Self.Recv_item" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Title" EntityType="Self.Title" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Type_position" EntityType="Self.Type_position" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unit" EntityType="Self.Unit" Schema="dbo" store:Type="Tables" />
@@ -2824,7 +3240,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_detail].[budget_open_no] AS [budget_open_no], 
     [view_Budget_open_detail].[budget_open_ap] AS [budget_open_ap], 
     [view_Budget_open_detail].[budget_open_pr] AS [budget_open_pr], 
-    [view_Budget_open_detail].[budget_open_budget_no] AS [budget_open_budget_no]
+    [view_Budget_open_detail].[budget_open_budget_no] AS [budget_open_budget_no], 
+    [view_Budget_open_detail].[budget_open_date_actual] AS [budget_open_date_actual]
     FROM [dbo].[view_Budget_open_detail] AS [view_Budget_open_detail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_open_head" EntityType="Self.view_Budget_open_head" store:Type="Views" store:Schema="dbo">
@@ -2877,7 +3294,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_open_head].[budget_open_no] AS [budget_open_no], 
     [view_Budget_open_head].[budget_open_ap] AS [budget_open_ap], 
     [view_Budget_open_head].[budget_open_pr] AS [budget_open_pr], 
-    [view_Budget_open_head].[budget_open_budget_no] AS [budget_open_budget_no]
+    [view_Budget_open_head].[budget_open_budget_no] AS [budget_open_budget_no], 
+    [view_Budget_open_head].[budget_open_date_actual] AS [budget_open_date_actual]
     FROM [dbo].[view_Budget_open_head] AS [view_Budget_open_head]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="view_Budget_plan" EntityType="Self.view_Budget_plan" store:Type="Views" store:Schema="dbo">
@@ -3334,6 +3752,118 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Budget_transfer_report].[budget_transfer_detail_is_impact] AS [budget_transfer_detail_is_impact]
     FROM [dbo].[view_Budget_transfer_report] AS [view_Budget_transfer_report]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="view_Deduct_detail" EntityType="Self.view_Deduct_detail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Deduct_detail].[deduct_doc_no] AS [deduct_doc_no], 
+    [view_Deduct_detail].[deduct_year] AS [deduct_year], 
+    [view_Deduct_detail].[deduct_date] AS [deduct_date], 
+    [view_Deduct_detail].[major_code] AS [major_code], 
+    [view_Deduct_detail].[degree_code] AS [degree_code], 
+    [view_Deduct_detail].[recv_doc_no] AS [recv_doc_no], 
+    [view_Deduct_detail].[recv_total_remain] AS [recv_total_remain], 
+    [view_Deduct_detail].[budget_plan_code] AS [budget_plan_code], 
+    [view_Deduct_detail].[deduct_remark] AS [deduct_remark], 
+    [view_Deduct_detail].[major_name] AS [major_name], 
+    [view_Deduct_detail].[major_abbrev] AS [major_abbrev], 
+    [view_Deduct_detail].[major_order] AS [major_order], 
+    [view_Deduct_detail].[degree_name] AS [degree_name], 
+    [view_Deduct_detail].[recv_doc_ref] AS [recv_doc_ref], 
+    [view_Deduct_detail].[recv_date] AS [recv_date], 
+    [view_Deduct_detail].[recv_remark] AS [recv_remark], 
+    [view_Deduct_detail].[recv_total] AS [recv_total], 
+    [view_Deduct_detail].[recv_reduce] AS [recv_reduce], 
+    [view_Deduct_detail].[item_remain] AS [item_remain], 
+    [view_Deduct_detail].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Deduct_detail].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Deduct_detail].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Deduct_detail].[item_group_code] AS [item_group_code], 
+    [view_Deduct_detail].[item_group_year] AS [item_group_year], 
+    [view_Deduct_detail].[item_group_name] AS [item_group_name], 
+    [view_Deduct_detail].[item_group_type] AS [item_group_type], 
+    [view_Deduct_detail].[unit_code] AS [unit_code], 
+    [view_Deduct_detail].[activity_code] AS [activity_code], 
+    [view_Deduct_detail].[plan_code] AS [plan_code], 
+    [view_Deduct_detail].[work_code] AS [work_code], 
+    [view_Deduct_detail].[fund_code] AS [fund_code], 
+    [view_Deduct_detail].[unit_name] AS [unit_name], 
+    [view_Deduct_detail].[director_code] AS [director_code], 
+    [view_Deduct_detail].[director_name] AS [director_name], 
+    [view_Deduct_detail].[activity_name] AS [activity_name], 
+    [view_Deduct_detail].[produce_code] AS [produce_code], 
+    [view_Deduct_detail].[produce_name] AS [produce_name], 
+    [view_Deduct_detail].[budget_code] AS [budget_code], 
+    [view_Deduct_detail].[budget_name] AS [budget_name], 
+    [view_Deduct_detail].[plan_name] AS [plan_name], 
+    [view_Deduct_detail].[work_name] AS [work_name], 
+    [view_Deduct_detail].[fund_name] AS [fund_name], 
+    [view_Deduct_detail].[budget_type] AS [budget_type], 
+    [view_Deduct_detail].[deduct_detail_id] AS [deduct_detail_id], 
+    [view_Deduct_detail].[recv_item_code] AS [recv_item_code], 
+    [view_Deduct_detail].[recv_item_rate] AS [recv_item_rate], 
+    [view_Deduct_detail].[recv_item_is_director] AS [recv_item_is_director], 
+    [view_Deduct_detail].[recv_item_remark] AS [recv_item_remark], 
+    [view_Deduct_detail].[c_created_by] AS [c_created_by], 
+    [view_Deduct_detail].[d_created_date] AS [d_created_date], 
+    [view_Deduct_detail].[c_updated_by] AS [c_updated_by], 
+    [view_Deduct_detail].[d_updated_date] AS [d_updated_date], 
+    [view_Deduct_detail].[recv_item_name] AS [recv_item_name], 
+    [view_Deduct_detail].[recv_item_type] AS [recv_item_type], 
+    [view_Deduct_detail].[Expr1] AS [Expr1], 
+    [view_Deduct_detail].[Expr2] AS [Expr2], 
+    [view_Deduct_detail].[Expr3] AS [Expr3]
+    FROM [dbo].[view_Deduct_detail] AS [view_Deduct_detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_Deduct_head" EntityType="Self.view_Deduct_head" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Deduct_head].[deduct_doc_no] AS [deduct_doc_no], 
+    [view_Deduct_head].[deduct_year] AS [deduct_year], 
+    [view_Deduct_head].[deduct_date] AS [deduct_date], 
+    [view_Deduct_head].[major_code] AS [major_code], 
+    [view_Deduct_head].[degree_code] AS [degree_code], 
+    [view_Deduct_head].[recv_doc_no] AS [recv_doc_no], 
+    [view_Deduct_head].[recv_total_remain] AS [recv_total_remain], 
+    [view_Deduct_head].[budget_plan_code] AS [budget_plan_code], 
+    [view_Deduct_head].[deduct_remark] AS [deduct_remark], 
+    [view_Deduct_head].[c_created_by] AS [c_created_by], 
+    [view_Deduct_head].[d_created_date] AS [d_created_date], 
+    [view_Deduct_head].[c_updated_by] AS [c_updated_by], 
+    [view_Deduct_head].[d_updated_date] AS [d_updated_date], 
+    [view_Deduct_head].[major_name] AS [major_name], 
+    [view_Deduct_head].[major_abbrev] AS [major_abbrev], 
+    [view_Deduct_head].[major_order] AS [major_order], 
+    [view_Deduct_head].[degree_name] AS [degree_name], 
+    [view_Deduct_head].[recv_doc_ref] AS [recv_doc_ref], 
+    [view_Deduct_head].[recv_date] AS [recv_date], 
+    [view_Deduct_head].[recv_remark] AS [recv_remark], 
+    [view_Deduct_head].[recv_total] AS [recv_total], 
+    [view_Deduct_head].[recv_reduce] AS [recv_reduce], 
+    [view_Deduct_head].[item_remain] AS [item_remain], 
+    [view_Deduct_head].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Deduct_head].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Deduct_head].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Deduct_head].[item_group_code] AS [item_group_code], 
+    [view_Deduct_head].[item_group_year] AS [item_group_year], 
+    [view_Deduct_head].[item_group_name] AS [item_group_name], 
+    [view_Deduct_head].[item_group_type] AS [item_group_type], 
+    [view_Deduct_head].[unit_code] AS [unit_code], 
+    [view_Deduct_head].[activity_code] AS [activity_code], 
+    [view_Deduct_head].[plan_code] AS [plan_code], 
+    [view_Deduct_head].[work_code] AS [work_code], 
+    [view_Deduct_head].[fund_code] AS [fund_code], 
+    [view_Deduct_head].[unit_name] AS [unit_name], 
+    [view_Deduct_head].[director_code] AS [director_code], 
+    [view_Deduct_head].[director_name] AS [director_name], 
+    [view_Deduct_head].[activity_name] AS [activity_name], 
+    [view_Deduct_head].[produce_code] AS [produce_code], 
+    [view_Deduct_head].[produce_name] AS [produce_name], 
+    [view_Deduct_head].[budget_code] AS [budget_code], 
+    [view_Deduct_head].[budget_name] AS [budget_name], 
+    [view_Deduct_head].[plan_name] AS [plan_name], 
+    [view_Deduct_head].[work_name] AS [work_name], 
+    [view_Deduct_head].[fund_name] AS [fund_name], 
+    [view_Deduct_head].[budget_type] AS [budget_type]
+    FROM [dbo].[view_Deduct_head] AS [view_Deduct_head]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="view_Item" EntityType="Self.view_Item" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [view_Item].[item_code] AS [item_code], 
@@ -3353,7 +3883,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Item].[lot_code] AS [lot_code], 
     [view_Item].[lot_year] AS [lot_year], 
     [view_Item].[lot_name] AS [lot_name], 
-    [view_Item].[budget_type] AS [budget_type], 
     [view_Item].[item_group_type] AS [item_group_type]
     FROM [dbo].[view_Item] AS [view_Item]</DefiningQuery>
           </EntitySet>
@@ -3379,7 +3908,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Item_detail].[lot_code] AS [lot_code], 
     [view_Item_detail].[lot_year] AS [lot_year], 
     [view_Item_detail].[lot_name] AS [lot_name], 
-    [view_Item_detail].[budget_type] AS [budget_type], 
     [view_Item_detail].[item_group_type] AS [item_group_type]
     FROM [dbo].[view_Item_detail] AS [view_Item_detail]</DefiningQuery>
           </EntitySet>
@@ -3396,7 +3924,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Item_group].[d_updated_date] AS [d_updated_date], 
     [view_Item_group].[lot_year] AS [lot_year], 
     [view_Item_group].[lot_name] AS [lot_name], 
-    [view_Item_group].[budget_type] AS [budget_type], 
     [view_Item_group].[item_group_type] AS [item_group_type]
     FROM [dbo].[view_Item_group] AS [view_Item_group]</DefiningQuery>
           </EntitySet>
@@ -3415,7 +3942,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Item_group_detail].[lot_code] AS [lot_code], 
     [view_Item_group_detail].[lot_year] AS [lot_year], 
     [view_Item_group_detail].[lot_name] AS [lot_name], 
-    [view_Item_group_detail].[budget_type] AS [budget_type], 
     [view_Item_group_detail].[item_group_type] AS [item_group_type]
     FROM [dbo].[view_Item_group_detail] AS [view_Item_group_detail]</DefiningQuery>
           </EntitySet>
@@ -3569,6 +4095,77 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
     [view_Person_user].[person_pic] AS [person_pic]
     FROM [dbo].[view_Person_user] AS [view_Person_user]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="view_Recv_detail" EntityType="Self.view_Recv_detail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Recv_detail].[recv_doc_no] AS [recv_doc_no], 
+    [view_Recv_detail].[recv_doc_ref] AS [recv_doc_ref], 
+    [view_Recv_detail].[recv_date] AS [recv_date], 
+    [view_Recv_detail].[major_code] AS [major_code], 
+    [view_Recv_detail].[degree_code] AS [degree_code], 
+    [view_Recv_detail].[recv_remark] AS [recv_remark], 
+    [view_Recv_detail].[recv_total] AS [recv_total], 
+    [view_Recv_detail].[recv_reduce] AS [recv_reduce], 
+    [view_Recv_detail].[item_remain] AS [item_remain], 
+    [view_Recv_detail].[major_name] AS [major_name], 
+    [view_Recv_detail].[major_abbrev] AS [major_abbrev], 
+    [view_Recv_detail].[major_year] AS [major_year], 
+    [view_Recv_detail].[major_order] AS [major_order], 
+    [view_Recv_detail].[degree_name] AS [degree_name], 
+    [view_Recv_detail].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Recv_detail].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Recv_detail].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Recv_detail].[item_group_code] AS [item_group_code], 
+    [view_Recv_detail].[item_group_year] AS [item_group_year], 
+    [view_Recv_detail].[item_group_name] AS [item_group_name], 
+    [view_Recv_detail].[item_group_type] AS [item_group_type], 
+    [view_Recv_detail].[recv_year] AS [recv_year], 
+    [view_Recv_detail].[recv_detail_id] AS [recv_detail_id], 
+    [view_Recv_detail].[recv_item_code] AS [recv_item_code], 
+    [view_Recv_detail].[recv_item_is_reduce] AS [recv_item_is_reduce], 
+    [view_Recv_detail].[recv_item_rate] AS [recv_item_rate], 
+    [view_Recv_detail].[recv_item_debit] AS [recv_item_debit], 
+    [view_Recv_detail].[recv_item_credit] AS [recv_item_credit], 
+    [view_Recv_detail].[c_created_by] AS [c_created_by], 
+    [view_Recv_detail].[d_created_date] AS [d_created_date], 
+    [view_Recv_detail].[c_updated_by] AS [c_updated_by], 
+    [view_Recv_detail].[d_updated_date] AS [d_updated_date], 
+    [view_Recv_detail].[recv_item_name] AS [recv_item_name], 
+    [view_Recv_detail].[recv_item_type] AS [recv_item_type], 
+    [view_Recv_detail].[Expr1] AS [Expr1], 
+    [view_Recv_detail].[recv_item_remark] AS [recv_item_remark], 
+    [view_Recv_detail].[recv_item_is_director] AS [recv_item_is_director]
+    FROM [dbo].[view_Recv_detail] AS [view_Recv_detail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="view_Recv_head" EntityType="Self.view_Recv_head" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Recv_head].[recv_doc_no] AS [recv_doc_no], 
+    [view_Recv_head].[recv_doc_ref] AS [recv_doc_ref], 
+    [view_Recv_head].[recv_date] AS [recv_date], 
+    [view_Recv_head].[major_code] AS [major_code], 
+    [view_Recv_head].[degree_code] AS [degree_code], 
+    [view_Recv_head].[recv_remark] AS [recv_remark], 
+    [view_Recv_head].[recv_total] AS [recv_total], 
+    [view_Recv_head].[recv_reduce] AS [recv_reduce], 
+    [view_Recv_head].[item_remain] AS [item_remain], 
+    [view_Recv_head].[c_created_by] AS [c_created_by], 
+    [view_Recv_head].[d_created_date] AS [d_created_date], 
+    [view_Recv_head].[c_updated_by] AS [c_updated_by], 
+    [view_Recv_head].[d_updated_date] AS [d_updated_date], 
+    [view_Recv_head].[major_name] AS [major_name], 
+    [view_Recv_head].[major_abbrev] AS [major_abbrev], 
+    [view_Recv_head].[major_year] AS [major_year], 
+    [view_Recv_head].[major_order] AS [major_order], 
+    [view_Recv_head].[degree_name] AS [degree_name], 
+    [view_Recv_head].[item_group_detail_id] AS [item_group_detail_id], 
+    [view_Recv_head].[item_group_detail_code] AS [item_group_detail_code], 
+    [view_Recv_head].[item_group_detail_name] AS [item_group_detail_name], 
+    [view_Recv_head].[item_group_code] AS [item_group_code], 
+    [view_Recv_head].[item_group_year] AS [item_group_year], 
+    [view_Recv_head].[item_group_name] AS [item_group_name], 
+    [view_Recv_head].[item_group_type] AS [item_group_type], 
+    [view_Recv_head].[recv_year] AS [recv_year]
+    FROM [dbo].[view_Recv_head] AS [view_Recv_head]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="view_Unit" EntityType="Self.view_Unit" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [view_Unit].[unit_code] AS [unit_code], 
@@ -3661,10 +4258,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Major" EntitySet="Major" />
             <End Role="Budget_open_head" EntitySet="Budget_open_head" />
           </AssociationSet>
-          <AssociationSet Name="FK_Budget_open_head_person_open" Association="Self.FK_Budget_open_head_person_open">
-            <End Role="Person_his" EntitySet="Person_his" />
-            <End Role="Budget_open_head" EntitySet="Budget_open_head" />
-          </AssociationSet>
           <AssociationSet Name="FK_budget_plan_activity_code" Association="Self.FK_budget_plan_activity_code">
             <End Role="Activity" EntitySet="Activity" />
             <End Role="Budget_plan" EntitySet="Budget_plan" />
@@ -3741,6 +4334,30 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Major" EntitySet="Major" />
             <End Role="Budget_transfer_head" EntitySet="Budget_transfer_head" />
           </AssociationSet>
+          <AssociationSet Name="FK_Deduct_detail_deduct_head" Association="Self.FK_Deduct_detail_deduct_head">
+            <End Role="Deduct_detail" EntitySet="Deduct_detail" />
+            <End Role="Deduct_detail1" EntitySet="Deduct_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_detail_recv_item" Association="Self.FK_Deduct_detail_recv_item">
+            <End Role="Recv_item" EntitySet="Recv_item" />
+            <End Role="Deduct_detail" EntitySet="Deduct_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_bugget_plan" Association="Self.FK_Deduct_head_bugget_plan">
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_degree" Association="Self.FK_Deduct_head_degree">
+            <End Role="Degree" EntitySet="Degree" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_major" Association="Self.FK_Deduct_head_major">
+            <End Role="Major" EntitySet="Major" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_recv_head" Association="Self.FK_Deduct_head_recv_head">
+            <End Role="Recv_head" EntitySet="Recv_head" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
           <AssociationSet Name="FK_item_group_detail_item_group" Association="Self.FK_item_group_detail_item_group">
             <End Role="Item_group" EntitySet="Item_group" />
             <End Role="Item_group_detail" EntitySet="Item_group_detail" />
@@ -3793,6 +4410,26 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Budget" EntitySet="Budget" />
             <End Role="Produce" EntitySet="Produce" />
           </AssociationSet>
+          <AssociationSet Name="FK_Recv_detail_recv_doc_no" Association="Self.FK_Recv_detail_recv_doc_no">
+            <End Role="Recv_head" EntitySet="Recv_head" />
+            <End Role="Recv_detail" EntitySet="Recv_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_detail_recv_item_code" Association="Self.FK_Recv_detail_recv_item_code">
+            <End Role="Recv_item" EntitySet="Recv_item" />
+            <End Role="Recv_detail" EntitySet="Recv_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_degree" Association="Self.FK_Recv_head_degree">
+            <End Role="Degree" EntitySet="Degree" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_item_group_detail" Association="Self.FK_Recv_head_item_group_detail">
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_major" Association="Self.FK_Recv_head_major">
+            <End Role="Major" EntitySet="Major" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
+          </AssociationSet>
           <AssociationSet Name="FK_unit_director_code" Association="Self.FK_unit_director_code">
             <End Role="Director" EntitySet="Director" />
             <End Role="Unit" EntitySet="Unit" />
@@ -3816,6 +4453,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="Budget_transfer_detail" EntityType="mju_budgetModel.Budget_transfer_detail" />
           <EntitySet Name="Budget_transfer_head" EntityType="mju_budgetModel.Budget_transfer_head" />
           <EntitySet Name="Config_item" EntityType="mju_budgetModel.Config_item" />
+          <EntitySet Name="Deduct_detail" EntityType="mju_budgetModel.Deduct_detail" />
+          <EntitySet Name="Deduct_head" EntityType="mju_budgetModel.Deduct_head" />
           <EntitySet Name="Degrees" EntityType="mju_budgetModel.Degree" />
           <EntitySet Name="Directors" EntityType="mju_budgetModel.Director" />
           <EntitySet Name="Funds" EntityType="mju_budgetModel.Fund" />
@@ -3837,6 +4476,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="Plans" EntityType="mju_budgetModel.Plan" />
           <EntitySet Name="Positions" EntityType="mju_budgetModel.Position" />
           <EntitySet Name="Produces" EntityType="mju_budgetModel.Produce" />
+          <EntitySet Name="Recv_detail" EntityType="mju_budgetModel.Recv_detail" />
+          <EntitySet Name="Recv_head" EntityType="mju_budgetModel.Recv_head" />
+          <EntitySet Name="Recv_item" EntityType="mju_budgetModel.Recv_item" />
           <EntitySet Name="Titles" EntityType="mju_budgetModel.Title" />
           <EntitySet Name="Type_position" EntityType="mju_budgetModel.Type_position" />
           <EntitySet Name="Units" EntityType="mju_budgetModel.Unit" />
@@ -3857,6 +4499,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="view_Budget_transfer_detail" EntityType="mju_budgetModel.view_Budget_transfer_detail" />
           <EntitySet Name="view_Budget_transfer_head" EntityType="mju_budgetModel.view_Budget_transfer_head" />
           <EntitySet Name="view_Budget_transfer_report" EntityType="mju_budgetModel.view_Budget_transfer_report" />
+          <EntitySet Name="view_Deduct_detail" EntityType="mju_budgetModel.view_Deduct_detail" />
+          <EntitySet Name="view_Deduct_head" EntityType="mju_budgetModel.view_Deduct_head" />
           <EntitySet Name="view_Item" EntityType="mju_budgetModel.view_Item" />
           <EntitySet Name="view_Item_detail" EntityType="mju_budgetModel.view_Item_detail" />
           <EntitySet Name="view_Item_group" EntityType="mju_budgetModel.view_Item_group" />
@@ -3865,6 +4509,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySet Name="view_Person_all" EntityType="mju_budgetModel.view_Person_all" />
           <EntitySet Name="view_Person_list" EntityType="mju_budgetModel.view_Person_list" />
           <EntitySet Name="view_Person_user" EntityType="mju_budgetModel.view_Person_user" />
+          <EntitySet Name="view_Recv_detail" EntityType="mju_budgetModel.view_Recv_detail" />
+          <EntitySet Name="view_Recv_head" EntityType="mju_budgetModel.view_Recv_head" />
           <EntitySet Name="view_Unit" EntityType="mju_budgetModel.view_Unit" />
           <EntitySet Name="view_User_group_menu" EntityType="mju_budgetModel.view_User_group_menu" />
           <AssociationSet Name="FK_activity_produce_code" Association="mju_budgetModel.FK_activity_produce_code">
@@ -3935,10 +4581,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Major" EntitySet="Majors" />
             <End Role="Budget_open_head" EntitySet="Budget_open_head" />
           </AssociationSet>
-          <AssociationSet Name="FK_Budget_open_head_person_open" Association="mju_budgetModel.FK_Budget_open_head_person_open">
-            <End Role="Person_his" EntitySet="Person_his" />
-            <End Role="Budget_open_head" EntitySet="Budget_open_head" />
-          </AssociationSet>
           <AssociationSet Name="FK_budget_plan_fund_code" Association="mju_budgetModel.FK_budget_plan_fund_code">
             <End Role="Fund" EntitySet="Funds" />
             <End Role="Budget_plan" EntitySet="Budget_plan" />
@@ -3966,6 +4608,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <AssociationSet Name="FK_Budget_transfer_head_budget_plan_code_to" Association="mju_budgetModel.FK_Budget_transfer_head_budget_plan_code_to">
             <End Role="Budget_plan" EntitySet="Budget_plan" />
             <End Role="Budget_transfer_head" EntitySet="Budget_transfer_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_bugget_plan" Association="mju_budgetModel.FK_Deduct_head_bugget_plan">
+            <End Role="Budget_plan" EntitySet="Budget_plan" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
           </AssociationSet>
           <AssociationSet Name="FK_person_work_budget_plan_code" Association="mju_budgetModel.FK_person_work_budget_plan_code">
             <End Role="Budget_plan" EntitySet="Budget_plan" />
@@ -4003,6 +4649,30 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Major" EntitySet="Majors" />
             <End Role="Budget_transfer_head" EntitySet="Budget_transfer_head" />
           </AssociationSet>
+          <AssociationSet Name="FK_Deduct_detail_deduct_head" Association="mju_budgetModel.FK_Deduct_detail_deduct_head">
+            <End Role="Deduct_detail" EntitySet="Deduct_detail" />
+            <End Role="Deduct_detail1" EntitySet="Deduct_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_detail_recv_item" Association="mju_budgetModel.FK_Deduct_detail_recv_item">
+            <End Role="Recv_item" EntitySet="Recv_item" />
+            <End Role="Deduct_detail" EntitySet="Deduct_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_degree" Association="mju_budgetModel.FK_Deduct_head_degree">
+            <End Role="Degree" EntitySet="Degrees" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_major" Association="mju_budgetModel.FK_Deduct_head_major">
+            <End Role="Major" EntitySet="Majors" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduct_head_recv_head" Association="mju_budgetModel.FK_Deduct_head_recv_head">
+            <End Role="Recv_head" EntitySet="Recv_head" />
+            <End Role="Deduct_head" EntitySet="Deduct_head" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_degree" Association="mju_budgetModel.FK_Recv_head_degree">
+            <End Role="Degree" EntitySet="Degrees" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
+          </AssociationSet>
           <AssociationSet Name="FK_unit_director_code" Association="mju_budgetModel.FK_unit_director_code">
             <End Role="Director" EntitySet="Directors" />
             <End Role="Unit" EntitySet="Units" />
@@ -4019,6 +4689,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <End Role="Lot" EntitySet="Lots" />
             <End Role="Item_group" EntitySet="Item_group" />
           </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_item_group_detail" Association="mju_budgetModel.FK_Recv_head_item_group_detail">
+            <End Role="Item_group_detail" EntitySet="Item_group_detail" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
+          </AssociationSet>
           <AssociationSet Name="FK_lot_lot" Association="mju_budgetModel.FK_lot_lot">
             <End Role="Lot" EntitySet="Lots" />
             <End Role="Lot1" EntitySet="Lots" />
@@ -4026,6 +4700,10 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <AssociationSet Name="FK_person_work_major_code" Association="mju_budgetModel.FK_person_work_major_code">
             <End Role="Major" EntitySet="Majors" />
             <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_head_major" Association="mju_budgetModel.FK_Recv_head_major">
+            <End Role="Major" EntitySet="Majors" />
+            <End Role="Recv_head" EntitySet="Recv_head" />
           </AssociationSet>
           <AssociationSet Name="FK_person_work_person_group_code" Association="mju_budgetModel.FK_person_work_person_group_code">
             <End Role="Person_group" EntitySet="Person_group" />
@@ -4050,6 +4728,14 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <AssociationSet Name="FK_person_work_type_position_code" Association="mju_budgetModel.FK_person_work_type_position_code">
             <End Role="Type_position" EntitySet="Type_position" />
             <End Role="Person_work" EntitySet="Person_work" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_detail_recv_doc_no" Association="mju_budgetModel.FK_Recv_detail_recv_doc_no">
+            <End Role="Recv_head" EntitySet="Recv_head" />
+            <End Role="Recv_detail" EntitySet="Recv_detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Recv_detail_recv_item_code" Association="mju_budgetModel.FK_Recv_detail_recv_item_code">
+            <End Role="Recv_item" EntitySet="Recv_item" />
+            <End Role="Recv_detail" EntitySet="Recv_detail" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Activity">
@@ -4182,10 +4868,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="ef_open_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_date" Type="DateTime" Precision="3" />
+          <Property Name="budget_open_date_actual" Type="DateTime" Precision="3" />
           <Property Name="open_code" Type="Int32" />
           <Property Name="open_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="open_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="open_command_desc" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="open_desc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -4202,7 +4889,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Budget_open_head_budget_plan_code" FromRole="Budget_open_head" ToRole="Budget_plan" />
           <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Budget_open_head_degree_code" FromRole="Budget_open_head" ToRole="Degree" />
           <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Budget_open_head_major_code" FromRole="Budget_open_head" ToRole="Major" />
-          <NavigationProperty Name="Person_his" Relationship="mju_budgetModel.FK_Budget_open_head_person_open" FromRole="Budget_open_head" ToRole="Person_his" />
         </EntityType>
         <EntityType Name="Budget_plan">
           <Key>
@@ -4231,6 +4917,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_head_budget_plan_code" FromRole="Budget_plan" ToRole="Budget_receive_head" />
           <NavigationProperty Name="Budget_transfer_head" Relationship="mju_budgetModel.FK_Budget_transfer_head_budget_plan_code_from" FromRole="Budget_plan" ToRole="Budget_transfer_head" />
           <NavigationProperty Name="Budget_transfer_head1" Relationship="mju_budgetModel.FK_Budget_transfer_head_budget_plan_code_to" FromRole="Budget_plan" ToRole="Budget_transfer_head" />
+          <NavigationProperty Name="Deduct_head" Relationship="mju_budgetModel.FK_Deduct_head_bugget_plan" FromRole="Budget_plan" ToRole="Deduct_head" />
           <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_budget_plan_code" FromRole="Budget_plan" ToRole="Person_work" />
         </EntityType>
         <EntityType Name="Budget_receive_detail">
@@ -4333,6 +5020,46 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
         </EntityType>
+        <EntityType Name="Deduct_detail">
+          <Key>
+            <PropertyRef Name="deduct_detail_id" />
+          </Key>
+          <Property Name="deduct_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deduct_doc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_is_director" Type="Boolean" />
+          <Property Name="recv_item_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Deduct_detail1" Relationship="mju_budgetModel.FK_Deduct_detail_deduct_head" FromRole="Deduct_detail" ToRole="Deduct_detail1" />
+          <NavigationProperty Name="Deduct_detail2" Relationship="mju_budgetModel.FK_Deduct_detail_deduct_head" FromRole="Deduct_detail1" ToRole="Deduct_detail" />
+          <NavigationProperty Name="Recv_item" Relationship="mju_budgetModel.FK_Deduct_detail_recv_item" FromRole="Deduct_detail" ToRole="Recv_item" />
+        </EntityType>
+        <EntityType Name="Deduct_head">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Budget_plan" Relationship="mju_budgetModel.FK_Deduct_head_bugget_plan" FromRole="Deduct_head" ToRole="Budget_plan" />
+          <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Deduct_head_degree" FromRole="Deduct_head" ToRole="Degree" />
+          <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Deduct_head_major" FromRole="Deduct_head" ToRole="Major" />
+          <NavigationProperty Name="Recv_head" Relationship="mju_budgetModel.FK_Deduct_head_recv_head" FromRole="Deduct_head" ToRole="Recv_head" />
+        </EntityType>
         <EntityType Name="Degree">
           <Key>
             <PropertyRef Name="degree_code" />
@@ -4349,6 +5076,8 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_head_degree_code" FromRole="Degree" ToRole="Budget_receive_head" />
           <NavigationProperty Name="Budget_transfer_head" Relationship="mju_budgetModel.FK_Budget_transfer_head_degree_code_from" FromRole="Degree" ToRole="Budget_transfer_head" />
           <NavigationProperty Name="Budget_transfer_head1" Relationship="mju_budgetModel.FK_Budget_transfer_head_degree_code_to" FromRole="Degree" ToRole="Budget_transfer_head" />
+          <NavigationProperty Name="Deduct_head" Relationship="mju_budgetModel.FK_Deduct_head_degree" FromRole="Degree" ToRole="Deduct_head" />
+          <NavigationProperty Name="Recv_head" Relationship="mju_budgetModel.FK_Recv_head_degree" FromRole="Degree" ToRole="Recv_head" />
         </EntityType>
         <EntityType Name="Director">
           <Key>
@@ -4463,6 +5192,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_receive_head" Relationship="mju_budgetModel.FK_Budget_receive_head_Budget_receive_headitem_group_detail_id" FromRole="Item_group_detail" ToRole="Budget_receive_head" />
           <NavigationProperty Name="Items" Relationship="mju_budgetModel.FK_item_item_group_detail" FromRole="Item_group_detail" ToRole="Item" />
           <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_detail_item_group" FromRole="Item_group_detail" ToRole="Item_group" />
+          <NavigationProperty Name="Recv_head" Relationship="mju_budgetModel.FK_Recv_head_item_group_detail" FromRole="Item_group_detail" ToRole="Recv_head" />
         </EntityType>
         <EntityType Name="Level_position">
           <Key>
@@ -4488,7 +5218,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_created_date" Type="DateTime" Precision="3" />
           <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Item_group" Relationship="mju_budgetModel.FK_item_group_lot_code" FromRole="Lot" ToRole="Item_group" />
           <NavigationProperty Name="Lot1" Relationship="mju_budgetModel.FK_lot_lot" FromRole="Lot" ToRole="Lot1" />
           <NavigationProperty Name="Lot2" Relationship="mju_budgetModel.FK_lot_lot" FromRole="Lot1" ToRole="Lot" />
@@ -4511,7 +5240,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Budget_open_head" Relationship="mju_budgetModel.FK_Budget_open_head_major_code" FromRole="Major" ToRole="Budget_open_head" />
           <NavigationProperty Name="Budget_transfer_head" Relationship="mju_budgetModel.FK_Budget_transfer_head_major_code_from" FromRole="Major" ToRole="Budget_transfer_head" />
           <NavigationProperty Name="Budget_transfer_head1" Relationship="mju_budgetModel.FK_Budget_transfer_head_major_code_to" FromRole="Major" ToRole="Budget_transfer_head" />
+          <NavigationProperty Name="Deduct_head" Relationship="mju_budgetModel.FK_Deduct_head_major" FromRole="Major" ToRole="Deduct_head" />
           <NavigationProperty Name="Person_work" Relationship="mju_budgetModel.FK_person_work_major_code" FromRole="Major" ToRole="Person_work" />
+          <NavigationProperty Name="Recv_head" Relationship="mju_budgetModel.FK_Recv_head_major" FromRole="Major" ToRole="Recv_head" />
         </EntityType>
         <EntityType Name="Menu">
           <Key>
@@ -4587,7 +5318,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
           <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="person_email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Budget_open_head" Relationship="mju_budgetModel.FK_Budget_open_head_person_open" FromRole="Person_his" ToRole="Budget_open_head" />
           <NavigationProperty Name="Title" Relationship="mju_budgetModel.FK_person_his_title_code" FromRole="Person_his" ToRole="Title" />
         </EntityType>
         <EntityType Name="Person_manage">
@@ -4693,6 +5423,68 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <NavigationProperty Name="Activities" Relationship="mju_budgetModel.FK_activity_produce_code" FromRole="Produce" ToRole="Activity" />
           <NavigationProperty Name="Budget" Relationship="mju_budgetModel.FK_produce_budget_code" FromRole="Produce" ToRole="Budget" />
         </EntityType>
+        <EntityType Name="Recv_detail">
+          <Key>
+            <PropertyRef Name="recv_detail_id" />
+          </Key>
+          <Property Name="recv_detail_id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="recv_doc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_is_reduce" Type="Boolean" />
+          <Property Name="recv_item_rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_debit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_credit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Recv_head" Relationship="mju_budgetModel.FK_Recv_detail_recv_doc_no" FromRole="Recv_detail" ToRole="Recv_head" />
+          <NavigationProperty Name="Recv_item" Relationship="mju_budgetModel.FK_Recv_detail_recv_item_code" FromRole="Recv_detail" ToRole="Recv_item" />
+        </EntityType>
+        <EntityType Name="Recv_head">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+          </Key>
+          <Property Name="recv_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_reduce" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Deduct_head" Relationship="mju_budgetModel.FK_Deduct_head_recv_head" FromRole="Recv_head" ToRole="Deduct_head" />
+          <NavigationProperty Name="Degree" Relationship="mju_budgetModel.FK_Recv_head_degree" FromRole="Recv_head" ToRole="Degree" />
+          <NavigationProperty Name="Item_group_detail" Relationship="mju_budgetModel.FK_Recv_head_item_group_detail" FromRole="Recv_head" ToRole="Item_group_detail" />
+          <NavigationProperty Name="Major" Relationship="mju_budgetModel.FK_Recv_head_major" FromRole="Recv_head" ToRole="Major" />
+          <NavigationProperty Name="Recv_detail" Relationship="mju_budgetModel.FK_Recv_detail_recv_doc_no" FromRole="Recv_head" ToRole="Recv_detail" />
+        </EntityType>
+        <EntityType Name="Recv_item">
+          <Key>
+            <PropertyRef Name="recv_item_code" />
+          </Key>
+          <Property Name="recv_item_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_year" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_is_director" Type="Boolean" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Deduct_detail" Relationship="mju_budgetModel.FK_Deduct_detail_recv_item" FromRole="Recv_item" ToRole="Deduct_detail" />
+          <NavigationProperty Name="Recv_detail" Relationship="mju_budgetModel.FK_Recv_detail_recv_item_code" FromRole="Recv_item" ToRole="Recv_detail" />
+          <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="Title">
           <Key>
             <PropertyRef Name="title_code" />
@@ -4793,7 +5585,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="activity_code" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="activity_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="produce_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_created_date" Type="DateTime" Precision="3" />
@@ -5002,6 +5794,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <PropertyRef Name="budget_money_major_id" />
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="major_code" />
+            <PropertyRef Name="budget_money_major_plan" />
+            <PropertyRef Name="budget_money_major_contribute" />
+            <PropertyRef Name="budget_money_major_use" />
             <PropertyRef Name="budget_money_doc" />
             <PropertyRef Name="budget_money_plan" />
             <PropertyRef Name="budget_money_contribute" />
@@ -5012,9 +5807,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_money_major_id" Type="Int64" Nullable="false" />
           <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
           <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_major_contribute" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_major_use" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_plan" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_contribute" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_use" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="budget_money_major_remain" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_major_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -5154,6 +5949,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_open_ap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_pr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_budget_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="budget_open_date_actual" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="view_Budget_open_head">
           <Key>
@@ -5208,6 +6004,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_open_ap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_pr" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="budget_open_budget_no" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="budget_open_date_actual" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="view_Budget_plan">
           <Key>
@@ -5221,15 +6018,15 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_created_date" Type="DateTime" Precision="3" />
-          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="c_updated_by" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
           <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="produce_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -5245,7 +6042,13 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <PropertyRef Name="budget_receive_detail_id" />
             <PropertyRef Name="budget_money_detail_id" />
             <PropertyRef Name="major_code" />
+            <PropertyRef Name="budget_money_major_plan" />
+            <PropertyRef Name="budget_money_major_contribute" />
+            <PropertyRef Name="budget_money_major_use" />
             <PropertyRef Name="budget_money_doc" />
+            <PropertyRef Name="budget_money_plan" />
+            <PropertyRef Name="budget_money_contribute" />
+            <PropertyRef Name="budget_money_use" />
           </Key>
           <Property Name="budget_receive_detail_id" Type="Int64" Nullable="false" />
           <Property Name="budget_receive_doc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
@@ -5288,9 +6091,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="receive_lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="budget_money_detail_id" Type="Int64" Nullable="false" />
           <Property Name="major_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="budget_money_major_plan" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_major_contribute" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_major_use" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_plan" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_contribute" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_major_use" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="budget_money_major_remain" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_doc" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_group_detail_id" Type="Int32" />
@@ -5301,9 +6104,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_money_detail_use" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_detail_remain" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="budget_money_plan" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_contribute" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="budget_money_use" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_money_plan" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_contribute" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="budget_money_use" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
           <Property Name="budget_money_remain" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_money_detail_comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="comments" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
@@ -5314,7 +6117,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="item_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
@@ -5681,6 +6484,121 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="budget_transfer_detail_amount_no_impact" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="budget_transfer_detail_is_impact" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="view_Deduct_detail">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+            <PropertyRef Name="deduct_detail_id" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_date" Type="DateTime" Precision="0" />
+          <Property Name="recv_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_reduce" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_detail_id" Type="Int64" Nullable="false" />
+          <Property Name="recv_item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_is_director" Type="Boolean" />
+          <Property Name="recv_item_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="recv_item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Expr1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Expr2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Expr3" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="view_Deduct_head">
+          <Key>
+            <PropertyRef Name="deduct_doc_no" />
+          </Key>
+          <Property Name="deduct_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="budget_plan_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="deduct_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_date" Type="DateTime" Precision="0" />
+          <Property Name="recv_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_reduce" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="unit_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="activity_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="plan_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="work_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="fund_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="unit_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="director_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="director_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="activity_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="produce_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="produce_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="budget_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="plan_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="work_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fund_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="view_Item">
           <Key>
             <PropertyRef Name="item_code" />
@@ -5702,7 +6620,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Item_detail">
@@ -5710,7 +6627,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <PropertyRef Name="item_detail_id" />
           </Key>
           <Property Name="item_detail_id" Type="Int32" Nullable="false" />
-          <Property Name="item_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_detail_code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="item_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="c_active" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
@@ -5729,7 +6646,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Item_group">
@@ -5747,7 +6663,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="d_updated_date" Type="DateTime" Precision="3" />
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Item_group_detail">
@@ -5767,7 +6682,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="lot_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
           <Property Name="lot_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="lot_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="budget_type" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="view_Menu">
@@ -5799,9 +6713,9 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="CanExtra" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
           <Property Name="MenuParentName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="MenuImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -5935,6 +6849,80 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="person_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="person_pic" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="view_Recv_detail">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+            <PropertyRef Name="recv_detail_id" />
+          </Key>
+          <Property Name="recv_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_reduce" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="recv_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_detail_id" Type="Int64" Nullable="false" />
+          <Property Name="recv_item_code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_is_reduce" Type="Boolean" />
+          <Property Name="recv_item_rate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_debit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_credit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="recv_item_name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_type" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Expr1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_item_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="recv_item_is_director" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="view_Recv_head">
+          <Key>
+            <PropertyRef Name="recv_doc_no" />
+          </Key>
+          <Property Name="recv_doc_no" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_doc_ref" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="recv_date" Type="DateTime" Precision="0" />
+          <Property Name="major_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="degree_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="recv_remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="recv_total" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="recv_reduce" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="item_remain" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="c_created_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_created_date" Type="DateTime" Precision="3" />
+          <Property Name="c_updated_by" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="d_updated_date" Type="DateTime" Precision="3" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_abbrev" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="major_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="major_order" Type="Int32" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_id" Type="Int32" />
+          <Property Name="item_group_detail_code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_detail_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_year" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="item_group_type" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="recv_year" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="view_Unit">
           <Key>
             <PropertyRef Name="unit_code" />
@@ -5959,6 +6947,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <PropertyRef Name="MenuCanApprove" />
             <PropertyRef Name="MenuCanExtra" />
             <PropertyRef Name="Menu_Status" />
+            <PropertyRef Name="MenuID" />
           </Key>
           <Property Name="user_group_code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="CanView" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -5967,11 +6956,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="CanDelete" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CanApprove" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="CanExtra" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
-          <Property Name="user_group_name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="user_group_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="MenuName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="MenuNavigationUrl" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="MenuImageUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -5990,7 +6979,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <Property Name="unit_code_list" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Menu_Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="MenuID" Type="Int16" />
+          <Property Name="MenuID" Type="Int16" Nullable="false" />
         </EntityType>
         <Association Name="FK_activity_produce_code">
           <End Type="mju_budgetModel.Produce" Role="Produce" Multiplicity="0..1" />
@@ -6196,18 +7185,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Budget_open_head_person_open">
-          <End Type="mju_budgetModel.Person_his" Role="Person_his" Multiplicity="0..1" />
-          <End Type="mju_budgetModel.Budget_open_head" Role="Budget_open_head" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person_his">
-              <PropertyRef Name="person_code" />
-            </Principal>
-            <Dependent Role="Budget_open_head">
-              <PropertyRef Name="person_open" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_budget_plan_fund_code">
           <End Type="mju_budgetModel.Fund" Role="Fund" Multiplicity="0..1" />
           <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="*" />
@@ -6289,6 +7266,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Principal>
             <Dependent Role="Budget_transfer_head">
               <PropertyRef Name="budget_plan_code_to" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_bugget_plan">
+          <End Type="mju_budgetModel.Budget_plan" Role="Budget_plan" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Deduct_head" Role="Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Budget_plan">
+              <PropertyRef Name="budget_plan_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="budget_plan_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6400,6 +7389,78 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Deduct_detail_deduct_head">
+          <End Type="mju_budgetModel.Deduct_detail" Role="Deduct_detail" Multiplicity="1" />
+          <End Type="mju_budgetModel.Deduct_detail" Role="Deduct_detail1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Deduct_detail">
+              <PropertyRef Name="deduct_detail_id" />
+            </Principal>
+            <Dependent Role="Deduct_detail1">
+              <PropertyRef Name="deduct_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_detail_recv_item">
+          <End Type="mju_budgetModel.Recv_item" Role="Recv_item" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Deduct_detail" Role="Deduct_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_item">
+              <PropertyRef Name="recv_item_code" />
+            </Principal>
+            <Dependent Role="Deduct_detail">
+              <PropertyRef Name="recv_item_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_degree">
+          <End Type="mju_budgetModel.Degree" Role="Degree" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Deduct_head" Role="Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="degree_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="degree_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_major">
+          <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Deduct_head" Role="Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduct_head_recv_head">
+          <End Type="mju_budgetModel.Recv_head" Role="Recv_head" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Deduct_head" Role="Deduct_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Principal>
+            <Dependent Role="Deduct_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_head_degree">
+          <End Type="mju_budgetModel.Degree" Role="Degree" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Recv_head" Role="Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Degree">
+              <PropertyRef Name="degree_code" />
+            </Principal>
+            <Dependent Role="Recv_head">
+              <PropertyRef Name="degree_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_unit_director_code">
           <End Type="mju_budgetModel.Director" Role="Director" Multiplicity="0..1" />
           <End Type="mju_budgetModel.Unit" Role="Unit" Multiplicity="*" />
@@ -6448,6 +7509,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Recv_head_item_group_detail">
+          <End Type="mju_budgetModel.Item_group_detail" Role="Item_group_detail" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Recv_head" Role="Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item_group_detail">
+              <PropertyRef Name="item_group_detail_id" />
+            </Principal>
+            <Dependent Role="Recv_head">
+              <PropertyRef Name="item_group_detail_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_lot_lot">
           <End Type="mju_budgetModel.Lot" Role="Lot" Multiplicity="1" />
           <End Type="mju_budgetModel.Lot" Role="Lot1" Multiplicity="0..1" />
@@ -6468,6 +7541,18 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
               <PropertyRef Name="major_code" />
             </Principal>
             <Dependent Role="Person_work">
+              <PropertyRef Name="major_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_head_major">
+          <End Type="mju_budgetModel.Major" Role="Major" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Recv_head" Role="Recv_head" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Major">
+              <PropertyRef Name="major_code" />
+            </Principal>
+            <Dependent Role="Recv_head">
               <PropertyRef Name="major_code" />
             </Dependent>
           </ReferentialConstraint>
@@ -6541,6 +7626,30 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             </Principal>
             <Dependent Role="Person_work">
               <PropertyRef Name="type_position_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_detail_recv_doc_no">
+          <End Type="mju_budgetModel.Recv_head" Role="Recv_head" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Recv_detail" Role="Recv_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_head">
+              <PropertyRef Name="recv_doc_no" />
+            </Principal>
+            <Dependent Role="Recv_detail">
+              <PropertyRef Name="recv_doc_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Recv_detail_recv_item_code">
+          <End Type="mju_budgetModel.Recv_item" Role="Recv_item" Multiplicity="0..1" />
+          <End Type="mju_budgetModel.Recv_detail" Role="Recv_detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Recv_item">
+              <PropertyRef Name="recv_item_code" />
+            </Principal>
+            <Dependent Role="Recv_detail">
+              <PropertyRef Name="recv_item_code" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -6672,10 +7781,11 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="degree_code" ColumnName="degree_code" />
                 <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
                 <ScalarProperty Name="budget_type" ColumnName="budget_type" />
-                <ScalarProperty Name="open_command_desc" ColumnName="open_command_desc" />
                 <ScalarProperty Name="open_desc" ColumnName="open_desc" />
+                <ScalarProperty Name="open_command_desc" ColumnName="open_command_desc" />
                 <ScalarProperty Name="open_title" ColumnName="open_title" />
                 <ScalarProperty Name="open_code" ColumnName="open_code" />
+                <ScalarProperty Name="budget_open_date_actual" ColumnName="budget_open_date_actual" />
                 <ScalarProperty Name="budget_open_date" ColumnName="budget_open_date" />
                 <ScalarProperty Name="budget_open_year" ColumnName="budget_open_year" />
                 <ScalarProperty Name="ef_open_doc" ColumnName="ef_open_doc" />
@@ -6792,6 +7902,41 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="config_code" ColumnName="config_code" />
                 <ScalarProperty Name="config_type" ColumnName="config_type" />
                 <ScalarProperty Name="config_id" ColumnName="config_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deduct_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.Deduct_detail">
+              <MappingFragment StoreEntitySet="Deduct_detail">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="recv_item_remark" ColumnName="recv_item_remark" />
+                <ScalarProperty Name="recv_item_is_director" ColumnName="recv_item_is_director" />
+                <ScalarProperty Name="recv_item_rate" ColumnName="recv_item_rate" />
+                <ScalarProperty Name="recv_item_code" ColumnName="recv_item_code" />
+                <ScalarProperty Name="deduct_doc_no" ColumnName="deduct_doc_no" />
+                <ScalarProperty Name="deduct_detail_id" ColumnName="deduct_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deduct_head">
+            <EntityTypeMapping TypeName="mju_budgetModel.Deduct_head">
+              <MappingFragment StoreEntitySet="Deduct_head">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="deduct_remark" ColumnName="deduct_remark" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="recv_total_remain" ColumnName="recv_total_remain" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="deduct_date" ColumnName="deduct_date" />
+                <ScalarProperty Name="deduct_year" ColumnName="deduct_year" />
+                <ScalarProperty Name="deduct_doc_no" ColumnName="deduct_doc_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -6936,7 +8081,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="Lots">
             <EntityTypeMapping TypeName="mju_budgetModel.Lot">
               <MappingFragment StoreEntitySet="Lot">
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
                 <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
                 <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
                 <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
@@ -7135,6 +8279,62 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="produce_name" ColumnName="produce_name" />
                 <ScalarProperty Name="produce_year" ColumnName="produce_year" />
                 <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recv_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.Recv_detail">
+              <MappingFragment StoreEntitySet="Recv_detail">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="recv_item_credit" ColumnName="recv_item_credit" />
+                <ScalarProperty Name="recv_item_debit" ColumnName="recv_item_debit" />
+                <ScalarProperty Name="recv_item_rate" ColumnName="recv_item_rate" />
+                <ScalarProperty Name="recv_item_is_reduce" ColumnName="recv_item_is_reduce" />
+                <ScalarProperty Name="recv_item_code" ColumnName="recv_item_code" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+                <ScalarProperty Name="recv_detail_id" ColumnName="recv_detail_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recv_head">
+            <EntityTypeMapping TypeName="mju_budgetModel.Recv_head">
+              <MappingFragment StoreEntitySet="Recv_head">
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_remain" ColumnName="item_remain" />
+                <ScalarProperty Name="recv_reduce" ColumnName="recv_reduce" />
+                <ScalarProperty Name="recv_total" ColumnName="recv_total" />
+                <ScalarProperty Name="recv_remark" ColumnName="recv_remark" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="recv_date" ColumnName="recv_date" />
+                <ScalarProperty Name="recv_doc_ref" ColumnName="recv_doc_ref" />
+                <ScalarProperty Name="recv_year" ColumnName="recv_year" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recv_item">
+            <EntityTypeMapping TypeName="mju_budgetModel.Recv_item">
+              <MappingFragment StoreEntitySet="Recv_item">
+                <ScalarProperty Name="c_active" ColumnName="c_active" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="recv_item_is_director" ColumnName="recv_item_is_director" />
+                <ScalarProperty Name="recv_item_remark" ColumnName="recv_item_remark" />
+                <ScalarProperty Name="recv_item_rate" ColumnName="recv_item_rate" />
+                <ScalarProperty Name="recv_item_type" ColumnName="recv_item_type" />
+                <ScalarProperty Name="recv_item_name" ColumnName="recv_item_name" />
+                <ScalarProperty Name="recv_item_year" ColumnName="recv_item_year" />
+                <ScalarProperty Name="recv_item_code" ColumnName="recv_item_code" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -7502,6 +8702,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_open_detail">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_detail">
               <MappingFragment StoreEntitySet="view_Budget_open_detail">
+                <ScalarProperty Name="budget_open_date_actual" ColumnName="budget_open_date_actual" />
                 <ScalarProperty Name="budget_open_budget_no" ColumnName="budget_open_budget_no" />
                 <ScalarProperty Name="budget_open_pr" ColumnName="budget_open_pr" />
                 <ScalarProperty Name="budget_open_ap" ColumnName="budget_open_ap" />
@@ -7579,6 +8780,7 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
           <EntitySetMapping Name="view_Budget_open_head">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Budget_open_head">
               <MappingFragment StoreEntitySet="view_Budget_open_head">
+                <ScalarProperty Name="budget_open_date_actual" ColumnName="budget_open_date_actual" />
                 <ScalarProperty Name="budget_open_budget_no" ColumnName="budget_open_budget_no" />
                 <ScalarProperty Name="budget_open_pr" ColumnName="budget_open_pr" />
                 <ScalarProperty Name="budget_open_ap" ColumnName="budget_open_ap" />
@@ -8099,11 +9301,126 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="view_Deduct_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Deduct_detail">
+              <MappingFragment StoreEntitySet="view_Deduct_detail">
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="recv_item_type" ColumnName="recv_item_type" />
+                <ScalarProperty Name="recv_item_name" ColumnName="recv_item_name" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="recv_item_remark" ColumnName="recv_item_remark" />
+                <ScalarProperty Name="recv_item_is_director" ColumnName="recv_item_is_director" />
+                <ScalarProperty Name="recv_item_rate" ColumnName="recv_item_rate" />
+                <ScalarProperty Name="recv_item_code" ColumnName="recv_item_code" />
+                <ScalarProperty Name="deduct_detail_id" ColumnName="deduct_detail_id" />
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+                <ScalarProperty Name="work_name" ColumnName="work_name" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="director_name" ColumnName="director_name" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+                <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_remain" ColumnName="item_remain" />
+                <ScalarProperty Name="recv_reduce" ColumnName="recv_reduce" />
+                <ScalarProperty Name="recv_total" ColumnName="recv_total" />
+                <ScalarProperty Name="recv_remark" ColumnName="recv_remark" />
+                <ScalarProperty Name="recv_date" ColumnName="recv_date" />
+                <ScalarProperty Name="recv_doc_ref" ColumnName="recv_doc_ref" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="deduct_remark" ColumnName="deduct_remark" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="recv_total_remain" ColumnName="recv_total_remain" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="deduct_date" ColumnName="deduct_date" />
+                <ScalarProperty Name="deduct_year" ColumnName="deduct_year" />
+                <ScalarProperty Name="deduct_doc_no" ColumnName="deduct_doc_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Deduct_head">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Deduct_head">
+              <MappingFragment StoreEntitySet="view_Deduct_head">
+                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
+                <ScalarProperty Name="fund_name" ColumnName="fund_name" />
+                <ScalarProperty Name="work_name" ColumnName="work_name" />
+                <ScalarProperty Name="plan_name" ColumnName="plan_name" />
+                <ScalarProperty Name="budget_name" ColumnName="budget_name" />
+                <ScalarProperty Name="budget_code" ColumnName="budget_code" />
+                <ScalarProperty Name="produce_name" ColumnName="produce_name" />
+                <ScalarProperty Name="produce_code" ColumnName="produce_code" />
+                <ScalarProperty Name="activity_name" ColumnName="activity_name" />
+                <ScalarProperty Name="director_name" ColumnName="director_name" />
+                <ScalarProperty Name="director_code" ColumnName="director_code" />
+                <ScalarProperty Name="unit_name" ColumnName="unit_name" />
+                <ScalarProperty Name="fund_code" ColumnName="fund_code" />
+                <ScalarProperty Name="work_code" ColumnName="work_code" />
+                <ScalarProperty Name="plan_code" ColumnName="plan_code" />
+                <ScalarProperty Name="activity_code" ColumnName="activity_code" />
+                <ScalarProperty Name="unit_code" ColumnName="unit_code" />
+                <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="item_remain" ColumnName="item_remain" />
+                <ScalarProperty Name="recv_reduce" ColumnName="recv_reduce" />
+                <ScalarProperty Name="recv_total" ColumnName="recv_total" />
+                <ScalarProperty Name="recv_remark" ColumnName="recv_remark" />
+                <ScalarProperty Name="recv_date" ColumnName="recv_date" />
+                <ScalarProperty Name="recv_doc_ref" ColumnName="recv_doc_ref" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="deduct_remark" ColumnName="deduct_remark" />
+                <ScalarProperty Name="budget_plan_code" ColumnName="budget_plan_code" />
+                <ScalarProperty Name="recv_total_remain" ColumnName="recv_total_remain" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="deduct_date" ColumnName="deduct_date" />
+                <ScalarProperty Name="deduct_year" ColumnName="deduct_year" />
+                <ScalarProperty Name="deduct_doc_no" ColumnName="deduct_doc_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="view_Item">
             <EntityTypeMapping TypeName="mju_budgetModel.view_Item">
               <MappingFragment StoreEntitySet="view_Item">
                 <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />
                 <ScalarProperty Name="lot_code" ColumnName="lot_code" />
@@ -8128,7 +9445,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <EntityTypeMapping TypeName="mju_budgetModel.view_Item_detail">
               <MappingFragment StoreEntitySet="view_Item_detail">
                 <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />
                 <ScalarProperty Name="lot_code" ColumnName="lot_code" />
@@ -8156,7 +9472,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <EntityTypeMapping TypeName="mju_budgetModel.view_Item_group">
               <MappingFragment StoreEntitySet="view_Item_group">
                 <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />
                 <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
@@ -8175,7 +9490,6 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
             <EntityTypeMapping TypeName="mju_budgetModel.view_Item_group_detail">
               <MappingFragment StoreEntitySet="view_Item_group_detail">
                 <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
-                <ScalarProperty Name="budget_type" ColumnName="budget_type" />
                 <ScalarProperty Name="lot_name" ColumnName="lot_name" />
                 <ScalarProperty Name="lot_year" ColumnName="lot_year" />
                 <ScalarProperty Name="lot_code" ColumnName="lot_code" />
@@ -8347,6 +9661,81 @@ warning 6002: The table/view 'mju_budget.dbo.view_User_group_menu' does not have
                 <ScalarProperty Name="person_thai_name" ColumnName="person_thai_name" />
                 <ScalarProperty Name="position_code" ColumnName="position_code" />
                 <ScalarProperty Name="person_code" ColumnName="person_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Recv_detail">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Recv_detail">
+              <MappingFragment StoreEntitySet="view_Recv_detail">
+                <ScalarProperty Name="recv_item_is_director" ColumnName="recv_item_is_director" />
+                <ScalarProperty Name="recv_item_remark" ColumnName="recv_item_remark" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="recv_item_type" ColumnName="recv_item_type" />
+                <ScalarProperty Name="recv_item_name" ColumnName="recv_item_name" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="recv_item_credit" ColumnName="recv_item_credit" />
+                <ScalarProperty Name="recv_item_debit" ColumnName="recv_item_debit" />
+                <ScalarProperty Name="recv_item_rate" ColumnName="recv_item_rate" />
+                <ScalarProperty Name="recv_item_is_reduce" ColumnName="recv_item_is_reduce" />
+                <ScalarProperty Name="recv_item_code" ColumnName="recv_item_code" />
+                <ScalarProperty Name="recv_detail_id" ColumnName="recv_detail_id" />
+                <ScalarProperty Name="recv_year" ColumnName="recv_year" />
+                <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_year" ColumnName="major_year" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="item_remain" ColumnName="item_remain" />
+                <ScalarProperty Name="recv_reduce" ColumnName="recv_reduce" />
+                <ScalarProperty Name="recv_total" ColumnName="recv_total" />
+                <ScalarProperty Name="recv_remark" ColumnName="recv_remark" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="recv_date" ColumnName="recv_date" />
+                <ScalarProperty Name="recv_doc_ref" ColumnName="recv_doc_ref" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Recv_head">
+            <EntityTypeMapping TypeName="mju_budgetModel.view_Recv_head">
+              <MappingFragment StoreEntitySet="view_Recv_head">
+                <ScalarProperty Name="recv_year" ColumnName="recv_year" />
+                <ScalarProperty Name="item_group_type" ColumnName="item_group_type" />
+                <ScalarProperty Name="item_group_name" ColumnName="item_group_name" />
+                <ScalarProperty Name="item_group_year" ColumnName="item_group_year" />
+                <ScalarProperty Name="item_group_code" ColumnName="item_group_code" />
+                <ScalarProperty Name="item_group_detail_name" ColumnName="item_group_detail_name" />
+                <ScalarProperty Name="item_group_detail_code" ColumnName="item_group_detail_code" />
+                <ScalarProperty Name="item_group_detail_id" ColumnName="item_group_detail_id" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="major_order" ColumnName="major_order" />
+                <ScalarProperty Name="major_year" ColumnName="major_year" />
+                <ScalarProperty Name="major_abbrev" ColumnName="major_abbrev" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="d_updated_date" ColumnName="d_updated_date" />
+                <ScalarProperty Name="c_updated_by" ColumnName="c_updated_by" />
+                <ScalarProperty Name="d_created_date" ColumnName="d_created_date" />
+                <ScalarProperty Name="c_created_by" ColumnName="c_created_by" />
+                <ScalarProperty Name="item_remain" ColumnName="item_remain" />
+                <ScalarProperty Name="recv_reduce" ColumnName="recv_reduce" />
+                <ScalarProperty Name="recv_total" ColumnName="recv_total" />
+                <ScalarProperty Name="recv_remark" ColumnName="recv_remark" />
+                <ScalarProperty Name="degree_code" ColumnName="degree_code" />
+                <ScalarProperty Name="major_code" ColumnName="major_code" />
+                <ScalarProperty Name="recv_date" ColumnName="recv_date" />
+                <ScalarProperty Name="recv_doc_ref" ColumnName="recv_doc_ref" />
+                <ScalarProperty Name="recv_doc_no" ColumnName="recv_doc_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

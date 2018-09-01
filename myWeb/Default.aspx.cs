@@ -127,7 +127,9 @@ namespace myWeb
                 }
                 else
                 {
-                    this.UserGroupCode = ArrUserGroup[0].Trim();
+                    //this.UserGroupCode = ArrUserGroup[0].Trim();
+                    this.UserGroupCode = "001";
+
                     GotoUserMode(this.UserGroupCode);
                 }
                 booResult = true;

@@ -44,6 +44,26 @@
         </tr>
         <tr>
             <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage31">ตั้งแต่วันที่เบิก : </asp:Label>
+            </td>
+            <td style="width: 1%; height: 23px;">
+
+                <asp:TextBox ID="txtdate_actual_begin" runat="server" CssClass="textbox"
+                    Width="100px" />
+
+            </td>
+            <td style="text-align: right; height: 23px;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage32">ถึงวันที่ :</asp:Label>
+            </td>
+            <td colspan="2">
+
+                <asp:TextBox ID="txtdate_actual_end" runat="server" CssClass="textbox"
+                    Width="100px" />
+
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: right; height: 23px;">
                 <asp:Label runat="server" CssClass="label_h" ID="lblPage19">เลขที่เอกสาร : </asp:Label>
             </td>
             <td style="width: 1%; height: 23px;">
@@ -244,6 +264,16 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="True" />
             </asp:TemplateField>
+
+             <asp:TemplateField HeaderText="วันที่เบิกจริง" SortExpression="budget_open_date_actual">
+                <ItemTemplate>
+                    <cc1:AwLabelDateTime ID="txtbudget_open_date_actual" runat="server" Value='<% # DataBinder.Eval(Container, "DataItem.budget_open_date_actual")%>'
+                        DateFormat="dd/MM/yyyy">
+                    </cc1:AwLabelDateTime>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="True" />
+            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="รหัสผังงบ" SortExpression="budget_plan_code">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>

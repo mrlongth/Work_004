@@ -166,6 +166,24 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.TextBox txtbudget_open_doc;
         
         /// <summary>
+        /// Label118 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label118;
+        
+        /// <summary>
+        /// txtbudget_open_date_actual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtbudget_open_date_actual;
+        
+        /// <summary>
         /// Label84 control.
         /// </summary>
         /// <remarks>

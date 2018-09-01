@@ -77,6 +77,9 @@
     <Compile Include="Command\cBudget_open.cs" />
     <Compile Include="Command\cBudget_receive.cs" />
     <Compile Include="Command\cDegree.cs" />
+    <Compile Include="Command\cDeduct.cs" />
+    <Compile Include="Command\cRecv.cs" />
+    <Compile Include="Command\cRecv_Item.cs" />
     <Compile Include="Command\cItem.cs" />
     <Compile Include="Command\cBudget_money.cs" />
     <Compile Include="Command\cReport.cs" />

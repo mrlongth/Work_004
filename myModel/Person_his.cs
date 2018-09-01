@@ -14,12 +14,6 @@ namespace myModel
     
     public partial class Person_his
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Person_his()
-        {
-            this.Budget_open_head = new HashSet<Budget_open_head>();
-        }
-    
         public string person_code { get; set; }
         public string title_code { get; set; }
         public string person_thai_name { get; set; }
@@ -37,8 +31,6 @@ namespace myModel
         public string person_password { get; set; }
         public string person_email { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Budget_open_head> Budget_open_head { get; set; }
         public virtual Title Title { get; set; }
     }
 }

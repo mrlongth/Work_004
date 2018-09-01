@@ -44,6 +44,6 @@ namespace myModel
         public string unit_code_list { get; set; }
         public string Menu_Status { get; set; }
         public string Remark { get; set; }
-        public Nullable<short> MenuID { get; set; }
+        public short MenuID { get; set; }
     }
 }

@@ -321,6 +321,27 @@ namespace myDLL.Common
             return result;
         }
 
+        public string Retive_Rep_012(Report_param<T> condition)
+        {
+            var result = string.Empty;
+            var oReport = new cReport();
+            try
+            {
+                var ds = oReport.SP_REP_012(condition.Report_criteria);
+                string strPath = "~/reports/Rep_012.rpt";
+                result = Retive_Rep_Data(condition, strPath, ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oReport.Dispose();
+            }
+            return result;
+        }
+
 
         #region IDisposable Members
 

@@ -22,6 +22,7 @@ namespace myModel
             this.Budget_receive_head = new HashSet<Budget_receive_head>();
             this.Budget_transfer_head = new HashSet<Budget_transfer_head>();
             this.Budget_transfer_head1 = new HashSet<Budget_transfer_head>();
+            this.Deduct_head = new HashSet<Deduct_head>();
             this.Person_work = new HashSet<Person_work>();
         }
     
@@ -54,6 +55,8 @@ namespace myModel
         public virtual ICollection<Budget_transfer_head> Budget_transfer_head { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Budget_transfer_head> Budget_transfer_head1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deduct_head> Deduct_head { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Person_work> Person_work { get; set; }
     }

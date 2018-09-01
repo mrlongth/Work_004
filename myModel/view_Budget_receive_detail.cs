@@ -55,9 +55,9 @@ namespace myModel
         public string receive_lot_name { get; set; }
         public long budget_money_detail_id { get; set; }
         public string major_code { get; set; }
-        public Nullable<decimal> budget_money_major_plan { get; set; }
-        public Nullable<decimal> budget_money_major_contribute { get; set; }
-        public Nullable<decimal> budget_money_major_use { get; set; }
+        public decimal budget_money_major_plan { get; set; }
+        public decimal budget_money_major_contribute { get; set; }
+        public decimal budget_money_major_use { get; set; }
         public Nullable<decimal> budget_money_major_remain { get; set; }
         public string budget_money_doc { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
@@ -68,9 +68,9 @@ namespace myModel
         public Nullable<decimal> budget_money_detail_use { get; set; }
         public Nullable<decimal> budget_money_detail_remain { get; set; }
         public string budget_money_year { get; set; }
-        public Nullable<decimal> budget_money_plan { get; set; }
-        public Nullable<decimal> budget_money_contribute { get; set; }
-        public Nullable<decimal> budget_money_use { get; set; }
+        public decimal budget_money_plan { get; set; }
+        public decimal budget_money_contribute { get; set; }
+        public decimal budget_money_use { get; set; }
         public Nullable<decimal> budget_money_remain { get; set; }
         public string budget_money_detail_comment { get; set; }
         public string comments { get; set; }

@@ -17,9 +17,9 @@ namespace myModel
         public long budget_money_major_id { get; set; }
         public long budget_money_detail_id { get; set; }
         public string major_code { get; set; }
-        public Nullable<decimal> budget_money_major_plan { get; set; }
-        public Nullable<decimal> budget_money_major_contribute { get; set; }
-        public Nullable<decimal> budget_money_major_use { get; set; }
+        public decimal budget_money_major_plan { get; set; }
+        public decimal budget_money_major_contribute { get; set; }
+        public decimal budget_money_major_use { get; set; }
         public Nullable<decimal> budget_money_major_remain { get; set; }
         public string budget_money_major_comment { get; set; }
         public string c_created_by { get; set; }

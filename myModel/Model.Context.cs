@@ -38,6 +38,8 @@ namespace myModel
         public virtual DbSet<Budget_transfer_detail> Budget_transfer_detail { get; set; }
         public virtual DbSet<Budget_transfer_head> Budget_transfer_head { get; set; }
         public virtual DbSet<Config_item> Config_item { get; set; }
+        public virtual DbSet<Deduct_detail> Deduct_detail { get; set; }
+        public virtual DbSet<Deduct_head> Deduct_head { get; set; }
         public virtual DbSet<Degree> Degrees { get; set; }
         public virtual DbSet<Director> Directors { get; set; }
         public virtual DbSet<Fund> Funds { get; set; }
@@ -59,6 +61,9 @@ namespace myModel
         public virtual DbSet<Plan> Plans { get; set; }
         public virtual DbSet<Position> Positions { get; set; }
         public virtual DbSet<Produce> Produces { get; set; }
+        public virtual DbSet<Recv_detail> Recv_detail { get; set; }
+        public virtual DbSet<Recv_head> Recv_head { get; set; }
+        public virtual DbSet<Recv_item> Recv_item { get; set; }
         public virtual DbSet<Title> Titles { get; set; }
         public virtual DbSet<Type_position> Type_position { get; set; }
         public virtual DbSet<Unit> Units { get; set; }
@@ -79,6 +84,8 @@ namespace myModel
         public virtual DbSet<view_Budget_transfer_detail> view_Budget_transfer_detail { get; set; }
         public virtual DbSet<view_Budget_transfer_head> view_Budget_transfer_head { get; set; }
         public virtual DbSet<view_Budget_transfer_report> view_Budget_transfer_report { get; set; }
+        public virtual DbSet<view_Deduct_detail> view_Deduct_detail { get; set; }
+        public virtual DbSet<view_Deduct_head> view_Deduct_head { get; set; }
         public virtual DbSet<view_Item> view_Item { get; set; }
         public virtual DbSet<view_Item_detail> view_Item_detail { get; set; }
         public virtual DbSet<view_Item_group> view_Item_group { get; set; }
@@ -87,6 +94,8 @@ namespace myModel
         public virtual DbSet<view_Person_all> view_Person_all { get; set; }
         public virtual DbSet<view_Person_list> view_Person_list { get; set; }
         public virtual DbSet<view_Person_user> view_Person_user { get; set; }
+        public virtual DbSet<view_Recv_detail> view_Recv_detail { get; set; }
+        public virtual DbSet<view_Recv_head> view_Recv_head { get; set; }
         public virtual DbSet<view_Unit> view_Unit { get; set; }
         public virtual DbSet<view_User_group_menu> view_User_group_menu { get; set; }
     }

@@ -85,6 +85,42 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.TextBox txtdate_end;
         
         /// <summary>
+        /// lblPage31 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage31;
+        
+        /// <summary>
+        /// txtdate_actual_begin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdate_actual_begin;
+        
+        /// <summary>
+        /// lblPage32 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPage32;
+        
+        /// <summary>
+        /// txtdate_actual_end control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdate_actual_end;
+        
+        /// <summary>
         /// lblPage19 control.
         /// </summary>
         /// <remarks>

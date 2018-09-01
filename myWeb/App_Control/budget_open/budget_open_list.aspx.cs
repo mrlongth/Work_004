@@ -73,7 +73,10 @@ namespace myWeb.App_Control.budget_open
 
         protected void Page_LoadComplete(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "createDate('" + txtdate_begin.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');createDate('" + txtdate_end.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
+            var script = "createDate('" + txtdate_begin.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');createDate('" + txtdate_end.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');";
+            script += "createDate('" + txtdate_actual_begin.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');createDate('" + txtdate_actual_end.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');";
+
+            ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", script, true);
         }
 
 
@@ -360,6 +363,16 @@ namespace myWeb.App_Control.budget_open
             if (!string.IsNullOrEmpty(txtdate_end.Text))
             {
                 strCriteria = strCriteria + "  And  (budget_open_date <= '" + cCommon.SeekDate(txtdate_end.Text) + "') ";
+            }
+
+            if (!string.IsNullOrEmpty(txtdate_actual_begin.Text))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_date_actual >= '" + cCommon.SeekDate(txtdate_actual_begin.Text) + "') ";
+            }
+
+            if (!string.IsNullOrEmpty(txtdate_actual_end.Text))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_date_actual <= '" + cCommon.SeekDate(txtdate_actual_end.Text) + "') ";
             }
 
             if (!string.IsNullOrEmpty(budget_open_head.budget_open_year))

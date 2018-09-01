@@ -54,10 +54,10 @@ namespace myWeb.App_Control.budget_open
         protected void Page_Load(object sender, EventArgs e)
         {
             lblError.Text = "";
-            if (!ScriptManager.GetCurrent(this).IsInAsyncPostBack)
-            {
-                ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "BeforePostback", "BeforePostback()");
-            }
+            //if (!ScriptManager.GetCurrent(this).IsInAsyncPostBack)
+            //{
+            //    ScriptManager.RegisterOnSubmitStatement(this, this.GetType(), "BeforePostback", "BeforePostback()");
+            //}
 
             if (!IsPostBack)
             {
@@ -90,6 +90,7 @@ namespace myWeb.App_Control.budget_open
                 {
                     ClearData();
                     txtbudget_open_date.Text = cCommon.CheckDate(DateTime.Now.ToShortDateString());
+                    txtbudget_open_date_actual.Text = cCommon.CheckDate(DateTime.Now.ToShortDateString());
                 }
                 else if (ViewState["mode"].ToString().ToLower().Equals("edit"))
                 {
@@ -133,6 +134,10 @@ namespace myWeb.App_Control.budget_open
                 budget_open_head.budget_open_doc = txtbudget_open_doc.Text;
                 budget_open_head.degree_code = cboDegree.SelectedValue;
                 budget_open_head.budget_open_date = cCommon.GetDate(Request.Form[txtbudget_open_date.UniqueID]);
+                if (!string.IsNullOrEmpty(Request.Form[txtbudget_open_date_actual.UniqueID]))
+                {
+                    budget_open_head.budget_open_date_actual = cCommon.GetDate(Request.Form[txtbudget_open_date_actual.UniqueID]);
+                }               
                 budget_open_head.budget_type = cboBudget_type.SelectedValue;
                 budget_open_head.budget_open_year = cboYear.SelectedValue;
                 budget_open_head.major_code = cboMajor.SelectedValue;
@@ -258,6 +263,10 @@ namespace myWeb.App_Control.budget_open
                     txtUpdatedDate.Text = budget_open_head.d_updated_date.ToString();
                     txtbudget_open_doc.Text = budget_open_head.budget_open_doc;
                     txtbudget_open_date.Text = budget_open_head.budget_open_date.Value.ToString("dd/MM/yyyy");
+                    if(budget_open_head.budget_open_date_actual!= null)
+                    {
+                        txtbudget_open_date_actual.Text = budget_open_head.budget_open_date_actual.Value.ToString("dd/MM/yyyy");
+                    }
 
                     txtbudget_open_no.Text = budget_open_head.budget_open_no;
                     txtbudget_open_ap.Text = budget_open_head.budget_open_ap;
@@ -454,7 +463,7 @@ namespace myWeb.App_Control.budget_open
         {
             //if (!IsPostBack)
             {
-                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "RegisterScript();createDate('" + txtbudget_open_date.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "RegisterScript", "RegisterScript();createDate('" + txtbudget_open_date.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');createDate('" + txtbudget_open_date_actual.ClientID + "','" + DateTime.Now.Date.ToString("dd/MM/yyyy") + "');", true);
             }
         }
 

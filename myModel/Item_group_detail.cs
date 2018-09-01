@@ -19,6 +19,7 @@ namespace myModel
         {
             this.Budget_receive_head = new HashSet<Budget_receive_head>();
             this.Items = new HashSet<Item>();
+            this.Recv_head = new HashSet<Recv_head>();
         }
     
         public int item_group_detail_id { get; set; }
@@ -36,5 +37,7 @@ namespace myModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Item> Items { get; set; }
         public virtual Item_group Item_group { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Recv_head> Recv_head { get; set; }
     }
 }

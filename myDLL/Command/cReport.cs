@@ -386,6 +386,42 @@ namespace myDLL
         }
         #endregion
 
+        #region SP_REP_012
+        public DataSet SP_REP_012(string strCriteria)
+        {
+            DataSet ds = null;
+            SqlConnection oConn = new SqlConnection();
+            SqlCommand oCommand = new SqlCommand();
+            SqlDataAdapter oAdapter = new SqlDataAdapter();
+            try
+            {
+                oConn.ConnectionString = _strConn;
+                oConn.Open();
+                oCommand.Connection = oConn;
+                oCommand.CommandType = CommandType.StoredProcedure;
+                oCommand.CommandText = "sp_BUDGET_MONEY_MAJOR_SEL";
+                oCommand.CommandTimeout = 300;
+
+                oCommand.Parameters.Add("vc_criteria", SqlDbType.NVarChar).Value = strCriteria;
+                oAdapter = new SqlDataAdapter(oCommand);
+                ds = new DataSet();
+                oAdapter.Fill(ds, "sp_REP_012");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                oConn.Close();
+                oCommand.Dispose();
+                oConn.Dispose();
+            }
+            return ds;
+        }
+        #endregion
+
+
 
         public void Dispose()
         {

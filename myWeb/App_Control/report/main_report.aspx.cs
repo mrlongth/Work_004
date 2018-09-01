@@ -247,9 +247,6 @@ namespace myWeb.App_Control.report
             }
         }
 
-
-
-
         private void InitcboWork()
         {
             cWork oWork = new cWork();
@@ -581,6 +578,10 @@ namespace myWeb.App_Control.report
             else if (this.ReportCode == "011")
             {
                 report_result_path = PrintData011();
+            }
+            else if (this.ReportCode == "012")
+            {
+                report_result_path = PrintData012();
             }
             if (!string.IsNullOrEmpty(report_result_path))
             {
@@ -1230,6 +1231,24 @@ namespace myWeb.App_Control.report
             return result;
         }
 
+        private string PrintData012()
+        {
+            var result = string.Empty;
+            try
+            {
+                var condition = GetCondition();
+                var oGenerateReport = new GenerateReport<view_Budget_money_major_report>();
+                var strFilename = oGenerateReport.Retive_Rep_012(condition);
+                result = strFilename;
+
+            }
+            catch (Exception ex)
+            {
+                lblError.Text = ex.Message;
+            }
+            return result;
+        }
+
         private void SetUpControl()
         {
             VisibleAllControl();
@@ -1284,6 +1303,17 @@ namespace myWeb.App_Control.report
 
             else if (ReportCode == "011")
             {
+                pnlDate.Visible = false;
+                pnlDocno.Visible = false;
+                pnlItem.Visible = false;
+                pnlApproveStatus.Visible = false;
+            }
+
+            else if (ReportCode == "012")
+            {
+                pnlDate.Visible = false;
+                pnlDocno.Visible = false;
+                pnlApproveStatus.Visible = false;
             }
 
         }
