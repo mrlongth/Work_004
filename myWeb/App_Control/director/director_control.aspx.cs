@@ -206,10 +206,10 @@ namespace myWeb.App_Control.director
                 {
                     #region edit
                     if (!blnDup)
-                    {                        
+                    {
                         if (strdirector_sign_image != "")
                         {
-                            if (oDirector.SP_UPD_DIRECTOR(strdirector_code, strdirector_year, strdirector_name, strdirector_sign_name, strdirector_sign_image, strsign_position, txtdirector_order.Value.ToString(), strActive, strUpdatedBy, strBudget_type,strdirector_short_name, ref strMessage))
+                            if (oDirector.SP_UPD_DIRECTOR(strdirector_code, strdirector_year, strdirector_name, strdirector_sign_name, strdirector_sign_image, strsign_position, txtdirector_order.Value.ToString(), strActive, strUpdatedBy, strBudget_type, strdirector_short_name, ref strMessage))
                             {
                                 blnResult = true;
                             }
@@ -258,7 +258,7 @@ namespace myWeb.App_Control.director
                     #region insert
                     if (!blnDup)
                     {
-                        if (oDirector.SP_INS_DIRECTOR(strdirector_year, strdirector_name, strdirector_sign_name, strdirector_sign_image, strsign_position, txtdirector_order.Value.ToString(), strActive, strCreatedBy, strBudget_type,strdirector_short_name, ref strMessage))
+                        if (oDirector.SP_INS_DIRECTOR(strdirector_year, strdirector_name, strdirector_sign_name, strdirector_sign_image, strsign_position, txtdirector_order.Value.ToString(), strActive, strCreatedBy, strBudget_type, strdirector_short_name, ref strMessage))
                         {
                             string strGetcode = " and director_name = '" + strdirector_name.Trim() + "' and director_year = '" + strdirector_year + "' ";
                             if (!oDirector.SP_SEL_DIRECTOR(strGetcode, ref ds, ref strMessage))
@@ -425,6 +425,6 @@ namespace myWeb.App_Control.director
                 MsgBox("บันทึกข้อมูลสมบูรณ์");
             }
         }
- 
+
     }
 }

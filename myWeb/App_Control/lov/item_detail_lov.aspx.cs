@@ -194,7 +194,14 @@ namespace myWeb.App_Control.lov
             string strCriteria = string.Empty;
             view_Item_detail item = new view_Item_detail();
             string strScript = string.Empty;
-            item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+             if (this.BudgetType == "B")
+            {
+                item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             item.item_group_type = cboItem_type.SelectedValue;
             item.lot_code = cboLot.SelectedValue;
             item.item_group_code = cboItem_group.SelectedValue;
@@ -289,7 +296,15 @@ namespace myWeb.App_Control.lov
             string strMessage = string.Empty,
                         strCriteria = string.Empty,
                         strItem_group_code = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             strItem_group_code = cboItem_group.SelectedValue;
             int i;
             DataSet ds = new DataSet();
@@ -316,7 +331,15 @@ namespace myWeb.App_Control.lov
         {
             cItem_group_detail oItem_group_detail = new cItem_group_detail();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             string strItem_group_detail_id = cboItem_group_detail.SelectedValue;
             string strItem_group_code = cboItem_group.SelectedValue;
             DataSet ds = new DataSet();
@@ -346,7 +369,15 @@ namespace myWeb.App_Control.lov
             string strMessage = string.Empty, strCriteria = string.Empty;
             string strItem_code = string.Empty;
             string strItem_group_detail_id = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             strItem_code = cboItem.SelectedValue;
             strItem_group_detail_id = cboItem_group_detail.SelectedValue;
             DataSet ds = new DataSet();
@@ -379,7 +410,15 @@ namespace myWeb.App_Control.lov
         {
             cLot oLot = new cLot();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             string strLot = cboLot.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();

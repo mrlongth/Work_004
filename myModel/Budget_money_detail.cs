@@ -24,6 +24,8 @@ namespace myModel
         public string budget_money_doc { get; set; }
         public Nullable<int> item_detail_id { get; set; }
         public Nullable<decimal> budget_money_detail_plan { get; set; }
+        public Nullable<decimal> budget_money_detail_plan2 { get; set; }
+        public Nullable<decimal> budget_money_detail_plan3 { get; set; }
         public Nullable<decimal> budget_money_detail_contribute { get; set; }
         public Nullable<decimal> budget_money_detail_use { get; set; }
         public Nullable<decimal> budget_money_detail_transfer_in { get; set; }

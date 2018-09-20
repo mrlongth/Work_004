@@ -17,18 +17,27 @@ namespace myModel
         public string deduct_doc_no { get; set; }
         public string deduct_year { get; set; }
         public Nullable<System.DateTime> deduct_date { get; set; }
+        public string budget_money_doc { get; set; }
+        public string budget_receive_doc { get; set; }
         public string major_code { get; set; }
         public string degree_code { get; set; }
         public string recv_doc_no { get; set; }
-        public Nullable<decimal> recv_total_remain { get; set; }
+        public Nullable<decimal> recv_total_amount { get; set; }
+        public Nullable<decimal> deduct_total_reduce { get; set; }
+        public Nullable<decimal> deduct_total_reduce_director { get; set; }
+        public Nullable<decimal> deduct_total_remain { get; set; }
         public string budget_plan_code { get; set; }
+        public Nullable<int> item_group_detail_id { get; set; }
         public string deduct_remark { get; set; }
+        public string approve_head_status { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
     
+        public virtual Budget_money_head Budget_money_head { get; set; }
         public virtual Budget_plan Budget_plan { get; set; }
+        public virtual Budget_receive_head Budget_receive_head { get; set; }
         public virtual Degree Degree { get; set; }
         public virtual Major Major { get; set; }
         public virtual Recv_head Recv_head { get; set; }

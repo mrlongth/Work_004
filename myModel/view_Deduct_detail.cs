@@ -20,7 +20,6 @@ namespace myModel
         public string major_code { get; set; }
         public string degree_code { get; set; }
         public string recv_doc_no { get; set; }
-        public Nullable<decimal> recv_total_remain { get; set; }
         public string budget_plan_code { get; set; }
         public string deduct_remark { get; set; }
         public string major_name { get; set; }
@@ -32,7 +31,6 @@ namespace myModel
         public string recv_remark { get; set; }
         public Nullable<decimal> recv_total { get; set; }
         public Nullable<decimal> recv_reduce { get; set; }
-        public Nullable<decimal> item_remain { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
         public string item_group_detail_code { get; set; }
         public string item_group_detail_name { get; set; }
@@ -60,16 +58,19 @@ namespace myModel
         public long deduct_detail_id { get; set; }
         public string recv_item_code { get; set; }
         public Nullable<decimal> recv_item_rate { get; set; }
-        public Nullable<bool> recv_item_is_director { get; set; }
-        public string recv_item_remark { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
         public string recv_item_name { get; set; }
         public string recv_item_type { get; set; }
-        public Nullable<decimal> Expr1 { get; set; }
-        public string Expr2 { get; set; }
-        public Nullable<bool> Expr3 { get; set; }
+        public Nullable<decimal> recv_total_amount { get; set; }
+        public Nullable<decimal> recv_remain { get; set; }
+        public Nullable<decimal> deduct_total_reduce { get; set; }
+        public Nullable<decimal> deduct_total_reduce_director { get; set; }
+        public Nullable<decimal> deduct_total_remain { get; set; }
+        public Nullable<decimal> deduct_item_amount { get; set; }
+        public Nullable<bool> deduct_item_is_director { get; set; }
+        public string deduct_item_remark { get; set; }
     }
 }

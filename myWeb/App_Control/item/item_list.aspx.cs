@@ -89,7 +89,7 @@ namespace myWeb.App_Control.item
             strCriteria = " and Item_group_year = '" + strYear + "'  and  c_active='Y' ";
             if (!string.IsNullOrEmpty(cboItem_type.SelectedValue))
             {
-                strCriteria = "and item_group_type='" + stritem_group_type + "' ";
+                strCriteria += "and item_group_type='" + stritem_group_type + "' ";
             }
             if (oItem_group.SP_ITEM_GROUP_SEL(strCriteria, ref ds, ref strMessage))
             {

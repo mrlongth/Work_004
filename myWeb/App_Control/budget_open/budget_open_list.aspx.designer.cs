@@ -364,6 +364,15 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.DropDownList cboMajor;
         
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
         /// lblPage26 control.
         /// </summary>
         /// <remarks>
@@ -400,13 +409,22 @@ namespace myWeb.App_Control.budget_open {
         protected global::System.Web.UI.WebControls.ImageButton imgNew;
         
         /// <summary>
-        /// lblError control.
+        /// lblPage33 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
+        protected global::System.Web.UI.WebControls.Label lblPage33;
+        
+        /// <summary>
+        /// txtdescription control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtdescription;
         
         /// <summary>
         /// GridView1 control.

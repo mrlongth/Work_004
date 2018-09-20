@@ -174,7 +174,7 @@ namespace myWeb.App_Control.lov
             string strmajor_code = cboMajor.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";

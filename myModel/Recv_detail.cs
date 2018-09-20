@@ -21,6 +21,7 @@ namespace myModel
         public Nullable<decimal> recv_item_rate { get; set; }
         public Nullable<decimal> recv_item_debit { get; set; }
         public Nullable<decimal> recv_item_credit { get; set; }
+        public string recv_item_remark { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }

@@ -81,5 +81,9 @@ namespace myModel
         public decimal budget_money_major_transfer_out { get; set; }
         public Nullable<decimal> budget_money_major_transfer_amount { get; set; }
         public Nullable<decimal> budget_money_major_remain { get; set; }
+        public decimal budget_money_major_plan2 { get; set; }
+        public decimal budget_money_major_plan3 { get; set; }
+        public decimal budget_money_detail_plan3 { get; set; }
+        public decimal budget_money_detail_plan2 { get; set; }
     }
 }

@@ -87,7 +87,14 @@ namespace myWeb.App_Control.budget_receive
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -872,7 +879,12 @@ namespace myWeb.App_Control.budget_receive
 
         protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-         
+            InitcboBudget();
+            InitcboPlan();
+            InitcboDegree();
+            InitcboUnit();
+            InitcboItem_group();
+            InitcboItem_group_detail();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

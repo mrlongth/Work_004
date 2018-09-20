@@ -15,6 +15,22 @@ namespace myWeb.App_Control.budget_money
     public partial class budget_money_major_select : PageBase
     {
 
+        private string BudgetType
+        {
+            get
+            {
+                if (ViewState["budget_type"] == null)
+                {
+                    ViewState["budget_type"] = Helper.CStr(Request.QueryString["budget_type"]);
+                }
+                return ViewState["budget_type"].ToString();
+            }
+            set
+            {
+                ViewState["budget_type"] = value;
+            }
+        }
+
         protected void Page_Init(object sender, EventArgs e)
         {
 
@@ -106,9 +122,18 @@ namespace myWeb.App_Control.budget_money
             string strMessage = string.Empty, strCriteria = string.Empty;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             try
             {
-                strCriteria = " AND  c_active = 'Y' AND major_code not in (Select major_code From Budget_money_major where budget_money_detail_id = '" + ViewState["budget_money_detail_id"].ToString() + "')  order by major_order";
+                strCriteria = " AND  c_active = 'Y' AND major_year = '" + strYear + "'  AND major_code not in (Select major_code From Budget_money_major where budget_money_detail_id = '" + ViewState["budget_money_detail_id"].ToString() + "')  order by major_order";
                 if (oMajor.SP_SEL_Major(strCriteria, ref ds, ref strMessage))
                 {
                     dt = ds.Tables[0];
@@ -150,7 +175,7 @@ namespace myWeb.App_Control.budget_money
             else if (e.Row.RowType.Equals(DataControlRowType.DataRow) || e.Row.RowState.Equals(DataControlRowState.Alternate))
             {
 
-               
+
                 #region Set datagrid row color
                 string strEvenColor, strOddColor, strMouseOverColor;
                 strEvenColor = ((DataSet)Application["xmlconfig"]).Tables["colorDataGridRow"].Rows[0]["Even"].ToString();

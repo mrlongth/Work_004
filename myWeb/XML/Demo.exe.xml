@@ -233,10 +233,11 @@
   </section>
   <section name="default">
     <entry name="pagetitle">MJU</entry>
-    <entry name="yearnow">2560</entry>
+    <entry name="yearnow">2561</entry>
+    <entry name="yearnow2">2560</entry>
     <entry name="work_status">'01','02','03'</entry>
 
-    <entry name="companyname">มหาวิทยาลัยราชภัฏเชียงใหม่</entry>
+    <entry name="companyname">มหาวิทยาลัยแม่โจ้ เชียงใหม่</entry>
     <entry name="SOS_MAX">15000</entry>
     <entry name="SOS_MIN">1650</entry>
   </section>

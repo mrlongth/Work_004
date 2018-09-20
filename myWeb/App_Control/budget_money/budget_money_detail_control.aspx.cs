@@ -110,7 +110,15 @@ namespace myWeb.App_Control.item
             string strMessage = string.Empty,
                         strCriteria = string.Empty,
                         strItem_group_code = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             strItem_group_code = cboItem_group.SelectedValue;
             int i;
             DataSet ds = new DataSet();
@@ -142,7 +150,15 @@ namespace myWeb.App_Control.item
         {
             cItem_group_detail oItem_group_detail = new cItem_group_detail();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             string strItem_group_detail_id = cboItem_group_detail.SelectedValue;
             string strItem_group_code = cboItem_group.SelectedValue;
             DataSet ds = new DataSet();
@@ -171,7 +187,15 @@ namespace myWeb.App_Control.item
         {
             cLot oLot = new cLot();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             string strLot = cboLot.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
@@ -309,6 +333,8 @@ namespace myWeb.App_Control.item
             cBudget_money oBudget_money = new cBudget_money();
             HiddenField hddbudget_money_major_id = null;
             AwNumeric txtbudget_money_major_plan = null;
+            AwNumeric txtbudget_money_major_plan2 = null;
+            AwNumeric txtbudget_money_major_plan3 = null;
             Budget_money_major budget_money_major = null;
 
             try
@@ -319,10 +345,14 @@ namespace myWeb.App_Control.item
                 {
                     hddbudget_money_major_id = (HiddenField)GridViewMajor.Rows[index].FindControl("hddbudget_money_major_id");
                     txtbudget_money_major_plan = (AwNumeric)GridViewMajor.Rows[index].FindControl("txtbudget_money_major_plan");
+                    txtbudget_money_major_plan2 = (AwNumeric)GridViewMajor.Rows[index].FindControl("txtbudget_money_major_plan2");
+                    txtbudget_money_major_plan3 = (AwNumeric)GridViewMajor.Rows[index].FindControl("txtbudget_money_major_plan3");
                     budget_money_major = new Budget_money_major
                     {
                         budget_money_major_id = long.Parse(hddbudget_money_major_id.Value),
                         budget_money_major_plan = decimal.Parse(txtbudget_money_major_plan.Value.ToString()),
+                        budget_money_major_plan2 = decimal.Parse(txtbudget_money_major_plan2.Value.ToString()),
+                        budget_money_major_plan3 = decimal.Parse(txtbudget_money_major_plan3.Value.ToString()),
                         c_updated_by = Session["username"].ToString()
                     };
                     oBudget_money.SP_BUDGET_MONEY_MAJOR_UPD(budget_money_major);

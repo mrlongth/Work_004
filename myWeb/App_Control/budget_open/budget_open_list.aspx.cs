@@ -88,7 +88,14 @@ namespace myWeb.App_Control.budget_open
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -284,7 +291,7 @@ namespace myWeb.App_Control.budget_open
             string strmajor_code = cboMajor.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -353,7 +360,7 @@ namespace myWeb.App_Control.budget_open
             budget_open_head.budget_open_ap = txtbudget_open_ap.Text.Trim();
             budget_open_head.budget_open_pr = txtbudget_open_pr.Text.Trim();
             budget_open_head.budget_open_budget_no = txtbudget_open_budget_no.Text.Trim();
-
+           
 
             if (!string.IsNullOrEmpty(txtdate_begin.Text))
             {
@@ -454,6 +461,11 @@ namespace myWeb.App_Control.budget_open
             if (!string.IsNullOrEmpty(budget_open_head.approve_head_status))
             {
                 strCriteria = strCriteria + "  And  (approve_head_status = '" + budget_open_head.approve_head_status + "') ";
+            }
+
+            if (!string.IsNullOrEmpty(txtdescription.Text))
+            {
+                strCriteria = strCriteria + "  And  (budget_open_doc IN (SELECT budget_open_doc from view_Budget_open_detail where item_detail_name like '%"+ txtdescription.Text.Trim() + "%') ) ";
             }
 
             if (DirectorLock == "Y")
@@ -579,8 +591,14 @@ namespace myWeb.App_Control.budget_open
                 #endregion
 
 
+                var rptItem = (Repeater)e.Row.FindControl("rptItem");
+                _strCriteria = " and budget_open_doc = '" + dv["budget_open_doc"].ToString() + "' ";
+                var oBudget_open = new cBudget_open();
+                var list = oBudget_open.GETDETAILS(_strCriteria);
+                rptItem.DataSource = list;
+                rptItem.DataBind();
 
-                if(dv["approve_head_status"].ToString() == "P")
+                if (dv["approve_head_status"].ToString() == "P")
                 {
                     lblapprove_head_status.Text = "รออนุมัติ";
                 }
@@ -889,7 +907,10 @@ namespace myWeb.App_Control.budget_open
 
         protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            InitcboBudget();
+            InitcboDegree();
+            InitcboUnit();
+            InitcboMajor();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

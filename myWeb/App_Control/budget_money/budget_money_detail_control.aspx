@@ -178,21 +178,35 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดจัดสรร">
-                            <ItemStyle HorizontalAlign="Center" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_plan" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_plan") %>' Width="95%">
                                 </cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ยอดจัดสรร 2">
+                            <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="False" />
+                            <ItemTemplate>
+                                <cc1:AwNumeric ID="txtbudget_money_major_plan2" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_plan2") %>' Width="95%">
+                                </cc1:AwNumeric>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="ยอดจัดสรร 3">
+                            <ItemStyle HorizontalAlign="Center" Width="10%" Wrap="False" />
+                            <ItemTemplate>
+                                <cc1:AwNumeric ID="txtbudget_money_major_plan3" runat="server" CssClass="numberbox" LeadZero="Show" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_plan3") %>' Width="95%">
+                                </cc1:AwNumeric>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดรับจริง">
-                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="10%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_contribute" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_contribute") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="ยอดปรับปรุง">
-                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="10%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_transfer_amount" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_transfer_amount") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
@@ -200,13 +214,13 @@
 
 
                         <asp:TemplateField HeaderText="ยอดใช้แล้ว">
-                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="10%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_use" runat="server" CssClass="numberbox" LeadZero="Show" DisplayMode="View" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_use") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="ยอดคงเหลือ">
-                            <ItemStyle HorizontalAlign="Right" Width="15%" Wrap="False" />
+                            <ItemStyle HorizontalAlign="Right" Width="10%" Wrap="False" />
                             <ItemTemplate>
                                 <cc1:AwNumeric ID="txtbudget_money_major_remain" runat="server" CssClass="numberdis" LeadZero="Show" DisplayMode="View" TabIndex="-1" Value='<% # DataBinder.Eval(Container, "DataItem.budget_money_major_remain") %>' Width="100px"></cc1:AwNumeric>
                             </ItemTemplate>
@@ -296,29 +310,76 @@
                 CalAmount();
             });
 
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan2]").live("keyup", function ()
+            {
+                CalAmount();
+            });
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan2]").live("blur", function ()
+            {
+                CalAmount();
+            });
+
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan2]").live("change", function ()
+            {
+                CalAmount();
+            });
+
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan3]").live("keyup", function ()
+            {
+                CalAmount();
+            });
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan3]").live("blur", function ()
+            {
+                CalAmount();
+            });
+
+            $("#" + GridView1 + " input[id*=txtbudget_money_major_plan3]").live("change", function ()
+            {
+                CalAmount();
+            });
+
         
 
             function CalAmount() {
                 var GridView1 = '<%=GridViewMajor.ClientID%>';
                 var rowCount = document.getElementById(GridView1).rows.length;
                 var txtbudget_money_major_plan = 0;
+                var txtbudget_money_major_plan2 = 0;
+                var txtbudget_money_major_plan3 = 0;
                 var txtbudget_money_major_plan_all = 0;
                 var strbudget_money_major_plan = "";
+                var strbudget_money_major_plan2 = "";
+                var strbudget_money_major_plan3 = "";
 
                 for (var i = 2; i < rowCount + 1; i++) {
 
                     var numbudget_money_major_plan = 0;
+                    var numbudget_money_major_plan2 = 0;
+                    var numbudget_money_major_plan3 = 0;
 
                     if (i < 10) {
                         strbudget_money_major_plan = GridView1 + '_ctl0' + i + '_txtbudget_money_major_plan';
+                        strbudget_money_major_plan2 = GridView1 + '_ctl0' + i + '_txtbudget_money_major_plan2';
+                        strbudget_money_major_plan3 = GridView1 + '_ctl0' + i + '_txtbudget_money_major_plan3';
                     }
                     else {
                         strbudget_money_major_plan = GridView1 + '_ctl' + i + '_txtbudget_money_major_plan';
+                        strbudget_money_major_plan2 = GridView1 + '_ctl' + i + '_txtbudget_money_major_plan2';
+                        strbudget_money_major_plan3 = GridView1 + '_ctl' + i + '_txtbudget_money_major_plan3';
                     }
                     txtbudget_money_major_plan = document.getElementById(strbudget_money_major_plan).value.replace(/,/g, "");
+                    txtbudget_money_major_plan2 = document.getElementById(strbudget_money_major_plan2).value.replace(/,/g, "");
+                    txtbudget_money_major_plan3 = document.getElementById(strbudget_money_major_plan3).value.replace(/,/g, "");
                     numbudget_money_major_plan = parseFloat(txtbudget_money_major_plan);
+                    numbudget_money_major_plan2 = parseFloat(txtbudget_money_major_plan2);
+                    numbudget_money_major_plan3 = parseFloat(txtbudget_money_major_plan3);
                     if (checkNaN(numbudget_money_major_plan)) numbudget_money_major_plan = 0;
-                    txtbudget_money_major_plan_all = txtbudget_money_major_plan_all + numbudget_money_major_plan;
+                    if (checkNaN(numbudget_money_major_plan2)) numbudget_money_major_plan2 = 0;
+                    if (checkNaN(numbudget_money_major_plan3)) numbudget_money_major_plan3 = 0;
+                    txtbudget_money_major_plan_all = txtbudget_money_major_plan_all +
+                        numbudget_money_major_plan +
+                        numbudget_money_major_plan2 +
+                        numbudget_money_major_plan3;
 
                 }
 

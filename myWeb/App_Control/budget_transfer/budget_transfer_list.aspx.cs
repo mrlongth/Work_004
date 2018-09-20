@@ -92,7 +92,14 @@ namespace myWeb.App_Control.budget_transfer
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -288,7 +295,7 @@ namespace myWeb.App_Control.budget_transfer
             string strmajor_code = cboMajor_from.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -492,7 +499,7 @@ namespace myWeb.App_Control.budget_transfer
             string strmajor_code = cboMajor_to.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -1051,7 +1058,15 @@ namespace myWeb.App_Control.budget_transfer
 
         protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
         {
+            InitcboBudget_from();
+            InitcboDegree_from();
+            InitcboUnit_from();
+            InitcboMajor_from();
 
+            InitcboBudget_to();
+            InitcboDegree_to();
+            InitcboUnit_to();
+            InitcboMajor_to();
         }
 
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)

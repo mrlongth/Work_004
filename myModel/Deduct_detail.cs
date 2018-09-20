@@ -18,8 +18,9 @@ namespace myModel
         public string deduct_doc_no { get; set; }
         public string recv_item_code { get; set; }
         public Nullable<decimal> recv_item_rate { get; set; }
-        public Nullable<bool> recv_item_is_director { get; set; }
-        public string recv_item_remark { get; set; }
+        public Nullable<decimal> deduct_item_amount { get; set; }
+        public Nullable<bool> deduct_item_is_director { get; set; }
+        public string deduct_item_remark { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }

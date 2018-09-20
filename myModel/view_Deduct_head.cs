@@ -20,7 +20,6 @@ namespace myModel
         public string major_code { get; set; }
         public string degree_code { get; set; }
         public string recv_doc_no { get; set; }
-        public Nullable<decimal> recv_total_remain { get; set; }
         public string budget_plan_code { get; set; }
         public string deduct_remark { get; set; }
         public string c_created_by { get; set; }
@@ -36,14 +35,6 @@ namespace myModel
         public string recv_remark { get; set; }
         public Nullable<decimal> recv_total { get; set; }
         public Nullable<decimal> recv_reduce { get; set; }
-        public Nullable<decimal> item_remain { get; set; }
-        public Nullable<int> item_group_detail_id { get; set; }
-        public string item_group_detail_code { get; set; }
-        public string item_group_detail_name { get; set; }
-        public string item_group_code { get; set; }
-        public string item_group_year { get; set; }
-        public string item_group_name { get; set; }
-        public string item_group_type { get; set; }
         public string unit_code { get; set; }
         public string activity_code { get; set; }
         public string plan_code { get; set; }
@@ -61,5 +52,20 @@ namespace myModel
         public string work_name { get; set; }
         public string fund_name { get; set; }
         public string budget_type { get; set; }
+        public Nullable<int> item_group_detail_id { get; set; }
+        public string item_group_detail_code { get; set; }
+        public string item_group_detail_name { get; set; }
+        public string item_group_code { get; set; }
+        public string item_group_year { get; set; }
+        public string item_group_name { get; set; }
+        public string item_group_type { get; set; }
+        public Nullable<decimal> recv_total_amount { get; set; }
+        public Nullable<decimal> recv_remain { get; set; }
+        public Nullable<decimal> deduct_total_reduce { get; set; }
+        public Nullable<decimal> deduct_total_reduce_director { get; set; }
+        public Nullable<decimal> deduct_total_remain { get; set; }
+        public string approve_head_status { get; set; }
+        public string budget_money_doc { get; set; }
+        public string budget_receive_doc { get; set; }
     }
 }

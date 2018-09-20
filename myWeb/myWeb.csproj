@@ -105,9 +105,13 @@
     <Content Include="App_Control\budget_transfer\budget_transfer_detail_control.aspx" />
     <Content Include="App_Control\budget_transfer\budget_transfer_control.aspx" />
     <Content Include="App_Control\budget_transfer\budget_transfer_list.aspx" />
+    <Content Include="App_Control\deduct\deduct_item_select.aspx" />
+    <Content Include="App_Control\deduct\deduct_control.aspx" />
+    <Content Include="App_Control\deduct\deduct_list.aspx" />
     <Content Include="App_Control\director\director_view.aspx" />
     <Content Include="App_Control\fund\fund_view.aspx" />
     <Content Include="App_Control\import\basedata_import.aspx" />
+    <Content Include="App_Control\lov\budget_money_lov.aspx" />
     <Content Include="App_Control\recv_item\recv_item_control.aspx" />
     <Content Include="App_Control\recv_item\recv_item_list.aspx" />
     <Content Include="App_Control\item\item_control.aspx" />
@@ -456,6 +460,27 @@
     <Compile Include="App_Control\budget_transfer\budget_transfer_list.aspx.designer.cs">
       <DependentUpon>budget_transfer_list.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Control\deduct\deduct_item_select.aspx.cs">
+      <DependentUpon>deduct_item_select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\deduct\deduct_item_select.aspx.designer.cs">
+      <DependentUpon>deduct_item_select.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\deduct\deduct_control.aspx.cs">
+      <DependentUpon>deduct_control.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\deduct\deduct_control.aspx.designer.cs">
+      <DependentUpon>deduct_control.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\deduct\deduct_list.aspx.cs">
+      <DependentUpon>deduct_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\deduct\deduct_list.aspx.designer.cs">
+      <DependentUpon>deduct_list.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Control\director\director_view.aspx.cs">
       <DependentUpon>director_view.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -476,6 +501,13 @@
     </Compile>
     <Compile Include="App_Control\import\basedata_import.aspx.designer.cs">
       <DependentUpon>basedata_import.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Control\lov\budget_money_lov.aspx.cs">
+      <DependentUpon>budget_money_lov.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App_Control\lov\budget_money_lov.aspx.designer.cs">
+      <DependentUpon>budget_money_lov.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Control\recv_item\recv_item_control.aspx.cs">
       <DependentUpon>recv_item_control.aspx</DependentUpon>

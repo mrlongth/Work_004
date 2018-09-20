@@ -21,5 +21,18 @@ namespace myModel
         public string row_status { get; set; }
     }
 
+    [Serializable]
+    public partial class view_Deduct_detail
+    {
+        public string row_status { get; set; }
+    }
+
+    [Serializable]
+    public partial class view_Recv_detail
+    {
+        public string row_status { get; set; }
+    }
+
+
 
 }

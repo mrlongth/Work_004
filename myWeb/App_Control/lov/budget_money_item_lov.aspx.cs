@@ -213,7 +213,14 @@ namespace myWeb.App_Control.lov
             view_Budget_money_major item = new view_Budget_money_major();
             string strScript = string.Empty;
 
-            item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            if (this.BudgetType == "B")
+            {
+                item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             item.item_group_code = cboItem_group.SelectedValue;
             item.item_group_detail_id = string.IsNullOrEmpty(cboItem_group_detail.SelectedValue) ? 0 : int.Parse(cboItem_group_detail.SelectedValue);
             item.item_code = cboItem.SelectedValue;
@@ -323,7 +330,15 @@ namespace myWeb.App_Control.lov
             string strMessage = string.Empty,
                         strCriteria = string.Empty,
                         strItem_group_code = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = string.Empty;
+            if (this.BudgetType == "B")
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            }
+            else
+            {
+                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+            }
             strItem_group_code = cboItem_group.SelectedValue;
             int i;
             DataSet ds = new DataSet();

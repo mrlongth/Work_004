@@ -18,6 +18,7 @@ namespace myModel
         public Budget_receive_head()
         {
             this.Budget_receive_detail = new HashSet<Budget_receive_detail>();
+            this.Deduct_head = new HashSet<Deduct_head>();
         }
     
         public string budget_receive_doc { get; set; }
@@ -39,5 +40,7 @@ namespace myModel
         public virtual ICollection<Budget_receive_detail> Budget_receive_detail { get; set; }
         public virtual Item_group_detail Item_group_detail { get; set; }
         public virtual Degree Degree { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Deduct_head> Deduct_head { get; set; }
     }
 }

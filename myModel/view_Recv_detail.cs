@@ -22,7 +22,6 @@ namespace myModel
         public string recv_remark { get; set; }
         public Nullable<decimal> recv_total { get; set; }
         public Nullable<decimal> recv_reduce { get; set; }
-        public Nullable<decimal> item_remain { get; set; }
         public string major_name { get; set; }
         public string major_abbrev { get; set; }
         public string major_year { get; set; }
@@ -48,8 +47,9 @@ namespace myModel
         public Nullable<System.DateTime> d_updated_date { get; set; }
         public string recv_item_name { get; set; }
         public string recv_item_type { get; set; }
-        public Nullable<decimal> Expr1 { get; set; }
-        public string recv_item_remark { get; set; }
         public Nullable<bool> recv_item_is_director { get; set; }
+        public Nullable<decimal> recv_remain { get; set; }
+        public string approve_head_status { get; set; }
+        public string recv_item_remark { get; set; }
     }
 }

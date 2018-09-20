@@ -57,13 +57,22 @@ namespace myWeb.App_Control.lov
                 {
                     ViewState["year"] = string.Empty;
                 }
-                if (ViewState["year"].ToString().Equals(""))
-                {
-                    ViewState["year"] = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
-                }
+               
                 if (Request.QueryString["budget_type"] != null)
                 {
                     ViewState["BudgetType"] = Helper.CStr(Request.QueryString["budget_type"]);
+                }
+
+                if (ViewState["year"].ToString().Equals(""))
+                {
+                    if (BudgetType == "B")
+                    {
+                        ViewState["year"] = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                    }
+                    else
+                    {
+                        ViewState["year"] = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                    }
                 }
 
                 if (Request.QueryString["cboDegree"] != null)
@@ -258,7 +267,6 @@ namespace myWeb.App_Control.lov
 
                 ViewState["sort"] = "budget_plan_code";
                 ViewState["direction"] = "ASC";
-                txtyear.Text = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
                 BindGridView();
 
                 //if (this.BudgetType == "R")

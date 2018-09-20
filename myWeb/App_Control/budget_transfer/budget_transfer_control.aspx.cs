@@ -268,7 +268,14 @@ namespace myWeb.App_Control.budget_transfer
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -349,7 +356,7 @@ namespace myWeb.App_Control.budget_transfer
             string strmajor_code = cboMajor_from.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -411,7 +418,7 @@ namespace myWeb.App_Control.budget_transfer
             string strmajor_code = cboMajor_to.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -937,6 +944,34 @@ namespace myWeb.App_Control.budget_transfer
         protected void cboDegree_to_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearBudgetPlanTo();
+        }
+
+        protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboDegree_from();
+            InitcboBudgetType();
+            InitcboMajor_from();
+
+            InitcboDegree_to();
+            InitcboMajor_to();
+
+            txtbudget_plan_code_to.Text = string.Empty;
+            txtunit_name_to.Text = string.Empty;
+            txtbudget_name_to.Text = string.Empty;
+            txtproduce_name_to.Text = string.Empty;
+            txtactivity_name_to.Text = string.Empty;
+            txtplan_name_to.Text = string.Empty;
+            txtwork_name_to.Text = string.Empty;
+            txtfund_name_to.Text = string.Empty;
+
+            txtbudget_plan_code_from.Text = string.Empty;
+            txtunit_name_from.Text = string.Empty;
+            txtbudget_name_from.Text = string.Empty;
+            txtproduce_name_from.Text = string.Empty;
+            txtactivity_name_from.Text = string.Empty;
+            txtplan_name_from.Text = string.Empty;
+            txtwork_name_from.Text = string.Empty;
+            txtfund_name_from.Text = string.Empty;
         }
     }
 }

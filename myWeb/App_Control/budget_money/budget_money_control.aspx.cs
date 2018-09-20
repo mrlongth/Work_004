@@ -214,7 +214,14 @@ namespace myWeb.App_Control.budget_money
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -653,6 +660,21 @@ namespace myWeb.App_Control.budget_money
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             BindGridViewDetail();
+        }
+
+        protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboDegree();
+            InitcboBudgetType();
+            txtbudget_plan_code.Text = string.Empty;
+            txtdirector_name.Text = string.Empty;
+            txtunit_name.Text = string.Empty;
+            txtbudget_name.Text = string.Empty;
+            txtproduce_name.Text = string.Empty;
+            txtactivity_name.Text = string.Empty;
+            txtplan_name.Text = string.Empty;
+            txtwork_name.Text = string.Empty;
+            txtfund_name.Text = string.Empty;
         }
     }
 }

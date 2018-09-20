@@ -30,8 +30,9 @@ namespace myModel
         public string recv_remark { get; set; }
         public Nullable<decimal> recv_total { get; set; }
         public Nullable<decimal> recv_reduce { get; set; }
-        public Nullable<decimal> item_remain { get; set; }
+        public Nullable<decimal> recv_remain { get; set; }
         public Nullable<int> item_group_detail_id { get; set; }
+        public string approve_head_status { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }

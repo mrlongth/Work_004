@@ -27,7 +27,7 @@
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
     <asp:Panel ID="pnlMain" runat="server">
 
-        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="1"
+        <ajaxtoolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0"
             BorderWidth="0px" Style="text-align: left">
             <ajaxtoolkit:TabPanel ID="TabPanel1" runat="server" HeaderText="ข้อมูลการทำงาน">
                 <HeaderTemplate>
@@ -89,7 +89,7 @@
                                 <asp:Label ID="Label90" runat="server" CssClass="label_hbk">ปีงบประมาณ :</asp:Label>
                             </td>
                             <td style="text-align: left">
-                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox">
+                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboYear_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -363,9 +363,11 @@
                 var txtdirector_name = $('#<%=txtdirector_name.ClientID%>');
                 var txtunit_name = $('#<%=txtunit_name.ClientID%>');
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');                
                 var cboDegree = $('#<%=cboDegree.ClientID%>');
                 var url = "../lov/budget_plan_lov.aspx?" +
                     "budget_type=" + cboBudget_type.val() +
+                    "&budget_plan_year=" + cboYear.val() +     
                     "&budget_plan_code=" + txtbudget_plan_code.val() +
                     "&txtproduce_name=" + txtproduce_name.val() +
                     "&txtactivity_name=" + txtactivity_name.val() +

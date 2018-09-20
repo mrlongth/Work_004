@@ -164,6 +164,7 @@
                 <asp:DropDownList ID="cboMajor" runat="server" CssClass="textbox" AutoPostBack="True"
                     OnSelectedIndexChanged="cboActivity_SelectedIndexChanged">
                 </asp:DropDownList>
+                <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
             </td>
         </tr>
         <tr>
@@ -185,16 +186,19 @@
             </td>
         </tr>
         <tr>
-            <td style="text-align: right;">&nbsp;</td>
+            <td style="text-align: right;">
+                <asp:Label runat="server" CssClass="label_h" ID="lblPage33">รายการเบิก :</asp:Label>
+            </td>
             <td colspan="3">
-                <asp:Label runat="server" CssClass="label_error" ID="lblError"></asp:Label>
+                <asp:TextBox runat="server" CssClass="textbox" Width="300px" ID="txtdescription"
+                    MaxLength="100"></asp:TextBox>
             </td>
         </tr>
 
     </table>
 </asp:Content>
 <asp:Content ID="Content2" runat="server" ContentPlaceHolderID="ContentPlaceHolder2">
-   <asp:GridView ID="GridView1" runat="server" CssClass="stGrid" AllowPaging="True"
+    <asp:GridView ID="GridView1" runat="server" CssClass="stGrid" AllowPaging="True"
         AllowSorting="True" AutoGenerateColumns="False" BorderWidth="1px"
         CellPadding="2" Font-Size="10pt" Width="100%" Font-Bold="False" OnRowCreated="GridView1_RowCreated"
         OnRowDeleting="GridView1_RowDeleting" OnSorting="GridView1_Sorting" OnRowDataBound="GridView1_RowDataBound"
@@ -223,7 +227,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-              <asp:TemplateField HeaderText="เลขที่ใบขออนุมัติ" SortExpression="budget_open_no">
+            <asp:TemplateField HeaderText="เลขที่ใบขออนุมัติ" SortExpression="budget_open_no">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblbudget_open_no" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_no") %>'>
@@ -231,7 +235,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-              <asp:TemplateField HeaderText="เลขที่งบ" SortExpression="budget_open_budget_no">
+            <asp:TemplateField HeaderText="เลขที่งบ" SortExpression="budget_open_budget_no">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblbudget_open_budget_no" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_budget_no") %>'>
@@ -239,7 +243,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-              <asp:TemplateField HeaderText="เลขที่ AP" SortExpression="budget_open_ap">
+            <asp:TemplateField HeaderText="เลขที่ AP" SortExpression="budget_open_ap">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblbudget_open_ap" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_ap") %>'>
@@ -247,7 +251,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-               <asp:TemplateField HeaderText="เลขที่ PR" SortExpression="budget_open_pr">
+            <asp:TemplateField HeaderText="เลขที่ PR" SortExpression="budget_open_pr">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="5%"></ItemStyle>
                 <ItemTemplate>
                     <asp:Label ID="lblbudget_open_pr" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_open_pr") %>'>
@@ -265,7 +269,7 @@
                 <ItemStyle HorizontalAlign="Center" Width="5%" Wrap="True" />
             </asp:TemplateField>
 
-             <asp:TemplateField HeaderText="วันที่เบิกจริง" SortExpression="budget_open_date_actual">
+            <asp:TemplateField HeaderText="วันที่เบิกจริง" SortExpression="budget_open_date_actual">
                 <ItemTemplate>
                     <cc1:AwLabelDateTime ID="txtbudget_open_date_actual" runat="server" Value='<% # DataBinder.Eval(Container, "DataItem.budget_open_date_actual")%>'
                         DateFormat="dd/MM/yyyy">
@@ -290,40 +294,7 @@
                 </ItemTemplate>
             </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="หน่วยงาน" SortExpression="unit_name" Visible="false">
-                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
-                <ItemTemplate>
-                    <asp:Label ID="lblunit_code" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_code") %>'
-                        Visible="false"></asp:Label>
-                    <asp:Label ID="lblunit_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name") %>'>
-                    </asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="แผนงบประมาณ " SortExpression="budget_name" Visible="true">
-                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
-                <ItemTemplate>
-                    <asp:Label ID="lblbudget_code" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_code") %>'
-                        Visible="false"></asp:Label>
-                    <asp:Label ID="lblbudget_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.budget_name") %>'>
-                    </asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="ผลผลิต" SortExpression="produce_name" Visible="true">
-                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
-                <ItemTemplate>
-                    <asp:Label ID="lblproduce_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_code") %>'
-                        Visible="false"></asp:Label>
-                    <asp:Label ID="lblproduce_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
-            <asp:TemplateField HeaderText="กิจกรรม" SortExpression="activity_name">
-                <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
-                <ItemTemplate>
-                    <asp:Label ID="lblactivity_code" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_code") %>'
-                        Visible="false"></asp:Label>
-                    <asp:Label ID="lblactivity_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name") %>'></asp:Label>
-                </ItemTemplate>
-            </asp:TemplateField>
+
             <asp:TemplateField HeaderText="หลักสูตร" SortExpression="major_name">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="10%"></ItemStyle>
                 <ItemTemplate>
@@ -332,11 +303,43 @@
                     <asp:Label ID="lblmajor_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.major_name") %>'></asp:Label>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="รายการขออนุมัติเบิกจ่าย" SortExpression="open_title" Visible="false">
+
+            <asp:TemplateField HeaderText="ผังบประมาณ" SortExpression="unit_name">
                 <ItemStyle HorizontalAlign="Left" Wrap="True" Width="15%"></ItemStyle>
                 <ItemTemplate>
-                    <asp:Label ID="lblopen_title" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.open_title")%>'></asp:Label>
+                    <asp:Label ID="lblunit_name" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.unit_name") %>' />
+                    /
+                    <asp:Label ID="lblproduce_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.produce_name") %>' />
+                    /
+                    <asp:Label ID="lblbudget_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.budget_name") %>' />
+                    /                    
+                    <asp:Label ID="lblactivity_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.activity_name") %>' />
                 </ItemTemplate>
+            </asp:TemplateField>
+
+
+            <asp:TemplateField HeaderText="รายการขออนุมัติเบิกจ่าย" SortExpression="open_title" Visible="true">
+                <ItemStyle HorizontalAlign="Left" VerticalAlign="Top" Wrap="True" Width="15%"></ItemStyle>
+                <ItemTemplate>
+                    <asp:Label ID="lblopen_title" runat="server" Text='<% # DataBinder.Eval(Container, "DataItem.open_title")%>'></asp:Label>
+
+                    <table border="0" cellpadding="2" cellspacing="2" width="100%" >
+                        <asp:Repeater ID="rptItem" runat="server" >
+                            <ItemTemplate>
+                                <tr align="left">
+                                    <td align="left" valign="middle" style="width: 70%;">
+                                        - <asp:Label ID="lblitem_detail_name" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.item_detail_name") %>' />
+                                    </td>
+                                    <td align="right" valign="middle" style="width: 30%;">
+                                        <cc1:AwNumeric ID="txtbudget_open_detail_amount" runat="server" Width="98%" LeadZero="Show" DisplayMode="View"
+                                            Value='<% # DataBinder.Eval(Container, "DataItem.budget_open_detail_amount")%>' />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </table>
+                </ItemTemplate>
+
             </asp:TemplateField>
             <asp:TemplateField HeaderText="จำนวนเงินขอเบิก" SortExpression="open_amount" Visible="true">
                 <ItemStyle HorizontalAlign="Right" Wrap="True" Width="80px"></ItemStyle>

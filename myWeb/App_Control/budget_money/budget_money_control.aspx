@@ -72,7 +72,7 @@
                                 <asp:Label ID="Label80" runat="server" CssClass="label_hbk">ปีงบประมาณ :</asp:Label>
                             </td>
                             <td style="text-align: left">
-                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox">
+                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboYear_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -373,6 +373,7 @@
 
             $("input[id*=imgList_budget_plan]").live("click", function () {
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
                 var txtbudget_name = $('#<%=txtbudget_name.ClientID%>');
                 var txtproduce_name = $('#<%=txtproduce_name.ClientID%>');
                 var txtactivity_name = $('#<%=txtactivity_name.ClientID%>');
@@ -384,6 +385,7 @@
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var url = "../lov/budget_plan_lov.aspx?" +
                     "budget_type=" + cboBudget_type.val() +
+                    "&budget_plan_year=" + cboYear.val() +                    
                     "&budget_plan_code=" + txtbudget_plan_code.val() +
                     "&txtproduce_name=" + txtproduce_name.val() +
                     "&txtactivity_name=" + txtactivity_name.val() +

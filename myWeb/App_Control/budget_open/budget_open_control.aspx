@@ -108,7 +108,7 @@
                                 <asp:Label ID="Label112" runat="server" CssClass="label_hbk">ปีงบประมาณ :</asp:Label>
                             </td>
                             <td align="left">
-                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox">
+                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboYear_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -514,8 +514,10 @@
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree.ClientID%>');
                 var cboMajor = $('#<%=cboMajor.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
                 var url = "../lov/budget_plan_lov.aspx?" +
                     "budget_type=" + cboBudget_type.val() +
+                    "&budget_plan_year=" + cboYear.val() +     
                     "&budget_plan_code=" + txtbudget_plan_code.val() +
                     "&cboDegree=" + cboDegree.val() +
                     "&cboMajor=" + cboMajor.val() +
@@ -528,10 +530,12 @@
             $("input[id*=imgList_ef_open_doc]").live("click", function ()
             {
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
                 var txtef_open_doc = $('#' + this.id.replace('imgList_ef_open_doc', 'txtef_open_doc'));
                 var url = "../lov/open_head_lov.aspx?" +
                     "open_doc=" + txtef_open_doc.val() +
                     "&budget_plan_code=" + txtbudget_plan_code.val() +
+                    "&budget_plan_year=" + cboYear.val() +    
                     "&ctrl1=" + $(txtef_open_doc).attr('id') +
                     "&show=1&from=budget_open_control";
                 OpenPopUp('800px', '400px', '93%', 'ค้นหาข้อมูลรายการเบิกจ่าย', url, '1');
@@ -547,10 +551,14 @@
             {
                 var cboDegree = $('#<%=cboDegree.ClientID%>');
                 var cboMajor = $('#<%=cboMajor.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
+                var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var txtbudget_plan_code = $('#<%=txtbudget_plan_code.ClientID%>');
                 var txtbudget_open_doc = $('#<%=txtbudget_open_doc.ClientID%>');
                 var url = "budget_money_item_select.aspx?" +
                     "major_code=" + cboMajor.val() +
+                    "&budget_plan_year=" + cboYear.val() +
+                    "&budget_type=" + cboBudget_type.val() +
                     "&degree_code=" + cboDegree.val() +
                     "&budget_plan_code=" + txtbudget_plan_code.val() +
                     "&budget_open_doc=" + txtbudget_open_doc.val() +

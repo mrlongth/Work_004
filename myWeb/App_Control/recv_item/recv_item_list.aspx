@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site_list.Master" EnableEventValidation="false"
     AutoEventWireup="true" CodeBehind="recv_item_list.aspx.cs" Inherits="myWeb.App_Control.recv_item.recv_item_list"
-    Title="แสดงข้อมูลผังงบประมาณ" %>
+    Title="แสดงข้อมูลรายการรับ/หัก" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <table cellpadding="1" cellspacing="1" style="width: 100%">

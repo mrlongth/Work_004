@@ -92,7 +92,7 @@
                                 <asp:Label ID="Label112" runat="server" CssClass="label_hbk">ปีงบประมาณ :</asp:Label>
                             </td>
                             <td style="text-align: left">
-                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox">
+                                <asp:DropDownList ID="cboYear" runat="server" CssClass="textbox" AutoPostBack="True" OnSelectedIndexChanged="cboYear_SelectedIndexChanged">
                                 </asp:DropDownList>
                             </td>
                         </tr>
@@ -439,8 +439,10 @@
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree_from.ClientID%>');
                 var cboMajor = $('#<%=cboMajor_from.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
                 var url = "../lov/budget_plan_lov.aspx?" +
                     "budget_type=" + cboBudget_type.val() +
+                    "&budget_plan_year=" + cboYear.val() +   
                     "&budget_plan_code=" + txtbudget_plan_code_from.val() +
                     "&cboDegree=" + cboDegree.val() +
                     "&cboMajor=" + cboMajor.val() +
@@ -457,8 +459,10 @@
                 var cboBudget_type = $('#<%=cboBudget_type.ClientID%>');
                 var cboDegree = $('#<%=cboDegree_to.ClientID%>');
                 var cboMajor = $('#<%=cboMajor_to.ClientID%>');
+                var cboYear = $('#<%=cboYear.ClientID%>');
                 var url = "../lov/budget_plan_lov.aspx?" +
                     "budget_type=" + cboBudget_type.val() +
+                    "&budget_plan_year=" + cboYear.val() +
                     "&budget_plan_code=" + txtbudget_plan_code_to.val() +
                     "&cboDegree=" + cboDegree.val() +
                     "&cboMajor=" + cboMajor.val() +

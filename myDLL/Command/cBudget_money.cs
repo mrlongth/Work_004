@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using myModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace myDLL
 {
@@ -277,6 +278,8 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_detail.budget_money_doc;
                 oCommand.Parameters.Add("item_detail_id", SqlDbType.BigInt).Value = budget_money_detail.item_detail_id;
                 oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
+                oCommand.Parameters.Add("budget_money_detail_plan2", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan2;
+                oCommand.Parameters.Add("budget_money_detail_plan3", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan3;
                 oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
                 oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
                 oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
@@ -317,6 +320,8 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_doc", SqlDbType.VarChar).Value = budget_money_detail.budget_money_doc;
                 oCommand.Parameters.Add("item_detail_id", SqlDbType.BigInt).Value = budget_money_detail.item_detail_id;
                 oCommand.Parameters.Add("budget_money_detail_plan", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan;
+                oCommand.Parameters.Add("budget_money_detail_plan2", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan2;
+                oCommand.Parameters.Add("budget_money_detail_plan3", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_plan3;
                 oCommand.Parameters.Add("budget_money_detail_contribute", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_contribute;
                 oCommand.Parameters.Add("budget_money_detail_use", SqlDbType.Money).Value = budget_money_detail.budget_money_detail_use;
                 oCommand.Parameters.Add("budget_money_detail_comment", SqlDbType.VarChar).Value = budget_money_detail.budget_money_detail_comment;
@@ -421,6 +426,19 @@ namespace myDLL
         }
         #endregion
 
+
+        public List<view_Budget_money_major> GETMONEYDETAILS(string strCriteria)
+        {
+            List<view_Budget_money_major> results = null;
+            var strMessage = string.Empty;
+            DataSet ds = null;
+            if (SP_BUDGET_MONEY_MAJOR_SEL(strCriteria, ref ds, ref strMessage))
+            {
+                results = Helper.ToClassInstanceCollection<view_Budget_money_major>(ds.Tables[0]).ToList();
+            }
+            return results;
+        }
+
         #region SP_BUDGET_RECEIVE_DETAIL_TMP_SEL
         public bool SP_BUDGET_RECEIVE_DETAIL_TMP_SEL(string budget_receive_doc, string degree_code, string budget_plan_code, ref DataSet ds, ref string strMessage)
         {
@@ -475,6 +493,8 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_detail_id;
                 oCommand.Parameters.Add("major_code", SqlDbType.VarChar).Value = budget_money_major.major_code;
                 oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
+                oCommand.Parameters.Add("budget_money_major_plan2", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan2;
+                oCommand.Parameters.Add("budget_money_major_plan3", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan3;
                 oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
                 oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
                 oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;
@@ -514,6 +534,8 @@ namespace myDLL
                 oCommand.Parameters.Add("budget_money_detail_id", SqlDbType.BigInt).Value = budget_money_major.budget_money_detail_id;
                 oCommand.Parameters.Add("major_code", SqlDbType.VarChar).Value = budget_money_major.major_code;
                 oCommand.Parameters.Add("budget_money_major_plan", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan;
+                oCommand.Parameters.Add("budget_money_major_plan2", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan2;
+                oCommand.Parameters.Add("budget_money_major_plan3", SqlDbType.Money).Value = budget_money_major.budget_money_major_plan3;
                 oCommand.Parameters.Add("budget_money_major_contribute", SqlDbType.Money).Value = budget_money_major.budget_money_major_contribute;
                 oCommand.Parameters.Add("budget_money_major_use", SqlDbType.Money).Value = budget_money_major.budget_money_major_use;
                 oCommand.Parameters.Add("budget_money_major_comment", SqlDbType.VarChar).Value = budget_money_major.budget_money_major_comment;

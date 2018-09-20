@@ -355,7 +355,14 @@ namespace myWeb.App_Control.budget_open
             strYear = cboYear.SelectedValue;
             if (strYear.Equals(""))
             {
-                strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                if (this.BudgetType == "B")
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+                }
+                else
+                {
+                    strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow2"].ToString();
+                }
             }
             DataTable odt;
             int i;
@@ -434,7 +441,7 @@ namespace myWeb.App_Control.budget_open
             string strmajor_code = cboMajor.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '"+ strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -734,6 +741,8 @@ namespace myWeb.App_Control.budget_open
         }
 
 
+
+
         #endregion
 
 
@@ -936,6 +945,22 @@ namespace myWeb.App_Control.budget_open
             txtopen_desc.Text = string.Empty;
             txtopen_command_desc.Text = string.Empty;
             txtopen_remark.Text = string.Empty;
+        }
+
+        protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            InitcboDegree();
+            InitcboBudgetType();
+            InitcboMajor();
+            txtbudget_plan_code.Text = string.Empty;
+            txtdirector_name.Text = string.Empty;
+            txtunit_name.Text = string.Empty;
+            txtbudget_name.Text = string.Empty;
+            txtproduce_name.Text = string.Empty;
+            txtactivity_name.Text = string.Empty;
+            txtplan_name.Text = string.Empty;
+            txtwork_name.Text = string.Empty;
+            txtfund_name.Text = string.Empty;
         }
     }
 }

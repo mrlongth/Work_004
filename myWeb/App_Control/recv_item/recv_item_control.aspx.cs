@@ -229,6 +229,8 @@ namespace myWeb.App_Control.recv_item
                     txtrecv_item_code.Text = item.recv_item_code;
                     txtrecv_item_name.Text = item.recv_item_name;
                     txtrecv_item_remark.Text = item.recv_item_remark;
+                    txtrecv_item_rate.Value = item.recv_item_rate;
+
                     if (cboRecv_item_type.Items.FindByValue(item.recv_item_type) != null)
                     {
                         cboRecv_item_type.SelectedIndex = -1;

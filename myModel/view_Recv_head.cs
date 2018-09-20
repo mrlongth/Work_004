@@ -22,7 +22,6 @@ namespace myModel
         public string recv_remark { get; set; }
         public Nullable<decimal> recv_total { get; set; }
         public Nullable<decimal> recv_reduce { get; set; }
-        public Nullable<decimal> item_remain { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
@@ -40,5 +39,7 @@ namespace myModel
         public string item_group_name { get; set; }
         public string item_group_type { get; set; }
         public string recv_year { get; set; }
+        public Nullable<decimal> recv_remain { get; set; }
+        public string approve_head_status { get; set; }
     }
 }

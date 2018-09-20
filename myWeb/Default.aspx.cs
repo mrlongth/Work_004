@@ -69,6 +69,7 @@ namespace myWeb
             strUser += cboDomain.SelectedItem.Text;
             strMessage = string.Empty;
             strPersonID = MjuVerifyUser(strUser, strPass, ref strMessage);
+            //strPersonID = "3501400539650";
             if (strPersonID.Length > 0)
             {
                 SetUserProfile(strPersonID, ref strMessage);
@@ -127,8 +128,8 @@ namespace myWeb
                 }
                 else
                 {
-                    //this.UserGroupCode = ArrUserGroup[0].Trim();
-                    this.UserGroupCode = "001";
+                    this.UserGroupCode = ArrUserGroup[0].Trim();
+                    //this.UserGroupCode = "001";
 
                     GotoUserMode(this.UserGroupCode);
                 }

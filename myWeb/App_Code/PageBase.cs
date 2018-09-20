@@ -7,8 +7,6 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using myDLL;
 using DevExpress.Web.ASPxRoundPanel;
 
@@ -488,6 +486,10 @@ namespace myWeb
             {
                     currentUrl = @"~/App_Control/person/person_list.aspx";
             }
+            else if (currentUrl.Contains("deduct_control.aspx"))
+            {
+                currentUrl = @"~/App_Control/deduct/deduct_list.aspx";
+            }
 
             strCriteria = " And user_group_code='" + this.UserGroupCode + "'  And  MenuNavigationUrl='" + currentUrl + "' ";
             objUserBLL.SP_USER_GROUP_MENU_SEL(strCriteria, ref ds, ref strMessage);
@@ -964,6 +966,7 @@ namespace myWeb
                     dt.Columns.Add("work_status");
                     dt.Columns.Add("SOS_MAX");
                     dt.Columns.Add("SOS_MIN");
+                    dt.Columns.Add("yearnow2");
                     rw = dt.NewRow();
                     rw[0] = oXml.GetValue("default", "pagetitle");
                     rw[1] = oXml.GetValue("default", "yearnow");
@@ -971,6 +974,7 @@ namespace myWeb
                     rw[3] = oXml.GetValue("default", "work_status");
                     rw[4] = oXml.GetValue("default", "SOS_MAX");
                     rw[5] = oXml.GetValue("default", "SOS_MIN");
+                    rw[6] = oXml.GetValue("default", "yearnow2");
                     dt.Rows.Add(rw);
                     ds.Tables.Add(dt);
                     #endregion

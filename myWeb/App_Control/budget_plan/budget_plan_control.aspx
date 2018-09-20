@@ -46,7 +46,6 @@
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="cboYear" ErrorMessage="กรุณาเลือกปี"
                     Display="None" SetFocusOnError="True" ValidationGroup="A"
                     ID="RequiredFieldValidator9"></asp:RequiredFieldValidator>
-                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="A" />
 
             </td>
         </tr>
@@ -154,6 +153,8 @@
                     ID="RequiredFieldValidator8"></asp:RequiredFieldValidator>
             </td>
             <td align="left" nowrap valign="middle" rowspan="2" style="text-align: right">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowMessageBox="True" ShowSummary="False" ValidationGroup="A" />
+
                 <asp:ImageButton runat="server" ValidationGroup="A" ImageUrl="~/images/controls/save.jpg"
                     ID="imgSaveOnly"></asp:ImageButton>
                 &nbsp;

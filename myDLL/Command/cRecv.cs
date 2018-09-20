@@ -109,7 +109,7 @@ namespace myDLL
                 oCommand.Parameters.Add("recv_remark", SqlDbType.VarChar).Value = recv_head.recv_remark;
                 oCommand.Parameters.Add("recv_total", SqlDbType.Money).Value = recv_head.recv_total;
                 oCommand.Parameters.Add("recv_reduce", SqlDbType.Money).Value = recv_head.recv_reduce;
-                oCommand.Parameters.Add("item_remain", SqlDbType.Money).Value = recv_head.item_remain;
+                oCommand.Parameters.Add("recv_remain", SqlDbType.Money).Value = recv_head.recv_remain;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = recv_head.item_group_detail_id;            
                 oCommand.Parameters.Add("c_created_by", SqlDbType.VarChar).Value = recv_head.c_created_by;
                 oCommand.ExecuteNonQuery();
@@ -153,7 +153,7 @@ namespace myDLL
                 oCommand.Parameters.Add("recv_remark", SqlDbType.VarChar).Value = recv_head.recv_remark;
                 oCommand.Parameters.Add("recv_total", SqlDbType.Money).Value = recv_head.recv_total;
                 oCommand.Parameters.Add("recv_reduce", SqlDbType.Money).Value = recv_head.recv_reduce;
-                oCommand.Parameters.Add("item_remain", SqlDbType.Money).Value = recv_head.item_remain;
+                oCommand.Parameters.Add("recv_remain", SqlDbType.Money).Value = recv_head.recv_remain;
                 oCommand.Parameters.Add("item_group_detail_id", SqlDbType.Int).Value = recv_head.item_group_detail_id;
                 oCommand.Parameters.Add("c_updated_by", SqlDbType.VarChar).Value = recv_head.c_updated_by;
                 oCommand.ExecuteNonQuery();

@@ -20,6 +20,22 @@ namespace myWeb.App_Control.budget_open
 
         }
 
+        private string BudgetType
+        {
+            get
+            {
+                if (ViewState["BudgetType"] == null)
+                {
+                    ViewState["BudgetType"] = Helper.CStr(Request.QueryString["budget_type"]);
+                }
+                return ViewState["BudgetType"].ToString();
+            }
+            set
+            {
+                ViewState["BudgetType"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,6 +50,15 @@ namespace myWeb.App_Control.budget_open
                 else
                 {
                     ViewState["budget_plan_code"] = string.Empty;
+                }
+
+                if (Request.QueryString["budget_plan_year"] != null)
+                {
+                    ViewState["year"] = Request.QueryString["budget_plan_year"].ToString();
+                }
+                else
+                {
+                    ViewState["year"] = string.Empty;
                 }
 
                 if (Request.QueryString["budget_open_doc"] != null)
@@ -246,7 +271,8 @@ namespace myWeb.App_Control.budget_open
             view_Budget_money_major item = new view_Budget_money_major();
             string strScript = string.Empty;
 
-            item.item_year = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            item.item_year = ViewState["year"].ToString();
+
             item.item_group_code = cboItem_group.SelectedValue;
             item.item_group_detail_id = string.IsNullOrEmpty(cboItem_group_detail.SelectedValue) ? 0 : int.Parse(cboItem_group_detail.SelectedValue);
             item.item_code = cboItem.SelectedValue;
@@ -331,7 +357,7 @@ namespace myWeb.App_Control.budget_open
             string strMessage = string.Empty,
                         strCriteria = string.Empty,
                         strItem_group_code = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = ViewState["year"].ToString();
             strItem_group_code = cboItem_group.SelectedValue;
             int i;
             DataSet ds = new DataSet();
@@ -358,7 +384,8 @@ namespace myWeb.App_Control.budget_open
         {
             cItem_group_detail oItem_group_detail = new cItem_group_detail();
             string strMessage = string.Empty, strCriteria = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = ViewState["year"].ToString();
+
             string strItem_group_detail_id = cboItem_group_detail.SelectedValue;
             string strItem_group_code = cboItem_group.SelectedValue;
             DataSet ds = new DataSet();
@@ -388,7 +415,8 @@ namespace myWeb.App_Control.budget_open
             string strMessage = string.Empty, strCriteria = string.Empty;
             string strItem_code = string.Empty;
             string strItem_group_detail_id = string.Empty;
-            var strYear = ((DataSet)Application["xmlconfig"]).Tables["default"].Rows[0]["yearnow"].ToString();
+            var strYear = ViewState["year"].ToString();
+
             strItem_code = cboItem.SelectedValue;
             strItem_group_detail_id = cboItem_group_detail.SelectedValue;
             DataSet ds = new DataSet();

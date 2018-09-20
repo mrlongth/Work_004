@@ -85,6 +85,16 @@ namespace myWeb.App_Control.report
                 cboYear.SelectedIndex = -1;
                 cboYear.Items.FindByValue(strYear).Selected = true;
             }
+
+            InitcboBudget_from();
+            InitcboDegree_from();
+            InitcboUnit_from();
+            InitcboMajor_from();
+
+            InitcboBudget_to();
+            InitcboDegree_to();
+            InitcboUnit_to();
+            InitcboMajor_to();
         }
 
         private void InitcboDegree_from()
@@ -125,7 +135,7 @@ namespace myWeb.App_Control.report
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = " and unit.unit_year = '" + strYear + "'  and  unit.c_active='Y' ";
-            strCriteria = strCriteria + " and unit.director_code = '" + strDirector_code + "' ";
+            //strCriteria = strCriteria + " and unit.director_code = '" + strDirector_code + "' ";
             if (this.BudgetType == "R")
             {
                 strCriteria = strCriteria + " and unit.budget_type <> 'B' ";
@@ -266,7 +276,7 @@ namespace myWeb.App_Control.report
             string strmajor_code = cboMajor_from.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -337,7 +347,7 @@ namespace myWeb.App_Control.report
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
             strCriteria = " and unit.unit_year = '" + strYear + "'  and  unit.c_active='Y' ";
-            strCriteria = strCriteria + " and unit.director_code = '" + strDirector_code + "' ";
+            //strCriteria = strCriteria + " and unit.director_code = '" + strDirector_code + "' ";
             if (this.BudgetType == "R")
             {
                 strCriteria = strCriteria + " and unit.budget_type <> 'B' ";
@@ -478,7 +488,7 @@ namespace myWeb.App_Control.report
             string strmajor_code = cboMajor_to.SelectedValue;
             DataSet ds = new DataSet();
             DataTable dt = new DataTable();
-            strCriteria = "  and  c_active='Y' ";
+            strCriteria = " and major_year = '" + strYear + "' and  c_active='Y' ";
             if (MajorLock == "Y")
             {
                 strCriteria += " and major_code = '" + PersonMajorCode + "' ";
@@ -771,7 +781,7 @@ namespace myWeb.App_Control.report
 
         protected void cboYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            InitcboYear();
         }
 
 

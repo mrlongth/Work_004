@@ -28,11 +28,11 @@ namespace myModel
         public Nullable<decimal> recv_item_rate { get; set; }
         public string recv_item_remark { get; set; }
         public Nullable<bool> recv_item_is_director { get; set; }
+        public string c_active { get; set; }
         public string c_created_by { get; set; }
         public Nullable<System.DateTime> d_created_date { get; set; }
         public string c_updated_by { get; set; }
         public Nullable<System.DateTime> d_updated_date { get; set; }
-        public string c_active { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Deduct_detail> Deduct_detail { get; set; }
